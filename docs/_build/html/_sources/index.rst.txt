@@ -5,16 +5,13 @@
 
 trigBoard v8
 =========================================
+.. image:: images/trigBoard.jpeg
+	:align: center
 
+Contents
+========
 .. toctree::
-   :maxdepth: 2
-   :caption: Contents:
+   :maxdepth: 2 
+   :caption: Basics:
 
-
-
-Indices and tables
-==================
-
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
+   first.rst
