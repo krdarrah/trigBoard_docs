@@ -1,0 +1,437 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "docs/index.rst",
+			"settings":
+			{
+				"buffer_size": 3782,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "docs/Base Firmware.rst",
+			"settings":
+			{
+				"buffer_size": 98,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "docs/first.rst",
+			"settings":
+			{
+				"buffer_size": 91,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/Users/kevindarrah/Documents/readthedocs/cheatsheet",
+			"settings":
+			{
+				"buffer_size": 55,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+		[
+			[
+				[
+					"Packages/C++/C++ Single File.sublime-build",
+					""
+				],
+				[
+					"Packages/C++/C++ Single File.sublime-build",
+					"Run"
+				]
+			],
+			[
+				"Packages/C++/C++ Single File.sublime-build",
+				""
+			]
+		]
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"pack",
+				"Package Control: Install Package"
+			],
+			[
+				"packa",
+				"Package Control: Install Package"
+			],
+			[
+				"Install Package Control",
+				"Install Package Control"
+			]
+		],
+		"width": 0.0
+	},
+	"console":
+	{
+		"height": 0.0,
+		"history":
+		[
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/Users/kevindarrah/Documents/readthedocs/trigBoard_docs/docs/random.rst",
+		"/Users/kevindarrah/Documents/EAGLE/projects/LastUse/Audio/LastUseAudacityProject.wav",
+		"/Users/kevindarrah/Downloads/apds9930Standalone (1)/apds9930Standalone (1).ino",
+		"/Users/kevindarrah/Documents/Processing/ESP32_GUI_Programmer/sketch.properties",
+		"/Users/kevindarrah/Downloads/processing-3.5.4-windows64/processing-3.5.4/modes/java/src/processing/mode/java/Commander.java",
+		"/Users/kevindarrah/Downloads/processing-3.5.4-windows64/processing-3.5.4/modes/java/reference/javascript/processing.js",
+		"/Users/kevindarrah/Documents/Processing/pythonOTA_trigBoard/sketch.properties",
+		"/Users/kevindarrah/Downloads/esp32_nat_router-master/:Users:kevindarrah:Library:Arduino15:packages:esp3",
+		"/Users/kevindarrah/Downloads/MotionCell_20200527/Boron/src/wcms_msg.h",
+		"/Users/kevindarrah/Downloads/MotionCell_20200527/Boron/src/wcms_msg.cpp",
+		"/Users/kevindarrah/Downloads/MotionCell_20200527/Boron/src/wcms_hal.h",
+		"/Users/kevindarrah/Downloads/MotionCell_20200527/Boron/src/BoronCode.ino",
+		"/Users/kevindarrah/Documents/EAGLE/ulps/bom_KDcircStyle.ulp",
+		"/Users/kevindarrah/Library/Application Support/Sublime Text 3/Local/Session.sublime_session",
+		"/Users/kevindarrah/Downloads/VM-5GA  Product Information/SDK/SDK for Android/UhfReader/src/com/android/hdhe/uhf/reader/SerialPort.java",
+		"/Users/kevindarrah/Downloads/VM-5GA  Product Information/SDK/SDK for windows/Released_lib/RFID_Reader_Cmds.dll",
+		"/Users/kevindarrah/Documents/Arduino/libraries/VCNL4010/src/VCNL4010.cpp",
+		"/Users/kevindarrah/Documents/Arduino/trigBoardV8_BaseFirmware/factoryProg/cheatsheet.txt",
+		"/Users/kevindarrah/Desktop/old database wpotions",
+		"/Users/kevindarrah/Downloads/2pifit/wp-content/plugins/gmap-embed/assets/js/custom.js",
+		"/Users/kevindarrah/Downloads/2pifit/wp-includes/js/masonry.min.js",
+		"/Users/kevindarrah/Downloads/htaccess.ss",
+		"/Users/kevindarrah/Downloads/2pifit/wp-content/plugins/gmap-embed/assets/css/wp-gmap-style.css",
+		"/Users/kevindarrah/Documents/EAGLE/projects/TimNilson/Controller/analogControllerV1.brd",
+		"/Users/kevindarrah/Documents/EAGLE/projects/trigBoard/v8/trigBoardV8.3.brd",
+		"/Users/kevindarrah/Library/Arduino15/packages/esp32/hardware/esp32/1.0.4/tools/sdk/include/mbedtls/mbedtls/aes.h",
+		"/Users/kevindarrah/Library/Arduino15/packages/esp32/hardware/esp32/1.0.4/tools/sdk/include/mbedtls/mbedtls/md.h",
+		"/Users/kevindarrah/Library/Arduino15/packages/esp32/hardware/esp32/1.0.4/tools/sdk/include/mbedtls/mbedtls/net_sockets.h",
+		"/Users/kevindarrah/Library/Arduino15/packages/esp32/hardware/esp32/1.0.4/tools/sdk/include/mbedtls/mbedtls/net.h",
+		"/Users/kevindarrah/Library/Arduino15/packages/esp32/hardware/esp32/1.0.4/tools/sdk/include/mbedtls/mbedtls/entropy.h",
+		"/Users/kevindarrah/Library/Arduino15/packages/esp32/hardware/esp32/1.0.4/tools/sdk/include/mbedtls/mbedtls/cipher.h",
+		"/Users/kevindarrah/Library/Arduino15/packages/esp32/hardware/esp32/1.0.4/libraries/WiFiClientSecure/src/ssl_client.h",
+		"/Users/kevindarrah/Library/Arduino15/packages/esp32/hardware/esp32/1.0.4/tools/sdk/include/mbedtls/mbedtls/platform.h",
+		"/Users/kevindarrah/Library/Arduino15/packages/esp32/hardware/esp32/1.0.4/tools/sdk/include/mbedtls/mbedtls/debug.h",
+		"/Users/kevindarrah/Library/Arduino15/packages/esp32/hardware/esp32/1.0.4/tools/sdk/include/mbedtls/mbedtls/ctr_drbg.h",
+		"/Users/kevindarrah/Library/Arduino15/packages/esp32/hardware/esp32/1.0.4/tools/sdk/include/mbedtls/mbedtls/pk.h",
+		"/Users/kevindarrah/Library/Arduino15/packages/esp32/hardware/esp32/1.0.4/libraries/WiFiClientSecure/src/WiFiClientSecure.h",
+		"/Users/kevindarrah/Library/Arduino15/packages/esp32/hardware/esp32/1.0.4/tools/sdk/include/mbedtls/mbedtls/ssl.h",
+		"/Users/kevindarrah/Library/Arduino15/packages/esp32/hardware/esp32/1.0.4/tools/sdk/include/mbedtls/mbedtls/ssl_ciphersuites.h",
+		"/Users/kevindarrah/Library/Arduino15/packages/esp32/hardware/esp32/1.0.4/tools/sdk/include/mbedtls/mbedtls/bignum.h",
+		"/Users/kevindarrah/Documents/Arduino/trigBoardV8_BaseFirmware/includes.h",
+		"/Users/kevindarrah/Documents/Arduino/trigBoardV8_BaseFirmware/WiFi.ino",
+		"/Users/kevindarrah/Documents/Arduino/trigBoardV8_BaseFirmware/bluetooth.ino",
+		"/Users/kevindarrah/Documents/Arduino/trigBoardV8_BaseFirmware/battery.ino",
+		"/Users/kevindarrah/Documents/Arduino/trigBoardV8_BaseFirmware/rtc.ino",
+		"/Users/kevindarrah/Documents/Arduino/trigBoardV8_BaseFirmware/configuration.ino",
+		"/Users/kevindarrah/Documents/Arduino/trigBoardV8_BaseFirmware/trigBoardV8_BaseFirmware.ino",
+		"/Users/kevindarrah/Documents/Arduino/trigBoardV8_BaseFirmware/OTA.ino",
+		"/Users/kevindarrah/Documents/Arduino/trigBoardV8_BaseFirmware/pushover.ino",
+		"/Users/kevindarrah/Documents/Arduino/trigBoardV8_BaseFirmware/udp.ino",
+		"/Users/kevindarrah/Documents/Arduino/trigBoardV8_BaseFirmware/ifttt.ino",
+		"/Users/kevindarrah/Documents/Arduino/trigBoardV8_BaseFirmware/mqtt.ino",
+		"/Users/kevindarrah/Documents/Arduino/trigBoardV8_BaseFirmware/wakeupKill.ino",
+		"/Users/kevindarrah/Documents/Arduino/trigBoardV8_BaseFirmware/logic.ino",
+		"/Users/kevindarrah/Documents/Arduino/trigBoardV8_BaseFirmware/pushSafer.ino",
+		"/Users/kevindarrah/Documents/Arduino/SmartCabinet_3_11_20/SmartCabinet_3_11_20.ino",
+		"/Users/kevindarrah/Library/Arduino15/packages.stino-settings",
+		"/Users/kevindarrah/Documents/Arduino/CusterProgrammer_4_1_19/CusterProgrammer_4_1_19.ino",
+		"/Users/kevindarrah/Library/Application Support/Eagle/lbr/adsk.eagle_library_18558457/analogControllerV1.lbr",
+		"/Users/kevindarrah/Desktop/*.staffalerter.com.pem",
+		"/Users/kevindarrah/Desktop/*.staffalerter.com.cer",
+		"/Users/kevindarrah/Desktop/*.staffalerter.com.p7b",
+		"/Users/kevindarrah/Documents/Arduino/trigBoardV8_3_19_20/factory/factorysettings",
+		"/Users/kevindarrah/Documents/Arduino/trigBoardV8_3_1_20/factory/factorysettings",
+		"/Users/kevindarrah/Documents/EAGLE/projects/trigBoard/v8/OTA setup",
+		"/Users/kevindarrah/Desktop/ioTvillageArchive/BGXsettings/tags/IOT Village BGX Settings_RELEASED 2_11_20",
+		"/Users/kevindarrah/Documents/Processing/XMarksSpotBLEAPP_2_1_20/libraries/p5.ble.js",
+		"/Users/kevindarrah/Documents/Processing/data/XMarksSpotBLEAPP_1_16_20.js",
+		"/Users/kevindarrah/Documents/EAGLE/projects/HYSON Wireless/HysonBeacon/HysonBeaconV4.1.brd",
+		"/Users/kevindarrah/Desktop/config.csv",
+		"/Users/kevindarrah/Documents/EAGLE/projects/IoT_village/IOT Village BGX Settings",
+		"/Users/kevindarrah/Documents/EAGLE/projects/trigBoard/trigBoardV8.brd",
+		"/Users/kevindarrah/Documents/Processing/BluetoothGUI/index.html",
+		"/Users/kevindarrah/Documents/EAGLE/projects/IoT_village/BGXsettings",
+		"/Users/kevindarrah/SimplicityStudio/v4_workspace/HysonBeacon_11_04_19/FlashingPaths",
+		"/Users/kevindarrah/Documents/EAGLE/projects/Kegg/kegg_TestJigv1.brd",
+		"/Users/kevindarrah/Documents/EAGLE/projects/IoT_village/IoTvillageRev0.brd",
+		"/Users/kevindarrah/Documents/EAGLE/projects/XMARKSSPOT/tagBeaconV1.brd",
+		"/Users/kevindarrah/Documents/EAGLE/projects/HushBuddy/HushBuddyControlBoardRev2.brd",
+		"/Users/kevindarrah/Documents/EAGLE/projects/HushBuddy/eagle.epf",
+		"/Volumes/[C] Windows 10.hidden/AtmelProjects/HushBuddyV2/HushBuddyV2/HushBuddyV2/Release/HushBuddyV2.lss",
+		"/Users/kevindarrah/Desktop/BGXsettings",
+		"/Users/kevindarrah/Desktop/outfile.bin",
+		"/Users/kevindarrah/Desktop/outfile.hex"
+	],
+	"find":
+	{
+		"height": 30.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": true,
+		"find_history":
+		[
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": true,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 3,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "docs/index.rst",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 3782,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								3777,
+								3777
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/RestructuredText/reStructuredText.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 1297.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "docs/Base Firmware.rst",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 98,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								55,
+								55
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/RestructuredText/reStructuredText.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "docs/first.rst",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 91,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								91,
+								91
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/RestructuredText/reStructuredText.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "/Users/kevindarrah/Documents/readthedocs/cheatsheet",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 55,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 30.0
+	},
+	"input":
+	{
+		"height": 90.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.exec":
+	{
+		"height": 108.0
+	},
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"output.stino_build_panel":
+	{
+		"height": 198.0
+	},
+	"output.stino_panel":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"project": "rst.sublime-project",
+	"replace":
+	{
+		"height": 56.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": true,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 302.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}
