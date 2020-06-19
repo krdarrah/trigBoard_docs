@@ -10,15 +10,8 @@ trigBoard v8
 
 
 The trigBoard is an extremely low power platform for the ESP32 WiFi+Bluetooth Module. This board is perfect for battery powered applications, due to it's single digit uA standby current draw ~1.5uA with a 3V battery input. To give an idea as to how low this current draw is, a cheap smoke detector pulls about 7uA. This board was initially designed to be the ideal IoT device - a WiFi connected battery powered monitoring solution for dry contacts (door/window sensors), where a push notification is immediately sent when the contact state has changed. The ultra low standby current does not change regardless if the contact remains in the closed/opened state (this is part of the secret sauce in the trigBoard design). But of course, the trigBoard is a playground of low power features, so it can easily be adapted to a unique monitoring application:
-.. raw:: html
 
-    <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; height: auto;">
-        <iframe src="https://youtu.be/CD-jmSkM3d4" frameborder="0" allowfullscreen style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></iframe>
-    </div>
-
-
-
-
+.. youtube:: https://www.youtube.com/watch?v=iMPBpUdL-rk&feature=youtu.be
 
 Contents
 ========
