@@ -17,7 +17,7 @@ The trigBoard is an extremely low power platform for the ESP32 WiFi+Bluetooth Mo
     </div>
 
 
-* Many battery options, with input voltage range from 1.8-5V. Great for two AAA batteries or even a rechargeable Lithium cell at 4.2V. Reverse polarity protection built in, so no issues if batteries are plugged in backwards.
+* Many battery options, with input voltage range from 1.8-5V. Great for two AAA batteries or even a rechargeable Lithium cell at 4.2V. Reverse polarity protection built in, so no issues if batteries are plugged in backwards. See :ref:`Battery Page <Battery>` for more information and calculations
 
 * Multiple wake sources all configurable through software (no solder jumpers)
 
@@ -27,36 +27,39 @@ The trigBoard is an extremely low power platform for the ESP32 WiFi+Bluetooth Mo
 
 * Wake button on board can also be used to send out a push notification.
 
-* Unused pins from ESP32 broken out for future expansion and in-line to fit breadboards - developer friendly.
+* Unused pins from ESP32 broken out for future expansion and in-line to fit breadboards - developer friendly.  See :ref:`Pinout page <Pinout>` for more information
 
-* Base Firmware supports many Push Notification service options like Pushsafer, Pushover, and IFTTT. And even develop a custom solution with MQTT and UDP messaging. Any of these can be enabled, or even multiple. For example, the notifications can go out through Pushover, then a secondary backup notification can go through MQTT. Or even a notification though Pushsafer, then turn the lights on in the house with IFTTT. The possibilities are endless with this.
+* Base Firmware supports many Push Notification service options like :ref:`Pushsafer <Pushsafer>`, :ref:`Pushover <Pushover>`, and :ref:`IFTTT <IFTTT>`. And even develop a custom solution with :ref:`MQTT <MQTT>` and :ref:`UDP <UDP>` messaging. Any of these can be enabled, or even multiple. For example, the notifications can go out through Pushover, then a secondary backup notification can go through MQTT. Or even a notification though Pushsafer, then turn the lights on in the house with IFTTT. The possibilities are endless with this.
 
-* Configuration software gives full control over the board parameters and settings - in a nice clean easy to use GUI through Google Chrome and a Bluetooth connection to the ESP32.
+* :ref:`Configurator Tool <Configurator>` gives full control over the board parameters and settings - in a nice clean easy to use GUI through Google Chrome and a Bluetooth connection to the ESP32.
 
 * Made in the USA
 
+* ESP32 Module is FCC Certified and trigBoard has been scanned independently
+
+Mentions
+----------
+  * `hackster.io <https://www.hackster.io/news/kd-circuits-new-trigboard-v8-marks-a-major-overhaul-of-the-flexible-iot-notification-board-4ca4d9a147ea>`_ KD Circuits' New trigBoard v8 Marks a Major Overhaul of the Flexible IoT Notification Board
+
+
 Contents
 ========
-.. toctree::
-   :maxdepth: 2 
-   :caption: Getting Started:
-
-   first.rst
 
 .. toctree::
    :maxdepth: 2 
-   :caption: Hardware:
+   :caption: trigBoard v8 Docs
 
-   first.rst
+   wheretobuy.rst
+   quickstart.rst
+   configurator.rst
+   supportedServices.rst
+   Hardware.rst
+   Firmware.rst
+   testing.rst
+   contact.rst
 
 .. toctree::
    :maxdepth: 2 
-   :caption: Configurator:
+   :caption: Projects
 
-   first.rst
-
-.. toctree::
-   :maxdepth: 2 
-   :caption: Firmware:
-
-   Base Firmware.rst
+   ePaperCoronaDisplay.rst
