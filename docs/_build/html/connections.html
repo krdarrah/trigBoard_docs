@@ -1,0 +1,264 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html4" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Connections &mdash; trigBoard
+Version 8 0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Hardware" href="Hardware.html" />
+    <link rel="prev" title="Configurator" href="configurator.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home" alt="Documentation Home"> trigBoard
+Version 8
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">trigBoard v8 Docs</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="wheretobuy.html">Where To Buy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="configurator.html">Configurator</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Connections</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#pushsafer">Pushsafer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#pushover">Pushover</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#ifttt">IFTTT</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#udp">UDP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#mqtt">MQTT</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Hardware.html">Hardware</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Firmware.html">Firmware/Programming</a></li>
+<li class="toctree-l1"><a class="reference internal" href="testing.html">Testing/Factory Programming</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contact.html">CONTACT</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">trigBoard
+Version 8</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Connections</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/connections.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="connections">
+<span id="id1"></span><h1>Connections<a class="headerlink" href="#connections" title="Permalink to this headline">¶</a></h1>
+<p>Where the notifications are sent - the <a class="reference internal" href="configurator.html#configurator"><span class="std std-ref">Configurator Tool</span></a> is used to enable and “configure” all of these connections</p>
+<div class="section" id="pushsafer">
+<span id="id2"></span><h2>Pushsafer<a class="headerlink" href="#pushsafer" title="Permalink to this headline">¶</a></h2>
+<img alt="_images/400px-PushSafer.png" class="align-center" src="_images/400px-PushSafer.png" />
+<div class="line-block">
+<div class="line"><a class="reference external" href="https://www.pushsafer.com">Pushsafer Service</a> is a great service for getting push notifications to your mobile devices. There are some nice features built in, like allowing for guest devices to be added/removed. This works nicely for a vacation setup where a someone may need to temporarily monitor a property. The notifications are purchased in bulk, but very inexpensive.</div>
+</div>
+<div class="line-block">
+<div class="line"><strong>Pushsafer Setup</strong></div>
+<div class="line-block">
+<div class="line">* Go to <a class="reference external" href="https://www.pushsafer.com">Pushsafer.com</a> and create an account</div>
+<div class="line">* Copy the private key:</div>
+</div>
+</div>
+<img alt="_images/600px-PushSaferKeyv8.png" class="align-center" src="_images/600px-PushSaferKeyv8.png" />
+<div class="line-block">
+<div class="line">* Paste that in the Configurator:</div>
+</div>
+<img alt="_images/pushsaferconfig.png" class="align-center" src="_images/pushsaferconfig.png" />
+</div>
+<div class="section" id="pushover">
+<span id="id3"></span><h2>Pushover<a class="headerlink" href="#pushover" title="Permalink to this headline">¶</a></h2>
+<img alt="_images/400px-Pushoverlogo.png" class="align-center" src="_images/400px-Pushoverlogo.png" />
+</div>
+<div class="section" id="ifttt">
+<span id="id4"></span><h2>IFTTT<a class="headerlink" href="#ifttt" title="Permalink to this headline">¶</a></h2>
+<img alt="_images/400px-IFTTTlogo.png" class="align-center" src="_images/400px-IFTTTlogo.png" />
+</div>
+<div class="section" id="udp">
+<span id="id5"></span><h2>UDP<a class="headerlink" href="#udp" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="mqtt">
+<span id="id6"></span><h2>MQTT<a class="headerlink" href="#mqtt" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="Hardware.html" class="btn btn-neutral float-right" title="Hardware" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="configurator.html" class="btn btn-neutral float-left" title="Configurator" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2020, Kevin Darrah
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

@@ -1,0 +1,13 @@
+=======================
+Where To Buy
+=======================
+
+The best place to purchase the trigBoard and accessories is through the `Tindie Store <https://www.tindie.com/stores/kdcircuits/?ref=offsite_badges&utm_source=sellers_kdcircuits&utm_medium=badges&utm_campaign=badge_large>`_
+
+.. raw:: html
+
+	<div>
+	<a href="https://www.tindie.com/stores/kdcircuits/?ref=offsite_badges&utm_source=sellers_kdcircuits&utm_medium=badges&utm_campaign=badge_large"><img src="https://d2ss6ovg47m0r5.cloudfront.net/badges/tindie-larges.png" alt="I sell on Tindie" width="200" height="104"></a>
+	</div>
+
+For higher quantities or OEM opportunities, please `contact KD Circuits directly <https://www.kdcircuits.com#contact>`_

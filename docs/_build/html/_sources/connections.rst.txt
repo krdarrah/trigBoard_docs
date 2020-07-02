@@ -1,0 +1,52 @@
+.. _Connections:
+
+=======================
+Connections
+=======================
+
+Where the notifications are sent - the :ref:`Configurator Tool <Configurator>` is used to enable and "configure" all of these connections
+
+.. _Pushsafer:
+
+Pushsafer
+---------
+.. image:: images/400px-PushSafer.png
+	:align: center
+
+| `Pushsafer Service <https://www.pushsafer.com>`_ is a great service for getting push notifications to your mobile devices. There are some nice features built in, like allowing for guest devices to be added/removed. This works nicely for a vacation setup where a someone may need to temporarily monitor a property. The notifications are purchased in bulk, but very inexpensive.
+
+| **Pushsafer Setup**
+|	* Go to `Pushsafer.com <https://www.pushsafer.com>`_ and create an account
+|	* Copy the private key:
+
+.. image:: images/600px-PushSaferKeyv8.png
+	:align: center
+
+|	* Paste that in the Configurator:
+
+.. image:: images/pushsaferconfig.png
+	:align: center
+
+.. _Pushover:
+
+Pushover
+---------
+.. image:: images/400px-Pushoverlogo.png
+	:align: center
+
+.. _IFTTT:
+
+IFTTT
+---------
+.. image:: images/400px-IFTTTlogo.png
+	:align: center
+
+.. _UDP:
+
+UDP
+---------
+
+.. _MQTT:
+
+MQTT
+---------

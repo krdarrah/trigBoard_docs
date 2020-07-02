@@ -1,0 +1,245 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html4" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Pinout &mdash; trigBoard
+Version 8 0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Battery" href="battery.html" />
+    <link rel="prev" title="Specifications" href="specifications.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home" alt="Documentation Home"> trigBoard
+Version 8
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">trigBoard v8 Docs</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="wheretobuy.html">Where To Buy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html">Quickstart</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="Hardware.html">Hardware</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="specifications.html">Specifications</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Pinout</a></li>
+<li class="toctree-l2"><a class="reference internal" href="battery.html">Battery</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mechanical.html">Mechanical</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Firmware.html">Firmware/Programming</a></li>
+<li class="toctree-l1"><a class="reference internal" href="testing.html">Testing/Factory Programming</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contact.html">CONTACT</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">trigBoard
+Version 8</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="Hardware.html">Hardware</a> &raquo;</li>
+        
+      <li>Pinout</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/pinout.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="pinout">
+<span id="id1"></span><h1>Pinout<a class="headerlink" href="#pinout" title="Permalink to this headline">¶</a></h1>
+<p>Reference for the expansion pins:</p>
+<img alt="_images/pinOutFront.png" class="align-center" src="_images/pinOutFront.png" />
+<p>For expansion - <a class="reference external" href="https://randomnerdtutorials.com/esp32-pinout-reference-gpios/">randomnerdtutorials</a> has a great guide on what pins do what. Just be careful with the pins marked above with the hazard symbol.  These pins can be used, but just make sure that the mode they’re configured for does not interfere with the normal operation of the board.  For example, the GPIO12 cannot be held high during boot up, or the ESP32 will never fully boot up and execute the code.  Also, on board is an RTC using the I2C port, so that same port can be used for other I2C devices, just as long as there’s no address conflict.</p>
+<p><strong>trigBoard Pin Usage</strong>  At the core of the trigBoard, it’s just a tricked out ESP32 development board with some incredible low power capability.  Power is actually removed from the ESP32 in order to accomplish the single digit uA standby current.  This is important to note since the 3.3V rail is controlled by the wake circuitry.  If needed, the base firmware can be completely overwritten by whatever custom application that fits the needs of the user.  These are the pins used by the wake circuitry on the trigBoard, which can be used by the user for the custom application:</p>
+<div class="line-block">
+<div class="line"><strong>IO36</strong> AINPUT  Battery Pin for analog measurements of the battery voltage</div>
+<div class="line"><strong>IO0</strong> OUTPUT  LED pin - drive low to turn LED ON, but be careful with this pin, since also used by the auto reset circuitry.</div>
+<div class="line"><strong>IO16</strong> OUTPUT  Power Latch Pin - this pin can be driven high to keep power latched to the ESP32.  When the board wakes up, this pin is driven HIGH immediately to keep power applied while the wake source is determined and unlatched.  When the board is ready to go back to sleep, this pin can be written LOW.</div>
+<div class="line"><strong>IO17</strong> OUTPUT  Kill Power Pin or UnLatch Pin - The sensor input utilizes two latches for the normally open/closed inputs.  When the board wakes, these latch inputs can be read in, then unlatched with this pin by writing it HIGH.</div>
+<div class="line"><strong>IO18</strong> INPUT    Contact Opened Latch Pin - If low, the sensor input has got from closed to open.</div>
+<div class="line"><strong>IO19</strong> INPUT    Contact Closed Latch Pin - If low, the sensor input has got from open to closed.</div>
+<div class="line"><strong>IO23</strong> INPUT    Contact Status Pin - real time status of the contact - HIGH = Contact is OPEN, LOW = Contact is CLOSED</div>
+<div class="line"><strong>IO27</strong> INPUT    Wake Button Pin - LOW = Button was pressed</div>
+<div class="line"><strong>IO21 &amp; IO22</strong> Used by the RTC at I2C address 0x51</div>
+</div>
+<a class="reference internal image-reference" href="_images/pinOutBack.png"><img alt="_images/pinOutBack.png" class="align-center" src="_images/pinOutBack.png" style="width: 410.0px; height: 927.0px;" /></a>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="battery.html" class="btn btn-neutral float-right" title="Battery" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="specifications.html" class="btn btn-neutral float-left" title="Specifications" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2020, Kevin Darrah
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

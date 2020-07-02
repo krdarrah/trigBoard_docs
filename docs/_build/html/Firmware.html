@@ -1,0 +1,274 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html4" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Firmware/Programming &mdash; trigBoard
+Version 8 0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Testing/Factory Programming" href="testing.html" />
+    <link rel="prev" title="Mechanical" href="mechanical.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home" alt="Documentation Home"> trigBoard
+Version 8
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">trigBoard v8 Docs</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="wheretobuy.html">Where To Buy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="configurator.html">Configurator</a></li>
+<li class="toctree-l1"><a class="reference internal" href="supportedServices.html">Supported Services</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Hardware.html">Hardware</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Firmware/Programming</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#base-firmware-repository">Base Firmware Repository</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#uploading">Uploading</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="testing.html">Testing/Factory Programming</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contact.html">CONTACT</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">trigBoard
+Version 8</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Firmware/Programming</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/Firmware.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="firmware-programming">
+<h1>Firmware/Programming<a class="headerlink" href="#firmware-programming" title="Permalink to this headline">¶</a></h1>
+<div class="admonition hint">
+<p class="first admonition-title">Hint</p>
+<p class="last">You can always upload the latest code to your board without compiling - the pre-compiled bin files can be uploaded via USB or OTA (Over The Air)</p>
+</div>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">Modifications to the base firmware are encouraged, but be careful that you fully understand the existing base firmware functionality.  The firmware is responsible for both wake and shutdown functions.</p>
+</div>
+<div class="section" id="base-firmware-repository">
+<h2>Base Firmware Repository<a class="headerlink" href="#base-firmware-repository" title="Permalink to this headline">¶</a></h2>
+<p>Latest code can always be found in the <a class="reference external" href="https://github.com/krdarrah/trigBoardV8_BaseFirmware">Github Repository</a></p>
+<p>Boards are always shipped with the release code which can be found at the <a class="reference external" href="https://github.com/krdarrah/trigBoardV8_BaseFirmware/releases">releases git page</a></p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<div class="line-block">
+<div class="line"><em>For Compiling or Modifying Code</em></div>
+<div class="line"><strong>Latest Versions of IDE and Libraries Used</strong></div>
+<div class="line">Arduino IDE v1.8.10</div>
+<div class="line">ESP32 v1.0.4  - in boards manager, after this boards manager url in preferences <a class="reference external" href="https://dl.espressif.com/dl/package_esp32_index.json">https://dl.espressif.com/dl/package_esp32_index.json</a></div>
+<div class="line">PubSubClient Library v2.7.0</div>
+<div class="line">Arduino Json Library v6.13.0</div>
+<div class="line">PushSafer Library Forked <a class="reference external" href="https://github.com/krdarrah/pushsafer-arduino-library">HERE</a> Thanks to <a class="reference external" href="https://github.com/witnessmenow">Brian Lough</a></div>
+</div>
+<div class="line-block">
+<div class="line"><strong>Board Settings From Tools Menu</strong></div>
+</div>
+<img alt="_images/boardsettings.png" class="last align-center" src="_images/boardsettings.png" />
+</div>
+</div>
+<div class="section" id="uploading">
+<h2>Uploading<a class="headerlink" href="#uploading" title="Permalink to this headline">¶</a></h2>
+<p>Here’s a pretty long video showing how it can be done both ways with a USB-Serial converter or OTA, but this is with the command line:</p>
+<div style="text-align: center; margin-bottom: 2em;">
+<iframe width="560" height="315" src="https://www.youtube.com/embed/jIIYrOe25S0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</div><dl class="docutils">
+<dt><strong>OTA “Over The Air”</strong></dt>
+<dd><ul class="first simple">
+<li>To make this far easier, I made a simple app that runs on windows/mac/linux, so all you have to do is connect the trigBoard to your network from the configurator, initialize OTA, then you can setup the app and upload the latest BIN file:</li>
+</ul>
+<div style="text-align: center; margin-bottom: 2em;">
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/iMPBpUdL-rk" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</div><ul class="last simple">
+<li>The <a class="reference external" href="https://github.com/krdarrah/ESP32_GUI_Programmer">GUI can be downloaded here</a> - you can download the entire zip, then just run the application for your operating system. You can download the latest BIN file from the <a class="reference external" href="https://github.com/krdarrah/trigBoardV8_BaseFirmware">Github Repository for the V8 Base Firmware</a> inside the OTA folder</li>
+</ul>
+</dd>
+</dl>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="testing.html" class="btn btn-neutral float-right" title="Testing/Factory Programming" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="mechanical.html" class="btn btn-neutral float-left" title="Mechanical" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2020, Kevin Darrah
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
