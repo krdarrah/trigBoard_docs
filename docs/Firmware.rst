@@ -52,6 +52,9 @@ Here's a pretty long video showing how it can be done both ways with a USB-Seria
 
 	* The `GUI can be downloaded here <https://github.com/krdarrah/ESP32_GUI_Programmer>`_ - you can download the entire zip, then just run the application for your operating system. You can download the latest BIN file from the `Github Repository for the V8 Base Firmware <https://github.com/krdarrah/trigBoardV8_BaseFirmware>`_ inside the OTA folder
 
+	.. warning::
+		When using the GUI, you might get a pop-up about installing an old version of Java - just make sure to install the latest version and it should work
+
 
 
 
