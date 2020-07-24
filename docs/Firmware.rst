@@ -29,6 +29,15 @@ Boards are always shipped with the release code which can be found at the `relea
 	.. image:: images/boardsettings.png
 		:align: center
 
+.. warning::
+	| *For USB Programming*
+	| I recommend using the KD Circuits Designed `FTDI USB-Serial Converter <https://www.tindie.com/products/13817>`_ 
+	|	**Jumpers set to 3.3V and OFF**
+	
+	| **You need to power the board from the battery connector NOT the USB-Serial Converter**
+	|	Don't worry though the power pin on the programming header is not connected.  5V logic level on the programming header CAN damage the ESP32 though.  
+
+
 Uploading
 -------------------------
 

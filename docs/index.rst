@@ -63,3 +63,4 @@ Contents
    :caption: Projects
 
    ePaperCoronaDisplay.rst
+   cellularProject.rst

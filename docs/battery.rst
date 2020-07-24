@@ -121,7 +121,7 @@ Recommended Batteries
 
 * **Two AAA batteries in series (3V)** is highly recommended, since they will have a low self-discharge rate, they're easily replaceable, they're small,they're safe, wide operating temperature, and can have good capacities.  For example, the `Energizer Ultimate Lithium Batteries <https://data.energizer.com/pdfs/l92.pdf>`_ may yield 1200mAh!  The trigBoard product page provides a compatible holder, but these exist elsewhere as well: `Like this <https://www.adafruit.com/product/4191>`_
 
-* **Other Combinations of AAA or AA** If extremely long battery life is needed, could use AA instead of AAA batteries, or even three1 in series.
+* **Other Combinations of AAA or AA** If extremely long battery life is needed, could use AA instead of AAA batteries, or even three in series.
 
 * **Lithium Batteries** Adafruit has a nice selection of these kinds of batteries - `any of these will work <https://www.adafruit.com/category/574>`_
 

@@ -23,7 +23,10 @@ For expansion - `randomnerdtutorials <https://randomnerdtutorials.com/esp32-pino
 | **IO27** INPUT    Wake Button Pin - LOW = Button was pressed
 | **IO21 & IO22** Used by the RTC at I2C address 0x51
 
-
+.. warning::
+	* Logic Level is 3.3V on expansion pins - make sure to properly level shift if external device is powered by VBAT.
+	* 4V2 pin is always powered at 4.2V even if battery voltage is lower - this can be used to power devices if needed
+	* 3V3 pin is the switched 3.3V power to the board when triggered. Useful for polling sensors on wake event (RTC/or Input)
 
 
 .. image:: images/pinOutBack.png

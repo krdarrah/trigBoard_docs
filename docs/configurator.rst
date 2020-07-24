@@ -57,6 +57,3 @@ My code includes all libraries, so shouldn't need to add anything, but for refer
 	* You can run this offline, but use an app for chrome called `Web Server For Chrome <https://chrome.google.com/webstore/detail/web-server-for-chrome/ofhbbkphhbklhfoeikjpcbhemlocgigb?hl=en>`_ Then from there you can target the downloaded source folder and it will run with no internet connection
 
 
-
-
-

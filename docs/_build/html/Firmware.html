@@ -102,6 +102,7 @@ Version 8
 <p class="caption"><span class="caption-text">Projects</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="ePaperCoronaDisplay.html">E-Paper Corona Display</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cellularProject.html">Cellular/Battery Backed System</a></li>
 </ul>
 
             
@@ -197,6 +198,22 @@ Version 8</a>
 <div class="line"><strong>Board Settings From Tools Menu</strong></div>
 </div>
 <img alt="_images/boardsettings.png" class="last align-center" src="_images/boardsettings.png" />
+</div>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<div class="line-block">
+<div class="line"><em>For USB Programming</em></div>
+<div class="line">I recommend using the KD Circuits Designed <a class="reference external" href="https://www.tindie.com/products/13817">FTDI USB-Serial Converter</a></div>
+<div class="line-block">
+<div class="line"><strong>Jumpers set to 3.3V and OFF</strong></div>
+</div>
+</div>
+<div class="last line-block">
+<div class="line"><strong>You need to power the board from the battery connector NOT the USB-Serial Converter</strong></div>
+<div class="line-block">
+<div class="line">Don’t worry though the power pin on the programming header is not connected.  5V logic level on the programming header CAN damage the ESP32 though.</div>
+</div>
+</div>
 </div>
 </div>
 <div class="section" id="uploading">

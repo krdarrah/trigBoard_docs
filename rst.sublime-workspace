@@ -20,7 +20,7 @@
 			"file": "docs/configurator.rst",
 			"settings":
 			{
-				"buffer_size": 2572,
+				"buffer_size": 2569,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
@@ -47,7 +47,7 @@
 			"file": "docs/Firmware.rst",
 			"settings":
 			{
-				"buffer_size": 2711,
+				"buffer_size": 2877,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
@@ -73,7 +73,7 @@
 			"file": "docs/battery.rst",
 			"settings":
 			{
-				"buffer_size": 115,
+				"buffer_size": 5232,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
@@ -82,7 +82,7 @@
 			"file": "docs/Hardware.rst",
 			"settings":
 			{
-				"buffer_size": 158,
+				"buffer_size": 136,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
@@ -136,7 +136,7 @@
 			"file": "/Users/kevindarrah/Documents/readthedocs/cheatsheet",
 			"settings":
 			{
-				"buffer_size": 55,
+				"buffer_size": 122,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
@@ -308,6 +308,7 @@
 		"case_sensitive": true,
 		"find_history":
 		[
+			"\t\n",
 			"boardsettings",
 			"'''"
 		],
@@ -327,7 +328,7 @@
 	"groups":
 	[
 		{
-			"selected": 2,
+			"selected": 7,
 			"sheets":
 			[
 				{
@@ -354,10 +355,10 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 737.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 2,
+					"stack_index": 11,
 					"type": "text"
 				},
 				{
@@ -366,15 +367,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 2572,
+						"buffer_size": 2569,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1898,
-								1898
+								2568,
+								2568
 							]
 						],
 						"settings":
@@ -413,7 +414,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 0,
+					"stack_index": 10,
 					"type": "text"
 				},
 				{
@@ -441,7 +442,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 3,
+					"stack_index": 12,
 					"type": "text"
 				},
 				{
@@ -450,23 +451,24 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 2711,
+						"buffer_size": 2877,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1800,
-								1510
+								2720,
+								2708
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/RestructuredText/reStructuredText.sublime-syntax"
+							"syntax": "Packages/RestructuredText/reStructuredText.sublime-syntax",
+							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 431.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 4,
@@ -485,8 +487,8 @@
 						"selection":
 						[
 							[
-								1309,
-								1309
+								820,
+								769
 							]
 						],
 						"settings":
@@ -497,7 +499,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 5,
+					"stack_index": 3,
 					"type": "text"
 				},
 				{
@@ -513,8 +515,8 @@
 						"selection":
 						[
 							[
-								3,
-								12
+								1248,
+								1191
 							]
 						],
 						"settings":
@@ -526,7 +528,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 6,
+					"stack_index": 7,
 					"type": "text"
 				},
 				{
@@ -535,15 +537,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 115,
+						"buffer_size": 5232,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								12,
-								0
+								5061,
+								5061
 							]
 						],
 						"settings":
@@ -551,10 +553,10 @@
 							"syntax": "Packages/RestructuredText/reStructuredText.sublime-syntax"
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 2144.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 8,
+					"stack_index": 0,
 					"type": "text"
 				},
 				{
@@ -563,15 +565,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 158,
+						"buffer_size": 136,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								157,
-								58
+								136,
+								136
 							]
 						],
 						"settings":
@@ -582,7 +584,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 11,
+					"stack_index": 2,
 					"type": "text"
 				},
 				{
@@ -598,8 +600,8 @@
 						"selection":
 						[
 							[
-								666,
-								666
+								23,
+								23
 							]
 						],
 						"settings":
@@ -610,7 +612,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 13,
+					"stack_index": 6,
 					"type": "text"
 				},
 				{
@@ -638,7 +640,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 7,
+					"stack_index": 5,
 					"type": "text"
 				},
 				{
@@ -654,8 +656,8 @@
 						"selection":
 						[
 							[
-								582,
-								582
+								300,
+								287
 							]
 						],
 						"settings":
@@ -666,7 +668,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 12,
+					"stack_index": 8,
 					"type": "text"
 				},
 				{
@@ -696,7 +698,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 9,
+					"stack_index": 13,
 					"type": "text"
 				},
 				{
@@ -721,10 +723,10 @@
 							"syntax": "Packages/RestructuredText/reStructuredText.sublime-syntax"
 						},
 						"translation.x": 0.0,
-						"translation.y": 23.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 10,
+					"stack_index": 14,
 					"type": "text"
 				},
 				{
@@ -733,15 +735,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 55,
+						"buffer_size": 122,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								55,
-								55
+								122,
+								122
 							]
 						],
 						"settings":
@@ -752,7 +754,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 14,
+					"stack_index": 9,
 					"type": "text"
 				}
 			]
