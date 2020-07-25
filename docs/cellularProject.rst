@@ -91,7 +91,7 @@ Hardware Needed
 	Do not connect anything to the trigBoard's battery or sensor connectors! The battery backup is provided by the Particle Boron and continuous power is through the Boron's micro USB port (just like the picture above)
 
 **********************
-trigBoard Software 
+trigBoard Gateway Software 
 **********************
 
 latest code can be downloaded in the `Gateway Git Repository <https://github.com/krdarrah/trigBoard_GatewayV8>`_
