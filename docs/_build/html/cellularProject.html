@@ -101,7 +101,7 @@ Version 8
 <li class="toctree-l2"><a class="reference internal" href="#trigboard-setup">trigBoard Setup</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#gateway-setup">Gateway Setup</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#hardware-needed">Hardware Needed</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#trigboard-software">trigBoard Software</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#trigboard-gateway-software">trigBoard Gateway Software</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#particle-software">Particle Software</a></li>
 </ul>
 </li>
@@ -249,8 +249,8 @@ Version 8</a>
 <p class="last">Do not connect anything to the trigBoard’s battery or sensor connectors! The battery backup is provided by the Particle Boron and continuous power is through the Boron’s micro USB port (just like the picture above)</p>
 </div>
 </div>
-<div class="section" id="trigboard-software">
-<h3>trigBoard Software<a class="headerlink" href="#trigboard-software" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="trigboard-gateway-software">
+<h3>trigBoard Gateway Software<a class="headerlink" href="#trigboard-gateway-software" title="Permalink to this headline">¶</a></h3>
 <p>latest code can be downloaded in the <a class="reference external" href="https://github.com/krdarrah/trigBoard_GatewayV8">Gateway Git Repository</a></p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
@@ -279,6 +279,80 @@ Version 8</a>
 </div>
 <div class="section" id="particle-software">
 <h3>Particle Software<a class="headerlink" href="#particle-software" title="Permalink to this headline">¶</a></h3>
+<p>This part is very easy once you get your Particle Boron Commissioned - follow the particle tutorials to get all set up and running so that you see the breathing Cyan LED on the board.  It would be a good idea to at least get familiar with flashing code to the Boron from their <a class="reference external" href="https://build.particle.io/build/new">web IDE</a></p>
+<p>Then all you’ll do is paste the code in below, check you have the right board selected (bottom right of IDE), and flash the board by clicking the lightening bolt symbol (upper left of IDE)</p>
+<div class="highlight-C notranslate"><div class="highlight"><pre><span></span><span class="n">String</span> <span class="n">str1</span><span class="p">,</span><span class="n">str2</span><span class="p">;</span>
+
+<span class="kt">void</span> <span class="nf">setup</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">Serial</span><span class="p">.</span><span class="n">begin</span><span class="p">(</span><span class="mi">115200</span><span class="p">);</span><span class="c1">//debug</span>
+    <span class="n">Serial1</span><span class="p">.</span><span class="n">begin</span><span class="p">(</span><span class="mi">9600</span><span class="p">);</span><span class="c1">//from trigBoard</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">loop</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">Serial1</span><span class="p">.</span><span class="n">available</span><span class="p">()</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span><span class="c1">// new data came in</span>
+     <span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="s">&quot;New Data&quot;</span><span class="p">);</span>
+     <span class="n">str1</span> <span class="o">=</span> <span class="n">Serial1</span><span class="p">.</span><span class="n">readStringUntil</span><span class="p">(</span><span class="sc">&#39;,&#39;</span><span class="p">);</span><span class="c1">//that&#39;s the separator</span>
+     <span class="n">str2</span> <span class="o">=</span> <span class="n">Serial1</span><span class="p">.</span><span class="n">readStringUntil</span><span class="p">(</span><span class="sc">&#39;#&#39;</span><span class="p">);</span>
+     <span class="n">sendData</span><span class="p">();</span>
+     <span class="n">Serial1</span><span class="p">.</span><span class="n">flush</span><span class="p">();</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">sendData</span><span class="p">(){</span>
+     <span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">startConnectTime</span> <span class="o">=</span> <span class="n">millis</span><span class="p">();</span>
+     <span class="kt">char</span> <span class="n">pushMessage</span><span class="p">[</span><span class="mi">50</span><span class="p">],</span> <span class="n">pushName</span><span class="p">[</span><span class="mi">50</span><span class="p">];</span>
+     <span class="n">str1</span><span class="p">.</span><span class="n">toCharArray</span><span class="p">(</span><span class="n">pushName</span><span class="p">,</span> <span class="n">str1</span><span class="p">.</span><span class="n">length</span><span class="p">()</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span>
+     <span class="n">str2</span><span class="p">.</span><span class="n">toCharArray</span><span class="p">(</span><span class="n">pushMessage</span><span class="p">,</span> <span class="n">str2</span><span class="p">.</span><span class="n">length</span><span class="p">()</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span>
+     <span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="n">str1</span><span class="p">);</span>
+     <span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="n">str2</span><span class="p">);</span>
+
+     <span class="n">String</span> <span class="n">adaFruitData</span> <span class="o">=</span> <span class="s">&quot;[{</span><span class="se">\&quot;</span><span class="s">key</span><span class="se">\&quot;</span><span class="s">:</span><span class="se">\&quot;</span><span class="s">house</span><span class="se">\&quot;</span><span class="s">, </span><span class="se">\&quot;</span><span class="s">value</span><span class="se">\&quot;</span><span class="s">:</span><span class="se">\&quot;</span><span class="s">&quot;</span><span class="p">;</span>
+     <span class="n">adaFruitData</span><span class="p">.</span><span class="n">concat</span><span class="p">(</span><span class="n">str1</span><span class="p">);</span>
+     <span class="n">adaFruitData</span><span class="p">.</span><span class="n">concat</span><span class="p">(</span><span class="s">&quot;</span><span class="se">\&quot;</span><span class="s">}]&quot;</span><span class="p">);</span>
+     <span class="n">Particle</span><span class="p">.</span><span class="n">publish</span><span class="p">(</span><span class="s">&quot;homeSecurityPost&quot;</span><span class="p">,</span> <span class="n">adaFruitData</span><span class="p">,</span> <span class="n">PRIVATE</span><span class="p">,</span> <span class="n">NO_ACK</span><span class="p">);</span>
+
+     <span class="n">String</span> <span class="n">pushoverPacket</span> <span class="o">=</span> <span class="s">&quot;[{</span><span class="se">\&quot;</span><span class="s">key</span><span class="se">\&quot;</span><span class="s">:</span><span class="se">\&quot;</span><span class="s">title</span><span class="se">\&quot;</span><span class="s">, </span><span class="se">\&quot;</span><span class="s">value</span><span class="se">\&quot;</span><span class="s">:</span><span class="se">\&quot;</span><span class="s">&quot;</span><span class="p">;</span>
+     <span class="n">pushoverPacket</span><span class="p">.</span><span class="n">concat</span><span class="p">(</span><span class="n">str1</span><span class="p">);</span>
+     <span class="n">pushoverPacket</span><span class="p">.</span><span class="n">concat</span><span class="p">(</span><span class="s">&quot;</span><span class="se">\&quot;</span><span class="s">},&quot;</span><span class="p">);</span>
+     <span class="n">pushoverPacket</span><span class="p">.</span><span class="n">concat</span><span class="p">(</span><span class="s">&quot;{</span><span class="se">\&quot;</span><span class="s">key</span><span class="se">\&quot;</span><span class="s">:</span><span class="se">\&quot;</span><span class="s">message</span><span class="se">\&quot;</span><span class="s">, </span><span class="se">\&quot;</span><span class="s">value</span><span class="se">\&quot;</span><span class="s">:</span><span class="se">\&quot;</span><span class="s">&quot;</span><span class="p">);</span>
+     <span class="n">pushoverPacket</span><span class="p">.</span><span class="n">concat</span><span class="p">(</span><span class="n">str2</span><span class="p">);</span>
+     <span class="n">pushoverPacket</span><span class="p">.</span><span class="n">concat</span><span class="p">(</span><span class="s">&quot;</span><span class="se">\&quot;</span><span class="s">}]&quot;</span><span class="p">);</span>
+     <span class="n">Particle</span><span class="p">.</span><span class="n">publish</span><span class="p">(</span><span class="s">&quot;pushover&quot;</span><span class="p">,</span> <span class="n">pushoverPacket</span><span class="p">,</span> <span class="n">PRIVATE</span><span class="p">);</span><span class="c1">//then send to push over so we get the notifications on our mobile devices</span>
+
+     <span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="n">millis</span><span class="p">()</span> <span class="o">-</span> <span class="n">startConnectTime</span><span class="p">);</span>
+     <span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="s">&quot;ms to connect&quot;</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>This code receives data from the trigBoard then sends out to the cloud - both to Pushover and to AdafruitIO.  Why both? Well you may want to do other things with this data, so Adafruit can keep a log of all of the notifications and you can tie that to other things around the internet like IFTTT or even notify other trigBoard systems.  Like let’s say you have a remote system setup and you want your local monitors to speak when something in that location occurs.  You can have one Master system configured to also monitor an Adafruit feed to push data back out from the gateway to the monitors. And Adafruit’s service is free, so we can set that up now and expand the system later on.  Let’s set these things up now:</p>
+<ol class="arabic simple">
+<li>Set up and account at <a class="reference external" href="https://io.adafruit.com">io.adafruit.com</a></li>
+<li>You’ll see something in there where to get your Adafruit IO Key - we’ll need this later for the webhook from Particle to send data here</li>
+<li>Create a new feed and call it something - this is where all notification data is sent - in my code above, all data is sent to the feed named “house”.  You can change this, but just make sure you also change in the code.</li>
+<li>You probably already have this setup, but go and set up an account with <a class="reference external" href="https://pushover.net">pushover.net</a> - the push notifications will be sent here. We’ll need both the user and API keys - <a class="reference internal" href="supportedServices.html#pushover"><span class="std std-ref">go here</span></a> for instructions on where to get those</li>
+<li>So now we’re all setup to create the webhooks needed for the Particle Boron to send data out to Adafruit and Pushover.  Head over to <a class="reference external" href="https://console.particle.io/integrations">Integrations</a> and create a new one and select Webhook. The Event Name can be whatever you want, but note that my Boron Code above is calling “homeSecurityPost”, so if you do change this, make sure to also change in the code. The URL is setup like this: <a class="reference external" href="https://io.adafruit.com/api/v2/krdarrah/groups/feeds/data">https://io.adafruit.com/api/v2/krdarrah/groups/feeds/data</a></li>
+</ol>
+<p>See the “krdarrah” in there? that’s where you’ll put your adafruit user name, and also make sure your settings look like this:</p>
+<img alt="_images/adafruitWebhook.png" class="align-center" src="_images/adafruitWebhook.png" />
+<p>Expand the advanced settings and set the custom JSON data to look like this:</p>
+<div class="highlight-JSON notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="nt">&quot;feeds&quot;</span><span class="p">:</span> <span class="p">[</span>
+    <span class="p">{</span>
+      <span class="nt">&quot;value&quot;</span><span class="p">:</span> <span class="s2">&quot;{{{0.value}}}&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;key&quot;</span><span class="p">:</span> <span class="s2">&quot;{{{0.key}}}&quot;</span>
+    <span class="p">}</span>
+  <span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Scroll down to the HTTP HEADERS and ADD ROW twice, so that you can add your Adafruit IO key and Host:</p>
+<img alt="_images/adafruitHeaders.png" class="align-center" src="_images/adafruitHeaders.png" />
+<p>Everything else can be left alone, so you can save this and should be good to go with Adafruit IO.  Let’s create the Pushover Webhook next, so follow that same process in creating a new webhook with the Event Name called “pushover”, URL = <a class="reference external" href="https://api.pushover.net/1/messages.json">https://api.pushover.net/1/messages.json</a> and change the settings so it looks like this:</p>
+<img alt="_images/pushoverwebhook.png" class="align-center" src="_images/pushoverwebhook.png" />
+<p>Next, we’ll go to the advanced settings and and add a couple rows and set this up like:</p>
+<img alt="_images/pushoverForm.png" class="align-center" src="_images/pushoverForm.png" />
+<p>You’ll notice where you paste in your user and API tokens from pushover.net.  You can also change the sound of the notification, but I’ve only ever used the bike sound, so not sure what options you have here.</p>
+<p>Everything else can be left alone, so save this and you now have both webhooks good to go!</p>
 </div>
 </div>
 </div>

@@ -90,9 +90,9 @@ Hardware Needed
 .. warning::
 	Do not connect anything to the trigBoard's battery or sensor connectors! The battery backup is provided by the Particle Boron and continuous power is through the Boron's micro USB port (just like the picture above)
 
-**********************
+***************************
 trigBoard Gateway Software 
-**********************
+***************************
 
 latest code can be downloaded in the `Gateway Git Repository <https://github.com/krdarrah/trigBoard_GatewayV8>`_
 
@@ -124,17 +124,102 @@ Configuration of the trigBoard settings is also done through the configurator! O
 Particle Software 
 **********************
 
+This part is very easy once you get your Particle Boron Commissioned - follow the particle tutorials to get all set up and running so that you see the breathing Cyan LED on the board.  It would be a good idea to at least get familiar with flashing code to the Boron from their `web IDE <https://build.particle.io/build/new>`_
 
+Then all you'll do is paste the code in below, check you have the right board selected (bottom right of IDE), and flash the board by clicking the lightening bolt symbol (upper left of IDE)
 
+.. code-block:: C
+		
+	String str1,str2;
 
+	void setup() {
+	    Serial.begin(115200);//debug
+	    Serial1.begin(9600);//from trigBoard
+	}
 
+	void loop() {
+	  if (Serial1.available() > 0) {// new data came in
+	     Serial.println("New Data");
+	     str1 = Serial1.readStringUntil(',');//that's the separator
+	     str2 = Serial1.readStringUntil('#');
+	     sendData();
+	     Serial1.flush();
+	  }
+	}
 
+	void sendData(){
+	     unsigned long startConnectTime = millis();
+	     char pushMessage[50], pushName[50];
+	     str1.toCharArray(pushName, str1.length() + 1);
+	     str2.toCharArray(pushMessage, str2.length() + 1);
+	     Serial.println(str1);
+	     Serial.println(str2);
+	     
+	     String adaFruitData = "[{\"key\":\"house\", \"value\":\"";
+	     adaFruitData.concat(str1);
+	     adaFruitData.concat("\"}]");
+	     Particle.publish("homeSecurityPost", adaFruitData, PRIVATE, NO_ACK);
+	     
+	     String pushoverPacket = "[{\"key\":\"title\", \"value\":\"";
+	     pushoverPacket.concat(str1);
+	     pushoverPacket.concat("\"},");
+	     pushoverPacket.concat("{\"key\":\"message\", \"value\":\"");
+	     pushoverPacket.concat(str2);
+	     pushoverPacket.concat("\"}]");
+	     Particle.publish("pushover", pushoverPacket, PRIVATE);//then send to push over so we get the notifications on our mobile devices
 
+	     Serial.print(millis() - startConnectTime);
+	     Serial.println("ms to connect");
+	}
 
+This code receives data from the trigBoard then sends out to the cloud - both to Pushover and to AdafruitIO.  Why both? Well you may want to do other things with this data, so Adafruit can keep a log of all of the notifications and you can tie that to other things around the internet like IFTTT or even notify other trigBoard systems.  Like let's say you have a remote system setup and you want your local monitors to speak when something in that location occurs.  You can have one Master system configured to also monitor an Adafruit feed to push data back out from the gateway to the monitors. And Adafruit's service is free, so we can set that up now and expand the system later on.  Let's set these things up now: 
 
+1) Set up and account at `io.adafruit.com <https://io.adafruit.com>`_
 
+2) You'll see something in there where to get your Adafruit IO Key - we'll need this later for the webhook from Particle to send data here
 
+3) Create a new feed and call it something - this is where all notification data is sent - in my code above, all data is sent to the feed named "house".  You can change this, but just make sure you also change in the code.
 
+4) You probably already have this setup, but go and set up an account with `pushover.net <https://pushover.net>`_ - the push notifications will be sent here. We'll need both the user and API keys - :ref:`go here  <Pushover>` for instructions on where to get those
+
+5) So now we're all setup to create the webhooks needed for the Particle Boron to send data out to Adafruit and Pushover.  Head over to `Integrations <https://console.particle.io/integrations>`_ and create a new one and select Webhook. The Event Name can be whatever you want, but note that my Boron Code above is calling "homeSecurityPost", so if you do change this, make sure to also change in the code. The URL is setup like this: https://io.adafruit.com/api/v2/krdarrah/groups/feeds/data 
+
+See the "krdarrah" in there? that's where you'll put your adafruit user name, and also make sure your settings look like this:
+
+.. image:: images/adafruitWebhook.png
+	:align: center
+
+Expand the advanced settings and set the custom JSON data to look like this: 
+
+.. code-block:: JSON
+
+	{
+	  "feeds": [
+	    {
+	      "value": "{{{0.value}}}",
+	      "key": "{{{0.key}}}"
+	    }
+	  ]
+	}
+
+Scroll down to the HTTP HEADERS and ADD ROW twice, so that you can add your Adafruit IO key and Host:
+
+.. image:: images/adafruitHeaders.png
+	:align: center
+
+Everything else can be left alone, so you can save this and should be good to go with Adafruit IO.  Let's create the Pushover Webhook next, so follow that same process in creating a new webhook with the Event Name called "pushover", URL = https://api.pushover.net/1/messages.json and change the settings so it looks like this:  
+
+.. image:: images/pushoverwebhook.png
+	:align: center
+
+Next, we'll go to the advanced settings and and add a couple rows and set this up like:
+
+.. image:: images/pushoverForm.png
+	:align: center
+
+You'll notice where you paste in your user and API tokens from pushover.net.  You can also change the sound of the notification, but I've only ever used the bike sound, so not sure what options you have here.  
+
+Everything else can be left alone, so save this and you now have both webhooks good to go! 
 
 
 

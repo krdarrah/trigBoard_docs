@@ -118,7 +118,7 @@
 			"file": "docs/cellularProject.rst",
 			"settings":
 			{
-				"buffer_size": 8293,
+				"buffer_size": 8301,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
@@ -356,7 +356,7 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 748.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 3,
@@ -555,7 +555,7 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 2116.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 5,
@@ -679,23 +679,24 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 8293,
+						"buffer_size": 8301,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								8209,
-								8209
+								6443,
+								6443
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/RestructuredText/reStructuredText.sublime-syntax"
+							"syntax": "Packages/RestructuredText/reStructuredText.sublime-syntax",
+							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 2421.0,
+						"translation.y": 2168.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
@@ -723,7 +724,7 @@
 							"syntax": "Packages/RestructuredText/reStructuredText.sublime-syntax"
 						},
 						"translation.x": 0.0,
-						"translation.y": 23.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 10,
