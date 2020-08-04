@@ -90,6 +90,13 @@ Hardware Needed
 .. warning::
 	Do not connect anything to the trigBoard's battery or sensor connectors! The battery backup is provided by the Particle Boron and continuous power is through the Boron's micro USB port (just like the picture above)
 
+| **Silent Button/Switch**
+| This is completely optional, but the gateway code supports a silent button/switch to prevent messages from being sent out only to the monitors.  If you have these monitors installed throughout the house and you have a trigBoard mounted on a high-traffic location, the monitor can get pretty annoying!  Note that this code only silences the monitor, not the particle, so the push notifications still go out.  In the code, it's easy to see how this works though, so you can make this operate however you may need.  
+| The switch is wired from GND to GPIO12 where CLOSED = SILENT
+
+	.. image:: images/silentButton.png
+		:align: center
+
 ***************************
 trigBoard Gateway Software 
 ***************************
@@ -221,7 +228,9 @@ You'll notice where you paste in your user and API tokens from pushover.net.  Yo
 
 Everything else can be left alone, so save this and you now have both webhooks good to go! 
 
+Monitor Setup
+----------------
 
-
-
-
+**********************
+Hardware Needed
+**********************

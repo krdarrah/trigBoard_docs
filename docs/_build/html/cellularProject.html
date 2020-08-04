@@ -105,6 +105,10 @@ Version 8
 <li class="toctree-l3"><a class="reference internal" href="#particle-software">Particle Software</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="#monitor-setup">Monitor Setup</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id2">Hardware Needed</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -248,6 +252,14 @@ Version 8</a>
 <p class="first admonition-title">Warning</p>
 <p class="last">Do not connect anything to the trigBoard’s battery or sensor connectors! The battery backup is provided by the Particle Boron and continuous power is through the Boron’s micro USB port (just like the picture above)</p>
 </div>
+<div class="line-block">
+<div class="line"><strong>Silent Button/Switch</strong></div>
+<div class="line">This is completely optional, but the gateway code supports a silent button/switch to prevent messages from being sent out only to the monitors.  If you have these monitors installed throughout the house and you have a trigBoard mounted on a high-traffic location, the monitor can get pretty annoying!  Note that this code only silences the monitor, not the particle, so the push notifications still go out.  In the code, it’s easy to see how this works though, so you can make this operate however you may need.</div>
+<div class="line">The switch is wired from GND to GPIO12 where CLOSED = SILENT</div>
+</div>
+<blockquote>
+<div><img alt="_images/silentButton.png" class="align-center" src="_images/silentButton.png" />
+</div></blockquote>
 </div>
 <div class="section" id="trigboard-gateway-software">
 <h3>trigBoard Gateway Software<a class="headerlink" href="#trigboard-gateway-software" title="Permalink to this headline">¶</a></h3>
@@ -353,6 +365,12 @@ Version 8</a>
 <img alt="_images/pushoverForm.png" class="align-center" src="_images/pushoverForm.png" />
 <p>You’ll notice where you paste in your user and API tokens from pushover.net.  You can also change the sound of the notification, but I’ve only ever used the bike sound, so not sure what options you have here.</p>
 <p>Everything else can be left alone, so save this and you now have both webhooks good to go!</p>
+</div>
+</div>
+<div class="section" id="monitor-setup">
+<h2>Monitor Setup<a class="headerlink" href="#monitor-setup" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id2">
+<h3>Hardware Needed<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
 </div>
 </div>
 </div>
