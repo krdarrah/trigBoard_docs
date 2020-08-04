@@ -231,6 +231,110 @@ Everything else can be left alone, so save this and you now have both webhooks g
 Monitor Setup
 ----------------
 
+The monitor is what really makes this cellular system come together.  These can  play any mp3 file you want based on a trigBoard event (see above for the trigBoard setup for how to assign mp3 files).  I like to have these files be announcements like "The front door has opened", "The garage is still open", etc... What's also nice about the monitor is that it is also battery backed and connects to the same private network as the trigBoards do back to the gateway. A "broadcast" UDP message is sent out from the gateway to all listening monitors with instructions as to which mp3 to play.  
+
+.. image:: images/monitorhardware.png
+	:align: center
+
 **********************
 Hardware Needed
 **********************
+
+* This is actually based on `Adafruit's ESP32 Feather board <https://www.adafruit.com/product/3591>`_ Why? well because this has the battery connector and charging already on board.  
+
+* And you're going to want a battery as well - might as well get one from `adafruit <https://www.adafruit.com/category/574>`_ I would say 1000mAh or so would give a couple hours of backup power, but feel free to go as big as you want here.  
+
+* YX5300 mp3 board like this: 
+
+.. image:: images/YX5300amazon.png
+	:align: center
+
+Ideally, this is a genuine YX5300 based board, but these are hard to find.  Most will have a chip marked with some kind JC... These are not as good and don't support all of the same commands as the YX5300... some say JC stands for "Just Crap"  Either way, I was able to get my Monitor Code to work with both, so you should be fine - just search ebay/amazon/etc for YX5300 and you should see a board that looks like this.  Also, don't forget a microSD card - nothing special or too big. You won't need a lot of space... 
+
+* For the amplifier/speaker, I use these little kits based on the PAM8403
+
+.. image:: images/ampSpeaker.png
+	:align: center
+
+* In a quiet bedroom, you want this to be completely silent (no speaker hum), so I simply kill power to the amplifier with a P-Channel Mosfet - `TP0606N3-G <https://www.digikey.com/product-detail/en/microchip-technology/TP0606N3-G/TP0606N3-G-ND/4902382>`_
+
+* A monitor carrier board from KD Circuits makes this project a lot easier.  Everything is all setup for the Adafruit Feather board, connections to the YX5300 board and P-CH MOSFET switch power to the Amplifier - contact KD Circuits for more info on this board.  Here is the design for reference:
+
+.. image:: images/monitorBoardOutline.png
+	:align: center
+
+.. image:: images/monitorSCH.png
+	:align: center
+
+**********************
+Connections
+**********************
+
+=============== ================
+Adafruit ESP32  YX5300 mp3 Board
+=============== ================
+GND             GND
+3V3				VCC
+33 (RX)			TX
+32 (TX)			RX
+=============== ================
+
+.. image:: images/MonitorYX5300Connections.png
+	:align: center
+
+The 3.5mm audio jack that comes with the PAM8403 kit can be used to plug into the output of the YX5300 board and wire into the audio input of the PAM8403 amplifier board:
+
+================== =======================
+3.5mm Audio Cable  PAM8403 Amplifier board
+================== =======================
+WHITE				L
+BLACK				G
+RED 				B
+================== =======================
+
+.. image:: images/PAM8403connections.png
+	:align: center
+
+Then the power for the PAM8403 amplifier will wire from the drain of the P-CH MOSFET, and hook up the speaker (I use the right channel only)
+
+Then that's all there is to it! You can keep power always on with the USB cable to the Adafruit ESP32 board (and also keeps the battery charged)
+
+********************************
+Adafruit ESP32 Monitor Software
+********************************
+
+Latest code can be find in the `trigBoard Monitor Git Repository <https://github.com/krdarrah/trigBoard_MonitorV8>`_
+
+***Big thanks to the YX5300 code found here!*** `salvadorrueda github <https://github.com/salvadorrueda/ArduinoSerialMP3Player/blob/master/ArduinoSerialMP3Player/ArduinoSerialMP3Player.ino>`_
+
+Just like the Gateway software, all of the same dependencies are needed as well as the ESPsoftware serial library.  If you can compile the gateway software, then you should be fine here.  I also use the same board settings as the trigBoard.
+
+And just like the gateway, this board is also configured through the Configurator!  On bootup, you'll see the LED flashing on the board (for 5min)- only when this is flashing can you connect to it from the Configurator.  Only a few settings are needed:
+
+* Use the main WiFi Settings at the top of the configurator to connect to the private network.  You can set this to use a static IP if you want, but I recommend DHCP (static IP box unchecked).
+
+* Scroll down and enable UDP.  All of these settings are not used, except the port. Most people use 1234, but if you're using something else, you can change here.  
+
+********************************
+mp3 files
+********************************
+
+These can be anything you want, but I like the announcements "The Front Door has opened"  I create these mp3 files here: `ttsmp3.com <https://ttsmp3.com>`_
+
+Now, these files need to be named and follow a very specific file directory on the SD card. Everything is about keeping the files in order, so create a folder and name is "01" and place all of your mp3 files in there.  Recall that each trigBoard message calls out a number, which corresponds to a specific mp3 file.  You can just name these 000,001,002,003, etc... or do it like how I have it here: 
+
+.. image:: images/sdcradmp3files.png
+	:align: center
+
+Then let's take an example -  you see how I set the trigBoard up to play "The backdoor has opened" and "the backdoor has closed" again, you just append the message with a -#- where # is the track number
+
+.. image:: images/trigBoardmessageexample.png
+	:align: center
+
+.. note::
+	I actually keep the exact files I use as part of my source code - so you can use those files as well if you want!
+
+
+
+
+

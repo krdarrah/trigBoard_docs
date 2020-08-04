@@ -107,6 +107,9 @@ Version 8
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#monitor-setup">Monitor Setup</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#id2">Hardware Needed</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#connections">Connections</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#adafruit-esp32-monitor-software">Adafruit ESP32 Monitor Software</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#mp3-files">mp3 files</a></li>
 </ul>
 </li>
 </ul>
@@ -369,8 +372,105 @@ Version 8</a>
 </div>
 <div class="section" id="monitor-setup">
 <h2>Monitor Setup<a class="headerlink" href="#monitor-setup" title="Permalink to this headline">¶</a></h2>
+<p>The monitor is what really makes this cellular system come together.  These can  play any mp3 file you want based on a trigBoard event (see above for the trigBoard setup for how to assign mp3 files).  I like to have these files be announcements like “The front door has opened”, “The garage is still open”, etc… What’s also nice about the monitor is that it is also battery backed and connects to the same private network as the trigBoards do back to the gateway. A “broadcast” UDP message is sent out from the gateway to all listening monitors with instructions as to which mp3 to play.</p>
+<img alt="_images/monitorhardware.png" class="align-center" src="_images/monitorhardware.png" />
 <div class="section" id="id2">
 <h3>Hardware Needed<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>This is actually based on <a class="reference external" href="https://www.adafruit.com/product/3591">Adafruit’s ESP32 Feather board</a> Why? well because this has the battery connector and charging already on board.</li>
+<li>And you’re going to want a battery as well - might as well get one from <a class="reference external" href="https://www.adafruit.com/category/574">adafruit</a> I would say 1000mAh or so would give a couple hours of backup power, but feel free to go as big as you want here.</li>
+<li>YX5300 mp3 board like this:</li>
+</ul>
+<img alt="_images/YX5300amazon.png" class="align-center" src="_images/YX5300amazon.png" />
+<p>Ideally, this is a genuine YX5300 based board, but these are hard to find.  Most will have a chip marked with some kind JC… These are not as good and don’t support all of the same commands as the YX5300… some say JC stands for “Just Crap”  Either way, I was able to get my Monitor Code to work with both, so you should be fine - just search ebay/amazon/etc for YX5300 and you should see a board that looks like this.  Also, don’t forget a microSD card - nothing special or too big. You won’t need a lot of space…</p>
+<ul class="simple">
+<li>For the amplifier/speaker, I use these little kits based on the PAM8403</li>
+</ul>
+<img alt="_images/ampSpeaker.png" class="align-center" src="_images/ampSpeaker.png" />
+<ul class="simple">
+<li>In a quiet bedroom, you want this to be completely silent (no speaker hum), so I simply kill power to the amplifier with a P-Channel Mosfet - <a class="reference external" href="https://www.digikey.com/product-detail/en/microchip-technology/TP0606N3-G/TP0606N3-G-ND/4902382">TP0606N3-G</a></li>
+<li>A monitor carrier board from KD Circuits makes this project a lot easier.  Everything is all setup for the Adafruit Feather board, connections to the YX5300 board and P-CH MOSFET switch power to the Amplifier - contact KD Circuits for more info on this board.  Here is the design for reference:</li>
+</ul>
+<img alt="_images/monitorBoardOutline.png" class="align-center" src="_images/monitorBoardOutline.png" />
+<img alt="_images/monitorSCH.png" class="align-center" src="_images/monitorSCH.png" />
+</div>
+<div class="section" id="connections">
+<h3>Connections<a class="headerlink" href="#connections" title="Permalink to this headline">¶</a></h3>
+<table border="1" class="docutils">
+<colgroup>
+<col width="44%" />
+<col width="56%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Adafruit ESP32</th>
+<th class="head">YX5300 mp3 Board</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>GND</td>
+<td>GND</td>
+</tr>
+<tr class="row-odd"><td>3V3</td>
+<td>VCC</td>
+</tr>
+<tr class="row-even"><td>33 (RX)</td>
+<td>TX</td>
+</tr>
+<tr class="row-odd"><td>32 (TX)</td>
+<td>RX</td>
+</tr>
+</tbody>
+</table>
+<img alt="_images/MonitorYX5300Connections.png" class="align-center" src="_images/MonitorYX5300Connections.png" />
+<p>The 3.5mm audio jack that comes with the PAM8403 kit can be used to plug into the output of the YX5300 board and wire into the audio input of the PAM8403 amplifier board:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="44%" />
+<col width="56%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">3.5mm Audio Cable</th>
+<th class="head">PAM8403 Amplifier board</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>WHITE</td>
+<td>L</td>
+</tr>
+<tr class="row-odd"><td>BLACK</td>
+<td>G</td>
+</tr>
+<tr class="row-even"><td>RED</td>
+<td>B</td>
+</tr>
+</tbody>
+</table>
+<img alt="_images/PAM8403connections.png" class="align-center" src="_images/PAM8403connections.png" />
+<p>Then the power for the PAM8403 amplifier will wire from the drain of the P-CH MOSFET, and hook up the speaker (I use the right channel only)</p>
+<p>Then that’s all there is to it! You can keep power always on with the USB cable to the Adafruit ESP32 board (and also keeps the battery charged)</p>
+</div>
+<div class="section" id="adafruit-esp32-monitor-software">
+<h3>Adafruit ESP32 Monitor Software<a class="headerlink" href="#adafruit-esp32-monitor-software" title="Permalink to this headline">¶</a></h3>
+<p>Latest code can be find in the <a class="reference external" href="https://github.com/krdarrah/trigBoard_MonitorV8">trigBoard Monitor Git Repository</a></p>
+<p><strong>*Big thanks to the YX5300 code found here!*</strong> <a class="reference external" href="https://github.com/salvadorrueda/ArduinoSerialMP3Player/blob/master/ArduinoSerialMP3Player/ArduinoSerialMP3Player.ino">salvadorrueda github</a></p>
+<p>Just like the Gateway software, all of the same dependencies are needed as well as the ESPsoftware serial library.  If you can compile the gateway software, then you should be fine here.  I also use the same board settings as the trigBoard.</p>
+<p>And just like the gateway, this board is also configured through the Configurator!  On bootup, you’ll see the LED flashing on the board (for 5min)- only when this is flashing can you connect to it from the Configurator.  Only a few settings are needed:</p>
+<ul class="simple">
+<li>Use the main WiFi Settings at the top of the configurator to connect to the private network.  You can set this to use a static IP if you want, but I recommend DHCP (static IP box unchecked).</li>
+<li>Scroll down and enable UDP.  All of these settings are not used, except the port. Most people use 1234, but if you’re using something else, you can change here.</li>
+</ul>
+</div>
+<div class="section" id="mp3-files">
+<h3>mp3 files<a class="headerlink" href="#mp3-files" title="Permalink to this headline">¶</a></h3>
+<p>These can be anything you want, but I like the announcements “The Front Door has opened”  I create these mp3 files here: <a class="reference external" href="https://ttsmp3.com">ttsmp3.com</a></p>
+<p>Now, these files need to be named and follow a very specific file directory on the SD card. Everything is about keeping the files in order, so create a folder and name is “01” and place all of your mp3 files in there.  Recall that each trigBoard message calls out a number, which corresponds to a specific mp3 file.  You can just name these 000,001,002,003, etc… or do it like how I have it here:</p>
+<img alt="_images/sdcradmp3files.png" class="align-center" src="_images/sdcradmp3files.png" />
+<p>Then let’s take an example -  you see how I set the trigBoard up to play “The backdoor has opened” and “the backdoor has closed” again, you just append the message with a -#- where # is the track number</p>
+<img alt="_images/trigBoardmessageexample.png" class="align-center" src="_images/trigBoardmessageexample.png" />
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">I actually keep the exact files I use as part of my source code - so you can use those files as well if you want!</p>
+</div>
 </div>
 </div>
 </div>
