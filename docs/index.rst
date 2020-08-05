@@ -64,3 +64,4 @@ Contents
 
    ePaperCoronaDisplay.rst
    cellularProject.rst
+   waterleakDetector.rst

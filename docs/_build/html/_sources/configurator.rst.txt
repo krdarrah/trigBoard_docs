@@ -19,6 +19,10 @@ All of the parameters in the trigBoard are configured in the `Configurator Tool 
 	* Requires Bluetooth to be enabled and turned ON
 	* You may have to `enable experimental features <chrome://flags/#enable-experimental-web-platform-features>`_ but I have not seen that here with my machines.
 
+
+.. image:: images/configuratorGip.gif
+	:align: center
+
 This video describes the configurator (and other features) in extreme detail: 
 
 .. raw:: html

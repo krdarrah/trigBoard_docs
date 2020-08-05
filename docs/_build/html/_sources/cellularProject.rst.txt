@@ -334,7 +334,10 @@ Then let's take an example -  you see how I set the trigBoard up to play "The ba
 .. note::
 	I actually keep the exact files I use as part of my source code - so you can use those files as well if you want!
 
+Repeaters - Range Extenders
+----------------------------
 
+If you need better range with this system, you can add repeaters.  I found some NAT router code for the ESP32 that seems to work pretty good, so I loaded this up on a couple Adafruit ESP32 boards (with batteries).  You can find that code on `martin-ger git page <https://github.com/martin-ger/esp32_nat_router>`_
 
-
+Then load the binaries directy onto an ESP32... I have plans on making a video testing the capabilities of using these, like do they actually work for this trigBoard application? I've had them installed for months without issue, but not sure if all trigBoards communicate directly with the gateway or through the repeaters.  I have a test in mind to test this though...
 
