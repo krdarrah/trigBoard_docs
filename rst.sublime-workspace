@@ -11,7 +11,7 @@
 			"file": "docs/index.rst",
 			"settings":
 			{
-				"buffer_size": 4370,
+				"buffer_size": 4395,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
@@ -20,7 +20,7 @@
 			"file": "docs/configurator.rst",
 			"settings":
 			{
-				"buffer_size": 2569,
+				"buffer_size": 2625,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
@@ -29,7 +29,7 @@
 			"file": "docs/contact.rst",
 			"settings":
 			{
-				"buffer_size": 368,
+				"buffer_size": 460,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
@@ -118,7 +118,16 @@
 			"file": "docs/cellularProject.rst",
 			"settings":
 			{
-				"buffer_size": 8301,
+				"buffer_size": 20853,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "docs/waterleakDetector.rst",
+			"settings":
+			{
+				"buffer_size": 279,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
@@ -202,6 +211,7 @@
 	},
 	"file_history":
 	[
+		"/Users/kevindarrah/Documents/readthedocs/trigBoard_docs/docs/cellularProject.rst",
 		"/Users/kevindarrah/Documents/readthedocs/trigBoard_docs/docs/specifications.rst",
 		"/Users/kevindarrah/Documents/readthedocs/trigBoard_docs/docs/projectList.rst",
 		"/Users/kevindarrah/Documents/readthedocs/trigBoard_docs/docs/supportedServices.rst",
@@ -329,7 +339,7 @@
 	"groups":
 	[
 		{
-			"selected": 12,
+			"selected": 13,
 			"sheets":
 			[
 				{
@@ -338,15 +348,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 4370,
+						"buffer_size": 4395,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								4369,
-								4369
+								4394,
+								4394
 							]
 						],
 						"settings":
@@ -356,10 +366,10 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 951.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 3,
+					"stack_index": 4,
 					"type": "text"
 				},
 				{
@@ -368,15 +378,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 2569,
+						"buffer_size": 2625,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								302,
-								242
+								1158,
+								1158
 							]
 						],
 						"settings":
@@ -384,10 +394,10 @@
 							"syntax": "Packages/RestructuredText/reStructuredText.sublime-syntax"
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 19.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 1,
+					"stack_index": 2,
 					"type": "text"
 				},
 				{
@@ -396,15 +406,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 368,
+						"buffer_size": 460,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								194,
-								126
+								460,
+								460
 							]
 						],
 						"settings":
@@ -443,7 +453,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 14,
+					"stack_index": 9,
 					"type": "text"
 				},
 				{
@@ -459,8 +469,8 @@
 						"selection":
 						[
 							[
-								1527,
-								1527
+								1335,
+								1282
 							]
 						],
 						"settings":
@@ -469,10 +479,10 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 213.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 2,
+					"stack_index": 8,
 					"type": "text"
 				},
 				{
@@ -500,7 +510,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 12,
+					"stack_index": 14,
 					"type": "text"
 				},
 				{
@@ -526,7 +536,7 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 351.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 6,
@@ -586,7 +596,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 9,
+					"stack_index": 11,
 					"type": "text"
 				},
 				{
@@ -614,7 +624,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 8,
+					"stack_index": 3,
 					"type": "text"
 				},
 				{
@@ -642,7 +652,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 13,
+					"stack_index": 15,
 					"type": "text"
 				},
 				{
@@ -670,7 +680,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 4,
+					"stack_index": 10,
 					"type": "text"
 				},
 				{
@@ -679,15 +689,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 8301,
+						"buffer_size": 20853,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								6443,
-								6443
+								20167,
+								20167
 							]
 						],
 						"settings":
@@ -696,14 +706,42 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 2168.0,
+						"translation.y": 8007.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 13,
+					"file": "docs/waterleakDetector.rst",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 279,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								279,
+								279
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/RestructuredText/reStructuredText.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
 					"type": "text"
 				},
 				{
-					"buffer": 13,
+					"buffer": 14,
 					"file": "docs/pinout.rst",
 					"semi_transient": false,
 					"settings":
@@ -727,11 +765,11 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 10,
+					"stack_index": 13,
 					"type": "text"
 				},
 				{
-					"buffer": 14,
+					"buffer": 15,
 					"file": "/Users/kevindarrah/Documents/readthedocs/cheatsheet",
 					"semi_transient": false,
 					"settings":
@@ -743,8 +781,8 @@
 						"selection":
 						[
 							[
-								120,
-								111
+								13,
+								77
 							]
 						],
 						"settings":
@@ -755,7 +793,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 11,
+					"stack_index": 12,
 					"type": "text"
 				}
 			]
