@@ -20,7 +20,7 @@ Factory Programming and Functional Checkout
 |	TIMER WAKE TIME = 60>>> SAVE
 |	TIMER CHECKS FOR LO-BATTERY and = NOTHING >>> SAVE
 |	Udp enabled = UNCHECK >>> SAVE
-| **5** The battery voltage measurement is calibrated and an offset is entered into the configurator
+| **5** - The battery voltage measurement is calibrated and an offset is entered into the configurator
 | **6** - finally, and maybe the most important test is to disconnect from the bluetooth connection, and check the sleep current is in the single digit uA
 
 
