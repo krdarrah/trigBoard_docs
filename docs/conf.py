@@ -78,6 +78,8 @@ html_theme = "sphinx_rtd_theme"
 
 
 
+
+
 # Theme options are theme-specific and customize the look and feel of a theme
 # further.  For a list of options available for each theme, see the
 # documentation.
@@ -99,6 +101,11 @@ html_theme = "sphinx_rtd_theme"
 #    'includehidden': True,
 #    'titles_only': False
 #}
+
+html_theme_options = {
+    'logo_only': True,
+}
+html_logo = "images/logo.png"
 
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
