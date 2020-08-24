@@ -11,7 +11,7 @@
 			"file": "docs/index.rst",
 			"settings":
 			{
-				"buffer_size": 4395,
+				"buffer_size": 4415,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
@@ -20,7 +20,16 @@
 			"file": "docs/configurator.rst",
 			"settings":
 			{
-				"buffer_size": 2642,
+				"buffer_size": 2674,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "docs/motionSensor.rst",
+			"settings":
+			{
+				"buffer_size": 2540,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
@@ -82,7 +91,7 @@
 			"file": "docs/Hardware.rst",
 			"settings":
 			{
-				"buffer_size": 136,
+				"buffer_size": 3262,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
@@ -339,7 +348,7 @@
 	"groups":
 	[
 		{
-			"selected": 1,
+			"selected": 7,
 			"sheets":
 			[
 				{
@@ -348,15 +357,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 4395,
+						"buffer_size": 4415,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								4394,
-								4394
+								4389,
+								4389
 							]
 						],
 						"settings":
@@ -366,10 +375,10 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 946.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 7,
+					"stack_index": 4,
 					"type": "text"
 				},
 				{
@@ -378,30 +387,60 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 2642,
+						"buffer_size": 2674,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								959,
-								959
+								734,
+								715
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/RestructuredText/reStructuredText.sublime-syntax"
+							"syntax": "Packages/RestructuredText/reStructuredText.sublime-syntax",
+							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 162.0,
+						"translation.y": 139.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 0,
+					"stack_index": 3,
 					"type": "text"
 				},
 				{
 					"buffer": 2,
+					"file": "docs/motionSensor.rst",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2540,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1319,
+								1319
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/RestructuredText/reStructuredText.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
 					"file": "docs/contact.rst",
 					"semi_transient": false,
 					"settings":
@@ -425,11 +464,11 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 10,
+					"stack_index": 12,
 					"type": "text"
 				},
 				{
-					"buffer": 3,
+					"buffer": 4,
 					"file": "docs/ePaperCoronaDisplay.rst",
 					"semi_transient": false,
 					"settings":
@@ -453,11 +492,11 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 11,
+					"stack_index": 13,
 					"type": "text"
 				},
 				{
-					"buffer": 4,
+					"buffer": 5,
 					"file": "docs/Firmware.rst",
 					"semi_transient": false,
 					"settings":
@@ -482,11 +521,11 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 3,
+					"stack_index": 9,
 					"type": "text"
 				},
 				{
-					"buffer": 5,
+					"buffer": 6,
 					"file": "docs/quickstart.rst",
 					"semi_transient": false,
 					"settings":
@@ -510,11 +549,11 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 15,
+					"stack_index": 16,
 					"type": "text"
 				},
 				{
-					"buffer": 6,
+					"buffer": 7,
 					"file": "docs/supportedServices.rst",
 					"semi_transient": false,
 					"settings":
@@ -539,11 +578,11 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 9,
+					"stack_index": 0,
 					"type": "text"
 				},
 				{
-					"buffer": 7,
+					"buffer": 8,
 					"file": "docs/battery.rst",
 					"semi_transient": false,
 					"settings":
@@ -555,8 +594,8 @@
 						"selection":
 						[
 							[
-								5158,
-								5223
+								2579,
+								2579
 							]
 						],
 						"settings":
@@ -565,27 +604,27 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 2143.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 8,
+					"stack_index": 6,
 					"type": "text"
 				},
 				{
-					"buffer": 8,
+					"buffer": 9,
 					"file": "docs/Hardware.rst",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 136,
+						"buffer_size": 3262,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								136,
-								136
+								3182,
+								3182
 							]
 						],
 						"settings":
@@ -596,11 +635,11 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 13,
+					"stack_index": 5,
 					"type": "text"
 				},
 				{
-					"buffer": 9,
+					"buffer": 10,
 					"file": "docs/mechanical.rst",
 					"semi_transient": false,
 					"settings":
@@ -624,11 +663,11 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 6,
+					"stack_index": 11,
 					"type": "text"
 				},
 				{
-					"buffer": 10,
+					"buffer": 11,
 					"file": "docs/testing.rst",
 					"semi_transient": false,
 					"settings":
@@ -652,11 +691,11 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 2,
+					"stack_index": 8,
 					"type": "text"
 				},
 				{
-					"buffer": 11,
+					"buffer": 12,
 					"file": "docs/wheretobuy.rst",
 					"semi_transient": false,
 					"settings":
@@ -680,11 +719,11 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 12,
+					"stack_index": 14,
 					"type": "text"
 				},
 				{
-					"buffer": 12,
+					"buffer": 13,
 					"file": "docs/cellularProject.rst",
 					"semi_transient": false,
 					"settings":
@@ -696,8 +735,8 @@
 						"selection":
 						[
 							[
-								20167,
-								20167
+								13069,
+								13049
 							]
 						],
 						"settings":
@@ -706,14 +745,14 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 4759.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 5,
+					"stack_index": 2,
 					"type": "text"
 				},
 				{
-					"buffer": 13,
+					"buffer": 14,
 					"file": "docs/waterleakDetector.rst",
 					"semi_transient": false,
 					"settings":
@@ -737,11 +776,11 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 4,
+					"stack_index": 10,
 					"type": "text"
 				},
 				{
-					"buffer": 14,
+					"buffer": 15,
 					"file": "docs/pinout.rst",
 					"semi_transient": false,
 					"settings":
@@ -765,11 +804,11 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 14,
+					"stack_index": 15,
 					"type": "text"
 				},
 				{
-					"buffer": 15,
+					"buffer": 16,
 					"file": "/Users/kevindarrah/Documents/readthedocs/cheatsheet",
 					"semi_transient": false,
 					"settings":
@@ -781,8 +820,8 @@
 						"selection":
 						[
 							[
-								111,
-								121
+								122,
+								122
 							]
 						],
 						"settings":
@@ -793,7 +832,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 1,
+					"stack_index": 7,
 					"type": "text"
 				}
 			]
@@ -888,7 +927,7 @@
 	"show_open_files": true,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 302.0,
+	"side_bar_width": 273.0,
 	"status_bar_visible": true,
 	"template_settings":
 	{

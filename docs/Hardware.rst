@@ -15,6 +15,7 @@ Hardware
 |                                      +-----------------------------------------------------------------------------------+
 |                                      | | **4.2V Always On Power Supply**                                                 |
 |                                      | | * This is always enabled, to keep sensor circuit and RTC powered                |
+|                                      | | * Boosted from battery voltage, so will always be 4.2V                          |
 |                                      +-----------------------------------------------------------------------------------+
 |                                      | | **Pulsed Normally Open/Closed Monitoring Circuit**                              |
 |                                      | | * The secret sauce as to how the board monitors the sensor input                |
