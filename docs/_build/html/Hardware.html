@@ -175,6 +175,62 @@ Version 8</a>
             
   <div class="section" id="hardware">
 <h1>Hardware<a class="headerlink" href="#hardware" title="Permalink to this headline">¶</a></h1>
+<table border="1" class="docutils">
+<colgroup>
+<col width="31%" />
+<col width="69%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head" colspan="2">Special Hardware on the trigBoard</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td rowspan="6"><img alt="_images/trigBoardFeat.png" class="first last" src="_images/trigBoardFeat.png" />
+</td>
+<td><div class="first last line-block">
+<div class="line"><strong>Ultra Low Power Real Time Clock RV-8263-C7</strong></div>
+<div class="line">* Can check if sensor contact is still open/closed after timeout</div>
+<div class="line">* Check battery voltage at some interval or even “phone home”</div>
+<div class="line">* Read sensor data every hour or whatever and send to cloud or “fetched”</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td><div class="first last line-block">
+<div class="line"><strong>3.3V Switched Power Supply</strong></div>
+<div class="line">* Anytime the board is triggered, the 3.3V Supply is enabled</div>
+<div class="line-block">
+<div class="line"><em>This is how the sleep current is so low, power is completely removed</em></div>
+</div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td><div class="first last line-block">
+<div class="line"><strong>4.2V Always On Power Supply</strong></div>
+<div class="line">* This is always enabled, to keep sensor circuit and RTC powered</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td><div class="first last line-block">
+<div class="line"><strong>Pulsed Normally Open/Closed Monitoring Circuit</strong></div>
+<div class="line">* The secret sauce as to how the board monitors the sensor input</div>
+<div class="line">* No jumpers or anything, both Normally Open/Closed works with v8</div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td><div class="first last line-block">
+<div class="line"><strong>Auto Reset for easy programming from USB-Serial Converter 3.3V</strong></div>
+<div class="line">* Recommended is from KD Circuits!</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td><div class="first last line-block">
+<div class="line"><strong>Battery Voltage Measurement</strong></div>
+<div class="line">* Tested during factory programming and single point offset applied</div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
 <div class="toctree-wrapper compound">
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="pinout.html">Pinout</a></li>
