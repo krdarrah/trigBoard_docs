@@ -22,7 +22,7 @@ You'll also need a Schottky diode and 10k resistor.  The connection will need to
 	:align: center
 
 .. warning::
-	In the past I have ran into issues with these PIR sensors randomly triggering... so far with this setup after running for a long time along a stairwell getting triggered multiple times a day, I have had no issues.  `Here is fix <https://www.kevindarrah.com/wiki/images/thumb/1/11/PIRfilter.png/800px-PIRfilter.png>`_ if you do ever run into strange false triggers.  
+	In the past I have ran into issues with these PIR sensors randomly triggering... so far with this setup after running for a long time along a stairwell getting triggered multiple times a day, I have had no issues.  `Here is fix <https://www.youtube.com/watch?v=ONMOkGluXnk>`_ if you do ever run into strange false triggers.  
 
 **Theory of Operation**
 ------------------------
