@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Configurator &mdash; trigBoard
+  <title>Motion Sensor - PIR &mdash; trigBoard
 Version 8 0 documentation</title>
   
 
@@ -37,8 +37,8 @@ Version 8 0 documentation</title>
     
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Supported Services" href="supportedServices.html" />
-    <link rel="prev" title="Quickstart" href="quickstart.html" /> 
+    <link rel="next" title="Water Leak Detector" href="waterleakDetector.html" />
+    <link rel="prev" title="Cellular/Battery Backed System" href="cellularProject.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -87,13 +87,10 @@ Version 8 0 documentation</title>
             
             
               <p class="caption"><span class="caption-text">trigBoard v8 Docs</span></p>
-<ul class="current">
+<ul>
 <li class="toctree-l1"><a class="reference internal" href="wheretobuy.html">Where To Buy</a></li>
 <li class="toctree-l1"><a class="reference internal" href="quickstart.html">Quickstart</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Configurator</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#source-code">Source Code</a></li>
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="configurator.html">Configurator</a></li>
 <li class="toctree-l1"><a class="reference internal" href="supportedServices.html">Supported Services</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Hardware.html">Hardware</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Firmware.html">Firmware/Programming</a></li>
@@ -101,10 +98,13 @@ Version 8 0 documentation</title>
 <li class="toctree-l1"><a class="reference internal" href="contact.html">Contact</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Projects</span></p>
-<ul>
+<ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="ePaperCoronaDisplay.html">E-Paper Corona Display</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cellularProject.html">Cellular/Battery Backed System</a></li>
-<li class="toctree-l1"><a class="reference internal" href="motionSensor.html">Motion Sensor - PIR</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Motion Sensor - PIR</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#theory-of-operation"><strong>Theory of Operation</strong></a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="waterleakDetector.html">Water Leak Detector</a></li>
 </ul>
 
@@ -153,13 +153,13 @@ Version 8</a>
     
       <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
         
-      <li>Configurator</li>
+      <li>Motion Sensor - PIR</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
             
-            <a href="_sources/configurator.rst.txt" rel="nofollow"> View page source</a>
+            <a href="_sources/motionSensor.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -172,57 +172,29 @@ Version 8</a>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="configurator">
-<span id="id1"></span><h1>Configurator<a class="headerlink" href="#configurator" title="Permalink to this headline">¶</a></h1>
-<a class="reference external image-reference" href="https://kevindarrah.com/configurator/"><img alt="_images/configurator.png" class="align-center" src="_images/configurator.png" /></a>
-<p>All of the parameters in the trigBoard are configured in the <a class="reference external" href="https://kevindarrah.com/configurator/">Configurator Tool</a></p>
-<div class="admonition hint">
-<p class="first admonition-title">Hint</p>
-<p class="last">To enter configuration mode on the trigBoard, simply press and hold the wake button until the blue LED starts flashing, then you can let go. The board is ready to be configured.  If you can’t connect to it or you change your mind, you can just press the reset button and the board will go back to sleep. I suggest testing out the configurator before installing the trigBoard in it’s final location.</p>
-</div>
+  <div class="section" id="motion-sensor-pir">
+<h1>Motion Sensor - PIR<a class="headerlink" href="#motion-sensor-pir" title="Permalink to this headline">¶</a></h1>
+<img alt="_images/PIRpic.png" class="align-center" src="_images/PIRpic.png" />
+<p>This turns your trigBoard into an ultra low power motion sensor! And if you’re using the cellular system, this works with that as well - you actually setup the board exactly the same through the Configurator.  The message that is used though is for the <strong>Wake Button</strong>.  This is because the sensor shares this same wake source.  Due to this, some special connections and code are needed.</p>
+<p><a class="reference external" href="https://github.com/krdarrah/trigBoardV8_Motion">Motion Sensor Code is Here</a></p>
+<p>The motion sensor is based on the AM312 and only pulls like 12uA - bought on <a class="reference external" href="https://www.amazon.com/gp/product/B07GJDJV63/ref=ppx_yo_dt_b_asin_title_o00__o00_s00?ie=UTF8&amp;psc=1">amazon</a></p>
+<img alt="_images/pirAmazon.png" class="align-center" src="_images/pirAmazon.png" />
+<p>You’ll also need a Schottky diode and 10k resistor.  The connection will need to be made directly to the same pad shared by the wake button:</p>
+<img alt="_images/pirHookup.png" class="align-center" src="_images/pirHookup.png" />
 <div class="admonition warning">
 <p class="first admonition-title">Warning</p>
-<ul class="last simple">
-<li>The Configurator tool only runs in the <a class="reference external" href="https://www.google.com/chrome/">Google Chrome Browser</a></li>
-<li>This works on Windows10/Mac/Linux - do not use a mobile device. Older computers may not work!</li>
-<li>Requires Bluetooth to be enabled and turned ON</li>
-<li>MUST BE HTTPS</li>
-<li>You may have to <a class="reference external" href="chrome://flags/#enable-experimental-web-platform-features">enable experimental features</a> but I have not seen that here with my machines.</li>
-</ul>
+<p class="last">In the past I have ran into issues with these PIR sensors randomly triggering… so far with this setup after running for a long time along a stairwell getting triggered multiple times a day, I have had no issues.  <a class="reference external" href="https://www.kevindarrah.com/wiki/images/thumb/1/11/PIRfilter.png/800px-PIRfilter.png">Here is fix</a> if you do ever run into strange false triggers.</p>
 </div>
-<img alt="_images/configuratorGip.gif" class="align-center" src="_images/configuratorGip.gif" />
-<p>This video describes the configurator (and other features) in extreme detail:</p>
-<div style="text-align: center; margin-bottom: 2em;">
-<iframe width="560" height="315" src="https://www.youtube.com/embed/tZ0RSLaAH8g" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-</div><div class="line-block">
-<div class="line">0:00 Intro</div>
-<div class="line">00:50 Example/Demo</div>
-<div class="line">1:43 New Features</div>
-<div class="line">5:34 Accessories</div>
-<div class="line">6:47 Low Power Testing</div>
-<div class="line">10:16 Configuration</div>
-<div class="line">13:18 WiFi Settings</div>
-<div class="line">15:18 Wake Settings</div>
-<div class="line">16:27 Timer Settings</div>
-<div class="line">19:35 Push Notification Services</div>
-<div class="line">23:22 UDP Message Demo</div>
-<div class="line">25:38 MQTT</div>
-<div class="line">26:30 High Speed Trigger</div>
-<div class="line">27:54 trigBoard Timer Examples</div>
-<div class="line">28:55 OTA/Serial Programming</div>
-<div class="line">29:35 Final Thoughts - Manufacturing/Pricing</div>
-</div>
-<div class="section" id="source-code">
-<h2>Source Code<a class="headerlink" href="#source-code" title="Permalink to this headline">¶</a></h2>
-<p>Here is the <a class="reference external" href="https://github.com/krdarrah/trigBoardConfigurator">git for the configurator</a></p>
-<p>My code includes all libraries, so shouldn’t need to add anything, but for reference, this uses the amazing <a class="reference external" href="https://itpnyu.github.io/p5ble-website/">p5.ble library</a></p>
-<div class="admonition note">
-<p class="first admonition-title">Note</p>
-<ul class="last simple">
-<li>Written in <a class="reference external" href="https://processing.org">Processing</a> v3.5.4</li>
-<li>In <a class="reference external" href="https://p5js.org">p5.js mode</a></li>
-<li>You can run this offline, but use an app for chrome called <a class="reference external" href="https://chrome.google.com/webstore/detail/web-server-for-chrome/ofhbbkphhbklhfoeikjpcbhemlocgigb?hl=en">Web Server For Chrome</a> Then from there you can target the downloaded source folder and it will run with no internet connection</li>
-</ul>
+<div class="section" id="theory-of-operation">
+<h2><strong>Theory of Operation</strong><a class="headerlink" href="#theory-of-operation" title="Permalink to this headline">¶</a></h2>
+<p>The PIR Sensor shares this trigger with the wake button input, which is totally fine and in fact, you could also add a normal contact to this is as well - then it becomes a door/window sensor and motion sensor! or even a water detector/motion sensor? That would be pretty cool!</p>
+<p>Sharing this trigger is fine, but that means if we do use the wake button, the message is the same as the PIR trigger… no big deal.  The wake button pulls that pin HIGH to 4.2V, which is why we have that diode in there.  The PIR only drives up to ~1V or so.  That’s plenty to wake the board up, but without the diode you would damage the PIR anytime you pressed the wake button.  The code linked above is special because it monitors GPIO39 to see if it’s HIGH, then it knows this is a PIR wake, not from the button.  BUT, this is only 1V or so, so I actually have to analogRead this pin, and also just wait for it to go back low before going to sleep again:</p>
+<div class="highlight-C++ notranslate"><div class="highlight"><pre><span></span><span class="k">while</span> <span class="p">(</span><span class="n">analogRead</span><span class="p">(</span><span class="n">PIRpin</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">500</span><span class="p">)</span> <span class="p">{</span> <span class="c1">//wait for PIR to settle</span>
+  <span class="kt">int</span> <span class="n">PIRread</span> <span class="o">=</span> <span class="n">analogRead</span><span class="p">(</span><span class="n">PIRpin</span><span class="p">);</span>
+  <span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="n">PIRread</span><span class="p">);</span>
+  <span class="n">delay</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
 </div>
 </div>
 </div>
@@ -235,10 +207,10 @@ Version 8</a>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="supportedServices.html" class="btn btn-neutral float-right" title="Supported Services" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="waterleakDetector.html" class="btn btn-neutral float-right" title="Water Leak Detector" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="quickstart.html" class="btn btn-neutral float-left" title="Quickstart" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="cellularProject.html" class="btn btn-neutral float-left" title="Cellular/Battery Backed System" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

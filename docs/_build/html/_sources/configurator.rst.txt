@@ -15,7 +15,7 @@ All of the parameters in the trigBoard are configured in the `Configurator Tool 
 
 .. warning::
 	* The Configurator tool only runs in the `Google Chrome Browser <https://www.google.com/chrome/>`_
-	* This works on Windows/Mac/Linux - do not use a mobile device.
+	* This works on Windows10/Mac/Linux - do not use a mobile device. Older computers may not work!
 	* Requires Bluetooth to be enabled and turned ON
 	* MUST BE HTTPS
 	* You may have to `enable experimental features <chrome://flags/#enable-experimental-web-platform-features>`_ but I have not seen that here with my machines.
