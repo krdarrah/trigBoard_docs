@@ -339,5 +339,11 @@ Repeaters - Range Extenders
 
 If you need better range with this system, you can add repeaters.  I found some NAT router code for the ESP32 that seems to work pretty good, so I loaded this up on a couple Adafruit ESP32 boards (with batteries).  You can find that code on `martin-ger git page <https://github.com/martin-ger/esp32_nat_router>`_
 
-Then load the binaries directy onto an ESP32... I have plans on making a video testing the capabilities of using these, like do they actually work for this trigBoard application? I've had them installed for months without issue, but not sure if all trigBoards communicate directly with the gateway or through the repeaters.  I have a test in mind to test this though...
+Then load the binaries directy onto an ESP32... I have plans on making a video testing the capabilities of using these, like do they actually work for this trigBoard application? I've had them installed for months without issue, but not sure if all trigBoards communicate directly with the gateway or through the repeaters.  I did get a chance to test this out: 
+
+.. raw:: html
+
+    <div style="text-align: center; margin-bottom: 2em;">
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/YHjM2KAqjU0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
 
