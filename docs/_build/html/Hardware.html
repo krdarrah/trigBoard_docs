@@ -106,6 +106,7 @@ Version 8 0 documentation</title>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="ePaperCoronaDisplay.html">E-Paper Corona Display</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cellularProject.html">Cellular/Battery Backed System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="motionSensor.html">Motion Sensor - PIR</a></li>
 <li class="toctree-l1"><a class="reference internal" href="waterleakDetector.html">Water Leak Detector</a></li>
 </ul>
 
@@ -207,6 +208,7 @@ Version 8</a>
 <tr class="row-even"><td><div class="first last line-block">
 <div class="line"><strong>4.2V Always On Power Supply</strong></div>
 <div class="line">* This is always enabled, to keep sensor circuit and RTC powered</div>
+<div class="line">* Boosted from battery voltage, so will always be 4.2V</div>
 </div>
 </td>
 </tr>
@@ -226,6 +228,29 @@ Version 8</a>
 <tr class="row-odd"><td><div class="first last line-block">
 <div class="line"><strong>Battery Voltage Measurement</strong></div>
 <div class="line">* Tested during factory programming and single point offset applied</div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<table border="1" class="docutils">
+<colgroup>
+<col width="24%" />
+<col width="76%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head" colspan="2">Based on Espressif ESP32 WiFI+Bluetooth Module</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><img alt="_images/ESP32-WROOM.jpg" class="first last" src="_images/ESP32-WROOM.jpg" />
+</td>
+<td><div class="first last line-block">
+<div class="line"><strong>ESP32-WROOM-32D 16MB Version</strong></div>
+<div class="line"><a class="reference external" href="https://www.espressif.com/sites/default/files/documentation/esp32-wroom-32d_esp32-wroom-32u_datasheet_en.pdf">Datasheet</a></div>
+<div class="line">Arduino Compatible with Core Installation - see firmware section</div>
+<div class="line">Programmable with USB-Serial Converter (onboard autoreset)</div>
+<div class="line">x14 expansion pins broken out for sensors/switches/actuators/etc… - see pinout section</div>
 </div>
 </td>
 </tr>

@@ -28,6 +28,16 @@ Hardware
 |                                      | | * Tested during factory programming and single point offset applied             |
 +--------------------------------------+-----------------------------------------------------------------------------------+
 
++----------------------------------------+-------------------------------------------------------------------------------------------------------------------------------+
+| Based on Espressif ESP32 WiFI+Bluetooth Module                                                                                                                         |
++========================================+===============================================================================================================================+
+| .. image:: images/ESP32-WROOM.jpg      | | **ESP32-WROOM-32D 16MB Version**                                                                                            |
+|                                        | | `Datasheet <https://www.espressif.com/sites/default/files/documentation/esp32-wroom-32d_esp32-wroom-32u_datasheet_en.pdf>`_ |
+|                                        | | Arduino Compatible with Core Installation - see firmware section                                                            |
+|                                        | | Programmable with USB-Serial Converter (onboard autoreset)                                                                  |
+|                                        | | x14 expansion pins broken out for sensors/switches/actuators/etc... - see pinout section                                    |
++----------------------------------------+-------------------------------------------------------------------------------------------------------------------------------+
+
 
 .. toctree::
    :maxdepth: 2 
