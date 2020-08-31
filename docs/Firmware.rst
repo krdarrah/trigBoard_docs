@@ -36,6 +36,8 @@ Boards are always shipped with the release code which can be found at the `relea
 	
 	| **You need to power the board from the battery connector NOT the USB-Serial Converter**
 	|	Don't worry though the power pin on the programming header is not connected.  5V logic level on the programming header CAN damage the ESP32 though.  
+	| **For development purposes, you can power the board by the 3.3V pin directly by applying 3.3V volts**
+	|  Make sure to not have anything connected to the battery input and also note that the board will not sleep now.  Some people like this for testing code out and it makes it easier to upload, since you don't have to wake up before uploading.  
 
 
 Uploading
