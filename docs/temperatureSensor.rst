@@ -112,4 +112,8 @@ And in options, select current for the data and you can tweak other things:
 .. image:: images/grafsingleopions.png
 	:align: center
 
+If this only updates every once and a while, I like to make sure it at least spans out a year looking for the latest:
+
+.. image:: images/singleTimeRange.png
+	:align: center
 
