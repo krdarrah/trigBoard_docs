@@ -65,4 +65,5 @@ Contents
    ePaperCoronaDisplay.rst
    cellularProject.rst
    motionSensor.rst
+   temperatureSensor.rst
    waterleakDetector.rst

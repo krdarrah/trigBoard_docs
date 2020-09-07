@@ -1,0 +1,316 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html4" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Temperature Logging to Grafana &mdash; trigBoard
+Version 8 0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Water Leak Detector" href="waterleakDetector.html" />
+    <link rel="prev" title="Motion Sensor - PIR" href="motionSensor.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html">
+          
+
+          
+            
+            <img src="_static/logo.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">trigBoard v8 Docs</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="wheretobuy.html">Where To Buy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="configurator.html">Configurator</a></li>
+<li class="toctree-l1"><a class="reference internal" href="supportedServices.html">Supported Services</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Hardware.html">Hardware</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Firmware.html">Firmware/Programming</a></li>
+<li class="toctree-l1"><a class="reference internal" href="testing.html">Testing/Factory Programming</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contact.html">Contact</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Projects</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="ePaperCoronaDisplay.html">E-Paper Corona Display</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cellularProject.html">Cellular/Battery Backed System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="motionSensor.html">Motion Sensor - PIR</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Temperature Logging to Grafana</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id1"><strong>Corlysis</strong></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#setup"><strong>Setup</strong></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#grafana"><strong>Grafana</strong></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="waterleakDetector.html">Water Leak Detector</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">trigBoard
+Version 8</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Temperature Logging to Grafana</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/temperatureSensor.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="temperature-logging-to-grafana">
+<h1>Temperature Logging to Grafana<a class="headerlink" href="#temperature-logging-to-grafana" title="Permalink to this headline">¶</a></h1>
+<img alt="_images/grafanatemp.png" class="align-center" src="_images/grafanatemp.png" />
+<p>This project shows off what you can do with the low power real time clock on the trigBoard - simply set the interval wake time and the trigBoard will automatically wake and send the temperature reading to the cloud.  In this example, <a class="reference external" href="https://corlysis.com">Corlysis</a> is used for as the cloud provider.  This could just as well be hosted on a local setup using a raspberry pi, but with everything hosted in the cloud, it is very easy to view the data from anywhere and share with others.</p>
+<p>The wiring is simple - just need an <a class="reference external" href="https://www.digikey.com/product-detail/en/texas-instruments/LMT01LPGM/296-44323-1-ND/6110597">LMT01 sensor</a> and <a class="reference external" href="https://www.digikey.com/product-detail/en/micro-commercial-co/2N3904-AP/2N3904-APCT-ND/950591">NPN transistor</a> and a <a class="reference external" href="https://www.digikey.com/product-detail/en/stackpole-electronics-inc/CF14JT10K0/CF14JT10K0CT-ND/1830374">10k resistor</a></p>
+<img alt="_images/LMT01_wiring.png" class="align-center" src="_images/LMT01_wiring.png" />
+<p>If you have a trigBoard running the stock base firmware, you could simply OTA this code over, or compile the code yourself, but first make sure you can compile the base firmware.  See the firmware section for more information.</p>
+<p><a class="reference external" href="https://github.com/krdarrah/trigBoard_LMT01">LMT01 Sensor Code is Here</a></p>
+<div class="section" id="id1">
+<h2><strong>Corlysis</strong><a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<p>This code was designed to work with <a class="reference external" href="https://corlysis.com">Corlysis</a>, so first make sure you go over there and setup an account, then create a database:</p>
+<img alt="_images/corlysidata.png" class="align-center" src="_images/corlysidata.png" />
+<p>Name this whatever you want, but we will need it later when setting up the trigBoard.  Next, click the API Keys menu:</p>
+<img alt="_images/corlysisApi.png" class="align-center" src="_images/corlysisApi.png" />
+<p>Just copy your Key there - we will need this later as well for setting up the trigBoard.</p>
+</div>
+<div class="section" id="setup">
+<h2><strong>Setup</strong><a class="headerlink" href="#setup" title="Permalink to this headline">¶</a></h2>
+<p>What’s really cool about this code is that it re-uses other fields in the trigBoard configurator to set this up to work with Corlysis, so no need to hard code things. Before setting up, you need to decide a few things first:</p>
+<ul class="simple">
+<li>The Database Name is what you already created in Corlysis</li>
+<li>Measurement name is like the name of all these devices. So in my case, I call this LMT01.  I’ll have a whole bunch named LMT01 as this type of sensor.</li>
+<li>Location Name is what I use to locate the sensors, so Front porch, Garage, Inside, etc… We’ll also use this to parse out the data, so should be unique.</li>
+<li>C or F is obvious, put in either C or F to set the conversion</li>
+<li>API Key is straight from Corlysis, just copy and paste that over.</li>
+</ul>
+<table border="1" class="docutils">
+<colgroup>
+<col width="57%" />
+<col width="43%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Configurator</th>
+<th class="head">Corlysis</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>trigBoard Name</td>
+<td>Database Name from Corlysis</td>
+</tr>
+<tr class="row-odd"><td>Message when Contact Opens</td>
+<td>Measurement Name</td>
+</tr>
+<tr class="row-even"><td>Message when Contact Closes</td>
+<td>Location Name</td>
+</tr>
+<tr class="row-odd"><td>Message when Wake Button Pressed</td>
+<td>C or F</td>
+</tr>
+<tr class="row-even"><td>Timer Message for Contact still Open</td>
+<td>API Key</td>
+</tr>
+</tbody>
+</table>
+<p>So then when you launch the configurator, you setup your WiFi credentials, the interval time in the timer settings, then the Corlysis parameters:</p>
+<img alt="_images/corlysisLMT01.png" class="align-center" src="_images/corlysisLMT01.png" />
+</div>
+<div class="section" id="grafana">
+<h2><strong>Grafana</strong><a class="headerlink" href="#grafana" title="Permalink to this headline">¶</a></h2>
+<p>Ok, so here’s where things get cool - Corlysis is hosting both the influxDB where the data is stored and also Grafana where the data can be plotted.  One you have a trigBoard sending data, you can click on he grafana menu. Then create a new dashboard in there, new panel as well, and select graph:</p>
+<img alt="_images/grafdash.png" class="align-center" src="_images/grafdash.png" />
+<img alt="_images/grafpanel.png" class="align-center" src="_images/grafpanel.png" />
+<img alt="_images/grafgraph.png" class="align-center" src="_images/grafgraph.png" />
+<p>Then click the drop down to edit the panel:</p>
+<img alt="_images/grafpanedit.png" class="align-center" src="_images/grafpanedit.png" />
+<p>make sure you’re on the metrics tab do the following:</p>
+<ul class="simple">
+<li>Data Source - click in there and select the database you created where the trigBoard is sending data</li>
+<li>FROM default - then you select the measurement name or type it in, mine is LMT01</li>
+<li>WHERE - this is how we filter by location, so you’ll have to type in location, then = to whatever you want to show. Mine is “front”</li>
+<li>SELECT - we’re actually sending multiple pieces of data for this measurement, but we’re plotting temperature here, so select temperature between the field(..)</li>
+<li>Then after that remove the mean() by clicking on it and then add distinct() which is in the Aggregations menu.</li>
+</ul>
+<p>You should now see data!!  Note that you can also plot battery voltage the same way, but select battery instead of temperature.</p>
+<img alt="_images/grafmetrics.png" class="align-center" src="_images/grafmetrics.png" />
+<p>You can also create these cool gauges, by making a new panel for single stat:</p>
+<img alt="_images/grafsinglestatmetric.png" class="align-center" src="_images/grafsinglestatmetric.png" />
+<p>And in options, select current for the data and you can tweak other things:</p>
+<img alt="_images/grafsingleopions.png" class="align-center" src="_images/grafsingleopions.png" />
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="waterleakDetector.html" class="btn btn-neutral float-right" title="Water Leak Detector" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="motionSensor.html" class="btn btn-neutral float-left" title="Motion Sensor - PIR" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2020, Kevin Darrah
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
