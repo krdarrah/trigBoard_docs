@@ -102,7 +102,7 @@ You should now see data!!  Note that you can also plot battery voltage the same 
 .. image:: images/grafmetrics.png
 	:align: center
 
-You can also create these cool gauges, by making a new panel for single stat:
+You can also create these cool gauges, by making a new panel for single stat - just choose last for the Selector:
 
 .. image:: images/grafsinglestatmetric.png
 	:align: center

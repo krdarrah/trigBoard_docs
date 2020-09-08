@@ -163,7 +163,7 @@
 			"file": "docs/temperatureSensor.rst",
 			"settings":
 			{
-				"buffer_size": 5423,
+				"buffer_size": 5596,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
@@ -527,7 +527,7 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 433.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 2,
@@ -641,7 +641,7 @@
 							"syntax": "Packages/RestructuredText/reStructuredText.sublime-syntax"
 						},
 						"translation.x": 0.0,
-						"translation.y": 275.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 1,
@@ -850,23 +850,24 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 5423,
+						"buffer_size": 5596,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								5400,
-								5400
+								4893,
+								4893
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/RestructuredText/reStructuredText.sublime-syntax"
+							"syntax": "Packages/RestructuredText/reStructuredText.sublime-syntax",
+							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 1829.0,
+						"translation.y": 1892.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
