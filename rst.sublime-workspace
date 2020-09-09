@@ -163,7 +163,7 @@
 			"file": "docs/temperatureSensor.rst",
 			"settings":
 			{
-				"buffer_size": 5596,
+				"buffer_size": 5632,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
@@ -850,15 +850,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 5596,
+						"buffer_size": 5632,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								4893,
-								4893
+								5262,
+								5262
 							]
 						],
 						"settings":
@@ -867,7 +867,7 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 1892.0,
+						"translation.y": 1913.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
