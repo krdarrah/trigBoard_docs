@@ -64,6 +64,7 @@ Contents
 
    ePaperCoronaDisplay.rst
    cellularProject.rst
+   doorbell.rst
    motionSensor.rst
    temperatureSensor.rst
    waterleakDetector.rst

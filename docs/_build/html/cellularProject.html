@@ -119,6 +119,7 @@ Version 8 0 documentation</title>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="motionSensor.html">Motion Sensor - PIR</a></li>
+<li class="toctree-l1"><a class="reference internal" href="temperatureSensor.html">Temperature Logging to Grafana</a></li>
 <li class="toctree-l1"><a class="reference internal" href="waterleakDetector.html">Water Leak Detector</a></li>
 </ul>
 
@@ -198,7 +199,10 @@ Version 8</a>
 <li>Battery Backed! Obviously all trigBoard sensors are all on batteries, but the gateway is battery backed by the on-board Particle Boron battery connection. The monitors are also battery backed with the use of Adafruit’s ESP32 Feather board having on-board battery connection and USB charging.</li>
 <li>KD Circuits has designed simple carrier boards for gateway and monitor boards - just bare PCB here, but easy to solder together with all through hole components.  $2/pc <a class="reference external" href="https://www.kdcircuits.com#contact">contact KD Circuits directly</a></li>
 </ul>
-<div class="section" id="trigboard-setup">
+<p><strong>Here’s a full step by step tutorial</strong></p>
+<div style="text-align: center; margin-bottom: 2em;">
+<iframe width="560" height="315" src="https://www.youtube.com/embed/-oMSD9I4RSo" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</div><div class="section" id="trigboard-setup">
 <h2>trigBoard Setup<a class="headerlink" href="#trigboard-setup" title="Permalink to this headline">¶</a></h2>
 <p>This is actually the easiest part! The messages are sent out via UDP, so setup the trigBoard as you normally would, but just enable udp from the configurator.  Timer settings, open/closed, etc… are all however you want them to work.</p>
 <div class="admonition note">

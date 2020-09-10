@@ -1,0 +1,269 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html4" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Door Bell Monitoring &mdash; trigBoard
+Version 8 0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Motion Sensor - PIR" href="motionSensor.html" />
+    <link rel="prev" title="Cellular/Battery Backed System" href="cellularProject.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html">
+          
+
+          
+            
+            <img src="_static/logo.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">trigBoard v8 Docs</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="wheretobuy.html">Where To Buy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="configurator.html">Configurator</a></li>
+<li class="toctree-l1"><a class="reference internal" href="supportedServices.html">Supported Services</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Hardware.html">Hardware</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Firmware.html">Firmware/Programming</a></li>
+<li class="toctree-l1"><a class="reference internal" href="testing.html">Testing/Factory Programming</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contact.html">Contact</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Projects</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="ePaperCoronaDisplay.html">E-Paper Corona Display</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cellularProject.html">Cellular/Battery Backed System</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Door Bell Monitoring</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#parts"><strong>Parts</strong></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#install"><strong>Install</strong></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#programming"><strong>Programming</strong></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="motionSensor.html">Motion Sensor - PIR</a></li>
+<li class="toctree-l1"><a class="reference internal" href="temperatureSensor.html">Temperature Logging to Grafana</a></li>
+<li class="toctree-l1"><a class="reference internal" href="waterleakDetector.html">Water Leak Detector</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">trigBoard
+Version 8</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Door Bell Monitoring</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/doorbell.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="door-bell-monitoring">
+<h1>Door Bell Monitoring<a class="headerlink" href="#door-bell-monitoring" title="Permalink to this headline">¶</a></h1>
+<img alt="_images/doorbellWiring.png" class="align-center" src="_images/doorbellWiring.png" />
+<p>Simple as it sounds - get a push notification when the door bell rings! Most doorbell systems are AC powered by a step down transformer off of AC MAINS to ~16VAC.  Be careful with your wiring make sure to disconnect power before making connections and also note that your system may be different!  The trigBoard has a simple dry contact trigger input, so this circuit works by 1/2 have rectifying the 16VAC, so we have a DC voltage to excite the electromagnet.  A couple capacitors smooth that out somewhat and a flyback diode in there takes care of the collapsing field when you release the button.</p>
+<div class="section" id="parts">
+<h2><strong>Parts</strong><a class="headerlink" href="#parts" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Diodes are just simple <a class="reference external" href="https://www.digikey.com/product-detail/en/nte-electronics-inc/1N4007/2368-1N4007-ND/11645794">1N4007</a> but it’s nothing special, so just as long as it can block ~24V or so, it  should work.</li>
+<li>Capacitors are 220uF Electrolytics, MAKE SURE THEY ARE AT LEAST 24V RATED.  <a class="reference external" href="https://www.digikey.com/product-detail/en/würth-elektronik/860020574012/732-8946-1-ND/5728889">These</a> would be good</li>
+<li>Electromagnet is rated for 24VDC, even though we’re hitting with less voltage, it’s still enough to trip the reed switch.  <a class="reference external" href="https://www.amazon.com/gp/product/B01MT8FNT0/ref=ppx_yo_dt_b_asin_title_o02_s00?ie=UTF8&amp;psc=1">Just a cheap one from Amazon</a></li>
+</ul>
+<img alt="_images/electromagnet.png" class="align-center" src="_images/electromagnet.png" />
+<ul class="simple">
+<li>trigBoard and Reed switch from Tindie store - I actually snipped the bare reed switch out of the magnetic sensor, to get it closer to the electromagnet.</li>
+</ul>
+<img alt="_images/reedSwitch.png" class="align-center" src="_images/reedSwitch.png" />
+</div>
+<div class="section" id="install">
+<h2><strong>Install</strong><a class="headerlink" href="#install" title="Permalink to this headline">¶</a></h2>
+<p>I was able to build the circuit just by twisting all of the leads together - watch your polarity on everything:</p>
+<img alt="_images/doorbellcircuitbuild.JPG" class="align-center" src="_images/doorbellcircuitbuild.JPG" />
+<p>Then just taped that all up to make it safe leaving the two leads exposed to connect to the doorbell terminals.</p>
+<p>I found that the reed switch needs to installed very close to the center of the electromagnet plate.  And also the orientation is important - the magnet needs to pull the contact closed, so make sure you have it like this with electrical tape on the electromagnet so you don’t short out the switch leads:</p>
+<img alt="_images/reedonelectromag.png" class="align-center" src="_images/reedonelectromag.png" />
+<p>Once that’s taped down, just cover and tape the whole thing down and you’re good to go!</p>
+<img alt="_images/reedswitchcovered.png" class="align-center" src="_images/reedswitchcovered.png" />
+<p>Will post pics of it in the doorbell and video soon</p>
+</div>
+<div class="section" id="programming">
+<h2><strong>Programming</strong><a class="headerlink" href="#programming" title="Permalink to this headline">¶</a></h2>
+<p>Well none needed! The base firmware out of the box will work! Just choose the way you want to be notified from the supported services page and just set to only wake on Contact Closing and give it a message!</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="motionSensor.html" class="btn btn-neutral float-right" title="Motion Sensor - PIR" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="cellularProject.html" class="btn btn-neutral float-left" title="Cellular/Battery Backed System" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2020, Kevin Darrah
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
