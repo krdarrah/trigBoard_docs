@@ -11,7 +11,7 @@
 			"file": "docs/index.rst",
 			"settings":
 			{
-				"buffer_size": 4440,
+				"buffer_size": 4456,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
@@ -115,19 +115,10 @@
 			}
 		},
 		{
-			"file": "docs/wheretobuy.rst",
-			"settings":
-			{
-				"buffer_size": 709,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		},
-		{
 			"file": "docs/cellularProject.rst",
 			"settings":
 			{
-				"buffer_size": 21138,
+				"buffer_size": 21471,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
@@ -164,6 +155,15 @@
 			"settings":
 			{
 				"buffer_size": 5632,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "docs/doorbell.rst",
+			"settings":
+			{
+				"buffer_size": 2832,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
@@ -229,6 +229,7 @@
 	},
 	"file_history":
 	[
+		"/Users/kevindarrah/Documents/readthedocs/trigBoard_docs/docs/wheretobuy.rst",
 		"/Users/kevindarrah/Documents/readthedocs/trigBoard_docs/docs/cellularProject.rst",
 		"/Users/kevindarrah/Documents/readthedocs/trigBoard_docs/docs/specifications.rst",
 		"/Users/kevindarrah/Documents/readthedocs/trigBoard_docs/docs/projectList.rst",
@@ -366,15 +367,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 4440,
+						"buffer_size": 4456,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								4414,
-								4414
+								4385,
+								4385
 							]
 						],
 						"settings":
@@ -387,7 +388,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 5,
+					"stack_index": 2,
 					"type": "text"
 				},
 				{
@@ -416,7 +417,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 10,
+					"stack_index": 11,
 					"type": "text"
 				},
 				{
@@ -445,7 +446,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 9,
+					"stack_index": 10,
 					"type": "text"
 				},
 				{
@@ -473,7 +474,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 14,
+					"stack_index": 15,
 					"type": "text"
 				},
 				{
@@ -501,7 +502,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 15,
+					"stack_index": 16,
 					"type": "text"
 				},
 				{
@@ -517,8 +518,8 @@
 						"selection":
 						[
 							[
-								2123,
-								2123
+								2587,
+								2297
 							]
 						],
 						"settings":
@@ -527,10 +528,10 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 868.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 2,
+					"stack_index": 5,
 					"type": "text"
 				},
 				{
@@ -587,7 +588,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 8,
+					"stack_index": 9,
 					"type": "text"
 				},
 				{
@@ -616,7 +617,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 3,
+					"stack_index": 7,
 					"type": "text"
 				},
 				{
@@ -644,7 +645,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 1,
+					"stack_index": 6,
 					"type": "text"
 				},
 				{
@@ -672,7 +673,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 13,
+					"stack_index": 14,
 					"type": "text"
 				},
 				{
@@ -700,52 +701,24 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 11,
+					"stack_index": 12,
 					"type": "text"
 				},
 				{
 					"buffer": 12,
-					"file": "docs/wheretobuy.rst",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 709,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								300,
-								287
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/RestructuredText/reStructuredText.sublime-syntax"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 16,
-					"type": "text"
-				},
-				{
-					"buffer": 13,
 					"file": "docs/cellularProject.rst",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 21138,
+						"buffer_size": 21471,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								21002,
-								21002
+								2471,
+								2181
 							]
 						],
 						"settings":
@@ -754,14 +727,14 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 284.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 6,
+					"stack_index": 3,
 					"type": "text"
 				},
 				{
-					"buffer": 14,
+					"buffer": 13,
 					"file": "docs/waterleakDetector.rst",
 					"semi_transient": false,
 					"settings":
@@ -785,11 +758,11 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 12,
+					"stack_index": 13,
 					"type": "text"
 				},
 				{
-					"buffer": 15,
+					"buffer": 14,
 					"file": "docs/pinout.rst",
 					"semi_transient": false,
 					"settings":
@@ -813,11 +786,11 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 7,
+					"stack_index": 8,
 					"type": "text"
 				},
 				{
-					"buffer": 16,
+					"buffer": 15,
 					"file": "/Users/kevindarrah/Documents/readthedocs/cheatsheet",
 					"semi_transient": false,
 					"settings":
@@ -829,8 +802,8 @@
 						"selection":
 						[
 							[
-								76,
-								13
+								111,
+								121
 							]
 						],
 						"settings":
@@ -845,7 +818,7 @@
 					"type": "text"
 				},
 				{
-					"buffer": 17,
+					"buffer": 16,
 					"file": "docs/temperatureSensor.rst",
 					"semi_transient": false,
 					"settings":
@@ -857,8 +830,8 @@
 						"selection":
 						[
 							[
-								5262,
-								5262
+								3770,
+								3770
 							]
 						],
 						"settings":
@@ -867,7 +840,36 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 1913.0,
+						"translation.y": 1640.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 17,
+					"file": "docs/doorbell.rst",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2832,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2831,
+								2831
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/RestructuredText/reStructuredText.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 426.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,

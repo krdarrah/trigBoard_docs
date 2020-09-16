@@ -19,6 +19,7 @@ All of the parameters in the trigBoard are configured in the `Configurator Tool 
 	* Requires Bluetooth to be enabled and turned ON
 	* MUST BE HTTPS
 	* You may have to `enable experimental features <chrome://flags/#enable-experimental-web-platform-features>`_ but I have not seen that here with my machines.
+	* Problems with Windows 10? Check your build version "Settings->System->About" and should be at least 1703.  One user had issues with v1607. Also noted `this <https://github.com/WebBluetoothCG/web-bluetooth/blob/gh-pages/implementation-status.md#chrome>`_ helped in troubleshooting.
 
 
 .. image:: images/configuratorGip.gif
