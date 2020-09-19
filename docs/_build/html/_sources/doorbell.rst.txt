@@ -2,14 +2,55 @@
 Door Bell Monitoring
 =========================================
 
-.. image:: images/doorbellWiring.png
+.. image:: images/doorbellInstalled.png
 	:align: center
 
 
-Simple as it sounds - get a push notification when the door bell rings! Most doorbell systems are AC powered by a step down transformer off of AC MAINS to ~16VAC.  Be careful with your wiring make sure to disconnect power before making connections and also note that your system may be different!  The trigBoard has a simple dry contact trigger input, so this circuit works by 1/2 have rectifying the 16VAC, so we have a DC voltage to excite the electromagnet.  A couple capacitors smooth that out somewhat and a flyback diode in there takes care of the collapsing field when you release the button.  
+Simple as it sounds - get a push notification when the door bell rings! Most doorbell systems are AC powered by a step down transformer off of AC MAINS to ~16VAC.  Be careful with your wiring make sure to disconnect power before making connections and also note that your system may be different!
+
+**Relay Method** *Reccomended*
+--------------------------------------------------
+
+.. image:: images/doorbellRelay.png
+	:align: center
+
+This is the recommended method, simply because after a week of testing with the Electromagnet method, the Fed-Ex guy just smacks the door bell... so it barely rings.  This is not enough time to wake the trigBoard, so I decided to use a 12VDC relay with regulator.  Along with some large capacitors, this keeps the relay coil energized long enough to wake the trigBoard even with the fastest button  press.
 
 **Parts**
-----------
+=========
+
+- Diodes are just simple `1N4007 <https://www.digikey.com/product-detail/en/nte-electronics-inc/1N4007/2368-1N4007-ND/11645794>`_ but it's nothing special, so just as long as it can block ~24V or so, it  should work.  
+
+- Capacitors are 220uF Electrolytics, MAKE SURE THEY ARE AT LEAST 24V RATED.  `These <https://www.digikey.com/product-detail/en/würth-elektronik/860020574012/732-8946-1-ND/5728889>`_ would be good and same with the ceramic `0.1uF <https://www.digikey.com/product-detail/en/vishay-beyschlag-draloric-bc-components/K104Z15Y5VF5TL2/BC1160CT-ND/286782>`_ 
+
+- Most 12VDC relays would work, just as long as the coil current is low.  This is what keeps the coil energized just from the capacitors if the button is quickly pressed.  The one I used is a `G5Q-14 DC12 <https://www.digikey.com/product-detail/en/omron-electronics-inc-emc-div/G5Q-14-DC12/Z225-ND/355243>`_
+
+- The 12V regulator is just what I  had lying around, but it works nicely and can handle up to 35Vin.   Just a simple `L7812CV <https://www.digikey.com/product-detail/en/stmicroelectronics/L7812CV/497-1452-5-ND/585973>`_
+
+**Install**
+============
+
+Not the best, but I soldered everything together, then just just wrapped the whole thing in electrical tape: 
+
+.. image:: images/doorbellAssy.JPG
+	:align: center
+
+**Programming**
+===============
+
+Well none needed! The base firmware out of the box will work! Just choose the way you want to be notified from the supported services page and just set to only wake on Contact Opening.  The reason for this is in that case when the button is pressed very quickly, the board may wake up and and by the time it checks the contact, it will already be closed.  So easiest to just trigger on the closure of the contact, or when the button is released.  
+
+
+**Electromagnet Method**
+-------------------------
+
+.. image:: images/doorbellWiring.png
+	:align: center
+
+The trigBoard has a simple dry contact trigger input, so this circuit works by 1/2 have rectifying the 16VAC, so we have a DC voltage to excite the electromagnet.  A couple capacitors smooth that out somewhat and a flyback diode in there takes care of the collapsing field when you release the button.  
+
+**Parts**
+=========
 
 - Diodes are just simple `1N4007 <https://www.digikey.com/product-detail/en/nte-electronics-inc/1N4007/2368-1N4007-ND/11645794>`_ but it's nothing special, so just as long as it can block ~24V or so, it  should work.  
 
@@ -26,7 +67,7 @@ Simple as it sounds - get a push notification when the door bell rings! Most doo
 	:align: center
 
 **Install**
-------------
+============
 
 I was able to build the circuit just by twisting all of the leads together - watch your polarity on everything: 
 
@@ -48,6 +89,6 @@ Once that's taped down, just cover and tape the whole thing down and you're good
 Will post pics of it in the doorbell and video soon
 
 **Programming**
-----------------
+===============
 
 Well none needed! The base firmware out of the box will work! Just choose the way you want to be notified from the supported services page and just set to only wake on Contact Closing and give it a message!
