@@ -5,6 +5,8 @@ Temperature Logging to Grafana
 .. image:: images/grafanatemp.png
 	:align: center
 
+.. warning::
+	This project is under heavy development and is not yet reliable - here for reference only. If any questions, please contact or join discord group
 
 This project shows off what you can do with the low power real time clock on the trigBoard - simply set the interval wake time and the trigBoard will automatically wake and send the temperature reading to the cloud.  In this example, `Corlysis <https://corlysis.com>`_ is used for as the cloud provider.  This could just as well be hosted on a local setup using a raspberry pi, but with everything hosted in the cloud, it is very easy to view the data from anywhere and share with others.
 
