@@ -1,0 +1,274 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html4" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Garage Door Monitor &mdash; trigBoard
+Version 8 0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Motion Sensor - PIR" href="motionSensor.html" />
+    <link rel="prev" title="Door Bell Monitoring" href="doorbell.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html">
+          
+
+          
+            
+            <img src="_static/logo.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">trigBoard v8 Docs</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="wheretobuy.html">Where To Buy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="configurator.html">Configurator</a></li>
+<li class="toctree-l1"><a class="reference internal" href="supportedServices.html">Supported Services</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Hardware.html">Hardware</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Firmware.html">Firmware/Programming</a></li>
+<li class="toctree-l1"><a class="reference internal" href="testing.html">Testing/Factory Programming</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contact.html">Contact</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Projects</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="ePaperCoronaDisplay.html">E-Paper Corona Display</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cellularProject.html">Cellular/Battery Backed System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="doorbell.html">Door Bell Monitoring</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Garage Door Monitor</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#parts"><strong>Parts</strong></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#install"><strong>Install</strong></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#programming"><strong>Programming</strong></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="motionSensor.html">Motion Sensor - PIR</a></li>
+<li class="toctree-l1"><a class="reference internal" href="temperatureSensor.html">Temperature Logging to Grafana</a></li>
+<li class="toctree-l1"><a class="reference internal" href="waterleakDetector.html">Water Leak Detector</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">trigBoard
+Version 8</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Garage Door Monitor</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/garage.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="garage-door-monitor">
+<h1>Garage Door Monitor<a class="headerlink" href="#garage-door-monitor" title="Permalink to this headline">¶</a></h1>
+<img alt="_images/garageopen.gif" class="align-center" src="_images/garageopen.gif" />
+<p>Ever have that feeling that you left the garage open? Well you can use trigBoard to monitor and door/window easily, but the garage door can be tricky to interface with a magnetic sensor.  Here is an easy way using a tilt sensor (mercury switch)  This works so much better, because the garage door does not open/close very smoothly. The shock and vibration of the door will often trigger “double taps”, sending out multiple push notifications.</p>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">Mercury is a hazardous substance! Make sure you are fully aware of the dangers in using a mercury switch: <a class="reference external" href="https://www.epa.gov/mercury">EPA’s Website here</a> and how to clean up <a class="reference external" href="https://www.epa.gov/mercury/what-do-if-mercury-thermometer-breaks">here</a> Only do this at your own risk!</p>
+</div>
+<div class="section" id="parts">
+<h2><strong>Parts</strong><a class="headerlink" href="#parts" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>The mercury tilt switch I’m using was purchased on eBay:</li>
+</ul>
+<img alt="_images/mercswitchebay.png" class="align-center" src="_images/mercswitchebay.png" />
+<p>And that’s pretty much it, I just soldered this to a <a class="reference external" href="https://www.adafruit.com/product/261">JST PH2.0mm connector</a></p>
+</div>
+<div class="section" id="install">
+<h2><strong>Install</strong><a class="headerlink" href="#install" title="Permalink to this headline">¶</a></h2>
+<p>First I made sure I had the mercury switch oriented properly in the enclosure:</p>
+<img alt="_images/garagegif.gif" class="align-center" src="_images/garagegif.gif" />
+<p>In a garage, things get bumped around and smashed, so I decided to fully seal in the switch with RTV, but maybe epoxy would work better:</p>
+<img alt="_images/RTVstuff.png" class="align-center" src="_images/RTVstuff.png" />
+<p>And you see that I have the mercury switch mounted away from the wall of the enclosure to get full coverage around the switch:</p>
+<img alt="_images/mercmountedenc.png" class="align-center" src="_images/mercmountedenc.png" />
+<p>Then just covered it with RTV:</p>
+<img alt="_images/rtvaplied.png" class="align-center" src="_images/rtvaplied.png" />
+<p>Looks pretty good:</p>
+<img alt="_images/mercallputtogether.png" class="align-center" src="_images/mercallputtogether.png" />
+<img alt="_images/mercgaragebuttoned.png" class="align-center" src="_images/mercgaragebuttoned.png" />
+<p>Actually was able to use an existing screw and some VHB double sided tape to mount:</p>
+<img alt="_images/mercmountedongarage.png" class="align-center" src="_images/mercmountedongarage.png" />
+</div>
+<div class="section" id="programming">
+<h2><strong>Programming</strong><a class="headerlink" href="#programming" title="Permalink to this headline">¶</a></h2>
+<p>None needed - base firmware works perfectly with this, so if you want to  get notified when opens or closes, you set that up all through the configurator.  And same with if you want to know if left open, just use the timer functionality to check if “still open”.</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="motionSensor.html" class="btn btn-neutral float-right" title="Motion Sensor - PIR" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="doorbell.html" class="btn btn-neutral float-left" title="Door Bell Monitoring" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2020, Kevin Darrah
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

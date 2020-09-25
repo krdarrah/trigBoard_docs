@@ -16,12 +16,20 @@ Simple as it sounds - get a push notification when the door bell rings! Most doo
 
 This is the recommended method, simply because after a week of testing with the Electromagnet method, the Fed-Ex guy just smacks the door bell... so it barely rings.  This is not enough time to wake the trigBoard, so I decided to use a 12VDC relay with regulator.  Along with some large capacitors, this keeps the relay coil energized long enough to wake the trigBoard even with the fastest button  press.
 
+Full tutorial:
+
+.. raw:: html
+
+    <div style="text-align: center; margin-bottom: 2em;">
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/G0F31zrWHU8" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
+
 **Parts**
 =========
 
 - Diodes are just simple `1N4007 <https://www.digikey.com/product-detail/en/nte-electronics-inc/1N4007/2368-1N4007-ND/11645794>`_ but it's nothing special, so just as long as it can block ~24V or so, it  should work.  
 
-- Capacitors are 220uF Electrolytics, MAKE SURE THEY ARE AT LEAST 24V RATED.  `These <https://www.digikey.com/product-detail/en/würth-elektronik/860020574012/732-8946-1-ND/5728889>`_ would be good and same with the ceramic `0.1uF <https://www.digikey.com/product-detail/en/vishay-beyschlag-draloric-bc-components/K104Z15Y5VF5TL2/BC1160CT-ND/286782>`_ 
+- Input Capacitors are 220uF Electrolytics, MAKE SURE THEY ARE AT LEAST 24V RATED.  `These <https://www.digikey.com/product-detail/en/würth-elektronik/860020574012/732-8946-1-ND/5728889>`_ would be good and same with the ceramic `0.1uF <https://www.digikey.com/product-detail/en/vishay-beyschlag-draloric-bc-components/K104Z15Y5VF5TL2/BC1160CT-ND/286782>`_  and one `100uF <https://www.digikey.com/product-detail/en/würth-elektronik/860010473007/732-8630-1-ND/5728586>`_
 
 - Most 12VDC relays would work, just as long as the coil current is low.  This is what keeps the coil energized just from the capacitors if the button is quickly pressed.  The one I used is a `G5Q-14 DC12 <https://www.digikey.com/product-detail/en/omron-electronics-inc-emc-div/G5Q-14-DC12/Z225-ND/355243>`_
 

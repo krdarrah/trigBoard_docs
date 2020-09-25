@@ -109,9 +109,9 @@ Version 8 0 documentation</title>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#electromagnet-method"><strong>Electromagnet Method</strong></a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id1"><strong>Parts</strong></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id4"><strong>Install</strong></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id5"><strong>Programming</strong></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id2"><strong>Parts</strong></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id5"><strong>Install</strong></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id6"><strong>Programming</strong></a></li>
 </ul>
 </li>
 </ul>
@@ -193,11 +193,14 @@ Version 8</a>
 <h2><strong>Relay Method</strong> <em>Reccomended</em><a class="headerlink" href="#relay-method-reccomended" title="Permalink to this headline">¶</a></h2>
 <img alt="_images/doorbellRelay.png" class="align-center" src="_images/doorbellRelay.png" />
 <p>This is the recommended method, simply because after a week of testing with the Electromagnet method, the Fed-Ex guy just smacks the door bell… so it barely rings.  This is not enough time to wake the trigBoard, so I decided to use a 12VDC relay with regulator.  Along with some large capacitors, this keeps the relay coil energized long enough to wake the trigBoard even with the fastest button  press.</p>
-<div class="section" id="parts">
+<p>Full tutorial:</p>
+<div style="text-align: center; margin-bottom: 2em;">
+<iframe width="560" height="315" src="https://www.youtube.com/embed/G0F31zrWHU8" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</div><div class="section" id="parts">
 <h3><strong>Parts</strong><a class="headerlink" href="#parts" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li>Diodes are just simple <a class="reference external" href="https://www.digikey.com/product-detail/en/nte-electronics-inc/1N4007/2368-1N4007-ND/11645794">1N4007</a> but it’s nothing special, so just as long as it can block ~24V or so, it  should work.</li>
-<li>Capacitors are 220uF Electrolytics, MAKE SURE THEY ARE AT LEAST 24V RATED.  <a class="reference external" href="https://www.digikey.com/product-detail/en/würth-elektronik/860020574012/732-8946-1-ND/5728889">These</a> would be good and same with the ceramic <a class="reference external" href="https://www.digikey.com/product-detail/en/vishay-beyschlag-draloric-bc-components/K104Z15Y5VF5TL2/BC1160CT-ND/286782">0.1uF</a></li>
+<li>Input Capacitors are 220uF Electrolytics, MAKE SURE THEY ARE AT LEAST 24V RATED.  <a class="reference external" href="https://www.digikey.com/product-detail/en/würth-elektronik/860020574012/732-8946-1-ND/5728889">These</a> would be good and same with the ceramic <a class="reference external" href="https://www.digikey.com/product-detail/en/vishay-beyschlag-draloric-bc-components/K104Z15Y5VF5TL2/BC1160CT-ND/286782">0.1uF</a>  and one <a class="reference external" href="https://www.digikey.com/product-detail/en/würth-elektronik/860010473007/732-8630-1-ND/5728586">100uF</a></li>
 <li>Most 12VDC relays would work, just as long as the coil current is low.  This is what keeps the coil energized just from the capacitors if the button is quickly pressed.  The one I used is a <a class="reference external" href="https://www.digikey.com/product-detail/en/omron-electronics-inc-emc-div/G5Q-14-DC12/Z225-ND/355243">G5Q-14 DC12</a></li>
 <li>The 12V regulator is just what I  had lying around, but it works nicely and can handle up to 35Vin.   Just a simple <a class="reference external" href="https://www.digikey.com/product-detail/en/stmicroelectronics/L7812CV/497-1452-5-ND/585973">L7812CV</a></li>
 </ul>
@@ -216,8 +219,8 @@ Version 8</a>
 <h2><strong>Electromagnet Method</strong><a class="headerlink" href="#electromagnet-method" title="Permalink to this headline">¶</a></h2>
 <img alt="_images/doorbellWiring.png" class="align-center" src="_images/doorbellWiring.png" />
 <p>The trigBoard has a simple dry contact trigger input, so this circuit works by 1/2 have rectifying the 16VAC, so we have a DC voltage to excite the electromagnet.  A couple capacitors smooth that out somewhat and a flyback diode in there takes care of the collapsing field when you release the button.</p>
-<div class="section" id="id1">
-<h3><strong>Parts</strong><a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id2">
+<h3><strong>Parts</strong><a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li>Diodes are just simple <a class="reference external" href="https://www.digikey.com/product-detail/en/nte-electronics-inc/1N4007/2368-1N4007-ND/11645794">1N4007</a> but it’s nothing special, so just as long as it can block ~24V or so, it  should work.</li>
 <li>Capacitors are 220uF Electrolytics, MAKE SURE THEY ARE AT LEAST 24V RATED.  <a class="reference external" href="https://www.digikey.com/product-detail/en/würth-elektronik/860020574012/732-8946-1-ND/5728889">These</a> would be good</li>
@@ -229,8 +232,8 @@ Version 8</a>
 </ul>
 <img alt="_images/reedSwitch.png" class="align-center" src="_images/reedSwitch.png" />
 </div>
-<div class="section" id="id4">
-<h3><strong>Install</strong><a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id5">
+<h3><strong>Install</strong><a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
 <p>I was able to build the circuit just by twisting all of the leads together - watch your polarity on everything:</p>
 <img alt="_images/doorbellcircuitbuild.JPG" class="align-center" src="_images/doorbellcircuitbuild.JPG" />
 <p>Then just taped that all up to make it safe leaving the two leads exposed to connect to the doorbell terminals.</p>
@@ -240,8 +243,8 @@ Version 8</a>
 <img alt="_images/reedswitchcovered.png" class="align-center" src="_images/reedswitchcovered.png" />
 <p>Will post pics of it in the doorbell and video soon</p>
 </div>
-<div class="section" id="id5">
-<h3><strong>Programming</strong><a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id6">
+<h3><strong>Programming</strong><a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h3>
 <p>Well none needed! The base firmware out of the box will work! Just choose the way you want to be notified from the supported services page and just set to only wake on Contact Closing and give it a message!</p>
 </div>
 </div>

@@ -101,6 +101,7 @@ Version 8 0 documentation</title>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="ePaperCoronaDisplay.html">E-Paper Corona Display</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cellularProject.html">Cellular/Battery Backed System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="doorbell.html">Door Bell Monitoring</a></li>
 <li class="toctree-l1"><a class="reference internal" href="motionSensor.html">Motion Sensor - PIR</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Temperature Logging to Grafana</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#id1"><strong>Corlysis</strong></a></li>
@@ -178,6 +179,10 @@ Version 8</a>
   <div class="section" id="temperature-logging-to-grafana">
 <h1>Temperature Logging to Grafana<a class="headerlink" href="#temperature-logging-to-grafana" title="Permalink to this headline">¶</a></h1>
 <img alt="_images/grafanatemp.png" class="align-center" src="_images/grafanatemp.png" />
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">This project is under heavy development and is not yet reliable - here for reference only. If any questions, please contact or join discord group</p>
+</div>
 <p>This project shows off what you can do with the low power real time clock on the trigBoard - simply set the interval wake time and the trigBoard will automatically wake and send the temperature reading to the cloud.  In this example, <a class="reference external" href="https://corlysis.com">Corlysis</a> is used for as the cloud provider.  This could just as well be hosted on a local setup using a raspberry pi, but with everything hosted in the cloud, it is very easy to view the data from anywhere and share with others.</p>
 <p>The wiring is simple - just need an <a class="reference external" href="https://www.digikey.com/product-detail/en/texas-instruments/LMT01LPGM/296-44323-1-ND/6110597">LMT01 sensor</a> and <a class="reference external" href="https://www.digikey.com/product-detail/en/micro-commercial-co/2N3904-AP/2N3904-APCT-ND/950591">NPN transistor</a> and a <a class="reference external" href="https://www.digikey.com/product-detail/en/stackpole-electronics-inc/CF14JT10K0/CF14JT10K0CT-ND/1830374">10k resistor</a></p>
 <img alt="_images/LMT01_wiring.png" class="align-center" src="_images/LMT01_wiring.png" />
