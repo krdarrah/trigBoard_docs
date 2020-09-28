@@ -11,6 +11,14 @@ Ever have that feeling that you left the garage open? Well you can use trigBoard
 .. warning::
 	Mercury is a hazardous substance! Make sure you are fully aware of the dangers in using a mercury switch: `EPA's Website here <https://www.epa.gov/mercury>`_ and how to clean up `here <https://www.epa.gov/mercury/what-do-if-mercury-thermometer-breaks>`_ Only do this at your own risk! 
 
+**Full tutorial:**
+
+.. raw:: html
+
+    <div style="text-align: center; margin-bottom: 2em;">
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/UFdYCECeScg" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
+
 
 **Parts**
 =========
