@@ -67,5 +67,6 @@ Contents
    doorbell.rst
    garage.rst
    motionSensor.rst
+   multipleInputs.rst
    temperatureSensor.rst
    waterleakDetector.rst
