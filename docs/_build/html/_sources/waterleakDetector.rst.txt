@@ -2,6 +2,9 @@
 Water Leak Detector
 =======================
 
+.. warning::
+	This project is under heavy development and is not yet reliable - here for reference only. If any questions, please contact or join discord group
+
 .. image:: images/waterleakv8_diag.png
 	:align: center
 
