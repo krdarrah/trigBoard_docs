@@ -13,6 +13,9 @@ The wiring is simple - just need an `MCP9808 Breakout Board from Adafruit <https
 .. image:: images/MCP9808wiringwithtrigboard.png
 	:align: center
 
+.. image:: images/MCP9808Installed.png
+	:align: center
+
 If you have a trigBoard running the stock base firmware, you could simply OTA this code over, or compile the code yourself, but first make sure you can compile the base firmware.  See the firmware section for more information.  
 
 Just note the only new library needed is the Adafruit MCP9808 lib - you can add this from Arduino Sketch>>Include Library>>ManageLibraries menue
