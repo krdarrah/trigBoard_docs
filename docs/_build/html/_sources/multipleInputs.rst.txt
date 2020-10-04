@@ -88,6 +88,15 @@ For example:
     <iframe width="560" height="315" src="https://www.youtube.com/embed/QwZ5hvTxOvk" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
     </div>
 
+Quick Press Connections
+------------------------
+
+Since this could be for button inputs, sometimes these "presses" can be fast or a quick "tap".  The trigBoard needs the contact input to be closed/opened for at least 200ms in order to register.  For doors/windows/etc... this doesn't matter.  This circuit adds in the delays needed to detect a quick press and also be able to read it in after wake: 
+
+.. image:: images/multifastinput.png
+	:align: center
+
+
 
 
 

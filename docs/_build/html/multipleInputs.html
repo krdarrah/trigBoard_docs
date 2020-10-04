@@ -108,6 +108,7 @@ Version 8 0 documentation</title>
 <li class="toctree-l2"><a class="reference internal" href="#connections">Connections</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#code">Code</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#theory-of-operation">Theory of Operation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#quick-press-connections">Quick Press Connections</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="temperatureSensor.html">Temperature Logging to Grafana</a></li>
@@ -247,6 +248,11 @@ Version 8</a>
 <div style="text-align: center; margin-bottom: 2em;">
 <iframe width="560" height="315" src="https://www.youtube.com/embed/QwZ5hvTxOvk" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 </div></div>
+<div class="section" id="quick-press-connections">
+<h2>Quick Press Connections<a class="headerlink" href="#quick-press-connections" title="Permalink to this headline">¶</a></h2>
+<p>Since this could be for button inputs, sometimes these “presses” can be fast or a quick “tap”.  The trigBoard needs the contact input to be closed/opened for at least 200ms in order to register.  For doors/windows/etc… this doesn’t matter.  This circuit adds in the delays needed to detect a quick press and also be able to read it in after wake:</p>
+<img alt="_images/multifastinput.png" class="align-center" src="_images/multifastinput.png" />
+</div>
 </div>
 
 
