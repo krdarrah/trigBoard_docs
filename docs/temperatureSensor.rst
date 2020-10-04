@@ -5,19 +5,19 @@ Temperature Logging to Grafana
 .. image:: images/grafanatemp.png
 	:align: center
 
-.. warning::
-	This project is under heavy development and is not yet reliable - here for reference only. If any questions, please contact or join discord group
 
 This project shows off what you can do with the low power real time clock on the trigBoard - simply set the interval wake time and the trigBoard will automatically wake and send the temperature reading to the cloud.  In this example, `Corlysis <https://corlysis.com>`_ is used for as the cloud provider.  This could just as well be hosted on a local setup using a raspberry pi, but with everything hosted in the cloud, it is very easy to view the data from anywhere and share with others.
 
-The wiring is simple - just need an `LMT01 sensor <https://www.digikey.com/product-detail/en/texas-instruments/LMT01LPGM/296-44323-1-ND/6110597>`_ and `NPN transistor <https://www.digikey.com/product-detail/en/micro-commercial-co/2N3904-AP/2N3904-APCT-ND/950591>`_ and a `10k resistor <https://www.digikey.com/product-detail/en/stackpole-electronics-inc/CF14JT10K0/CF14JT10K0CT-ND/1830374>`_
+The wiring is simple - just need an `MCP9808 Breakout Board from Adafruit <https://www.adafruit.com/product/1782>`_ which is a very accurate, fast, and reliable temperature sensor.
 
-.. image:: images/LMT01_wiring.png
+.. image:: images/MCP9808wiringwithtrigboard.png
 	:align: center
 
 If you have a trigBoard running the stock base firmware, you could simply OTA this code over, or compile the code yourself, but first make sure you can compile the base firmware.  See the firmware section for more information.  
 
-`LMT01 Sensor Code is Here <https://github.com/krdarrah/trigBoard_LMT01>`_
+Just note the only new library needed is the Adafruit MCP9808 lib - you can add this from Arduino Sketch>>Include Library>>ManageLibraries menue
+
+`MCP9808 Code is Here <https://github.com/krdarrah/trigBoard_MCP9808>`_
 
 **Corlysis**
 -------------
