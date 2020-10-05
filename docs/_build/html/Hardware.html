@@ -37,7 +37,7 @@ Version 8 0 documentation</title>
     
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Pinout" href="pinout.html" />
+    <link rel="next" title="Firmware/Programming" href="Firmware.html" />
     <link rel="prev" title="Supported Services" href="supportedServices.html" /> 
 </head>
 
@@ -93,9 +93,22 @@ Version 8 0 documentation</title>
 <li class="toctree-l1"><a class="reference internal" href="configurator.html">Configurator</a></li>
 <li class="toctree-l1"><a class="reference internal" href="supportedServices.html">Supported Services</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Hardware</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="pinout.html">Pinout</a></li>
-<li class="toctree-l2"><a class="reference internal" href="battery.html">Battery</a></li>
-<li class="toctree-l2"><a class="reference internal" href="mechanical.html">Mechanical</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#trigger-input">Trigger Input</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#timing-specifications">Timing Specifications</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#pinout">Pinout</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#battery">Battery</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#calculator">Calculator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#current-consumption-data">Current Consumption Data</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#lithium-battery-3-7v">Lithium Battery 3.7V</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#aaa-batteries-3-0v">AAA Batteries 3.0V</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#recommended-batteries">Recommended Batteries</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#mechanical">Mechanical</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="Firmware.html">Firmware/Programming</a></li>
@@ -106,7 +119,11 @@ Version 8 0 documentation</title>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="ePaperCoronaDisplay.html">E-Paper Corona Display</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cellularProject.html">Cellular/Battery Backed System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="doorbell.html">Door Bell Monitoring</a></li>
+<li class="toctree-l1"><a class="reference internal" href="garage.html">Garage Door Monitor</a></li>
 <li class="toctree-l1"><a class="reference internal" href="motionSensor.html">Motion Sensor - PIR</a></li>
+<li class="toctree-l1"><a class="reference internal" href="multipleInputs.html">Multiple Inputs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="temperatureSensor.html">Temperature Logging to Grafana</a></li>
 <li class="toctree-l1"><a class="reference internal" href="waterleakDetector.html">Water Leak Detector</a></li>
 </ul>
 
@@ -256,17 +273,272 @@ Version 8</a>
 </tr>
 </tbody>
 </table>
-<div class="toctree-wrapper compound">
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="pinout.html">Pinout</a></li>
-<li class="toctree-l1"><a class="reference internal" href="battery.html">Battery</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="battery.html#calculator">Calculator</a></li>
-<li class="toctree-l2"><a class="reference internal" href="battery.html#current-consumption-data">Current Consumption Data</a></li>
-<li class="toctree-l2"><a class="reference internal" href="battery.html#recommended-batteries">Recommended Batteries</a></li>
+<div class="section" id="trigger-input">
+<h2>Trigger Input<a class="headerlink" href="#trigger-input" title="Permalink to this headline">¶</a></h2>
+<p>The positive pin is tied to the 4.2V Source boosted from the battery.  The Negative pin is the actual sensor input, which requires a rapid cross through ~3V in order to wake the trigBoard up. Typically just a switch of some kind is used across the sensor input like window/door sensors. You’ll notice all of the interesting projects that use this input for more than just a dry contact input, but the interesting thing to note is this input requires this rapid cross through ~3V in order to trigger.  Sometimes “slow moving” inputs need to sped up - like in the case of the water detector, so in that case a MOSFET is used to create a “hair trigger”.  But also, there are certain applications where the input is very quick, or rapidly switched, so depending on what the trigBoard is hooked up to, it is important to understand the timing specs:</p>
+<div class="section" id="timing-specifications">
+<h3>Timing Specifications<a class="headerlink" href="#timing-specifications" title="Permalink to this headline">¶</a></h3>
+<p>The input must be open or closed for at least ~200mS in order to wake the trigBoard.</p>
+<p>Testing with a relay to open/close within 100ms, here you can see does not wake the trigBoard:</p>
+<img alt="_images/100msTest.mov" class="align-center" src="_images/100msTest.mov" />
+<p>But works fine at 200ms:</p>
+<img alt="_images/200msTest.mov" class="align-center" src="_images/200msTest.mov" />
+<p>And if you try to re-wake the board within ~200ms after it shuts down, there is a chance it will not trigger.  This is due to the low power circuitry “un-latching”.  So if you had a door you were monitoring for both open and close, and someone ran out the door, there’s a chance you may only detect the opening of the door. In this scenario, the RTC to check if the door is still open still would work though, but there are things we can do in firmware to check for this, like change the RTC time after an opening to be shorter, just so you know for sure within a period of time the door was closed.  Or even elongate the time that you stay awake for, so you can wait for the closure, but then of course this will impact the battery life.</p>
+<p>If you have a “button” style input, where someone could quickly tap the button, then the trigBoard may not wake.  In this case, here is a simple RC circuit you can build to stretch the wake signal long enough:</p>
+<img alt="_images/fastswitchingInputs.png" class="align-center" src="_images/fastswitchingInputs.png" />
+</div>
+</div>
+<div class="section" id="pinout">
+<h2>Pinout<a class="headerlink" href="#pinout" title="Permalink to this headline">¶</a></h2>
+<p>Reference for the expansion pins:</p>
+<img alt="_images/pinOutFront.png" class="align-center" src="_images/pinOutFront.png" />
+<p>For expansion - <a class="reference external" href="https://randomnerdtutorials.com/esp32-pinout-reference-gpios/">randomnerdtutorials</a> has a great guide on what pins do what. Just be careful with the pins marked above with the hazard symbol.  These pins can be used, but just make sure that the mode they’re configured for does not interfere with the normal operation of the board.  For example, the GPIO12 cannot be held high during boot up, or the ESP32 will never fully boot up and execute the code.  Also, on board is an RTC using the I2C port, so that same port can be used for other I2C devices, just as long as there’s no address conflict.</p>
+<p><strong>trigBoard Pin Usage</strong>  At the core of the trigBoard, it’s just a tricked out ESP32 development board with some incredible low power capability.  Power is actually removed from the ESP32 in order to accomplish the single digit uA standby current.  This is important to note since the 3.3V rail is controlled by the wake circuitry.  If needed, the base firmware can be completely overwritten by whatever custom application that fits the needs of the user.  These are the pins used by the wake circuitry on the trigBoard, which can be used by the user for the custom application:</p>
+<div class="line-block">
+<div class="line"><strong>IO36</strong> AINPUT  Battery Pin for analog measurements of the battery voltage</div>
+<div class="line"><strong>IO0</strong> OUTPUT  LED pin - drive low to turn LED ON, but be careful with this pin, since also used by the auto reset circuitry.</div>
+<div class="line"><strong>IO16</strong> OUTPUT  Power Latch Pin - this pin can be driven high to keep power latched to the ESP32.  When the board wakes up, this pin is driven HIGH immediately to keep power applied while the wake source is determined and unlatched.  When the board is ready to go back to sleep, this pin can be written LOW.</div>
+<div class="line"><strong>IO17</strong> OUTPUT  Kill Power Pin or UnLatch Pin - The sensor input utilizes two latches for the normally open/closed inputs.  When the board wakes, these latch inputs can be read in, then unlatched with this pin by writing it HIGH.</div>
+<div class="line"><strong>IO18</strong> INPUT    Contact Opened Latch Pin - If low, the sensor input has got from closed to open.</div>
+<div class="line"><strong>IO19</strong> INPUT    Contact Closed Latch Pin - If low, the sensor input has got from open to closed.</div>
+<div class="line"><strong>IO23</strong> INPUT    Contact Status Pin - real time status of the contact - HIGH = Contact is OPEN, LOW = Contact is CLOSED</div>
+<div class="line"><strong>IO27</strong> INPUT    Wake Button Pin - LOW = Button was pressed</div>
+<div class="line"><strong>IO21 &amp; IO22</strong> Used by the RTC at I2C address 0x51</div>
+</div>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<ul class="last simple">
+<li>Logic Level is 3.3V on expansion pins - make sure to properly level shift if external device is powered by VBAT.</li>
+<li>4V2 pin is always powered at 4.2V even if battery voltage is lower - this can be used to power devices if needed</li>
+<li>3V3 pin is the switched 3.3V power to the board when triggered. Useful for polling sensors on wake event (RTC/or Input)</li>
 </ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="mechanical.html">Mechanical</a></li>
+</div>
+<a class="reference internal image-reference" href="_images/pinOutBack.png"><img alt="_images/pinOutBack.png" class="align-center" src="_images/pinOutBack.png" style="width: 410.0px; height: 927.0px;" /></a>
+</div>
+<div class="section" id="battery">
+<h2>Battery<a class="headerlink" href="#battery" title="Permalink to this headline">¶</a></h2>
+<p>The greatest feature in the trigBoard is its amazing low standby current, so it is important to select a battery that gives the longest run time. There are a couple considerations to factor in:</p>
+<ul class="simple">
+<li>What is the target run time? Usually how many years?</li>
+<li>How often will the trigBoard wake up? Like for a door, how many times a day will that door open?</li>
 </ul>
+<p>To get started quickly, let’s take an example:</p>
+<blockquote>
+<div><ul class="simple">
+<li><a class="reference external" href="https://www.adafruit.com/product/258">1200mAh battery</a> from adafruit</li>
+<li>The board is hooked up to a door and is opened once an hour</li>
+<li>Pushover used to send the notification</li>
+</ul>
+</div></blockquote>
+<table border="1" class="docutils">
+<colgroup>
+<col width="66%" />
+<col width="34%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Battery Capacity</th>
+<th class="head">1200mAh</th>
+</tr>
+<tr class="row-even"><th class="head">Awake Device Consumption</th>
+<th class="head">60mA</th>
+</tr>
+<tr class="row-odd"><th class="head">Awake Time</th>
+<th class="head">5sec</th>
+</tr>
+<tr class="row-even"><th class="head">Sleep Device Consumption</th>
+<th class="head">2uA</th>
+</tr>
+<tr class="row-odd"><th class="head">Sleep Time</th>
+<th class="head">1hr</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Battery Life</td>
+<td>1.2852 years!</td>
+</tr>
+</tbody>
+</table>
+<p>These parameters can be entered into the tool here: (make sure to enable advanced mode!)</p>
+<div class="section" id="calculator">
+<h3>Calculator<a class="headerlink" href="#calculator" title="Permalink to this headline">¶</a></h3>
+<div>
+        <div class="omni-calculator" data-calculator="other/battery-life" data-width="300" data-config='{"battery_capacity":{"default":"1200","unitDefault":"mAh","advanced":false},"discharge_safety":{"advanced":false},"consumption_awake":{"default":"60"},"awake_time":{"default":"5"},"consumption_sleep":{"default":"2","unitDefault":"microampere"},"sleep_time":{"default":"1","unitDefault":"hrs"},"battery_life":{"unitDefault":"yrs"}}' data-currency="USD" data-show-row-controls="true" data-version="3" data-t="1593704131906">
+          <div class="omni-calculator-header">Battery Life Calculator</div>
+          <div class="omni-calculator-footer">
+            <a href="https://www.omnicalculator.com/other/battery-life" target="_blank"><img alt="Omni" class="omni-calculator-logo" src="https://cdn.omnicalculator.com/embed/omni-calculator-logo-long.svg" /></a>
+          </div>
+        </div>
+        <script async src="https://cdn.omnicalculator.com/sdk.js"></script>
+</div></div>
+<div class="section" id="current-consumption-data">
+<h3>Current Consumption Data<a class="headerlink" href="#current-consumption-data" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="lithium-battery-3-7v">
+<h4>Lithium Battery 3.7V<a class="headerlink" href="#lithium-battery-3-7v" title="Permalink to this headline">¶</a></h4>
+<table border="1" class="docutils">
+<colgroup>
+<col width="71%" />
+<col width="29%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">3.7V Wifi Connection to Pushover</th>
+<th class="head">&#160;</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Awake Device Consumption</td>
+<td>52.9mA</td>
+</tr>
+<tr class="row-odd"><td>Awake Time</td>
+<td>4.3sec</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<div><img alt="_images/3V7_pushover_awake.png" class="align-center" src="_images/3V7_pushover_awake.png" />
+</div></blockquote>
+<table border="1" class="docutils">
+<colgroup>
+<col width="70%" />
+<col width="30%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">3.7V Wifi Connection UDP Message 20 packets</th>
+<th class="head">&#160;</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Awake Device Consumption</td>
+<td>63.1mA</td>
+</tr>
+<tr class="row-odd"><td>Awake Time</td>
+<td>1.9sec</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<div><img alt="_images/3v7_udp.png" class="align-center" src="_images/3v7_udp.png" />
+</div></blockquote>
+<table border="1" class="docutils">
+<colgroup>
+<col width="68%" />
+<col width="33%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">3.7V Sleep Current</th>
+<th class="head">&#160;</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Sleep Device Consumption</td>
+<td>0.861uA</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<div><img alt="_images/3V7_sleep.png" class="align-center" src="_images/3V7_sleep.png" />
+</div></blockquote>
+</div>
+<div class="section" id="aaa-batteries-3-0v">
+<h4>AAA Batteries 3.0V<a class="headerlink" href="#aaa-batteries-3-0v" title="Permalink to this headline">¶</a></h4>
+<table border="1" class="docutils">
+<colgroup>
+<col width="71%" />
+<col width="29%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">3.0V Wifi Connection to Pushover</th>
+<th class="head">&#160;</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Awake Device Consumption</td>
+<td>67.5mA</td>
+</tr>
+<tr class="row-odd"><td>Awake Time</td>
+<td>4.3sec</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<div><img alt="_images/3Vpushover.png" class="align-center" src="_images/3Vpushover.png" />
+</div></blockquote>
+<table border="1" class="docutils">
+<colgroup>
+<col width="73%" />
+<col width="27%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">3.0V Wifi Connection UDP Message 20 packets</th>
+<th class="head">&#160;</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Awake Device Consumption</td>
+<td>74.4mA</td>
+</tr>
+<tr class="row-odd"><td>Awake Time</td>
+<td>2sec</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<div><img alt="_images/3V_udp.png" class="align-center" src="_images/3V_udp.png" />
+</div></blockquote>
+<table border="1" class="docutils">
+<colgroup>
+<col width="68%" />
+<col width="33%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">3.0V Sleep Current</th>
+<th class="head">&#160;</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Sleep Device Consumption</td>
+<td>1.05uA</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<div><img alt="_images/3V_sleep.png" class="align-center" src="_images/3V_sleep.png" />
+</div></blockquote>
+</div>
+</div>
+<div class="section" id="recommended-batteries">
+<h3>Recommended Batteries<a class="headerlink" href="#recommended-batteries" title="Permalink to this headline">¶</a></h3>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<ul class="last simple">
+<li>Operating voltage range is 1.8-5V, but the recommended operating voltage is 2.5-5V.</li>
+<li>Reverse polarity protection is built-in, but pay attention to polarity!</li>
+<li>Make sure the low battery threshold is set properly in the configurator for the particular battery topology</li>
+</ul>
+</div>
+<ul class="simple">
+<li><strong>Two AAA batteries in series (3V)</strong> is highly recommended, since they will have a low self-discharge rate, they’re easily replaceable, they’re small,they’re safe, wide operating temperature, and can have good capacities.  For example, the <a class="reference external" href="https://data.energizer.com/pdfs/l92.pdf">Energizer Ultimate Lithium Batteries</a> may yield 1200mAh!  The trigBoard product page provides a compatible holder, but these exist elsewhere as well: <a class="reference external" href="https://www.adafruit.com/product/4191">Like this</a></li>
+<li><strong>Other Combinations of AAA or AA</strong> If extremely long battery life is needed, could use AA instead of AAA batteries, or even three in series.</li>
+<li><strong>Lithium Batteries</strong> Adafruit has a nice selection of these kinds of batteries - <a class="reference external" href="https://www.adafruit.com/category/574">any of these will work</a></li>
+</ul>
+</div>
+</div>
+<div class="section" id="mechanical">
+<h2>Mechanical<a class="headerlink" href="#mechanical" title="Permalink to this headline">¶</a></h2>
+<div class="line-block">
+<div class="line"><strong>Enclosure</strong> This is a simple enclosure designed to house the trigBoard and a AAA holder.  This is available for sale as an option on the Tindie page, but you can print yourself.  Here are the files:</div>
+<div class="line-block">
+<div class="line"><a class="reference download internal" download="" href="_downloads/a160e74a344a13aa8ec3646c2565720b/trigEncLid.stl"><code class="xref download docutils literal notranslate"><span class="pre">Lid</span> <span class="pre">STL</span></code></a></div>
+<div class="line"><a class="reference download internal" download="" href="_downloads/e10be8b9e7bd812bc826a8064567d50c/trigEncBase.stl"><code class="xref download docutils literal notranslate"><span class="pre">Base</span> <span class="pre">STL</span></code></a></div>
+</div>
+<div class="line"><strong>Step Cad Model</strong> Here is the 3D model for the trigBoard - this can be used to design your own enclosure:</div>
+<div class="line-block">
+<div class="line"><a class="reference download internal" download="" href="_downloads/f30cbda27aeca832145104fe5b9ca690/trigBoardV8.3.step"><code class="xref download docutils literal notranslate"><span class="pre">trigBoard</span> <span class="pre">Step</span> <span class="pre">File</span></code></a></div>
+</div>
+</div>
+<div class="line-block">
+<div class="line"><strong>Online 3D viewer</strong> Click <a class="reference external" href="https://a360.co/2N7PKFk">here</a> with password “trigboard”</div>
+</div>
+<img alt="_images/trigBoardgif.gif" class="align-center" src="_images/trigBoardgif.gif" />
 </div>
 </div>
 
@@ -278,7 +550,7 @@ Version 8</a>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="pinout.html" class="btn btn-neutral float-right" title="Pinout" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="Firmware.html" class="btn btn-neutral float-right" title="Firmware/Programming" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="supportedServices.html" class="btn btn-neutral float-left" title="Supported Services" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
