@@ -71,7 +71,7 @@ Pushover
 Sharing Notifications
 ***********************
 
-If you want to share notifications with someone else, but not give them your login credentials, you can do that easily with Pushover.  Just note that if you ever plan on doing this, you should set this up ahead of time.  The user key will be different from the above steps, so you would have to change that on the trigBoard.  But if you do it this way here from the start, you can add remove people very easily while sill getting the notifications yourself.
+If you want to share notifications with someone else, but not give them your login credentials, you can do that easily with Pushover.  Just note that if you ever plan on doing this, you should set this up ahead of time.  The user key will be different from the above steps, so you would have to change that on the trigBoard.  You would then be a subscriber to this feed yourself.
 
 Follow the same steps as above to setup the application - in that screen, you can create a subscription code: 
 
@@ -98,8 +98,7 @@ There you will see the group key to be used as the user key in the trigBoard con
 		.. image:: images/groupkey.png
 			:align: center
 
-And that's all there is to it!  You can always delete the subscription code as well, like if you were giving someone temporary access.
-
+And that's all there is to it!  
 
 .. _IFTTT:
 
