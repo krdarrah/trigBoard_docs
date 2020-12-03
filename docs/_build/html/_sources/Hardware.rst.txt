@@ -48,7 +48,7 @@ Timing Specifications
 
 The input must be open or closed for at least ~200mS in order to wake the trigBoard.
 
-Testing with a relay to open/close within 100ms, here you can see does not wake the trigBoard:
+Testing with a relay to open/close within 100ms, here you can see does not wake the trigBoard (videos are slow):
 
 .. image:: images/100msTest.mov
 	:align: center

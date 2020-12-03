@@ -67,7 +67,42 @@ Pushover
 		.. image:: images/pushoverConfig.png
 			:align: center
 
+***********************
+Sharing Notifications
+***********************
+
+If you want to share notifications with someone else, but not give them your login credentials, you can do that easily with Pushover.  Just note that if you ever plan on doing this, you should set this up ahead of time.  The user key will be different from the above steps, so you would have to change that on the trigBoard.  But if you do it this way here from the start, you can add remove people very easily while sill getting the notifications yourself.
+
+Follow the same steps as above to setup the application - in that screen, you can create a subscription code: 
+
+		.. image:: images/pushoversubcode.png
+			:align: center
+
+Then fill out that screen and create new delivery group:
+
+		.. image:: images/deliverygroupcreate.png
+			:align: center
+
+Then you'll notice in your application window, you have a new URL there that you can send people to subscribe to that feed:
+
+		.. image:: images/suburlpushover.png
+			:align: center
+
+But the thing about this is that the user key that you use for the configurator needs to be for this delivery group. To find this key, you can click below that URL - in this case the "yourGroup" link there:
+
+		.. image:: images/yourgroupurlk.png
+			:align: center
+
+There you will see the group key to be used as the user key in the trigBoard configurator - you still use the same API/Token Key from when you created the application:
+
+		.. image:: images/groupkey.png
+			:align: center
+
+And that's all there is to it!  You can always delete the subscription code as well, like if you were giving someone temporary access.
+
+
 .. _IFTTT:
+
 
 IFTTT
 ---------

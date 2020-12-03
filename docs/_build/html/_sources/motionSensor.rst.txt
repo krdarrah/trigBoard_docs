@@ -2,6 +2,13 @@
 Motion Sensor - PIR
 ===============================
 
+.. raw:: html
+
+    <div style="text-align: center; margin-bottom: 2em;">
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/SQ18kfBg6I8" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
+
+
 **High Performance Option**
 -------------------------------
 
