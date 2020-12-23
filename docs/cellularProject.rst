@@ -167,7 +167,7 @@ Then all you'll do is paste the code in below, check you have the right board se
 
 	void setup() {
 	    Serial.begin(115200);//debug
-	    Serial1.begin(9600);//from trigBoard
+	    Serial1.begin(9600);//from trigBoard  on TCP version this is 57600
 	}
 
 	void loop() {

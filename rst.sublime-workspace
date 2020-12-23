@@ -20,7 +20,7 @@
 			"file": "docs/configurator.rst",
 			"settings":
 			{
-				"buffer_size": 2958,
+				"buffer_size": 2982,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
@@ -56,7 +56,7 @@
 			"file": "docs/Firmware.rst",
 			"settings":
 			{
-				"buffer_size": 3664,
+				"buffer_size": 3680,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
@@ -74,7 +74,7 @@
 			"file": "docs/supportedServices.rst",
 			"settings":
 			{
-				"buffer_size": 6240,
+				"buffer_size": 9889,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
@@ -83,7 +83,7 @@
 			"file": "docs/Hardware.rst",
 			"settings":
 			{
-				"buffer_size": 15838,
+				"buffer_size": 15863,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
@@ -112,7 +112,7 @@
 			"file": "docs/cellularProject.rst",
 			"settings":
 			{
-				"buffer_size": 21471,
+				"buffer_size": 22694,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
@@ -344,6 +344,7 @@
 		"case_sensitive": true,
 		"find_history":
 		[
+			"pin",
 			"\t\n",
 			"boardsettings",
 			"'''"
@@ -364,7 +365,7 @@
 	"groups":
 	[
 		{
-			"selected": 7,
+			"selected": 11,
 			"sheets":
 			[
 				{
@@ -380,8 +381,8 @@
 						"selection":
 						[
 							[
-								4441,
-								4441
+								1733,
+								1704
 							]
 						],
 						"settings":
@@ -391,10 +392,10 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 119.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 1,
+					"stack_index": 3,
 					"type": "text"
 				},
 				{
@@ -403,15 +404,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 2958,
+						"buffer_size": 2982,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								321,
-								304
+								323,
+								323
 							]
 						],
 						"settings":
@@ -423,7 +424,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 12,
+					"stack_index": 6,
 					"type": "text"
 				},
 				{
@@ -452,7 +453,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 6,
+					"stack_index": 12,
 					"type": "text"
 				},
 				{
@@ -468,8 +469,8 @@
 						"selection":
 						[
 							[
-								460,
-								460
+								12,
+								0
 							]
 						],
 						"settings":
@@ -480,7 +481,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 15,
+					"stack_index": 9,
 					"type": "text"
 				},
 				{
@@ -508,7 +509,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 16,
+					"stack_index": 17,
 					"type": "text"
 				},
 				{
@@ -517,15 +518,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 3664,
+						"buffer_size": 3680,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								2587,
-								2297
+								803,
+								787
 							]
 						],
 						"settings":
@@ -537,7 +538,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 14,
+					"stack_index": 5,
 					"type": "text"
 				},
 				{
@@ -565,7 +566,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 17,
+					"stack_index": 7,
 					"type": "text"
 				},
 				{
@@ -574,15 +575,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 6240,
+						"buffer_size": 9889,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								3828,
-								3828
+								6562,
+								6391
 							]
 						],
 						"settings":
@@ -591,10 +592,10 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 1573.0,
+						"translation.y": 3040.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 0,
+					"stack_index": 2,
 					"type": "text"
 				},
 				{
@@ -603,15 +604,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 15838,
+						"buffer_size": 15863,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								6076,
-								6076
+								7119,
+								7108
 							]
 						],
 						"settings":
@@ -620,10 +621,10 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 2376.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 9,
+					"stack_index": 4,
 					"type": "text"
 				},
 				{
@@ -655,7 +656,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 3,
+					"stack_index": 11,
 					"type": "text"
 				},
 				{
@@ -683,7 +684,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 5,
+					"stack_index": 1,
 					"type": "text"
 				},
 				{
@@ -692,15 +693,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 21471,
+						"buffer_size": 22694,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								15235,
-								15174
+								19331,
+								19331
 							]
 						],
 						"settings":
@@ -709,10 +710,10 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 7910.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 2,
+					"stack_index": 0,
 					"type": "text"
 				},
 				{
@@ -740,7 +741,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 8,
+					"stack_index": 14,
 					"type": "text"
 				},
 				{
@@ -756,8 +757,8 @@
 						"selection":
 						[
 							[
-								122,
-								122
+								76,
+								13
 							]
 						],
 						"settings":
@@ -768,7 +769,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 4,
+					"stack_index": 10,
 					"type": "text"
 				},
 				{
@@ -797,7 +798,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 11,
+					"stack_index": 16,
 					"type": "text"
 				},
 				{
@@ -826,7 +827,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 13,
+					"stack_index": 8,
 					"type": "text"
 				},
 				{
@@ -855,7 +856,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 10,
+					"stack_index": 15,
 					"type": "text"
 				},
 				{
@@ -884,7 +885,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 7,
+					"stack_index": 13,
 					"type": "text"
 				}
 			]
