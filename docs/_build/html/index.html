@@ -179,12 +179,12 @@ Version 8</a>
 <div style="text-align: center; margin-bottom: 2em;">
 <iframe width="560" height="315" src="https://www.youtube.com/embed/CD-jmSkM3d4" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 </div><ul class="simple">
-<li>Many battery options, with input voltage range from 1.8-5V. Great for two AAA batteries or even a rechargeable Lithium cell at 4.2V. Reverse polarity protection built in, so no issues if batteries are plugged in backwards. See <span class="xref std std-ref">Battery Page</span> for more information and calculations</li>
+<li>Many battery options, with input voltage range from 1.8-5V. Great for two AAA batteries or even a rechargeable Lithium cell at 4.2V. Reverse polarity protection built in, so no issues if batteries are plugged in backwards. See <a class="reference internal" href="Hardware.html#battery"><span class="std std-ref">Battery Page</span></a> for more information and calculations</li>
 <li>Multiple wake sources all configurable through software (no solder jumpers)</li>
 <li>Dry contact trigger input supporting BOTH contact OPEN and contact CLOSE, but configurable for either or both, so if for example a garage door was monitored, a push notification could go out for when the garage opens AND when the garage closes.</li>
 <li>The board utilizes an actual <strong>RTC</strong> (Real Time Clock). This is a high quality RTC, so accurate wake times can be configured. The timer wakes the board up at the configured time - for example once and hour, then checks the battery voltage and if low, will send out a push notification. The timer can also be used to check the current status of the contact and send out a notification, so in the garage door example, the board can be configured to not only send out notifications when the door opens/closes, but also when the garage is left open for some period of time after the door was opened.</li>
 <li>Wake button on board can also be used to send out a push notification.</li>
-<li>Unused pins from ESP32 broken out for future expansion and in-line to fit breadboards - developer friendly.  See <span class="xref std std-ref">Pinout page</span> for more information</li>
+<li>Unused pins from ESP32 broken out for future expansion and in-line to fit breadboards - developer friendly.  See <a class="reference internal" href="Hardware.html#pinout"><span class="std std-ref">Pinout page</span></a> for more information</li>
 <li>Base Firmware supports many Push Notification service options like <a class="reference internal" href="supportedServices.html#pushsafer"><span class="std std-ref">Pushsafer</span></a>, <a class="reference internal" href="supportedServices.html#pushover"><span class="std std-ref">Pushover</span></a>, and <a class="reference internal" href="supportedServices.html#ifttt"><span class="std std-ref">IFTTT</span></a>. And even develop a custom solution with <a class="reference internal" href="supportedServices.html#mqtt"><span class="std std-ref">MQTT</span></a> and <a class="reference internal" href="supportedServices.html#udp"><span class="std std-ref">UDP</span></a> messaging. Any of these can be enabled, or even multiple. For example, the notifications can go out through Pushover, then a secondary backup notification can go through MQTT. Or even a notification though Pushsafer, then turn the lights on in the house with IFTTT. The possibilities are endless with this.</li>
 <li><a class="reference internal" href="configurator.html#configurator"><span class="std std-ref">Configurator Tool</span></a> gives full control over the board parameters and settings - in a nice clean easy to use GUI through Google Chrome and a Bluetooth connection to the ESP32.</li>
 <li>Made in the USA</li>
@@ -214,7 +214,7 @@ Version 8</a>
 <li class="toctree-l2"><a class="reference internal" href="supportedServices.html#pushsafer">Pushsafer</a></li>
 <li class="toctree-l2"><a class="reference internal" href="supportedServices.html#pushover">Pushover</a></li>
 <li class="toctree-l2"><a class="reference internal" href="supportedServices.html#ifttt">IFTTT</a></li>
-<li class="toctree-l2"><a class="reference internal" href="supportedServices.html#udp">UDP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="supportedServices.html#udp-tcp">UDP/TCP</a></li>
 <li class="toctree-l2"><a class="reference internal" href="supportedServices.html#mqtt">MQTT</a></li>
 </ul>
 </li>

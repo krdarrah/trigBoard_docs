@@ -67,7 +67,7 @@ If you have a "button" style input, where someone could quickly tap the button, 
 	:align: center
 
 
-
+.. _Pinout:
 
 Pinout
 -----------
@@ -100,6 +100,8 @@ For expansion - `randomnerdtutorials <https://randomnerdtutorials.com/esp32-pino
 .. image:: images/pinOutBack.png
 	:align: center
 	:scale: 50 %
+
+.. _Battery:
 
 Battery
 -----------

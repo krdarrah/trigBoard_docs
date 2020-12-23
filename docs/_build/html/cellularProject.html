@@ -37,7 +37,7 @@ Version 8 0 documentation</title>
     
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Motion Sensor - PIR" href="motionSensor.html" />
+    <link rel="next" title="Door Bell Monitoring" href="doorbell.html" />
     <link rel="prev" title="E-Paper Corona Display" href="ePaperCoronaDisplay.html" /> 
 </head>
 
@@ -118,7 +118,10 @@ Version 8 0 documentation</title>
 <li class="toctree-l2"><a class="reference internal" href="#repeaters-range-extenders">Repeaters - Range Extenders</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="doorbell.html">Door Bell Monitoring</a></li>
+<li class="toctree-l1"><a class="reference internal" href="garage.html">Garage Door Monitor</a></li>
 <li class="toctree-l1"><a class="reference internal" href="motionSensor.html">Motion Sensor - PIR</a></li>
+<li class="toctree-l1"><a class="reference internal" href="multipleInputs.html">Multiple Inputs</a></li>
 <li class="toctree-l1"><a class="reference internal" href="temperatureSensor.html">Temperature Logging to Grafana</a></li>
 <li class="toctree-l1"><a class="reference internal" href="waterleakDetector.html">Water Leak Detector</a></li>
 </ul>
@@ -188,7 +191,7 @@ Version 8</a>
            <div itemprop="articleBody">
             
   <div class="section" id="cellular-battery-backed-system">
-<h1>Cellular/Battery Backed System<a class="headerlink" href="#cellular-battery-backed-system" title="Permalink to this headline">¶</a></h1>
+<span id="cellularbattery"></span><h1>Cellular/Battery Backed System<a class="headerlink" href="#cellular-battery-backed-system" title="Permalink to this headline">¶</a></h1>
 <img alt="_images/cellularBlockDiag.png" class="align-center" src="_images/cellularBlockDiag.png" />
 <p>This is actually the preferred method for using the trigBoard - a complete low power system that relies on no existing WiFi/Internet and can even get push notifications out when there is a power outage!</p>
 <ul class="simple">
@@ -199,6 +202,10 @@ Version 8</a>
 <li>Battery Backed! Obviously all trigBoard sensors are all on batteries, but the gateway is battery backed by the on-board Particle Boron battery connection. The monitors are also battery backed with the use of Adafruit’s ESP32 Feather board having on-board battery connection and USB charging.</li>
 <li>KD Circuits has designed simple carrier boards for gateway and monitor boards - just bare PCB here, but easy to solder together with all through hole components.  $2/pc <a class="reference external" href="https://www.kdcircuits.com#contact">contact KD Circuits directly</a></li>
 </ul>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last"><strong>TCP was added</strong> in trigBoard base firmware 12/20/20 so now ultra reliable communication between trigBoards and the gateway can be achieved.  Surprisingly, the added handshaking involved with TCP does not significantly increase the on-time of the trigBoard - still can be less than 2seconds.  See <a class="reference internal" href="Hardware.html#battery"><span class="std std-ref">Battery Page</span></a> for plots comparing the two methods.  Everything you see below still applies - same hardware setup, just different firmware.</p>
+</div>
 <p><strong>Here’s a full step by step tutorial</strong></p>
 <div style="text-align: center; margin-bottom: 2em;">
 <iframe width="560" height="315" src="https://www.youtube.com/embed/-oMSD9I4RSo" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
@@ -211,7 +218,8 @@ Version 8</a>
 <div class="line">Three things need to be decided</div>
 <div class="line">1-SSID will be whatever you want - pick something random like “ajhagwiuycgwerilucberw” just don’t use special characters</div>
 <div class="line">2-Password also something random- AT LEAST 8 characters and nothing special</div>
-<div class="line">3-Port for the UDP messaging, I just use 1234</div>
+<div class="line">3-Port for the UDP messaging, I just use 1234 port is fixed to 80 for TCP</div>
+<div class="line">4-TCP will have a value for retries - may want to set this to 10</div>
 <div class="line"><strong>Write these down somewhere, we’ll need them for setting everything up</strong></div>
 </div>
 </div>
@@ -276,7 +284,8 @@ Version 8</a>
 </div>
 <div class="section" id="trigboard-gateway-software">
 <h3>trigBoard Gateway Software<a class="headerlink" href="#trigboard-gateway-software" title="Permalink to this headline">¶</a></h3>
-<p>latest code can be downloaded in the <a class="reference external" href="https://github.com/krdarrah/trigBoard_GatewayV8">Gateway Git Repository</a></p>
+<p>UDP version <a class="reference external" href="https://github.com/krdarrah/trigBoard_GatewayV8">UDP Gateway Git Repository</a></p>
+<p>TCP version <a class="reference external" href="https://github.com/krdarrah/trigBoard-Gateway-TCP">TCP Gateway Git Repository</a></p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
 <ul class="simple">
@@ -287,9 +296,10 @@ Version 8</a>
 <img alt="_images/EspSoftwareSerialImg.png" class="align-center" src="_images/EspSoftwareSerialImg.png" />
 <ul class="last simple">
 <li>USB-Serial Programming is recommended</li>
+<li>TCP version will need to install the <a class="reference external" href="https://github.com/me-no-dev/ESPAsyncWebServer">ESPAsyncWebServer</a> and <a class="reference external" href="https://github.com/me-no-dev/AsyncTCP">AsyncTCP</a> Libraries</li>
 </ul>
 </div>
-<p>Configuration of the trigBoard settings is also done through the configurator! On bootup, you’ll notice the Blue LED flashing - it will do this for about 5 minutes, allowing you to connect to it through the google chrome <a class="reference external" href="https://kevindarrah.com/configurator/">Configurator Tool</a>  You should see trigBoard Gateway now in the scan list.</p>
+<p><strong>UDP version</strong> - Configuration of the trigBoard settings is also done through the configurator! On bootup, you’ll notice the Blue LED flashing - it will do this for about 5 minutes, allowing you to connect to it through the google chrome <a class="reference external" href="https://kevindarrah.com/configurator/">Configurator Tool</a>  You should see trigBoard Gateway now in the scan list.</p>
 <blockquote>
 <div><p>Because this is a Gateway acting as the Access Point, you will not be connecting to any SSID, instead you will specify the SSID and password for this private network.  Most of the functionality in the configurator - you set this here in WiFi SSID and Password - then click “Save and Connect…”</p>
 <blockquote>
@@ -301,6 +311,10 @@ Version 8</a>
 <p class="first admonition-title">Note</p>
 <p class="last">After saving the WiFi Settings for the gateway, <strong>YOU HAVE TO PRESS THE RESET BUTTON ON THE TRIGBOARD</strong>  This is because, the settings won’t take effect until the board boots up.  You can test things at this point with the USB-Serial Converter and look at the Serial Monitor debug window.  When a trigBoard sends a message to it, you should see some activity!</p>
 </div>
+<dl class="docutils">
+<dt><strong>TCP version</strong> SSID and PW are set in the AP tab:</dt>
+<dd>Serial.println(WiFi.softAP(“ssid”, “password”, 1, 1, 8)); //ssid,pw,ch,hid,conn</dd>
+</dl>
 </div>
 <div class="section" id="particle-software">
 <h3>Particle Software<a class="headerlink" href="#particle-software" title="Permalink to this headline">¶</a></h3>
@@ -461,13 +475,14 @@ Version 8</a>
 </div>
 <div class="section" id="adafruit-esp32-monitor-software">
 <h3>Adafruit ESP32 Monitor Software<a class="headerlink" href="#adafruit-esp32-monitor-software" title="Permalink to this headline">¶</a></h3>
-<p>Latest code can be find in the <a class="reference external" href="https://github.com/krdarrah/trigBoard_MonitorV8">trigBoard Monitor Git Repository</a></p>
+<p>UDP Version -  <a class="reference external" href="https://github.com/krdarrah/trigBoard_MonitorV8">trigBoard Monitor UDP Git Repository</a></p>
+<p>TCP Version -  <a class="reference external" href="https://github.com/krdarrah/trigBoard-Monitor-TCP">trigBoard Monitor TCP Git Repository</a></p>
 <p><strong>*Big thanks to the YX5300 code found here!*</strong> <a class="reference external" href="https://github.com/salvadorrueda/ArduinoSerialMP3Player/blob/master/ArduinoSerialMP3Player/ArduinoSerialMP3Player.ino">salvadorrueda github</a></p>
 <p>Just like the Gateway software, all of the same dependencies are needed as well as the ESPsoftware serial library.  If you can compile the gateway software, then you should be fine here.  I also use the same board settings as the trigBoard.</p>
 <p>And just like the gateway, this board is also configured through the Configurator!  On bootup, you’ll see the LED flashing on the board (for 5min)- only when this is flashing can you connect to it from the Configurator.  Only a few settings are needed:</p>
 <ul class="simple">
-<li>Use the main WiFi Settings at the top of the configurator to connect to the private network.  You can set this to use a static IP if you want, but I recommend DHCP (static IP box unchecked).</li>
-<li>Scroll down and enable UDP.  All of these settings are not used, except the port. Most people use 1234, but if you’re using something else, you can change here.</li>
+<li>Use the main WiFi Settings at the top of the configurator to connect to the private network.  You can set this to use a static IP if you want, but I recommend DHCP (static IP box unchecked). For TCP version - would recommend static IP since the Monitor polls the gateway continuously.</li>
+<li>Scroll down and enable UDP.  All of these settings are not used, except the port. Most people use 1234, but if you’re using something else, you can change here.  TCP does not use any of these settings.</li>
 </ul>
 </div>
 <div class="section" id="mp3-files">
@@ -500,7 +515,7 @@ Version 8</a>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="motionSensor.html" class="btn btn-neutral float-right" title="Motion Sensor - PIR" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="doorbell.html" class="btn btn-neutral float-right" title="Door Bell Monitoring" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="ePaperCoronaDisplay.html" class="btn btn-neutral float-left" title="E-Paper Corona Display" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>

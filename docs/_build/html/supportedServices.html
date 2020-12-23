@@ -98,7 +98,11 @@ Version 8 0 documentation</title>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#ifttt">IFTTT</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#udp">UDP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#udp-tcp">UDP/TCP</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id4">UDP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#tcp">TCP</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="#mqtt">MQTT</a></li>
 </ul>
 </li>
@@ -250,7 +254,7 @@ Version 8</a>
 </div></blockquote>
 <div class="section" id="sharing-notifications">
 <h3>Sharing Notifications<a class="headerlink" href="#sharing-notifications" title="Permalink to this headline">¶</a></h3>
-<p>If you want to share notifications with someone else, but not give them your login credentials, you can do that easily with Pushover.  Just note that if you ever plan on doing this, you should set this up ahead of time.  The user key will be different from the above steps, so you would have to change that on the trigBoard.  But if you do it this way here from the start, you can add remove people very easily while sill getting the notifications yourself.</p>
+<p>If you want to share notifications with someone else, but not give them your login credentials, you can do that easily with Pushover.  Just note that if you ever plan on doing this, you should set this up ahead of time.  The user key will be different from the above steps, so you would have to change that on the trigBoard.  You would then be a subscriber to this feed yourself.</p>
 <p>Follow the same steps as above to setup the application - in that screen, you can create a subscription code:</p>
 <blockquote>
 <div><img alt="_images/pushoversubcode.png" class="align-center" src="_images/pushoversubcode.png" />
@@ -271,7 +275,7 @@ Version 8</a>
 <blockquote>
 <div><img alt="_images/groupkey.png" class="align-center" src="_images/groupkey.png" />
 </div></blockquote>
-<p>And that’s all there is to it!  You can always delete the subscription code as well, like if you were giving someone temporary access.</p>
+<p>And that’s all there is to it!</p>
 </div>
 </div>
 <div class="section" id="ifttt">
@@ -310,9 +314,30 @@ Version 8</a>
 </ol>
 </div></blockquote>
 </div>
-<div class="section" id="udp">
-<span id="id4"></span><h2>UDP<a class="headerlink" href="#udp" title="Permalink to this headline">¶</a></h2>
-<p>More for the advanced user, but if you’re looking to take this to the next level, UDP messaging allows for a tight and fast network for getting the notifications out. Basically, a central gateway would be setup acting as a UDP server, where all of the trigBoards communicate back to. This is great for building a secure standalone trigBoard network that’s battery backed and could also allow for a cellular connection.</p>
+<div class="section" id="udp-tcp">
+<span id="udp"></span><h2>UDP/TCP<a class="headerlink" href="#udp-tcp" title="Permalink to this headline">¶</a></h2>
+<p>Note - TCP added to Firmware version 12/20/20 or newer.  These two options allow for a fully customized solution to whatever you might have in mind.  For example - see the <a class="reference internal" href="cellularProject.html#cellularbattery"><span class="std std-ref">Cellular/Battery Backed System</span></a> project - this is a fully self contained system that relies on no outside services.  It’s battery backed, hosts its own network, and can still send push notifications out fast.  This is just an example though - even a simple point to point system can be easily designed.  The trigBoard supports both UDP and TCP - <a class="reference external" href="http://www.steves-internet-guide.com/tcp-vs-udp/">here’s a good write-up</a> on the differences.</p>
+<p>To build your own gateway, here is some sample code you can use to run on an ESP32 to act as a server.  It supports both UDP and TCP: <a class="reference external" href="https://github.com/krdarrah/trigBoard-Server-EXAMPLE-TCP-UDP">Github Repo</a></p>
+<p>Note - you will need to install the <a class="reference external" href="https://github.com/me-no-dev/ESPAsyncWebServer">ESPAsyncWebServer</a> and <a class="reference external" href="https://github.com/me-no-dev/AsyncTCP">AsyncTCP</a> Libraries</p>
+<div class="section" id="id4">
+<h3>UDP<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
+<p>Because UDP is connectionless, the trigBoard configuration allows for a “blast”, the default is to send out 10 packets separated by 10ms.  The idea is that this blast of packets guarantees at least one will get through.  There is no handshaking or acknowledgment back to the trigBoard, so it simply sends all of the packets and goes back to sleep.  This means the transmission will be faster, thus keeping the on-time shorter and conserving battery life.  Then again, without any knowledge that any of the packets got through, there’s a chance they didn’t.</p>
+<blockquote>
+<div><img alt="_images/udpsettings.png" class="align-center" src="_images/udpsettings.png" />
+</div></blockquote>
+<p>You can leave most of these settings to their default values.  Just set the SSID/PW, and if you’re using the gateway as the access point, then that would default to 192.168.4.1, which is also the target IP.  Because connection speed is important here, select a static IP, which I normally use 192.168.4.100, 192.168.4.101, etc… <a class="reference external" href="http://www.gregthatcher.com/Papers/IT/SubnetCalculator.aspx">Here’s a good subnet calculator</a></p>
+<p>The message sent out is formatted like this: “&lt;trigBoard Name&gt; &lt;Event&gt;, &lt;battery&gt;” or as a real example: “test trigBoard 1 Contact Still Open-18-, 4.14V”</p>
+</div>
+<div class="section" id="tcp">
+<h3>TCP<a class="headerlink" href="#tcp" title="Permalink to this headline">¶</a></h3>
+<p>This was added in Firmware 12/20/20 - make sure you have the latest <a class="reference internal" href="Firmware.html#firmware"><span class="std std-ref">Firmware Installed</span></a></p>
+<p>The inspiration for adding TCP messaging came from the need for an ultra reliable home security system.  The only downside here is that TCP may hurt battery life slightly since a full handshake between the trigBoards and receiving device occurs on every event.  Also, if the handshake fails, the trigBoard will attempt a number of retries.</p>
+<blockquote>
+<div><img alt="_images/tcpsettings.png" class="align-center" src="_images/tcpsettings.png" />
+</div></blockquote>
+<p>The settings here are very similar to UDP, set the SSID/PW for the gateway and set target IP and static IP.  Note that the port is fixed to 80.  The retries value is how many full attempts the trigBoard will make before going back to sleep.  This actually reconnects to the SSID, so be careful setting the WiFi Timeout value above - may want to lower this in case you loose the gateway or make a mistake in here and the board cannot connect.  That means that to re-enter the configurator mode, you will have to wait for all failure attempts.  So if WiFi timeout is 10seconds, and retries is 10, then you’ll need too wait for 100seconds.  This of course is only if it can’t connect.</p>
+<p>The message sent out is formatted like this: “&lt;trigBoard Name&gt; &lt;Event&gt;, &lt;battery&gt;$$$&lt;timestamp&gt;” or as a real example: “test trigBoard 1 Contact Still Open-18-, 4.15V$$$34743”   the reason for the unique timestamp there is just in case the gateway receives the message, but then a retry is attempted.  So that means that the acknowledgment back to the trigBoard failed and it attempted the retry.  The gateway will see the same message and know that the trigBoard is just trying again, not that it’s a unique event from that same trigBoard, which would be like the front door opening and closing twice quickly.</p>
+</div>
 </div>
 <div class="section" id="mqtt">
 <span id="id5"></span><h2>MQTT<a class="headerlink" href="#mqtt" title="Permalink to this headline">¶</a></h2>

@@ -138,10 +138,43 @@ IFTTT
 
 .. _UDP:
 
-UDP
+UDP/TCP
 ---------
 
-More for the advanced user, but if you're looking to take this to the next level, UDP messaging allows for a tight and fast network for getting the notifications out. Basically, a central gateway would be setup acting as a UDP server, where all of the trigBoards communicate back to. This is great for building a secure standalone trigBoard network that's battery backed and could also allow for a cellular connection.
+Note - TCP added to Firmware version 12/20/20 or newer.  These two options allow for a fully customized solution to whatever you might have in mind.  For example - see the :ref:`Cellular/Battery Backed System <CellularBattery>` project - this is a fully self contained system that relies on no outside services.  It's battery backed, hosts its own network, and can still send push notifications out fast.  This is just an example though - even a simple point to point system can be easily designed.  The trigBoard supports both UDP and TCP - `here's a good write-up <http://www.steves-internet-guide.com/tcp-vs-udp/>`_ on the differences.
+
+To build your own gateway, here is some sample code you can use to run on an ESP32 to act as a server.  It supports both UDP and TCP: `Github Repo <https://github.com/krdarrah/trigBoard-Server-EXAMPLE-TCP-UDP>`_
+
+Note - you will need to install the `ESPAsyncWebServer <https://github.com/me-no-dev/ESPAsyncWebServer>`_ and `AsyncTCP <https://github.com/me-no-dev/AsyncTCP>`_ Libraries
+
+******
+UDP
+******
+
+Because UDP is connectionless, the trigBoard configuration allows for a "blast", the default is to send out 10 packets separated by 10ms.  The idea is that this blast of packets guarantees at least one will get through.  There is no handshaking or acknowledgment back to the trigBoard, so it simply sends all of the packets and goes back to sleep.  This means the transmission will be faster, thus keeping the on-time shorter and conserving battery life.  Then again, without any knowledge that any of the packets got through, there's a chance they didn't.  
+
+		.. image:: images/udpsettings.png
+			:align: center	
+
+You can leave most of these settings to their default values.  Just set the SSID/PW, and if you're using the gateway as the access point, then that would default to 192.168.4.1, which is also the target IP.  Because connection speed is important here, select a static IP, which I normally use 192.168.4.100, 192.168.4.101, etc... `Here's a good subnet calculator <http://www.gregthatcher.com/Papers/IT/SubnetCalculator.aspx>`_
+
+The message sent out is formatted like this: "<trigBoard Name> <Event>, <battery>" or as a real example: "test trigBoard 1 Contact Still Open-18-, 4.14V"
+
+******
+TCP
+******
+
+This was added in Firmware 12/20/20 - make sure you have the latest :ref:`Firmware Installed <Firmware>`
+
+The inspiration for adding TCP messaging came from the need for an ultra reliable home security system.  The only downside here is that TCP may hurt battery life slightly since a full handshake between the trigBoards and receiving device occurs on every event.  Also, if the handshake fails, the trigBoard will attempt a number of retries.  
+
+		.. image:: images/tcpsettings.png
+			:align: center
+
+The settings here are very similar to UDP, set the SSID/PW for the gateway and set target IP and static IP.  Note that the port is fixed to 80.  The retries value is how many full attempts the trigBoard will make before going back to sleep.  This actually reconnects to the SSID, so be careful setting the WiFi Timeout value above - may want to lower this in case you loose the gateway or make a mistake in here and the board cannot connect.  That means that to re-enter the configurator mode, you will have to wait for all failure attempts.  So if WiFi timeout is 10seconds, and retries is 10, then you'll need too wait for 100seconds.  This of course is only if it can't connect.
+
+The message sent out is formatted like this: "<trigBoard Name> <Event>, <battery>$$$<timestamp>" or as a real example: "test trigBoard 1 Contact Still Open-18-, 4.15V$$$34743"   the reason for the unique timestamp there is just in case the gateway receives the message, but then a retry is attempted.  So that means that the acknowledgment back to the trigBoard failed and it attempted the retry.  The gateway will see the same message and know that the trigBoard is just trying again, not that it's a unique event from that same trigBoard, which would be like the front door opening and closing twice quickly.  
+
 
 .. _MQTT:
 

@@ -74,7 +74,7 @@
 			"file": "docs/supportedServices.rst",
 			"settings":
 			{
-				"buffer_size": 6421,
+				"buffer_size": 6240,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
@@ -364,7 +364,7 @@
 	"groups":
 	[
 		{
-			"selected": 0,
+			"selected": 7,
 			"sheets":
 			[
 				{
@@ -394,7 +394,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 0,
+					"stack_index": 1,
 					"type": "text"
 				},
 				{
@@ -574,15 +574,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 6421,
+						"buffer_size": 6240,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								4008,
-								4008
+								3828,
+								3828
 							]
 						],
 						"settings":
@@ -591,10 +591,10 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 1686.0,
+						"translation.y": 1573.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 1,
+					"stack_index": 0,
 					"type": "text"
 				},
 				{
@@ -680,7 +680,7 @@
 							"syntax": "Packages/RestructuredText/reStructuredText.sublime-syntax"
 						},
 						"translation.x": 0.0,
-						"translation.y": 40.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 5,
@@ -709,7 +709,7 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 5767.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 2,

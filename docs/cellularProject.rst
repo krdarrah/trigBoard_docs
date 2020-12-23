@@ -1,3 +1,6 @@
+
+.. _CellularBattery:
+
 ===============================
 Cellular/Battery Backed System
 ===============================
@@ -20,6 +23,10 @@ This is actually the preferred method for using the trigBoard - a complete low p
 
 * KD Circuits has designed simple carrier boards for gateway and monitor boards - just bare PCB here, but easy to solder together with all through hole components.  $2/pc `contact KD Circuits directly <https://www.kdcircuits.com#contact>`_
 
+.. note::
+	**TCP was added** in trigBoard base firmware 12/20/20 so now ultra reliable communication between trigBoards and the gateway can be achieved.  Surprisingly, the added handshaking involved with TCP does not significantly increase the on-time of the trigBoard - still can be less than 2seconds.  See :ref:`Battery Page <Battery>` for plots comparing the two methods.  Everything you see below still applies - same hardware setup, just different firmware. 
+
+
 **Here's a full step by step tutorial**
 
 .. raw:: html
@@ -37,7 +44,8 @@ This is actually the easiest part! The messages are sent out via UDP, so setup t
 	| Three things need to be decided
 	| 1-SSID will be whatever you want - pick something random like "ajhagwiuycgwerilucberw" just don't use special characters
 	| 2-Password also something random- AT LEAST 8 characters and nothing special
-	| 3-Port for the UDP messaging, I just use 1234 
+	| 3-Port for the UDP messaging, I just use 1234 port is fixed to 80 for TCP
+	| 4-TCP will have a value for retries - may want to set this to 10
 	| **Write these down somewhere, we'll need them for setting everything up**
 
 | Here is my setup:
@@ -109,7 +117,9 @@ Hardware Needed
 trigBoard Gateway Software 
 ***************************
 
-latest code can be downloaded in the `Gateway Git Repository <https://github.com/krdarrah/trigBoard_GatewayV8>`_
+UDP version `UDP Gateway Git Repository <https://github.com/krdarrah/trigBoard_GatewayV8>`_
+
+TCP version `TCP Gateway Git Repository <https://github.com/krdarrah/trigBoard-Gateway-TCP>`_
 
 .. note::
 	* This is all based on the Base Firmware, so make sure you have all of those dependencies and versions of libraries installed first.
@@ -123,7 +133,11 @@ latest code can be downloaded in the `Gateway Git Repository <https://github.com
 		
 	* USB-Serial Programming is recommended
 
-Configuration of the trigBoard settings is also done through the configurator! On bootup, you'll notice the Blue LED flashing - it will do this for about 5 minutes, allowing you to connect to it through the google chrome `Configurator Tool <https://kevindarrah.com/configurator/>`_  You should see trigBoard Gateway now in the scan list. 
+	* TCP version will need to install the `ESPAsyncWebServer <https://github.com/me-no-dev/ESPAsyncWebServer>`_ and `AsyncTCP <https://github.com/me-no-dev/AsyncTCP>`_ Libraries
+
+ 
+
+**UDP version** - Configuration of the trigBoard settings is also done through the configurator! On bootup, you'll notice the Blue LED flashing - it will do this for about 5 minutes, allowing you to connect to it through the google chrome `Configurator Tool <https://kevindarrah.com/configurator/>`_  You should see trigBoard Gateway now in the scan list. 
 	
 	Because this is a Gateway acting as the Access Point, you will not be connecting to any SSID, instead you will specify the SSID and password for this private network.  Most of the functionality in the configurator - you set this here in WiFi SSID and Password - then click "Save and Connect..."
 
@@ -134,6 +148,10 @@ Configuration of the trigBoard settings is also done through the configurator! O
 
 .. note::
 	After saving the WiFi Settings for the gateway, **YOU HAVE TO PRESS THE RESET BUTTON ON THE TRIGBOARD**  This is because, the settings won't take effect until the board boots up.  You can test things at this point with the USB-Serial Converter and look at the Serial Monitor debug window.  When a trigBoard sends a message to it, you should see some activity!
+
+**TCP version** SSID and PW are set in the AP tab: 
+	Serial.println(WiFi.softAP("ssid", "password", 1, 1, 8)); //ssid,pw,ch,hid,conn 
+
 
 **********************
 Particle Software 
@@ -311,7 +329,10 @@ Then that's all there is to it! You can keep power always on with the USB cable 
 Adafruit ESP32 Monitor Software
 ********************************
 
-Latest code can be find in the `trigBoard Monitor Git Repository <https://github.com/krdarrah/trigBoard_MonitorV8>`_
+UDP Version -  `trigBoard Monitor UDP Git Repository <https://github.com/krdarrah/trigBoard_MonitorV8>`_
+
+TCP Version -  `trigBoard Monitor TCP Git Repository <https://github.com/krdarrah/trigBoard-Monitor-TCP>`_
+
 
 ***Big thanks to the YX5300 code found here!*** `salvadorrueda github <https://github.com/salvadorrueda/ArduinoSerialMP3Player/blob/master/ArduinoSerialMP3Player/ArduinoSerialMP3Player.ino>`_
 
@@ -319,9 +340,9 @@ Just like the Gateway software, all of the same dependencies are needed as well 
 
 And just like the gateway, this board is also configured through the Configurator!  On bootup, you'll see the LED flashing on the board (for 5min)- only when this is flashing can you connect to it from the Configurator.  Only a few settings are needed:
 
-* Use the main WiFi Settings at the top of the configurator to connect to the private network.  You can set this to use a static IP if you want, but I recommend DHCP (static IP box unchecked).
+* Use the main WiFi Settings at the top of the configurator to connect to the private network.  You can set this to use a static IP if you want, but I recommend DHCP (static IP box unchecked). For TCP version - would recommend static IP since the Monitor polls the gateway continuously.
 
-* Scroll down and enable UDP.  All of these settings are not used, except the port. Most people use 1234, but if you're using something else, you can change here.  
+* Scroll down and enable UDP.  All of these settings are not used, except the port. Most people use 1234, but if you're using something else, you can change here.  TCP does not use any of these settings.
 
 ********************************
 mp3 files
