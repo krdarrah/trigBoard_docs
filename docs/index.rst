@@ -29,7 +29,7 @@ The trigBoard is an extremely low power platform for the ESP32 WiFi+Bluetooth Mo
 
 * Unused pins from ESP32 broken out for future expansion and in-line to fit breadboards - developer friendly.  See :ref:`Pinout page <Pinout>` for more information
 
-* Base Firmware supports many Push Notification service options like :ref:`Pushsafer <Pushsafer>`, :ref:`Pushover <Pushover>`, and :ref:`IFTTT <IFTTT>`. And even develop a custom solution with :ref:`MQTT <MQTT>` and :ref:`UDP <UDP>` messaging. Any of these can be enabled, or even multiple. For example, the notifications can go out through Pushover, then a secondary backup notification can go through MQTT. Or even a notification though Pushsafer, then turn the lights on in the house with IFTTT. The possibilities are endless with this.
+* Base Firmware supports many Push Notification service options like :ref:`Pushsafer <Pushsafer>`, :ref:`Pushover <Pushover>`, and :ref:`IFTTT <IFTTT>`. And even develop a custom solution with :ref:`MQTT <MQTT>`, :ref:`UDP <UDP>` or :ref:`TCP <TCP>`. Any of these can be enabled, or even multiple. For example, the notifications can go out through Pushover, then a secondary backup notification can go through MQTT. Or even a notification though Pushsafer, then turn the lights on in the house with IFTTT. The possibilities are endless with this.
 
 * :ref:`Configurator Tool <Configurator>` gives full control over the board parameters and settings - in a nice clean easy to use GUI through Google Chrome and a Bluetooth connection to the ESP32.
 

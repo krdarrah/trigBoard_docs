@@ -486,6 +486,28 @@ Version 8</a>
 </div></blockquote>
 <table border="1" class="docutils">
 <colgroup>
+<col width="73%" />
+<col width="27%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">3.0V Wifi Connection TCP Message</th>
+<th class="head">&#160;</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Awake Device Consumption</td>
+<td>68.9mA</td>
+</tr>
+<tr class="row-odd"><td>Awake Time</td>
+<td>2sec</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<div><img alt="_images/TCPtransmission80MHz.png" class="align-center" src="_images/TCPtransmission80MHz.png" />
+</div></blockquote>
+<table border="1" class="docutils">
+<colgroup>
 <col width="68%" />
 <col width="33%" />
 </colgroup>
@@ -519,6 +541,7 @@ Version 8</a>
 <li><strong>Two AAA batteries in series (3V)</strong> is highly recommended, since they will have a low self-discharge rate, they’re easily replaceable, they’re small,they’re safe, wide operating temperature, and can have good capacities.  For example, the <a class="reference external" href="https://data.energizer.com/pdfs/l92.pdf">Energizer Ultimate Lithium Batteries</a> may yield 1200mAh!  The trigBoard product page provides a compatible holder, but these exist elsewhere as well: <a class="reference external" href="https://www.adafruit.com/product/4191">Like this</a></li>
 <li><strong>Other Combinations of AAA or AA</strong> If extremely long battery life is needed, could use AA instead of AAA batteries, or even three in series.</li>
 <li><strong>Lithium Batteries</strong> Adafruit has a nice selection of these kinds of batteries - <a class="reference external" href="https://www.adafruit.com/category/574">any of these will work</a></li>
+<li><strong>ESP32 Settings</strong> The trigBoard is flashed with the base firmware to operate the processor at 80MHz.  This reduces the current draw from the battery when the trigBoard.  From 240MHz to 80MHz, the savings can be 20-30mA.  Also note that the precompiled bin files on the git page are all with an 80MHz speed.</li>
 </ul>
 </div>
 </div>

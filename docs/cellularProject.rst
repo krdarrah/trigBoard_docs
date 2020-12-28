@@ -340,7 +340,7 @@ Just like the Gateway software, all of the same dependencies are needed as well 
 
 And just like the gateway, this board is also configured through the Configurator!  On bootup, you'll see the LED flashing on the board (for 5min)- only when this is flashing can you connect to it from the Configurator.  Only a few settings are needed:
 
-* Use the main WiFi Settings at the top of the configurator to connect to the private network.  You can set this to use a static IP if you want, but I recommend DHCP (static IP box unchecked). For TCP version - would recommend static IP since the Monitor polls the gateway continuously.
+* Use the main WiFi Settings at the top of the configurator to connect to the private network.  You can set this to use a static IP if you want, but I recommend DHCP (static IP box unchecked). This actually appears to operate with faster response times from the server.
 
 * Scroll down and enable UDP.  All of these settings are not used, except the port. Most people use 1234, but if you're using something else, you can change here.  TCP does not use any of these settings.
 

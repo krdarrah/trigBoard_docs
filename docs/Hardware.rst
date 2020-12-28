@@ -204,6 +204,17 @@ AAA Batteries 3.0V
 	.. image:: images/3V_udp.png      
 		:align: center
 
+
+===========================================	========
+3.0V Wifi Connection TCP Message
+===========================================	========
+ Awake Device Consumption 			    	68.9mA    	
+ Awake Time               	 			    2sec    	
+===========================================	========  
+
+	.. image:: images/TCPtransmission80MHz.png      
+		:align: center
+
 ===========================	=============
 3.0V Sleep Current   
 ===========================	=============
@@ -212,6 +223,10 @@ AAA Batteries 3.0V
 
 	.. image:: images/3V_sleep.png      
 		:align: center
+
+
+
+
 
 Recommended Batteries
 ======================
@@ -226,6 +241,8 @@ Recommended Batteries
 * **Other Combinations of AAA or AA** If extremely long battery life is needed, could use AA instead of AAA batteries, or even three in series.
 
 * **Lithium Batteries** Adafruit has a nice selection of these kinds of batteries - `any of these will work <https://www.adafruit.com/category/574>`_
+
+* **ESP32 Settings** The trigBoard is flashed with the base firmware to operate the processor at 80MHz.  This reduces the current draw from the battery when the trigBoard.  From 240MHz to 80MHz, the savings can be 20-30mA.  Also note that the precompiled bin files on the git page are all with an 80MHz speed.  
 
 Mechanical
 -----------

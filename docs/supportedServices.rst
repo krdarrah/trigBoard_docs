@@ -136,7 +136,7 @@ IFTTT
 		.. image:: images/ifttconfig.png
 			:align: center	
 
-.. _UDP:
+
 
 UDP/TCP
 ---------
@@ -146,6 +146,17 @@ Note - TCP added to Firmware version 12/20/20 or newer.  These two options allow
 To build your own gateway, here is some sample code you can use to run on an ESP32 to act as a server.  It supports both UDP and TCP: `Github Repo <https://github.com/krdarrah/trigBoard-Server-EXAMPLE-TCP-UDP>`_
 
 Note - you will need to install the `ESPAsyncWebServer <https://github.com/me-no-dev/ESPAsyncWebServer>`_ and `AsyncTCP <https://github.com/me-no-dev/AsyncTCP>`_ Libraries
+
+How it all works explained here: 
+
+.. raw:: html
+
+    <div style="text-align: center; margin-bottom: 2em;">
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/iNWH1FuM320" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
+
+
+.. _UDP:
 
 ******
 UDP
@@ -159,6 +170,8 @@ Because UDP is connectionless, the trigBoard configuration allows for a "blast",
 You can leave most of these settings to their default values.  Just set the SSID/PW, and if you're using the gateway as the access point, then that would default to 192.168.4.1, which is also the target IP.  Because connection speed is important here, select a static IP, which I normally use 192.168.4.100, 192.168.4.101, etc... `Here's a good subnet calculator <http://www.gregthatcher.com/Papers/IT/SubnetCalculator.aspx>`_
 
 The message sent out is formatted like this: "<trigBoard Name> <Event>, <battery>" or as a real example: "test trigBoard 1 Contact Still Open-18-, 4.14V"
+
+.. _TCP:
 
 ******
 TCP

@@ -324,7 +324,7 @@ Version 8</a>
 
 <span class="kt">void</span> <span class="nf">setup</span><span class="p">()</span> <span class="p">{</span>
     <span class="n">Serial</span><span class="p">.</span><span class="n">begin</span><span class="p">(</span><span class="mi">115200</span><span class="p">);</span><span class="c1">//debug</span>
-    <span class="n">Serial1</span><span class="p">.</span><span class="n">begin</span><span class="p">(</span><span class="mi">9600</span><span class="p">);</span><span class="c1">//from trigBoard</span>
+    <span class="n">Serial1</span><span class="p">.</span><span class="n">begin</span><span class="p">(</span><span class="mi">9600</span><span class="p">);</span><span class="c1">//from trigBoard  on TCP version this is 57600</span>
 <span class="p">}</span>
 
 <span class="kt">void</span> <span class="nf">loop</span><span class="p">()</span> <span class="p">{</span>
@@ -481,7 +481,7 @@ Version 8</a>
 <p>Just like the Gateway software, all of the same dependencies are needed as well as the ESPsoftware serial library.  If you can compile the gateway software, then you should be fine here.  I also use the same board settings as the trigBoard.</p>
 <p>And just like the gateway, this board is also configured through the Configurator!  On bootup, you’ll see the LED flashing on the board (for 5min)- only when this is flashing can you connect to it from the Configurator.  Only a few settings are needed:</p>
 <ul class="simple">
-<li>Use the main WiFi Settings at the top of the configurator to connect to the private network.  You can set this to use a static IP if you want, but I recommend DHCP (static IP box unchecked). For TCP version - would recommend static IP since the Monitor polls the gateway continuously.</li>
+<li>Use the main WiFi Settings at the top of the configurator to connect to the private network.  You can set this to use a static IP if you want, but I recommend DHCP (static IP box unchecked). This actually appears to operate with faster response times from the server.</li>
 <li>Scroll down and enable UDP.  All of these settings are not used, except the port. Most people use 1234, but if you’re using something else, you can change here.  TCP does not use any of these settings.</li>
 </ul>
 </div>
