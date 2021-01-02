@@ -11,7 +11,7 @@ Configurator
 All of the parameters in the trigBoard are configured in the `Configurator Tool <https://krdarrah.github.io/trigBoardConfigurator/>`_
 
 .. hint::
-	To enter configuration mode on the trigBoard, simply press and hold the wake button until the blue LED starts flashing, then you can let go. The board is ready to be configured.  If you can't connect to it or you change your mind, you can just press the reset button and the board will go back to sleep. I suggest testing out the configurator before installing the trigBoard in it's final location.
+	To enter configuration mode on the trigBoard, simply press and hold the wake button until the blue LED starts flashing, then you can let go. The board is ready to be configured.  If you can't connect to it or you change your mind, you can just press the reset button and the board will go back to sleep. I suggest testing out the configurator before installing the trigBoard in it's final location. A full description of the settings are described on the :ref:`Quickstart Page <Quickstart>`
 
 .. warning::
 	* The Configurator tool only runs in the `Google Chrome Browser <https://www.google.com/chrome/>`_
