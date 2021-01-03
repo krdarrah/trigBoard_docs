@@ -96,6 +96,7 @@ Version 8 0 documentation</title>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Firmware/Programming</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#base-firmware-repository">Base Firmware Repository</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#uploading">Uploading</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#custom-firmware">Custom Firmware</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="testing.html">Testing/Factory Programming</a></li>
@@ -249,6 +250,60 @@ Version 8</a>
 </div>
 </dd>
 </dl>
+</div>
+<div class="section" id="custom-firmware">
+<h2>Custom Firmware<a class="headerlink" href="#custom-firmware" title="Permalink to this headline">¶</a></h2>
+<p>The trigBoard uses the popular ESP32 WiFi+Bluetooth module, which is great due to the extensive resources and support for this platform.  The base firmware can be used as-is, but many users prefer to connect to their own service or do other unique things, while enjoying the ultra low power capability with the trigBoard.  This is easy enough though, but is suggested to modify the base firmware and utilize the “low power engine”.  Let’s review the <code class="code docutils literal notranslate"><span class="pre">void</span> <span class="pre">setup()</span></code> function to see how custom code can be embedded (just note this may be slightly outdated, but all still applies)</p>
+<div class="highlight-C notranslate"><div class="highlight"><pre><span></span>  <span class="kt">void</span> <span class="nf">setup</span><span class="p">()</span> <span class="p">{</span>
+          <span class="n">pinMode</span><span class="p">(</span><span class="n">ESPlatchPin</span><span class="p">,</span> <span class="n">OUTPUT</span><span class="p">);</span>
+          <span class="n">digitalWrite</span><span class="p">(</span><span class="n">ESPlatchPin</span><span class="p">,</span> <span class="n">HIGH</span><span class="p">);</span>
+          <span class="n">pinMode</span><span class="p">(</span><span class="n">LEDpin</span><span class="p">,</span> <span class="n">OUTPUT</span><span class="p">);</span>
+          <span class="n">Serial</span><span class="p">.</span><span class="n">begin</span><span class="p">(</span><span class="mi">115200</span><span class="p">);</span>
+          <span class="n">checkWakeupPins</span><span class="p">();</span>
+          <span class="n">loadConfiguration</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">config</span><span class="p">);</span>
+          <span class="n">rtcInit</span><span class="p">(</span><span class="n">config</span><span class="p">.</span><span class="n">timerCountDown</span><span class="p">,</span> <span class="nb">false</span><span class="p">);</span>
+          <span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="n">getBattery</span><span class="p">(),</span> <span class="mi">2</span><span class="p">);</span>
+          <span class="k">if</span> <span class="p">(</span><span class="n">pushLogic</span><span class="p">())</span> <span class="p">{</span> <span class="c1">//decide if push will occur or nt and what message will be</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">wiFiNeeded</span><span class="p">)</span> <span class="p">{</span>
+              <span class="k">if</span> <span class="p">(</span><span class="n">connectWiFi</span><span class="p">())</span> <span class="p">{</span>
+                <span class="n">pushOver</span><span class="p">();</span>
+                <span class="n">pushSafer</span><span class="p">();</span>
+                <span class="n">ifttt</span><span class="p">();</span>
+                <span class="n">mqtt</span><span class="p">();</span>
+              <span class="p">}</span>
+            <span class="p">}</span>
+            <span class="n">udp</span><span class="p">();</span>
+            <span class="n">tcp</span><span class="p">();</span>
+          <span class="p">}</span>
+          <span class="n">killPower</span><span class="p">();</span>
+          <span class="n">waitForButton</span><span class="p">();</span>
+          <span class="n">initBluetooth</span><span class="p">();</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>In the loop, you’ll notice that not much happens.  This is because the trigBoard is designed to only run the code in the setup, then go to sleep.  If it ends up in the loop, means that the user held the wake button and it’s handling the bluetooth connection or an OTA (OVER THE AIR) firmware update.  Because Pushover, Pushsafer, ifttt, etc are not used then you can just delete all of this out.  Your setup may look like this then:</p>
+<div class="highlight-C notranslate"><div class="highlight"><pre><span></span>  <span class="kt">void</span> <span class="nf">setup</span><span class="p">()</span> <span class="p">{</span>
+          <span class="n">pinMode</span><span class="p">(</span><span class="n">ESPlatchPin</span><span class="p">,</span> <span class="n">OUTPUT</span><span class="p">);</span>
+          <span class="n">digitalWrite</span><span class="p">(</span><span class="n">ESPlatchPin</span><span class="p">,</span> <span class="n">HIGH</span><span class="p">);</span>
+          <span class="n">pinMode</span><span class="p">(</span><span class="n">LEDpin</span><span class="p">,</span> <span class="n">OUTPUT</span><span class="p">);</span>
+          <span class="n">Serial</span><span class="p">.</span><span class="n">begin</span><span class="p">(</span><span class="mi">115200</span><span class="p">);</span>
+          <span class="n">checkWakeupPins</span><span class="p">();</span>
+          <span class="n">loadConfiguration</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">config</span><span class="p">);</span>
+          <span class="n">rtcInit</span><span class="p">(</span><span class="n">config</span><span class="p">.</span><span class="n">timerCountDown</span><span class="p">,</span> <span class="nb">false</span><span class="p">);</span>
+          <span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="n">getBattery</span><span class="p">(),</span> <span class="mi">2</span><span class="p">);</span>
+          <span class="k">if</span> <span class="p">(</span><span class="n">pushLogic</span><span class="p">())</span> <span class="p">{</span> <span class="c1">//decide if push will occur or nt and what message will be</span>
+
+          <span class="c1">//*** CUSTOM CODE GOES HERE **</span>
+
+          <span class="p">}</span>
+          <span class="n">killPower</span><span class="p">();</span>
+          <span class="n">waitForButton</span><span class="p">();</span>
+          <span class="n">initBluetooth</span><span class="p">();</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>This code here still works with the configurator, which is important since that’s how the wake events are setup. But how to use the wake message in the custom code? The message used to send push notifications is simply <code class="code docutils literal notranslate"><span class="pre">pushMessage</span></code> which is just a character array. The trigBoard name set in the Configurator is <code class="code docutils literal notranslate"><span class="pre">config.trigName</span></code> - also a char array.  You experiment with this and Serial.print these out to the monitor so you can see how the message can be formatted.</p>
+<p>Something else that is extremely useful is using the unused Configurator settings for other things - for example, since now you’re not using Pushover, Pushsafer, etc… you can enable those in the Configurator and set values there too be used in your custom code.  Like if you need to add an API key to your custom code, just use the Pushover API key <code class="code docutils literal notranslate"><span class="pre">config.pushAPIKey</span></code>.</p>
 </div>
 </div>
 
