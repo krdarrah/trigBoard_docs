@@ -258,3 +258,30 @@ Mechanical
 .. image:: images/trigBoardgif.gif
 	:align: center
 
+Screw-Terminals
+----------------
+
+The trigBoard is bread-board "friendly" meaning that 0.1" headers can be soldered in to allow for easy development.  But for more permanent installations, screw down terminal blocks can be used.
+
+.. image:: images/screwdown3Dmodel.png
+	:align: center
+
+These need to be 2.54mm(0.1inch) pitched terminal blocks - the ones shown here were `purchased here <https://www.amazon.com/gp/product/B07RZXFQZR/ref=ppx_yo_dt_b_asin_title_o03_s00?ie=UTF8&psc=1>`_ but these are widely available and maybe not all 9 pins are needed for each side, so could use any pin-count required by the application.  
+
+I recommend placing some kapton tape down before soldering the terminal block just to insulate the pins on the ESP32 module from the terminal pins - just as a precaution: 
+
+.. image:: images/screwtapetermins.png
+	:align: center
+
+.. image:: images/screwmountpresolder.png
+	:align: center
+
+.. image:: images/terminalsallsoldered.png
+	:align: center
+
+.. image:: images/terminalscomplete.png
+	:align: center
+
+
+
+
