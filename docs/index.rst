@@ -66,7 +66,9 @@ Contents
    cellularProject.rst
    doorbell.rst
    garage.rst
+   LogGoogleDocs.rst
    motionSensor.rst
    multipleInputs.rst
+   SendEmail.rst
    temperatureSensor.rst
    waterleakDetector.rst

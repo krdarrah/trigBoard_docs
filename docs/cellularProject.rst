@@ -1,9 +1,9 @@
 
 .. _CellularBattery:
 
-===============================
-Cellular/Battery Backed System
-===============================
+=======================================
+Cellular/Battery Backed System UDP/TCP
+=======================================
 
 .. image:: images/cellularBlockDiag.png
 	:align: center
