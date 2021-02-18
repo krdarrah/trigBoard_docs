@@ -12,6 +12,15 @@ Smoke/CO Detector
 .. warning::
 	THIS SHOULD NOT BE DONE ON YOUR PRIMARY SMOKE/CO DETECTOR!!!!  You are making modifications to a life saving device, so there is a chance that this will not work at all - DO NOT RELY ON THIS FOR LIFE SAVING NOTIFICATIONS.  This is clearly not an end-product that you can truly rely on.  Should only be used to supplement an existing system.
 
+.. hint::
+	CO Detection is not working yet - I just need add a circuit to delay the buzzer pulse to the trigBoard.  Will be coming soon...
+
+.. raw:: html
+
+    <div style="text-align: center; margin-bottom: 2em;">
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/NuwXAvgs4Ho" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
+
 
 **Smoke Detector**
 
