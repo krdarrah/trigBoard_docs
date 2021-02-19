@@ -107,7 +107,11 @@ Version 8 0 documentation</title>
 <li class="toctree-l1"><a class="reference internal" href="motionSensor.html">Motion Sensor - PIR</a></li>
 <li class="toctree-l1"><a class="reference internal" href="multipleInputs.html">Multiple Inputs</a></li>
 <li class="toctree-l1"><a class="reference internal" href="SendEmail.html">Send an Email - IFTTT</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Smoke/CO Detector</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Smoke/CO Detector</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#smoke-co-detection-recommended"><strong>Smoke &amp; CO Detection</strong> <em>Recommended</em></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#smoke-detection-only"><strong>Smoke Detection Only</strong></a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="temperatureSensor.html">Temperature Logging to Grafana</a></li>
 <li class="toctree-l1"><a class="reference internal" href="waterleakDetector.html">Water Leak Detector</a></li>
 </ul>
@@ -184,7 +188,9 @@ Version 8</a>
 <p class="first admonition-title">Warning</p>
 <p class="last">THIS SHOULD NOT BE DONE ON YOUR PRIMARY SMOKE/CO DETECTOR!!!!  You are making modifications to a life saving device, so there is a chance that this will not work at all - DO NOT RELY ON THIS FOR LIFE SAVING NOTIFICATIONS.  This is clearly not an end-product that you can truly rely on.  Should only be used to supplement an existing system.</p>
 </div>
-<p><strong>Smoke Detector</strong></p>
+<div style="text-align: center; margin-bottom: 2em;">
+<iframe width="560" height="315" src="https://www.youtube.com/embed/NuwXAvgs4Ho" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</div><p><strong>Smoke Detector</strong></p>
 <p><a class="reference external" href="https://www.amazon.com/gp/product/B000MXJ498/ref=ppx_yo_dt_b_asin_title_o00_s00?ie=UTF8&amp;psc=1">Found here on Amazon</a></p>
 <img alt="_images/amazonsmokedetect.png" class="align-center" src="_images/amazonsmokedetect.png" />
 <p><strong>Teardown</strong></p>
@@ -193,8 +199,21 @@ Version 8</a>
 <p><strong>Power</strong></p>
 <p>Connect up your JST Cable (PH2.0mm) to the battery contacts - CHECK POLARITY!</p>
 <img alt="_images/smokepower.png" class="align-center" src="_images/smokepower.png" />
+<div class="section" id="smoke-co-detection-recommended">
+<h2><strong>Smoke &amp; CO Detection</strong> <em>Recommended</em><a class="headerlink" href="#smoke-co-detection-recommended" title="Permalink to this headline">¶</a></h2>
+<p>This is how I am currently using this system.  I found that the two RED LEDs on the board can be used to wake the trigBoard.  Test points N59 (Smoke) and N43 (Carbon Monoxide).  These are active LOW, but that is completely fine and could even be used to determine “what” woke the trigBoard up and send a custom message based on Smoke/CO detection.  <em>please contact me if this is of interest</em>
+In order to wake on both signals, P-CH MOSFETS need to be wired in parallel to the sensor input.
+VP2106 MOSFET From Digikey <a class="reference external" href="https://www.digikey.com/en/products/detail/VP2106N3-G/VP2106N3-G-ND/4902414?itemSeq=340798425">VP2106N3-G-ND</a></p>
+<img alt="_images/smokeCOdiagrma.png" class="align-center" src="_images/smokeCOdiagrma.png" />
+<img alt="_images/COsmokeLEDtesptp.png" class="align-center" src="_images/COsmokeLEDtesptp.png" />
+<img alt="_images/cosmokepchwire.png" class="align-center" src="_images/cosmokepchwire.png" />
+<p>Then just like the next section, I just cut a notch in the vents to feed the wires out to the trigBoard.  Also will be easy to clean up those connections to the P-CH FETS - just showing things loose to better understand how things are hooked up.</p>
+</div>
+<div class="section" id="smoke-detection-only">
+<h2><strong>Smoke Detection Only</strong><a class="headerlink" href="#smoke-detection-only" title="Permalink to this headline">¶</a></h2>
+<p>This was my first attempt at this, but then found that N23 pulses every 30 minutes or so for some kind of self-diagnostics.  This may be okay, but may also give false wakes on the trigBoard.</p>
 <p><strong>Sensor Input</strong></p>
-<p>We only need the negative input for this, so I removed the positive wire.  I found that Test Point “N23” goes HIGH at 3.3V when the alarm is ON.</p>
+<p>We only need the negative input for this, so I removed the positive wire.  I found that Test Point “N23” goes HIGH at 3.3V when the alarm is ON.  <strong>or maybe N59 as described above</strong> just since this won’t pulse regularly</p>
 <img alt="_images/smokesensorinput.png" class="align-center" src="_images/smokesensorinput.png" />
 <img alt="_images/smokesensortestpoint.png" class="align-center" src="_images/smokesensortestpoint.png" />
 <p><strong>Finishing Up</strong></p>
@@ -202,6 +221,7 @@ Version 8</a>
 <p>Then would be pretty simple to cut a notch in the housing to route the wires out and mount the board right on top!</p>
 <p><strong>Firmware Setup</strong></p>
 <p>The base firmware supports this right out of the box!  Just configure the device from the “Configurator” to wake on Contact Close - then you’re all set.  I might set the low battery alarm to be like 2.5V?  That’s another nice feature here is to get a low battery notification as well… like sometimes it’s hard to figure out which detector is beeping in the house!</p>
+</div>
 </div>
 
 

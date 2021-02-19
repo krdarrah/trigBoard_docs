@@ -12,9 +12,6 @@ Smoke/CO Detector
 .. warning::
 	THIS SHOULD NOT BE DONE ON YOUR PRIMARY SMOKE/CO DETECTOR!!!!  You are making modifications to a life saving device, so there is a chance that this will not work at all - DO NOT RELY ON THIS FOR LIFE SAVING NOTIFICATIONS.  This is clearly not an end-product that you can truly rely on.  Should only be used to supplement an existing system.
 
-.. hint::
-	CO Detection is not working yet - I just need add a circuit to delay the buzzer pulse to the trigBoard.  Will be coming soon...
-
 .. raw:: html
 
     <div style="text-align: center; margin-bottom: 2em;">
@@ -43,9 +40,33 @@ Connect up your JST Cable (PH2.0mm) to the battery contacts - CHECK POLARITY!
 .. image:: images/smokepower.png
 	:align: center
 
+**Smoke & CO Detection** *Recommended*
+-----------------------------------------
+
+This is how I am currently using this system.  I found that the two RED LEDs on the board can be used to wake the trigBoard.  Test points N59 (Smoke) and N43 (Carbon Monoxide).  These are active LOW, but that is completely fine and could even be used to determine "what" woke the trigBoard up and send a custom message based on Smoke/CO detection.  *please contact me if this is of interest*
+In order to wake on both signals, P-CH MOSFETS need to be wired in parallel to the sensor input.  
+VP2106 MOSFET From Digikey `VP2106N3-G-ND <https://www.digikey.com/en/products/detail/VP2106N3-G/VP2106N3-G-ND/4902414?itemSeq=340798425>`_
+
+.. image:: images/smokeCOdiagrma.png
+	:align: center
+
+.. image:: images/COsmokeLEDtesptp.png
+	:align: center
+
+.. image:: images/cosmokepchwire.png
+	:align: center
+
+
+Then just like the next section, I just cut a notch in the vents to feed the wires out to the trigBoard.  Also will be easy to clean up those connections to the P-CH FETS - just showing things loose to better understand how things are hooked up.  
+
+**Smoke Detection Only**
+--------------------------
+
+This was my first attempt at this, but then found that N23 pulses every 30 minutes or so for some kind of self-diagnostics.  This may be okay, but may also give false wakes on the trigBoard.  
+
 **Sensor Input**
 
-We only need the negative input for this, so I removed the positive wire.  I found that Test Point "N23" goes HIGH at 3.3V when the alarm is ON.  
+We only need the negative input for this, so I removed the positive wire.  I found that Test Point "N23" goes HIGH at 3.3V when the alarm is ON.  **or maybe N59 as described above** just since this won't pulse regularly 
 
 .. image:: images/smokesensorinput.png
 	:align: center
@@ -59,6 +80,7 @@ We only need the negative input for this, so I removed the positive wire.  I fou
 	:align: center
 
 Then would be pretty simple to cut a notch in the housing to route the wires out and mount the board right on top!
+
 
 **Firmware Setup**
 
