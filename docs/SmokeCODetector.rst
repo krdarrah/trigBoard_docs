@@ -18,6 +18,10 @@ Smoke/CO Detector
     <iframe width="560" height="315" src="https://www.youtube.com/embed/NuwXAvgs4Ho" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
     </div>
 
+.. note::
+	Still testing the CO detection - will make part 2 and update docs when fully tested!  
+
+
 
 **Smoke Detector**
 
@@ -47,7 +51,9 @@ This is how I am currently using this system.  I found that the two RED LEDs on 
 In order to wake on both signals, P-CH MOSFETS need to be wired in parallel to the sensor input.  
 VP2106 MOSFET From Digikey `VP2106N3-G-ND <https://www.digikey.com/en/products/detail/VP2106N3-G/VP2106N3-G-ND/4902414?itemSeq=340798425>`_
 
-.. image:: images/smokeCOdiagrma.png
+The 4.7uF capacitor is used help catch the CO detection pulses.  The 100k is a bleeder resistor to reset the system, while the 10ohm is to simply limit the current rush to charge the capacitor.  
+
+.. image:: images/smokeCOdiagrma2.png
 	:align: center
 
 .. image:: images/COsmokeLEDtesptp.png
