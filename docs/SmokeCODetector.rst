@@ -20,15 +20,11 @@ Smoke/CO Detector
 
 **PART 2 - Recommended Method **
 
+.. raw:: html
+
     <div style="text-align: center; margin-bottom: 2em;">
     <iframe width="560" height="315" src="https://www.youtube.com/embed/JQKId7zr0v0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
     </div>
-
-
-.. note::
-	Still testing the CO detection - will make part 2 and update docs when fully tested!  
-
-
 
 **Smoke Detector**
 
