@@ -18,6 +18,13 @@ Smoke/CO Detector
     <iframe width="560" height="315" src="https://www.youtube.com/embed/NuwXAvgs4Ho" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
     </div>
 
+**PART 2 - Recommended Method **
+
+    <div style="text-align: center; margin-bottom: 2em;">
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/JQKId7zr0v0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
+
+
 .. note::
 	Still testing the CO detection - will make part 2 and update docs when fully tested!  
 
@@ -58,6 +65,8 @@ The 4.7uF capacitor is used help catch the CO detection pulses.  The 100k is a b
 
 .. image:: images/COsmokeLEDtesptp.png
 	:align: center
+
+*Note this doesn't show the Capacitor/Resistor as required in the diagram*
 
 .. image:: images/cosmokepchwire.png
 	:align: center

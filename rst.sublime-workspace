@@ -20,7 +20,7 @@
 			"file": "docs/SmokeCODetector.rst",
 			"settings":
 			{
-				"buffer_size": 4117,
+				"buffer_size": 4727,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
@@ -433,15 +433,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 4117,
+						"buffer_size": 4727,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								3388,
-								3388
+								1327,
+								1327
 							]
 						],
 						"settings":
@@ -450,7 +450,7 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 1212.0,
+						"translation.y": 13.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
