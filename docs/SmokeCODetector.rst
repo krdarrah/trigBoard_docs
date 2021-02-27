@@ -18,7 +18,7 @@ Smoke/CO Detector
     <iframe width="560" height="315" src="https://www.youtube.com/embed/NuwXAvgs4Ho" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
     </div>
 
-**PART 2 - Recommended Method **
+**PART 2 - Recommended Method**
 
 .. raw:: html
 
