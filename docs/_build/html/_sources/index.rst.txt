@@ -72,5 +72,6 @@ Contents
    multipleInputs.rst
    SendEmail.rst
    SmokeCODetector.rst
+   solar.rst
    temperatureSensor.rst
    waterleakDetector.rst

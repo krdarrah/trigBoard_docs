@@ -1,4 +1,3 @@
-.. _googleDocs:
 
 =============================
 Smoke/CO Detector

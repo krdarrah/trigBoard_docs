@@ -37,7 +37,7 @@ Version 8 0 documentation</title>
     
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Temperature Logging to Grafana" href="temperatureSensor.html" />
+    <link rel="next" title="Solar Options" href="solar.html" />
     <link rel="prev" title="Send an Email - IFTTT" href="SendEmail.html" /> 
 </head>
 
@@ -112,6 +112,7 @@ Version 8 0 documentation</title>
 <li class="toctree-l2"><a class="reference internal" href="#smoke-detection-only"><strong>Smoke Detection Only</strong></a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="solar.html">Solar Options</a></li>
 <li class="toctree-l1"><a class="reference internal" href="temperatureSensor.html">Temperature Logging to Grafana</a></li>
 <li class="toctree-l1"><a class="reference internal" href="waterleakDetector.html">Water Leak Detector</a></li>
 </ul>
@@ -181,7 +182,7 @@ Version 8</a>
            <div itemprop="articleBody">
             
   <div class="section" id="smoke-co-detector">
-<span id="googledocs"></span><h1>Smoke/CO Detector<a class="headerlink" href="#smoke-co-detector" title="Permalink to this headline">¶</a></h1>
+<h1>Smoke/CO Detector<a class="headerlink" href="#smoke-co-detector" title="Permalink to this headline">¶</a></h1>
 <img alt="_images/smokeMain.jpeg" class="align-center" src="_images/smokeMain.jpeg" />
 <p><strong>Add trigBoard to an existing Smoke/CO Detector!</strong>  This is something perfect for true peace of mind and originally was only interested in smoke detection, but Carbon Monoxide is an added bonus here.  The reason is because this specific detector runs on two AA batteries which is perfect because that means we can also power the trigBoard.  I was able to find a test point on the board that goes HIGH to 3.3V when the alarm is ON, so that is what is used to go to the sensor input of the trigBoard.</p>
 <div class="admonition warning">
@@ -190,6 +191,9 @@ Version 8</a>
 </div>
 <div style="text-align: center; margin-bottom: 2em;">
 <iframe width="560" height="315" src="https://www.youtube.com/embed/NuwXAvgs4Ho" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</div><p><strong>PART 2 - Recommended Method</strong></p>
+<div style="text-align: center; margin-bottom: 2em;">
+<iframe width="560" height="315" src="https://www.youtube.com/embed/JQKId7zr0v0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 </div><p><strong>Smoke Detector</strong></p>
 <p><a class="reference external" href="https://www.amazon.com/gp/product/B000MXJ498/ref=ppx_yo_dt_b_asin_title_o00_s00?ie=UTF8&amp;psc=1">Found here on Amazon</a></p>
 <img alt="_images/amazonsmokedetect.png" class="align-center" src="_images/amazonsmokedetect.png" />
@@ -204,8 +208,10 @@ Version 8</a>
 <p>This is how I am currently using this system.  I found that the two RED LEDs on the board can be used to wake the trigBoard.  Test points N59 (Smoke) and N43 (Carbon Monoxide).  These are active LOW, but that is completely fine and could even be used to determine “what” woke the trigBoard up and send a custom message based on Smoke/CO detection.  <em>please contact me if this is of interest</em>
 In order to wake on both signals, P-CH MOSFETS need to be wired in parallel to the sensor input.
 VP2106 MOSFET From Digikey <a class="reference external" href="https://www.digikey.com/en/products/detail/VP2106N3-G/VP2106N3-G-ND/4902414?itemSeq=340798425">VP2106N3-G-ND</a></p>
-<img alt="_images/smokeCOdiagrma.png" class="align-center" src="_images/smokeCOdiagrma.png" />
+<p>The 4.7uF capacitor is used help catch the CO detection pulses.  The 100k is a bleeder resistor to reset the system, while the 10ohm is to simply limit the current rush to charge the capacitor.</p>
+<img alt="_images/smokeCOdiagrma2.png" class="align-center" src="_images/smokeCOdiagrma2.png" />
 <img alt="_images/COsmokeLEDtesptp.png" class="align-center" src="_images/COsmokeLEDtesptp.png" />
+<p><em>Note this doesn’t show the Capacitor/Resistor as required in the diagram</em></p>
 <img alt="_images/cosmokepchwire.png" class="align-center" src="_images/cosmokepchwire.png" />
 <p>Then just like the next section, I just cut a notch in the vents to feed the wires out to the trigBoard.  Also will be easy to clean up those connections to the P-CH FETS - just showing things loose to better understand how things are hooked up.</p>
 </div>
@@ -232,7 +238,7 @@ VP2106 MOSFET From Digikey <a class="reference external" href="https://www.digik
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="temperatureSensor.html" class="btn btn-neutral float-right" title="Temperature Logging to Grafana" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="solar.html" class="btn btn-neutral float-right" title="Solar Options" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="SendEmail.html" class="btn btn-neutral float-left" title="Send an Email - IFTTT" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
