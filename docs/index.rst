@@ -42,6 +42,8 @@ Mentions
   * `hackster.io <https://www.hackster.io/news/kd-circuits-new-trigboard-v8-marks-a-major-overhaul-of-the-flexible-iot-notification-board-4ca4d9a147ea>`_ KD Circuits' New trigBoard v8 Marks a Major Overhaul of the Flexible IoT Notification Board
 
   * `EEVblog #1375​ - Mailbag <https://youtu.be/QKdLP1cP3Dg?t=2432>`_ 
+
+  * `heise online (German) <https://www.heise.de/developer/artikel/Less-Power-more-Fun-das-ESP32-trigBoard-v8-von-Kevin-Darrah-6005505.html>`_
   
 Contents
 ========
