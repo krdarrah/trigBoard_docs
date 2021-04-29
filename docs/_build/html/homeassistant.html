@@ -1,0 +1,415 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html4" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Home Assistant &mdash; trigBoard
+Version 8 0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Log to Google Sheet - IFTTT" href="LogGoogleDocs.html" />
+    <link rel="prev" title="Garage Door Monitor" href="garage.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html">
+          
+
+          
+            
+            <img src="_static/logo.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">trigBoard v8 Docs</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="wheretobuy.html">Where To Buy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="configurator.html">Configurator</a></li>
+<li class="toctree-l1"><a class="reference internal" href="supportedServices.html">Supported Services</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Hardware.html">Hardware</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Firmware.html">Firmware/Programming</a></li>
+<li class="toctree-l1"><a class="reference internal" href="testing.html">Testing/Factory Programming</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contact.html">Contact</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Projects</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="ePaperCoronaDisplay.html">E-Paper Corona Display</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cellularProject.html">Cellular/Battery Backed System UDP/TCP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="doorbell.html">Door Bell Monitoring</a></li>
+<li class="toctree-l1"><a class="reference internal" href="garage.html">Garage Door Monitor</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Home Assistant</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#home-assistant-setup"><strong>Home Assistant Setup</strong></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#mqtt-mosquitto-broker-add-on"><strong>MQTT Mosquitto Broker Add-On</strong></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#trigboard-setup"><strong>trigBoard Setup</strong></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#mqtt-settings"><strong>MQTT Settings</strong></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#home-assistant-yaml"><strong>Home Assistant Yaml</strong></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#testing"><strong>TESTING</strong></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#parsing"><strong>PARSING</strong></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#custom-sensors"><strong>Custom Sensors</strong></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="LogGoogleDocs.html">Log to Google Sheet - IFTTT</a></li>
+<li class="toctree-l1"><a class="reference internal" href="motionSensor.html">Motion Sensor - PIR</a></li>
+<li class="toctree-l1"><a class="reference internal" href="multipleInputs.html">Multiple Inputs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="SendEmail.html">Send an Email - IFTTT</a></li>
+<li class="toctree-l1"><a class="reference internal" href="SmokeCODetector.html">Smoke/CO Detector</a></li>
+<li class="toctree-l1"><a class="reference internal" href="solar.html">Solar Options</a></li>
+<li class="toctree-l1"><a class="reference internal" href="temperatureSensor.html">Temperature Logging to Grafana</a></li>
+<li class="toctree-l1"><a class="reference internal" href="waterleakDetector.html">Water Leak Detector</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">trigBoard
+Version 8</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Home Assistant</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/homeassistant.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="home-assistant">
+<span id="homeassistant"></span><h1>Home Assistant<a class="headerlink" href="#home-assistant" title="Permalink to this headline">¶</a></h1>
+<img alt="_images/homeassistlogo.png" class="align-center" src="_images/homeassistlogo.png" />
+<img alt="_images/demoDash.png" class="align-center" src="_images/demoDash.png" />
+<p><strong>trigBoard can send to Home Assistant out of the box!</strong>  If you’re already familiar with Home Assistant, then you already know how powerful this is and will be very happy to find that you can integrate the trigBoard in just a few steps.  This takes the trigBoard to a new level, because now you can tie this in to alerts, automations, monitoring, etc… It’s also very easy to add sensors to the trigBoard and provide that additional data to your system.</p>
+<div class="section" id="home-assistant-setup">
+<h2><strong>Home Assistant Setup</strong><a class="headerlink" href="#home-assistant-setup" title="Permalink to this headline">¶</a></h2>
+<p>First step is to make sure you have Home Assistant Installed (if you don’t already) - head over here and follow these steps: <a class="reference external" href="https://www.home-assistant.io/installation/">Home Assistant Installation</a></p>
+<p><em>Note - I am running Home Assistant on a Raspberry Pi 3 64bit</em></p>
+<p>Make sure you’re in advanced mode:</p>
+<img alt="_images/advancedModehass.png" class="align-center" src="_images/advancedModehass.png" />
+<p>Take note of the IP address:</p>
+<img alt="_images/hassIPaddress.png" class="align-center" src="_images/hassIPaddress.png" />
+</div>
+<div class="section" id="mqtt-mosquitto-broker-add-on">
+<h2><strong>MQTT Mosquitto Broker Add-On</strong><a class="headerlink" href="#mqtt-mosquitto-broker-add-on" title="Permalink to this headline">¶</a></h2>
+<p>Supervisor&gt;&gt;Add-on Store</p>
+<img alt="_images/addonmosquite.png" class="align-center" src="_images/addonmosquite.png" />
+<p>Search for “mqtt”</p>
+<img alt="_images/mqttsearch.png" class="align-center" src="_images/mqttsearch.png" />
+<p>Go and install, then start:</p>
+<img alt="_images/mqttInsatll.png" class="align-center" src="_images/mqttInsatll.png" />
+<img alt="_images/mqttstart.png" class="align-center" src="_images/mqttstart.png" />
+<p>Then just for reference, here is my configuration tab and note the MQTT port we’re going to use:</p>
+<img alt="_images/mqttconfigtab.png" class="align-center" src="_images/mqttconfigtab.png" />
+<p>Now go to Configuration&gt;&gt;Integrations&gt;&gt;Click Configure in the MQTT block&gt;&gt;Click Submit in the popup window</p>
+<img alt="_images/MqttSubmitconfig.png" class="align-center" src="_images/MqttSubmitconfig.png" />
+</div>
+<div class="section" id="trigboard-setup">
+<h2><strong>trigBoard Setup</strong><a class="headerlink" href="#trigboard-setup" title="Permalink to this headline">¶</a></h2>
+<p>Launch the configurator as you normally would when setting up the trigBoard - hold wake button until Blue LED is flashing.  Can go here for reference on all parameters: <a class="reference internal" href="configurator.html#configurator"><span class="std std-ref">Configurator Tool</span></a></p>
+<p>Setup the WiFi network settings first and make sure you get a connection, then setup the messages:</p>
+<p>The only requirement here for all of your messages is that they contain <strong>no spaces or commas</strong>, because we’re going to use these characters for parsing on the Home Assistant side.  Also, I recommend setting the battery threshold low, so that it never sends the low battery alert.  Reason is because the low battery alert message would be a second packet for you to parse out… when really, you don’t need this alert since you will already have the ability to use the battery voltage to generate alerts within the Home Assistant system.  If you have a trigBoard that rarely wakes and reports its status, but still want battery monitoring, you could set the timer to check if the contact is still open/closed and just set those messages to the same as your normal open and close messages like this:</p>
+<img alt="_images/trigmessagessetuphass.png" class="align-center" src="_images/trigmessagessetuphass.png" />
+<p>or could use STILL_OPEN/CLOSED and just setup automations to detect these - that works too!</p>
+<img alt="_images/stillopneclosedhass.png" class="align-center" src="_images/stillopneclosedhass.png" />
+<div class="section" id="mqtt-settings">
+<h3><strong>MQTT Settings</strong><a class="headerlink" href="#mqtt-settings" title="Permalink to this headline">¶</a></h3>
+<div class="line-block">
+<div class="line">1- Enable MQTT</div>
+<div class="line">2- Enable Security</div>
+<div class="line">3- Enter in same credentials you use to login to Home Assistant</div>
+<div class="line">4- Default port is fine at 1883</div>
+<div class="line">5- Server is the IP Address of your Home Assistant Server - see above on where you can find this</div>
+<div class="line">6- <strong>Important</strong> The topic is the identifier for this trigBoard and will be unique for this board.  Choose something descriptive and take note of what you entered.</div>
+</div>
+<img alt="_images/mqttsettingshass.png" class="align-center" src="_images/mqttsettingshass.png" />
+</div>
+</div>
+<div class="section" id="home-assistant-yaml">
+<h2><strong>Home Assistant Yaml</strong><a class="headerlink" href="#home-assistant-yaml" title="Permalink to this headline">¶</a></h2>
+<p>We’ll be using the File Editor to make changes to the configuration.yaml file, so go an install/start that just as shown above for Mosquitto</p>
+<img alt="_images/fileEditor.png" class="align-center" src="_images/fileEditor.png" />
+<p>I like to keep this in the sidebar for quick access:</p>
+<img alt="_images/showinsidebar.png" class="align-center" src="_images/showinsidebar.png" />
+<p>Launch the file editor and make you are editing the configuration.yaml file:</p>
+<img alt="_images/yamleditor.png" class="align-center" src="_images/yamleditor.png" />
+<p>Here is where we’re going to add the trigBoards (more advanced users may keep this config elsewhere)</p>
+<p>Let’s start by adding a sensor subscribed to that same topic we had set in the trigBoard Configurator:</p>
+<div class="highlight-YAML notranslate"><div class="highlight"><pre><span></span><span class="nt">sensor</span><span class="p">:</span>
+  <span class="p p-Indicator">-</span> <span class="nt">platform</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">mqtt</span>
+    <span class="nt">state_topic</span><span class="p">:</span> <span class="s">&quot;frontdoor&quot;</span>
+    <span class="nt">name</span><span class="p">:</span> <span class="s">&quot;Front</span><span class="nv"> </span><span class="s">Door&quot;</span>
+    <span class="nt">icon</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">mdi:door</span>
+</pre></div>
+</div>
+<p>Which looks like this when you paste it in:</p>
+<img alt="_images/pastedttedtYaml.png" class="align-center" src="_images/pastedttedtYaml.png" />
+<p>Save that:</p>
+<img alt="_images/saveyoaml.png" class="align-center" src="_images/saveyoaml.png" />
+<p>Go to Configuration&gt;&gt;Server Controls&gt;&gt;Check Configuration</p>
+<img alt="_images/checkconfiguration.png" class="align-center" src="_images/checkconfiguration.png" />
+<p>If all good, you can scroll down a bit and click “MANUALLY CONFIGURED MQTT ENTRIES”</p>
+<img alt="_images/refreshmqtthass.png" class="align-center" src="_images/refreshmqtthass.png" />
+<div class="section" id="testing">
+<h3><strong>TESTING</strong><a class="headerlink" href="#testing" title="Permalink to this headline">¶</a></h3>
+<p>Let’s make sure you see the trigBoard - Developer Tools&gt;&gt;**STATES** and look for your newly created entity:</p>
+<img alt="_images/sensorfoundSatethass.png" class="align-center" src="_images/sensorfoundSatethass.png" />
+<p>If you look at its state while opening/closing the contact, you should see the normal trigBoard message.</p>
+</div>
+<div class="section" id="parsing">
+<h3><strong>PARSING</strong><a class="headerlink" href="#parsing" title="Permalink to this headline">¶</a></h3>
+<p>Within the Developer Tools, go to the <strong>TEMPLATE</strong> tab:</p>
+<p>Here we can experiment with parsing, first just to look at the raw message:</p>
+<img alt="_images/rawmessageTaml.png" class="align-center" src="_images/rawmessageTaml.png" />
+<p>If we split by the space character:</p>
+<img alt="_images/splitSpcacetemp.png" class="align-center" src="_images/splitSpcacetemp.png" />
+<p>Now we can select the part of the message we want:</p>
+<img alt="_images/firstpartbeforecommahass.png" class="align-center" src="_images/firstpartbeforecommahass.png" />
+<p>And we can split again to get rid of that comma:</p>
+<img alt="_images/hassridofcomma.png" class="align-center" src="_images/hassridofcomma.png" />
+<p>And we can the same thing to get the voltage and strip out the unit:</p>
+<img alt="_images/volatgeParsingTemp.png" class="align-center" src="_images/volatgeParsingTemp.png" />
+<p>With this knowledge, we can use a <strong>value_template</strong> in the YAML file to automatically pull this information out of the trigBoard message.  We need to create two sensors for both status and voltage.  Note that you can add a custom <a class="reference external" href="https://materialdesignicons.com/">MDI Icon</a> and give a unit:</p>
+<div class="highlight-YAML notranslate"><div class="highlight"><pre><span></span><span class="nt">sensor</span><span class="p">:</span>
+  <span class="p p-Indicator">-</span> <span class="nt">platform</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">mqtt</span>
+    <span class="nt">state_topic</span><span class="p">:</span> <span class="s">&quot;frontdoor&quot;</span>
+    <span class="nt">name</span><span class="p">:</span> <span class="s">&quot;Front</span><span class="nv"> </span><span class="s">Door&quot;</span>
+    <span class="nt">value_template</span><span class="p">:</span> <span class="s">&quot;{{</span><span class="nv"> </span><span class="s">value.split(&#39;</span><span class="nv"> </span><span class="s">&#39;)[1].split(&#39;,&#39;)[0]</span><span class="nv"> </span><span class="s">}}&quot;</span>
+    <span class="nt">icon</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">mdi:door</span>
+  <span class="p p-Indicator">-</span> <span class="nt">platform</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">mqtt</span>
+    <span class="nt">state_topic</span><span class="p">:</span> <span class="s">&quot;frontdoor&quot;</span>
+    <span class="nt">name</span><span class="p">:</span> <span class="s">&quot;Front</span><span class="nv"> </span><span class="s">Door</span><span class="nv"> </span><span class="s">Battery&quot;</span>
+    <span class="nt">value_template</span><span class="p">:</span> <span class="s">&quot;{{</span><span class="nv"> </span><span class="s">value.split(&#39;,&#39;)[1].split(&#39;V&#39;)[0]</span><span class="nv"> </span><span class="s">}}&quot;</span>
+    <span class="nt">icon</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">mdi:battery</span>
+    <span class="nt">unit_of_measurement</span><span class="p">:</span> <span class="s">&quot;V&quot;</span>
+</pre></div>
+</div>
+<p>Which looks like this in the file:</p>
+<img alt="_images/finalwithtaemphass.png" class="align-center" src="_images/finalwithtaemphass.png" />
+<p>Don’t forget to save and reload MQTT entries!</p>
+<p>Now you’re all set - head over to <strong>Overview</strong> and click the 3 dots in the upper right to edit your dashboard.  Go ahead an take control of the Lovelace UI, then create an <strong>Entity</strong> Card and you should be able to add in the trigBoard:</p>
+<img alt="_images/cardeditorUI.png" class="align-center" src="_images/cardeditorUI.png" />
+<p>And now you have a trigBoard in your dashboard!</p>
+<img alt="_images/cardFinishedHAss.png" class="align-center" src="_images/cardFinishedHAss.png" />
+<p>With these entities, you can go nuts with this!  Create conditional cards to show custom text when these states change, automations to run actions based on events (even have your Alexa/Google speak!), or really anything you want from here!</p>
+</div>
+</div>
+<div class="section" id="custom-sensors">
+<h2><strong>Custom Sensors</strong><a class="headerlink" href="#custom-sensors" title="Permalink to this headline">¶</a></h2>
+<p>Want to add a temperature sensor to the trigBoard? Maybe report status of something along with the message?  This is very <strong>EASY</strong></p>
+<p>First step is to make sure you can compile/upload the <a class="reference internal" href="Firmware.html#firmware"><span class="std std-ref">Base Firmware</span></a></p>
+<p>The key is to just concat the data onto the existing message - here is a snippet from a sensor I have that samples a GPIO pin:</p>
+<img alt="_images/solarBoardHASSaddon.png" class="align-center" src="_images/solarBoardHASSaddon.png" />
+<p>You see how it’s just a comma separated value added to the end of the push message?  That’s all you need, since this is super easy to then pull out from the value_template, like in this case I only needed battery voltage and this new value for state:</p>
+<div class="highlight-YAML notranslate"><div class="highlight"><pre><span></span><span class="nt">sensor</span><span class="p">:</span>
+    <span class="nt">state_topic</span><span class="p">:</span> <span class="s">&quot;trigSolarTester&quot;</span>
+    <span class="nt">name</span><span class="p">:</span> <span class="s">&quot;trigSolar</span><span class="nv"> </span><span class="s">Voltage&quot;</span>
+    <span class="nt">icon</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">mdi:car-battery</span>
+    <span class="nt">unit_of_measurement</span><span class="p">:</span> <span class="s">&quot;V&quot;</span>
+    <span class="nt">value_template</span><span class="p">:</span> <span class="s">&quot;{{</span><span class="nv"> </span><span class="s">value.split(&#39;,&#39;)[1].split(&#39;V&#39;)[0]</span><span class="nv"> </span><span class="s">}}&quot;</span>
+
+<span class=" -Error">  </span><span class="p p-Indicator">-</span> <span class="nt">platform</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">mqtt</span>
+    <span class="nt">state_topic</span><span class="p">:</span> <span class="s">&quot;trigSolarTester&quot;</span>
+    <span class="nt">name</span><span class="p">:</span> <span class="s">&quot;trigSolar</span><span class="nv"> </span><span class="s">State&quot;</span>
+    <span class="nt">icon</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">mdi:solar-power</span>
+    <span class="nt">unit_of_measurement</span><span class="p">:</span> <span class="s">&quot;V&quot;</span>
+    <span class="nt">value_template</span><span class="p">:</span> <span class="s">&quot;{{</span><span class="nv"> </span><span class="s">value.split(&#39;,&#39;)[2]</span><span class="nv"> </span><span class="s">}}&quot;</span>
+</pre></div>
+</div>
+<p>Or here’s another example adding a temperature value:</p>
+<img alt="_images/mcptempsensorexample.png" class="align-center" src="_images/mcptempsensorexample.png" />
+<p>And same as before, this sensor is on a timer and wakes every minute to send data - I only care about voltage and this new temperature value:</p>
+<div class="highlight-YAML notranslate"><div class="highlight"><pre><span></span><span class="nt">sensor</span><span class="p">:</span>
+  <span class="p p-Indicator">-</span> <span class="nt">platform</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">mqtt</span>
+    <span class="nt">state_topic</span><span class="p">:</span> <span class="s">&quot;MCP9808_OUTSIDE&quot;</span>
+    <span class="nt">name</span><span class="p">:</span> <span class="s">&quot;Back</span><span class="nv"> </span><span class="s">Porch</span><span class="nv"> </span><span class="s">Temperature&quot;</span>
+    <span class="nt">icon</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">mdi:temperature-fahrenheit</span>
+    <span class="nt">unit_of_measurement</span><span class="p">:</span> <span class="s">&quot;F&quot;</span>
+    <span class="nt">value_template</span><span class="p">:</span> <span class="s">&quot;{{</span><span class="nv"> </span><span class="s">value.split(&#39;,&#39;)[2]</span><span class="nv"> </span><span class="s">}}&quot;</span>
+
+  <span class="p p-Indicator">-</span> <span class="nt">platform</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">mqtt</span>
+    <span class="nt">state_topic</span><span class="p">:</span> <span class="s">&quot;MCP9808_OUTSIDE&quot;</span>
+    <span class="nt">name</span><span class="p">:</span> <span class="s">&quot;Back</span><span class="nv"> </span><span class="s">Porch</span><span class="nv"> </span><span class="s">TempSensor</span><span class="nv"> </span><span class="s">Voltage&quot;</span>
+    <span class="nt">icon</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">mdi:car-battery</span>
+    <span class="nt">unit_of_measurement</span><span class="p">:</span> <span class="s">&quot;V&quot;</span>
+    <span class="nt">value_template</span><span class="p">:</span> <span class="s">&quot;{{</span><span class="nv"> </span><span class="s">value.split(&#39;,&#39;)[1].split(&#39;V&#39;)[0]</span><span class="nv"> </span><span class="s">}}&quot;</span>
+</pre></div>
+</div>
+<p>And here’s what I’m doing with this data:</p>
+<img alt="_images/dashboardwithtempsaj.png" class="align-center" src="_images/dashboardwithtempsaj.png" />
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="LogGoogleDocs.html" class="btn btn-neutral float-right" title="Log to Google Sheet - IFTTT" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="garage.html" class="btn btn-neutral float-left" title="Garage Door Monitor" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2020, Kevin Darrah
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
