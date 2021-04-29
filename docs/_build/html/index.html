@@ -102,6 +102,7 @@ Version 8 0 documentation</title>
 <li class="toctree-l1"><a class="reference internal" href="cellularProject.html">Cellular/Battery Backed System UDP/TCP</a></li>
 <li class="toctree-l1"><a class="reference internal" href="doorbell.html">Door Bell Monitoring</a></li>
 <li class="toctree-l1"><a class="reference internal" href="garage.html">Garage Door Monitor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="homeassistant.html">Home Assistant</a></li>
 <li class="toctree-l1"><a class="reference internal" href="LogGoogleDocs.html">Log to Google Sheet - IFTTT</a></li>
 <li class="toctree-l1"><a class="reference internal" href="motionSensor.html">Motion Sensor - PIR</a></li>
 <li class="toctree-l1"><a class="reference internal" href="multipleInputs.html">Multiple Inputs</a></li>
@@ -189,7 +190,7 @@ Version 8</a>
 <li>The board utilizes an actual <strong>RTC</strong> (Real Time Clock). This is a high quality RTC, so accurate wake times can be configured. The timer wakes the board up at the configured time - for example once and hour, then checks the battery voltage and if low, will send out a push notification. The timer can also be used to check the current status of the contact and send out a notification, so in the garage door example, the board can be configured to not only send out notifications when the door opens/closes, but also when the garage is left open for some period of time after the door was opened.</li>
 <li>Wake button on board can also be used to send out a push notification.</li>
 <li>Unused pins from ESP32 broken out for future expansion and in-line to fit breadboards - developer friendly.  See <a class="reference internal" href="Hardware.html#pinout"><span class="std std-ref">Pinout page</span></a> for more information</li>
-<li>Base Firmware supports many Push Notification service options like <a class="reference internal" href="supportedServices.html#pushsafer"><span class="std std-ref">Pushsafer</span></a>, <a class="reference internal" href="supportedServices.html#pushover"><span class="std std-ref">Pushover</span></a>, and <a class="reference internal" href="supportedServices.html#ifttt"><span class="std std-ref">IFTTT</span></a>. And even develop a custom solution with <a class="reference internal" href="supportedServices.html#mqtt"><span class="std std-ref">MQTT</span></a>, <a class="reference internal" href="supportedServices.html#udp"><span class="std std-ref">UDP</span></a> or <a class="reference internal" href="supportedServices.html#tcp"><span class="std std-ref">TCP</span></a>. Any of these can be enabled, or even multiple. For example, the notifications can go out through Pushover, then a secondary backup notification can go through MQTT. Or even a notification though Pushsafer, then turn the lights on in the house with IFTTT. The possibilities are endless with this.</li>
+<li>Base Firmware supports many Push Notification service options like <a class="reference internal" href="supportedServices.html#pushsafer"><span class="std std-ref">Pushsafer</span></a>, <a class="reference internal" href="supportedServices.html#pushover"><span class="std std-ref">Pushover</span></a>, and <a class="reference internal" href="supportedServices.html#ifttt"><span class="std std-ref">IFTTT</span></a>. And even develop a custom solution with <a class="reference internal" href="supportedServices.html#mqtt"><span class="std std-ref">MQTT</span></a> <a class="reference internal" href="homeassistant.html#homeassistant"><span class="std std-ref">Home Assistant</span></a>, <a class="reference internal" href="supportedServices.html#udp"><span class="std std-ref">UDP</span></a> or <a class="reference internal" href="supportedServices.html#tcp"><span class="std std-ref">TCP</span></a>. Any of these can be enabled, or even multiple. For example, the notifications can go out through Pushover, then a secondary backup notification can go through MQTT. Or even a notification though Pushsafer, then turn the lights on in the house with IFTTT. The possibilities are endless with this.</li>
 <li><a class="reference internal" href="configurator.html#configurator"><span class="std std-ref">Configurator Tool</span></a> gives full control over the board parameters and settings - in a nice clean easy to use GUI through Google Chrome and a Bluetooth connection to the ESP32.</li>
 <li>Made in the USA</li>
 <li>ESP32 Module is FCC Certified and trigBoard has been scanned independently</li>
@@ -200,6 +201,7 @@ Version 8</a>
 <div><ul class="simple">
 <li><a class="reference external" href="https://www.hackster.io/news/kd-circuits-new-trigboard-v8-marks-a-major-overhaul-of-the-flexible-iot-notification-board-4ca4d9a147ea">hackster.io</a> KD Circuits’ New trigBoard v8 Marks a Major Overhaul of the Flexible IoT Notification Board</li>
 <li><a class="reference external" href="https://youtu.be/QKdLP1cP3Dg?t=2432">EEVblog #1375​ - Mailbag</a></li>
+<li><a class="reference external" href="https://www.heise.de/developer/artikel/Less-Power-more-Fun-das-ESP32-trigBoard-v8-von-Kevin-Darrah-6005505.html">heise online (German)</a></li>
 </ul>
 </div></blockquote>
 </div>
@@ -265,6 +267,14 @@ Version 8</a>
 <li class="toctree-l2"><a class="reference internal" href="garage.html#parts"><strong>Parts</strong></a></li>
 <li class="toctree-l2"><a class="reference internal" href="garage.html#install"><strong>Install</strong></a></li>
 <li class="toctree-l2"><a class="reference internal" href="garage.html#programming"><strong>Programming</strong></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="homeassistant.html">Home Assistant</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="homeassistant.html#home-assistant-setup"><strong>Home Assistant Setup</strong></a></li>
+<li class="toctree-l2"><a class="reference internal" href="homeassistant.html#mqtt-mosquitto-broker-add-on"><strong>MQTT Mosquitto Broker Add-On</strong></a></li>
+<li class="toctree-l2"><a class="reference internal" href="homeassistant.html#trigboard-setup"><strong>trigBoard Setup</strong></a></li>
+<li class="toctree-l2"><a class="reference internal" href="homeassistant.html#home-assistant-yaml"><strong>Home Assistant Yaml</strong></a></li>
+<li class="toctree-l2"><a class="reference internal" href="homeassistant.html#custom-sensors"><strong>Custom Sensors</strong></a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="LogGoogleDocs.html">Log to Google Sheet - IFTTT</a></li>

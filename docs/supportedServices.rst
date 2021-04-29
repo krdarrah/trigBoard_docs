@@ -194,4 +194,4 @@ The message sent out is formatted like this: "<trigBoard Name> <Event>, <battery
 MQTT
 ---------
 
-Similar to UDP, but if you're using the raspberry pi or something to run your home automation system, and it's all based on MQTT messaging, then this will work great for that. This was added in at the request of support for Home Assistant (not tested though)
+Similar to UDP, but if you're using the raspberry pi or something to run your home automation system, and it's all based on MQTT messaging, then this will work great for that. This also works great with :ref:`Home Assistant <HomeAssistant>`

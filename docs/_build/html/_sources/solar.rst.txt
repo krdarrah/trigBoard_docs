@@ -59,6 +59,10 @@ Then all buttoned up:
 .. image:: images/solarboardsallbuttonedUp.png
 	:align: center
 
+And with the :ref:`temperature logger project <Temperature>` you can see the daily charging/discharging of the battery - pretty cool!! 
+
+.. image:: images/batterychargedischargedaily.png
+	:align: center
 
 Indoor Solar
 --------------
