@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Temperature Logging to Grafana &mdash; trigBoard
+  <title>Temperature Logging Corlysis + Home Asst &mdash; trigBoard
 Version 8 0 documentation</title>
   
 
@@ -103,16 +103,21 @@ Version 8 0 documentation</title>
 <li class="toctree-l1"><a class="reference internal" href="cellularProject.html">Cellular/Battery Backed System UDP/TCP</a></li>
 <li class="toctree-l1"><a class="reference internal" href="doorbell.html">Door Bell Monitoring</a></li>
 <li class="toctree-l1"><a class="reference internal" href="garage.html">Garage Door Monitor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="homeassistant.html">Home Assistant</a></li>
 <li class="toctree-l1"><a class="reference internal" href="LogGoogleDocs.html">Log to Google Sheet - IFTTT</a></li>
 <li class="toctree-l1"><a class="reference internal" href="motionSensor.html">Motion Sensor - PIR</a></li>
 <li class="toctree-l1"><a class="reference internal" href="multipleInputs.html">Multiple Inputs</a></li>
 <li class="toctree-l1"><a class="reference internal" href="SendEmail.html">Send an Email - IFTTT</a></li>
 <li class="toctree-l1"><a class="reference internal" href="SmokeCODetector.html">Smoke/CO Detector</a></li>
 <li class="toctree-l1"><a class="reference internal" href="solar.html">Solar Options</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Temperature Logging to Grafana</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#id1"><strong>Corlysis</strong></a></li>
-<li class="toctree-l2"><a class="reference internal" href="#setup"><strong>Setup</strong></a></li>
-<li class="toctree-l2"><a class="reference internal" href="#grafana"><strong>Grafana</strong></a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Temperature Logging Corlysis + Home Asst</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#wiring"><strong>Wiring</strong></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#corlysis"><strong>Corlysis</strong></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#setup"><strong>Setup</strong></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#grafana"><strong>Grafana</strong></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#home-assistant"><strong>Home Assistant</strong></a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="waterleakDetector.html">Water Leak Detector</a></li>
@@ -163,7 +168,7 @@ Version 8</a>
     
       <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
         
-      <li>Temperature Logging to Grafana</li>
+      <li>Temperature Logging Corlysis + Home Asst</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -182,26 +187,28 @@ Version 8</a>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="temperature-logging-to-grafana">
-<span id="temperature"></span><h1>Temperature Logging to Grafana<a class="headerlink" href="#temperature-logging-to-grafana" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="temperature-logging-corlysis-home-asst">
+<span id="temperature"></span><h1>Temperature Logging Corlysis + Home Asst<a class="headerlink" href="#temperature-logging-corlysis-home-asst" title="Permalink to this headline">¶</a></h1>
 <img alt="_images/grafanatemp.png" class="align-center" src="_images/grafanatemp.png" />
-<p>This project shows off what you can do with the low power real time clock on the trigBoard - simply set the interval wake time and the trigBoard will automatically wake and send the temperature reading to the cloud.  In this example, <a class="reference external" href="https://corlysis.com">Corlysis</a> is used for as the cloud provider.  This could just as well be hosted on a local setup using a raspberry pi, but with everything hosted in the cloud, it is very easy to view the data from anywhere and share with others.</p>
+<div class="section" id="wiring">
+<h2><strong>Wiring</strong><a class="headerlink" href="#wiring" title="Permalink to this headline">¶</a></h2>
 <p>The wiring is simple - just need an <a class="reference external" href="https://www.adafruit.com/product/1782">MCP9808 Breakout Board from Adafruit</a> which is a very accurate, fast, and reliable temperature sensor.</p>
 <img alt="_images/MCP9808wiringwithtrigboard.png" class="align-center" src="_images/MCP9808wiringwithtrigboard.png" />
 <img alt="_images/MCP9808Installed.png" class="align-center" src="_images/MCP9808Installed.png" />
+</div>
+<div class="section" id="corlysis">
+<h2><strong>Corlysis</strong><a class="headerlink" href="#corlysis" title="Permalink to this headline">¶</a></h2>
+<p>This project shows off what you can do with the low power real time clock on the trigBoard - simply set the interval wake time and the trigBoard will automatically wake and send the temperature reading to the cloud.  In this example, <a class="reference external" href="https://corlysis.com">Corlysis</a> is used for as the cloud provider.  This could just as well be hosted on a local setup using a raspberry pi, but with everything hosted in the cloud, it is very easy to view the data from anywhere and share with others.</p>
 <p>If you have a trigBoard running the stock base firmware, you could simply OTA this code over, or compile the code yourself, but first make sure you can compile the base firmware.  See the firmware section for more information.</p>
 <p>Just note the only new library needed is the Adafruit MCP9808 lib - you can add this from Arduino Sketch&gt;&gt;Include Library&gt;&gt;ManageLibraries menu</p>
-<p><a class="reference external" href="https://github.com/krdarrah/trigBoard_MCP9808">MCP9808 Code is Here</a></p>
-<div class="section" id="id1">
-<h2><strong>Corlysis</strong><a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://github.com/krdarrah/trigBoard_MCP9808">trigBoard MCP9808 Corlysis Code is Here</a></p>
 <p>This code was designed to work with <a class="reference external" href="https://corlysis.com">Corlysis</a>, so first make sure you go over there and setup an account, then create a database:</p>
 <img alt="_images/corlysidata.png" class="align-center" src="_images/corlysidata.png" />
 <p>Name this whatever you want, but we will need it later when setting up the trigBoard.  Next, click the API Keys menu:</p>
 <img alt="_images/corlysisApi.png" class="align-center" src="_images/corlysisApi.png" />
 <p>Just copy your Key there - we will need this later as well for setting up the trigBoard.</p>
-</div>
 <div class="section" id="setup">
-<h2><strong>Setup</strong><a class="headerlink" href="#setup" title="Permalink to this headline">¶</a></h2>
+<h3><strong>Setup</strong><a class="headerlink" href="#setup" title="Permalink to this headline">¶</a></h3>
 <p>What’s really cool about this code is that it re-uses other fields in the trigBoard configurator to set this up to work with Corlysis, so no need to hard code things. Before setting up, you need to decide a few things first:</p>
 <ul class="simple">
 <li>The Database Name is what you already created in Corlysis</li>
@@ -242,7 +249,7 @@ Version 8</a>
 <img alt="_images/corlysisLMT01.png" class="align-center" src="_images/corlysisLMT01.png" />
 </div>
 <div class="section" id="grafana">
-<h2><strong>Grafana</strong><a class="headerlink" href="#grafana" title="Permalink to this headline">¶</a></h2>
+<h3><strong>Grafana</strong><a class="headerlink" href="#grafana" title="Permalink to this headline">¶</a></h3>
 <p>Ok, so here’s where things get cool - Corlysis is hosting both the influxDB where the data is stored and also Grafana where the data can be plotted.  One you have a trigBoard sending data, you can click on he grafana menu. Then create a new dashboard in there, new panel as well, and select graph:</p>
 <img alt="_images/grafdash.png" class="align-center" src="_images/grafdash.png" />
 <img alt="_images/grafpanel.png" class="align-center" src="_images/grafpanel.png" />
@@ -265,6 +272,49 @@ Version 8</a>
 <img alt="_images/grafsingleopions.png" class="align-center" src="_images/grafsingleopions.png" />
 <p>If this only updates every once and a while, I like to make sure it at least spans out a year looking for the latest:</p>
 <img alt="_images/singleTimeRange.png" class="align-center" src="_images/singleTimeRange.png" />
+</div>
+</div>
+<div class="section" id="home-assistant">
+<h2><strong>Home Assistant</strong><a class="headerlink" href="#home-assistant" title="Permalink to this headline">¶</a></h2>
+<p>This is very cool and useful and how I am currently setup.  We’ll just tack on the temperature data to the normal trigBoard push message, which can be easily parsed in Home Assistant using a value_template.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Be sure to completely review the <a class="reference internal" href="homeassistant.html#homeassistant"><span class="std std-ref">Home Assistant Guide</span></a> first, because this relies on everything in there - MQTT Mosquitto broker, InfluxDB, and Grafana to be installed.</p>
+</div>
+<p><a class="reference external" href="https://github.com/krdarrah/trigBoardv8_MCP0808_HASS">trigBoard MCP9808 Home Assistant Code is Here</a></p>
+<p>All this code does is read from the MCP9808 sensor and concat it to the trigBoard push message with a comma.  Then we can easily separate this out in Home Assistant.</p>
+<p>As shown in the Corlysis example, one of the fields from the Configurator is used to set the units.  We sacrifice the button message for this:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="57%" />
+<col width="43%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>Message when Wake Button Pressed</td>
+<td>C or F</td>
+</tr>
+</tbody>
+</table>
+<p>Then the rest of the setup follows the same as shown in the <a class="reference internal" href="homeassistant.html#homeassistant"><span class="std std-ref">Home Assistant Guide</span></a></p>
+<p>But now we have a new value to parse out, so in your configuration.yaml file, you will add something like this:</p>
+<div class="highlight-YAML notranslate"><div class="highlight"><pre><span></span><span class="nt">sensor</span><span class="p">:</span>
+  <span class="p p-Indicator">-</span> <span class="nt">platform</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">mqtt</span>
+    <span class="nt">state_topic</span><span class="p">:</span> <span class="s">&quot;MCP9808_OUTSIDE&quot;</span>
+    <span class="nt">name</span><span class="p">:</span> <span class="s">&quot;Back</span><span class="nv"> </span><span class="s">Porch</span><span class="nv"> </span><span class="s">Temperature&quot;</span>
+    <span class="nt">icon</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">mdi:temperature-fahrenheit</span>
+    <span class="nt">unit_of_measurement</span><span class="p">:</span> <span class="s">&quot;F&quot;</span>
+    <span class="nt">value_template</span><span class="p">:</span> <span class="s">&quot;{{</span><span class="nv"> </span><span class="s">value.split(&#39;,&#39;)[2]</span><span class="nv"> </span><span class="s">}}&quot;</span>
+
+  <span class="p p-Indicator">-</span> <span class="nt">platform</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">mqtt</span>
+    <span class="nt">state_topic</span><span class="p">:</span> <span class="s">&quot;MCP9808_OUTSIDE&quot;</span>
+    <span class="nt">name</span><span class="p">:</span> <span class="s">&quot;Back</span><span class="nv"> </span><span class="s">Porch</span><span class="nv"> </span><span class="s">TempSensor</span><span class="nv"> </span><span class="s">Voltage&quot;</span>
+    <span class="nt">icon</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">mdi:car-battery</span>
+    <span class="nt">unit_of_measurement</span><span class="p">:</span> <span class="s">&quot;V&quot;</span>
+    <span class="nt">value_template</span><span class="p">:</span> <span class="s">&quot;{{</span><span class="nv"> </span><span class="s">value.split(&#39;,&#39;)[1].split(&#39;V&#39;)[0]</span><span class="nv"> </span><span class="s">}}&quot;</span>
+</pre></div>
+</div>
+<p>You see here that I set my MQTT topic to “MCP9808_OUTSIDE” and I’m pulling out both voltage and temperature as separate entities. Then you can build cool dashboards like this:</p>
+<img alt="_images/dashboardshowinggrafana.png" class="align-center" src="_images/dashboardshowinggrafana.png" />
 </div>
 </div>
 

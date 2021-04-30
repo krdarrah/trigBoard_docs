@@ -1,14 +1,14 @@
 .. _Temperature:
 
 =========================================
-Temperature Logging to Grafana
+Temperature Logging Corlysis + Home Asst
 =========================================
 
 .. image:: images/grafanatemp.png
 	:align: center
 
-
-This project shows off what you can do with the low power real time clock on the trigBoard - simply set the interval wake time and the trigBoard will automatically wake and send the temperature reading to the cloud.  In this example, `Corlysis <https://corlysis.com>`_ is used for as the cloud provider.  This could just as well be hosted on a local setup using a raspberry pi, but with everything hosted in the cloud, it is very easy to view the data from anywhere and share with others.
+**Wiring**
+-------------
 
 The wiring is simple - just need an `MCP9808 Breakout Board from Adafruit <https://www.adafruit.com/product/1782>`_ which is a very accurate, fast, and reliable temperature sensor.
 
@@ -18,14 +18,17 @@ The wiring is simple - just need an `MCP9808 Breakout Board from Adafruit <https
 .. image:: images/MCP9808Installed.png
 	:align: center
 
+
+**Corlysis**
+-------------
+
+This project shows off what you can do with the low power real time clock on the trigBoard - simply set the interval wake time and the trigBoard will automatically wake and send the temperature reading to the cloud.  In this example, `Corlysis <https://corlysis.com>`_ is used for as the cloud provider.  This could just as well be hosted on a local setup using a raspberry pi, but with everything hosted in the cloud, it is very easy to view the data from anywhere and share with others.
+
 If you have a trigBoard running the stock base firmware, you could simply OTA this code over, or compile the code yourself, but first make sure you can compile the base firmware.  See the firmware section for more information.  
 
 Just note the only new library needed is the Adafruit MCP9808 lib - you can add this from Arduino Sketch>>Include Library>>ManageLibraries menu
 
-`MCP9808 Code is Here <https://github.com/krdarrah/trigBoard_MCP9808>`_
-
-**Corlysis**
--------------
+`trigBoard MCP9808 Corlysis Code is Here <https://github.com/krdarrah/trigBoard_MCP9808>`_
 
 This code was designed to work with `Corlysis <https://corlysis.com>`_, so first make sure you go over there and setup an account, then create a database:
 
@@ -40,7 +43,7 @@ Name this whatever you want, but we will need it later when setting up the trigB
 Just copy your Key there - we will need this later as well for setting up the trigBoard.  
 
 **Setup**
--------------
+============
 
 What's really cool about this code is that it re-uses other fields in the trigBoard configurator to set this up to work with Corlysis, so no need to hard code things. Before setting up, you need to decide a few things first: 
 
@@ -74,7 +77,7 @@ So then when you launch the configurator, you setup your WiFi credentials, the i
 	:align: center
 
 **Grafana**
--------------
+============
 
 Ok, so here's where things get cool - Corlysis is hosting both the influxDB where the data is stored and also Grafana where the data can be plotted.  One you have a trigBoard sending data, you can click on he grafana menu. Then create a new dashboard in there, new panel as well, and select graph: 
 
@@ -123,4 +126,66 @@ If this only updates every once and a while, I like to make sure it at least spa
 
 .. image:: images/singleTimeRange.png
 	:align: center
+
+**Home Assistant**
+---------------------
+
+This is very cool and useful and how I am currently setup.  We'll just tack on the temperature data to the normal trigBoard push message, which can be easily parsed in Home Assistant using a value_template.  
+
+.. note::
+	Be sure to completely review the :ref:`Home Assistant Guide <HomeAssistant>` first, because this relies on everything in there - MQTT Mosquitto broker, InfluxDB, and Grafana to be installed.  
+
+
+`trigBoard MCP9808 Home Assistant Code is Here <https://github.com/krdarrah/trigBoardv8_MCP0808_HASS>`_
+
+All this code does is read from the MCP9808 sensor and concat it to the trigBoard push message with a comma.  Then we can easily separate this out in Home Assistant. 
+
+As shown in the Corlysis example, one of the fields from the Configurator is used to set the units.  We sacrifice the button message for this: 
+
++------------------------------------+---------------------------+
+|Message when Wake Button Pressed    |C or F                     | 
++------------------------------------+---------------------------+
+
+Then the rest of the setup follows the same as shown in the :ref:`Home Assistant Guide <HomeAssistant>`
+
+But now we have a new value to parse out, so in your configuration.yaml file, you will add something like this: 
+
+.. code-block:: YAML
+
+	sensor:
+	  - platform: mqtt
+	    state_topic: "MCP9808_OUTSIDE"
+	    name: "Back Porch Temperature"
+	    icon: mdi:temperature-fahrenheit
+	    unit_of_measurement: "F"
+	    value_template: "{{ value.split(',')[2] }}"
+
+	  - platform: mqtt
+	    state_topic: "MCP9808_OUTSIDE"
+	    name: "Back Porch TempSensor Voltage"
+	    icon: mdi:car-battery
+	    unit_of_measurement: "V"
+	    value_template: "{{ value.split(',')[1].split('V')[0] }}"
+
+You see here that I set my MQTT topic to "MCP9808_OUTSIDE" and I'm pulling out both voltage and temperature as separate entities. Then you can build cool dashboards like this: 
+
+.. image:: images/dashboardshowinggrafana.png
+	:align: center
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
