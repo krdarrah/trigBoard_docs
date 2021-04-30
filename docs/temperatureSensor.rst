@@ -19,8 +19,8 @@ The wiring is simple - just need an `MCP9808 Breakout Board from Adafruit <https
 	:align: center
 
 
-**Corlysis**
--------------
+**Corlysis Method**
+--------------------
 
 This project shows off what you can do with the low power real time clock on the trigBoard - simply set the interval wake time and the trigBoard will automatically wake and send the temperature reading to the cloud.  In this example, `Corlysis <https://corlysis.com>`_ is used for as the cloud provider.  This could just as well be hosted on a local setup using a raspberry pi, but with everything hosted in the cloud, it is very easy to view the data from anywhere and share with others.
 
@@ -127,8 +127,8 @@ If this only updates every once and a while, I like to make sure it at least spa
 .. image:: images/singleTimeRange.png
 	:align: center
 
-**Home Assistant**
----------------------
+**Home Assistant Method**
+--------------------------
 
 This is very cool and useful and how I am currently setup.  We'll just tack on the temperature data to the normal trigBoard push message, which can be easily parsed in Home Assistant using a value_template.  
 

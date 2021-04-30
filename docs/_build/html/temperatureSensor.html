@@ -112,12 +112,12 @@ Version 8 0 documentation</title>
 <li class="toctree-l1"><a class="reference internal" href="solar.html">Solar Options</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Temperature Logging Corlysis + Home Asst</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#wiring"><strong>Wiring</strong></a></li>
-<li class="toctree-l2"><a class="reference internal" href="#corlysis"><strong>Corlysis</strong></a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#corlysis-method"><strong>Corlysis Method</strong></a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#setup"><strong>Setup</strong></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#grafana"><strong>Grafana</strong></a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#home-assistant"><strong>Home Assistant</strong></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#home-assistant-method"><strong>Home Assistant Method</strong></a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="waterleakDetector.html">Water Leak Detector</a></li>
@@ -196,8 +196,8 @@ Version 8</a>
 <img alt="_images/MCP9808wiringwithtrigboard.png" class="align-center" src="_images/MCP9808wiringwithtrigboard.png" />
 <img alt="_images/MCP9808Installed.png" class="align-center" src="_images/MCP9808Installed.png" />
 </div>
-<div class="section" id="corlysis">
-<h2><strong>Corlysis</strong><a class="headerlink" href="#corlysis" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="corlysis-method">
+<h2><strong>Corlysis Method</strong><a class="headerlink" href="#corlysis-method" title="Permalink to this headline">¶</a></h2>
 <p>This project shows off what you can do with the low power real time clock on the trigBoard - simply set the interval wake time and the trigBoard will automatically wake and send the temperature reading to the cloud.  In this example, <a class="reference external" href="https://corlysis.com">Corlysis</a> is used for as the cloud provider.  This could just as well be hosted on a local setup using a raspberry pi, but with everything hosted in the cloud, it is very easy to view the data from anywhere and share with others.</p>
 <p>If you have a trigBoard running the stock base firmware, you could simply OTA this code over, or compile the code yourself, but first make sure you can compile the base firmware.  See the firmware section for more information.</p>
 <p>Just note the only new library needed is the Adafruit MCP9808 lib - you can add this from Arduino Sketch&gt;&gt;Include Library&gt;&gt;ManageLibraries menu</p>
@@ -274,8 +274,8 @@ Version 8</a>
 <img alt="_images/singleTimeRange.png" class="align-center" src="_images/singleTimeRange.png" />
 </div>
 </div>
-<div class="section" id="home-assistant">
-<h2><strong>Home Assistant</strong><a class="headerlink" href="#home-assistant" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="home-assistant-method">
+<h2><strong>Home Assistant Method</strong><a class="headerlink" href="#home-assistant-method" title="Permalink to this headline">¶</a></h2>
 <p>This is very cool and useful and how I am currently setup.  We’ll just tack on the temperature data to the normal trigBoard push message, which can be easily parsed in Home Assistant using a value_template.</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
