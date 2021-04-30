@@ -141,7 +141,7 @@ If all good, you can scroll down a bit and click "MANUALLY CONFIGURED MQTT ENTRI
 .. image:: images/refreshmqtthass.png
 	:align: center
 
-**TESTING**
+**Testing**
 ------------------
 
 Let's make sure you see the trigBoard - Developer Tools>>**STATES** and look for your newly created entity:
@@ -152,7 +152,7 @@ Let's make sure you see the trigBoard - Developer Tools>>**STATES** and look for
 
 If you look at its state while opening/closing the contact, you should see the normal trigBoard message. 
 
-**PARSING**
+**Parsing**
 -----------------
 
 Within the Developer Tools, go to the **TEMPLATE** tab: 
@@ -181,6 +181,9 @@ And we can the same thing to get the voltage and strip out the unit:
 
 .. image:: images/volatgeParsingTemp.png
 	:align: center
+
+**Final Config**
+-----------------
 
 With this knowledge, we can use a **value_template** in the YAML file to automatically pull this information out of the trigBoard message.  We need to create two sensors for both status and voltage.  Note that you can add a custom `MDI Icon <https://materialdesignicons.com/>`_ and give a unit: 
 
@@ -272,10 +275,162 @@ And same as before, this sensor is on a timer and wakes every minute to send dat
 	    unit_of_measurement: "V"
 	    value_template: "{{ value.split(',')[1].split('V')[0] }}"
 
-And here's what I'm doing with this data: 
 
-.. image:: images/dashboardwithtempsaj.png
+**Plotting with Grafana+InfluxDB**
+=========================================
+
+This takes plotting your data to the next level - just look at this dashboard I created: 
+
+.. image:: images/dashboardshowinggrafana.png
 	:align: center
+
+**Install InfluxDB**
+---------------------
+
+Same as before: Supervisor>>Add-on Store, then search for InfluxDB  Go ahead and install/start that: 
+
+.. image:: images/influxdbaddon.png
+	:align: center
+
+Once started, go into InfluxDB and click the InfluxDB Admin icon: 
+
+.. image:: images/influxadmindbicon.png
+	:align: center
+
+Create a new database and call it homeassistant 
+
+.. image:: images/influxdbhomeassistant.png
+	:align: center
+
+I changed my duration to 7d
+
+.. image:: images/influxduration7d.png
+	:align: center
+
+Click on Users and create a new user called homeassistant and choose a password: 
+
+.. image:: images/homeassistantuserinfluxdb.png
+	:align: center
+
+Don't forget to change the permissions to ALL
+
+.. image:: images/homeassistantuserpermissons.png
+	:align: center
+
+While we're in here, add a user for Grafana as well and also give ALL permissions: 
+
+.. image:: images/addgrafanauser.png
+	:align: center
+
+Go back to Supervisor and select InfluxDB and click the Documentation tab - scroll down a bit to the Yaml snippet - COPY this: 
+
+.. image:: images/homeinfluxdbyamlcopysni.png
+	:align: center
+
+Head back over to your file editor to modify your configuration.yaml file and paste this in there, but note that the database name, user, and password all match up with what we have created in the InfluxDB admin page: 
+
+.. image:: images/influxpastedyamlconfig.png
+	:align: center
+
+Finally, give your Home Assistant a restart: Configuration>>Server Controls and click RESTART
+
+.. image:: images/restartinfluxdb.png
+	:align: center
+
+**Install Grafana**
+---------------------
+
+Supervisor>>Add-on Store, then search for Grafana  Go ahead and install/start that: 
+
+.. image:: images/grafanainstalladdaon.png
+	:align: center
+
+Once started go into the Documentation tab - and COPY this URL: 
+
+.. image:: images/grafanalinkdocumenattioon.png
+	:align: center
+
+Go to the configuration tab and make sure SSL is false: 
+
+.. image:: images/grafanaconfiguration.png
+	:align: center
+
+Now open up Grafana and click the configuration icon and go into the Data Sources: 
+
+.. image:: images/grafanadatasourcesicon.png
+	:align: center
+
+Add a data source: 
+
+.. image:: images/adddatasourcegrafana.png
+	:align: center
+
+Search for InfluxDB and select that: 
+
+.. image:: images/influxdbdaatasource.png
+	:align: center
+
+That URL we copied can be pasted here now: 
+
+.. image:: images/urlintografana.png
+	:align: center
+
+Enter in the homeassistant InfluxDB, then the user and password is the one we created for Grafana - Save & Test and you should see this: 
+
+.. image:: images/saveandtestgrafana.png
+	:align: center
+
+**Create a Dashboard**
+-----------------------
+
+In Grafana, go and create a new dashboard, then add an empty panel: 
+
+.. image:: images/grafanacreateanewdash.png
+	:align: center
+
+.. image:: images/grafanaaddpaneldash.png
+	:align: center
+
+Here we have a query where we can select anything we want to plot or even just display in text.  I use it to create a beautiful looking dashboards.
+
+If we wanted to pull in and plot the battery voltage from a trigBoard, we can run a query like this: 
+
+.. image:: images/trigBoardvoltagequeryy.png
+	:align: center
+
+Then if you save this dashboard, you can share, then copy the link out: 
+
+.. image:: images/sharegrafanalink.png
+	:align: center
+
+.. image:: images/copygrafanalink.png
+	:align: center
+
+In your Home Assistant Dashboard, you can now create a webpage card and paste that URL in: 
+
+.. image:: images/homeassistantwebpage.png
+	:align: center
+
+Now you have Grafana plots in your Dashboard!
+
+Note that you can modify that URL to include the time frame and I recommend enabling kiosk mode, so only the plot is shown - here's an example:
+
+.. code-block:: YAML
+
+	http://homeassistant.local:8123/api/hassio_ingress/lT8ixi8MuSreoBQVVB9bjFyRyfmXki0Z5rnit7RGHWo/d/xc8gaT9Mk/trigsolartest?orgId=1&refresh=30s&kiosk&from=now-24h&viewPanel=2
+
+See the kiosk label in there, the auto refresh time at 30sec, the time frame is now-24hr to give last 24hours
+
+Here's a query I needed for an **ESPhome** device to get its state: 
+
+.. image:: images/esphomstatequery.png
+	:align: center
+
+
+
+
+
+
 
 
 

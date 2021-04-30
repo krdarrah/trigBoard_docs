@@ -101,7 +101,7 @@
 			"file": "docs/homeassistant.rst",
 			"settings":
 			{
-				"buffer_size": 9398,
+				"buffer_size": 13690,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
@@ -439,7 +439,7 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 648.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 1,
@@ -698,7 +698,7 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 4153.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 4,
@@ -710,23 +710,24 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 9398,
+						"buffer_size": 13690,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								9319,
-								9319
+								13668,
+								13668
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/RestructuredText/reStructuredText.sublime-syntax"
+							"syntax": "Packages/RestructuredText/reStructuredText.sublime-syntax",
+							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 5507.0,
+						"translation.y": 8886.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
@@ -844,7 +845,7 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 4071.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 3,

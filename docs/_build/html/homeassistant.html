@@ -111,11 +111,18 @@ Version 8 0 documentation</title>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#home-assistant-yaml"><strong>Home Assistant Yaml</strong></a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#testing"><strong>TESTING</strong></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#parsing"><strong>PARSING</strong></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#testing"><strong>Testing</strong></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#parsing"><strong>Parsing</strong></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#final-config"><strong>Final Config</strong></a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#custom-sensors"><strong>Custom Sensors</strong></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#plotting-with-grafana-influxdb"><strong>Plotting with Grafana+InfluxDB</strong></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#install-influxdb"><strong>Install InfluxDB</strong></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#install-grafana"><strong>Install Grafana</strong></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#create-a-dashboard"><strong>Create a Dashboard</strong></a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="LogGoogleDocs.html">Log to Google Sheet - IFTTT</a></li>
@@ -267,13 +274,13 @@ Version 8</a>
 <p>If all good, you can scroll down a bit and click “MANUALLY CONFIGURED MQTT ENTRIES”</p>
 <img alt="_images/refreshmqtthass.png" class="align-center" src="_images/refreshmqtthass.png" />
 <div class="section" id="testing">
-<h3><strong>TESTING</strong><a class="headerlink" href="#testing" title="Permalink to this headline">¶</a></h3>
+<h3><strong>Testing</strong><a class="headerlink" href="#testing" title="Permalink to this headline">¶</a></h3>
 <p>Let’s make sure you see the trigBoard - Developer Tools&gt;&gt;**STATES** and look for your newly created entity:</p>
 <img alt="_images/sensorfoundSatethass.png" class="align-center" src="_images/sensorfoundSatethass.png" />
 <p>If you look at its state while opening/closing the contact, you should see the normal trigBoard message.</p>
 </div>
 <div class="section" id="parsing">
-<h3><strong>PARSING</strong><a class="headerlink" href="#parsing" title="Permalink to this headline">¶</a></h3>
+<h3><strong>Parsing</strong><a class="headerlink" href="#parsing" title="Permalink to this headline">¶</a></h3>
 <p>Within the Developer Tools, go to the <strong>TEMPLATE</strong> tab:</p>
 <p>Here we can experiment with parsing, first just to look at the raw message:</p>
 <img alt="_images/rawmessageTaml.png" class="align-center" src="_images/rawmessageTaml.png" />
@@ -285,6 +292,9 @@ Version 8</a>
 <img alt="_images/hassridofcomma.png" class="align-center" src="_images/hassridofcomma.png" />
 <p>And we can the same thing to get the voltage and strip out the unit:</p>
 <img alt="_images/volatgeParsingTemp.png" class="align-center" src="_images/volatgeParsingTemp.png" />
+</div>
+<div class="section" id="final-config">
+<h3><strong>Final Config</strong><a class="headerlink" href="#final-config" title="Permalink to this headline">¶</a></h3>
 <p>With this knowledge, we can use a <strong>value_template</strong> in the YAML file to automatically pull this information out of the trigBoard message.  We need to create two sensors for both status and voltage.  Note that you can add a custom <a class="reference external" href="https://materialdesignicons.com/">MDI Icon</a> and give a unit:</p>
 <div class="highlight-YAML notranslate"><div class="highlight"><pre><span></span><span class="nt">sensor</span><span class="p">:</span>
   <span class="p p-Indicator">-</span> <span class="nt">platform</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">mqtt</span>
@@ -351,8 +361,75 @@ Version 8</a>
     <span class="nt">value_template</span><span class="p">:</span> <span class="s">&quot;{{</span><span class="nv"> </span><span class="s">value.split(&#39;,&#39;)[1].split(&#39;V&#39;)[0]</span><span class="nv"> </span><span class="s">}}&quot;</span>
 </pre></div>
 </div>
-<p>And here’s what I’m doing with this data:</p>
-<img alt="_images/dashboardwithtempsaj.png" class="align-center" src="_images/dashboardwithtempsaj.png" />
+</div>
+<div class="section" id="plotting-with-grafana-influxdb">
+<h2><strong>Plotting with Grafana+InfluxDB</strong><a class="headerlink" href="#plotting-with-grafana-influxdb" title="Permalink to this headline">¶</a></h2>
+<p>This takes plotting your data to the next level - just look at this dashboard I created:</p>
+<img alt="_images/dashboardshowinggrafana.png" class="align-center" src="_images/dashboardshowinggrafana.png" />
+<div class="section" id="install-influxdb">
+<h3><strong>Install InfluxDB</strong><a class="headerlink" href="#install-influxdb" title="Permalink to this headline">¶</a></h3>
+<p>Same as before: Supervisor&gt;&gt;Add-on Store, then search for InfluxDB  Go ahead and install/start that:</p>
+<img alt="_images/influxdbaddon.png" class="align-center" src="_images/influxdbaddon.png" />
+<p>Once started, go into InfluxDB and click the InfluxDB Admin icon:</p>
+<img alt="_images/influxadmindbicon.png" class="align-center" src="_images/influxadmindbicon.png" />
+<p>Create a new database and call it homeassistant</p>
+<img alt="_images/influxdbhomeassistant.png" class="align-center" src="_images/influxdbhomeassistant.png" />
+<p>I changed my duration to 7d</p>
+<img alt="_images/influxduration7d.png" class="align-center" src="_images/influxduration7d.png" />
+<p>Click on Users and create a new user called homeassistant and choose a password:</p>
+<img alt="_images/homeassistantuserinfluxdb.png" class="align-center" src="_images/homeassistantuserinfluxdb.png" />
+<p>Don’t forget to change the permissions to ALL</p>
+<img alt="_images/homeassistantuserpermissons.png" class="align-center" src="_images/homeassistantuserpermissons.png" />
+<p>While we’re in here, add a user for Grafana as well and also give ALL permissions:</p>
+<img alt="_images/addgrafanauser.png" class="align-center" src="_images/addgrafanauser.png" />
+<p>Go back to Supervisor and select InfluxDB and click the Documentation tab - scroll down a bit to the Yaml snippet - COPY this:</p>
+<img alt="_images/homeinfluxdbyamlcopysni.png" class="align-center" src="_images/homeinfluxdbyamlcopysni.png" />
+<p>Head back over to your file editor to modify your configuration.yaml file and paste this in there, but note that the database name, user, and password all match up with what we have created in the InfluxDB admin page:</p>
+<img alt="_images/influxpastedyamlconfig.png" class="align-center" src="_images/influxpastedyamlconfig.png" />
+<p>Finally, give your Home Assistant a restart: Configuration&gt;&gt;Server Controls and click RESTART</p>
+<img alt="_images/restartinfluxdb.png" class="align-center" src="_images/restartinfluxdb.png" />
+</div>
+<div class="section" id="install-grafana">
+<h3><strong>Install Grafana</strong><a class="headerlink" href="#install-grafana" title="Permalink to this headline">¶</a></h3>
+<p>Supervisor&gt;&gt;Add-on Store, then search for Grafana  Go ahead and install/start that:</p>
+<img alt="_images/grafanainstalladdaon.png" class="align-center" src="_images/grafanainstalladdaon.png" />
+<p>Once started go into the Documentation tab - and COPY this URL:</p>
+<img alt="_images/grafanalinkdocumenattioon.png" class="align-center" src="_images/grafanalinkdocumenattioon.png" />
+<p>Go to the configuration tab and make sure SSL is false:</p>
+<img alt="_images/grafanaconfiguration.png" class="align-center" src="_images/grafanaconfiguration.png" />
+<p>Now open up Grafana and click the configuration icon and go into the Data Sources:</p>
+<img alt="_images/grafanadatasourcesicon.png" class="align-center" src="_images/grafanadatasourcesicon.png" />
+<p>Add a data source:</p>
+<img alt="_images/adddatasourcegrafana.png" class="align-center" src="_images/adddatasourcegrafana.png" />
+<p>Search for InfluxDB and select that:</p>
+<img alt="_images/influxdbdaatasource.png" class="align-center" src="_images/influxdbdaatasource.png" />
+<p>That URL we copied can be pasted here now:</p>
+<img alt="_images/urlintografana.png" class="align-center" src="_images/urlintografana.png" />
+<p>Enter in the homeassistant InfluxDB, then the user and password is the one we created for Grafana - Save &amp; Test and you should see this:</p>
+<img alt="_images/saveandtestgrafana.png" class="align-center" src="_images/saveandtestgrafana.png" />
+</div>
+<div class="section" id="create-a-dashboard">
+<h3><strong>Create a Dashboard</strong><a class="headerlink" href="#create-a-dashboard" title="Permalink to this headline">¶</a></h3>
+<p>In Grafana, go and create a new dashboard, then add an empty panel:</p>
+<img alt="_images/grafanacreateanewdash.png" class="align-center" src="_images/grafanacreateanewdash.png" />
+<img alt="_images/grafanaaddpaneldash.png" class="align-center" src="_images/grafanaaddpaneldash.png" />
+<p>Here we have a query where we can select anything we want to plot or even just display in text.  I use it to create a beautiful looking dashboards.</p>
+<p>If we wanted to pull in and plot the battery voltage from a trigBoard, we can run a query like this:</p>
+<img alt="_images/trigBoardvoltagequeryy.png" class="align-center" src="_images/trigBoardvoltagequeryy.png" />
+<p>Then if you save this dashboard, you can share, then copy the link out:</p>
+<img alt="_images/sharegrafanalink.png" class="align-center" src="_images/sharegrafanalink.png" />
+<img alt="_images/copygrafanalink.png" class="align-center" src="_images/copygrafanalink.png" />
+<p>In your Home Assistant Dashboard, you can now create a webpage card and paste that URL in:</p>
+<img alt="_images/homeassistantwebpage.png" class="align-center" src="_images/homeassistantwebpage.png" />
+<p>Now you have Grafana plots in your Dashboard!</p>
+<p>Note that you can modify that URL to include the time frame and I recommend enabling kiosk mode, so only the plot is shown - here’s an example:</p>
+<div class="highlight-YAML notranslate"><div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">http://homeassistant.local:8123/api/hassio_ingress/lT8ixi8MuSreoBQVVB9bjFyRyfmXki0Z5rnit7RGHWo/d/xc8gaT9Mk/trigsolartest?orgId=1&amp;refresh=30s&amp;kiosk&amp;from=now-24h&amp;viewPanel=2</span>
+</pre></div>
+</div>
+<p>See the kiosk label in there, the auto refresh time at 30sec, the time frame is now-24hr to give last 24hours</p>
+<p>Here’s a query I needed for an <strong>ESPhome</strong> device to get its state:</p>
+<img alt="_images/esphomstatequery.png" class="align-center" src="_images/esphomstatequery.png" />
+</div>
 </div>
 </div>
 
