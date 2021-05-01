@@ -395,6 +395,11 @@ Here we have a query where we can select anything we want to plot or even just d
 
 If we wanted to pull in and plot the battery voltage from a trigBoard, we can run a query like this: 
 
+.. image:: images/zoominonimagequery.png
+	:align: center
+
+Then looks like this: 
+
 .. image:: images/trigBoardvoltagequeryy.png
 	:align: center
 
