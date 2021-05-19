@@ -443,6 +443,12 @@ Here's a query I needed for an **ESPhome** device to get its state:
 
 Want to do something useful with the trigBoard?  In my house here, when I open the door into the garage, wouldn't be handy to turn a light on automatically?  Well this is a perfect application for trigBoard + Home Assistant.  Even better, this trigBoard can still send push notifications out using any of the other services - you're just enabling MQTT as a next step in the sequence in the logic for when the trigBoard wakes.  You'll see below how this can be done.  
 
+.. raw:: html
+
+    <div style="text-align: center; margin-bottom: 2em;">
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/XVC2TCkKgJA" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
+
 **WiFi Bulb Setup**
 -----------------------
 
