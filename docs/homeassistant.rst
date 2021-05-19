@@ -526,7 +526,8 @@ In this case, I have a trigBoard already sending push notifications per :ref:`Th
 Back to Home Assistant straight into the File Editor, you can add this sensor and note the value template - we're just going to take the full trigBoard message out here without the voltage (we don't care about that for what we're doing).  Note the topic here matches what was entered in the Configurator:
 
 .. code-block:: YAML
-
+  
+	sensor:
 	  - platform: mqtt
 	    state_topic: "garageDoor"
 	    name: "Garage Door"
