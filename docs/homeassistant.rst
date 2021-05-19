@@ -489,6 +489,8 @@ Mine looks like this:
 .. image:: images/tplinkkasaconfigyaml.png
 	:align: center
 
+More `info here <https://www.home-assistant.io/integrations/tplink/>`_
+
 After saving that, I gave my Home Assistant a restart: Configuration>>Server Controls, then click Restart under Server management.  
 
 Once things are back online, try creating a new Bulb card in a dashboard and see if you can select that Entity: 

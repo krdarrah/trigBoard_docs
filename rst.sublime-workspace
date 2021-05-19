@@ -101,7 +101,7 @@
 			"file": "docs/homeassistant.rst",
 			"settings":
 			{
-				"buffer_size": 20408,
+				"buffer_size": 20491,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
@@ -710,15 +710,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 20408,
+						"buffer_size": 20491,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								17862,
-								17862
+								16537,
+								16537
 							]
 						],
 						"settings":
@@ -727,7 +727,7 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 10971.0,
+						"translation.y": 10629.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
