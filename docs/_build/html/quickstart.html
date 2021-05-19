@@ -100,12 +100,17 @@ Version 8 0 documentation</title>
 <p class="caption"><span class="caption-text">Projects</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="ePaperCoronaDisplay.html">E-Paper Corona Display</a></li>
-<li class="toctree-l1"><a class="reference internal" href="cellularProject.html">Cellular/Battery Backed System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cellularProject.html">Cellular/Battery Backed System UDP/TCP</a></li>
 <li class="toctree-l1"><a class="reference internal" href="doorbell.html">Door Bell Monitoring</a></li>
 <li class="toctree-l1"><a class="reference internal" href="garage.html">Garage Door Monitor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="homeassistant.html">Home Assistant</a></li>
+<li class="toctree-l1"><a class="reference internal" href="LogGoogleDocs.html">Log to Google Sheet - IFTTT</a></li>
 <li class="toctree-l1"><a class="reference internal" href="motionSensor.html">Motion Sensor - PIR</a></li>
 <li class="toctree-l1"><a class="reference internal" href="multipleInputs.html">Multiple Inputs</a></li>
-<li class="toctree-l1"><a class="reference internal" href="temperatureSensor.html">Temperature Logging to Grafana</a></li>
+<li class="toctree-l1"><a class="reference internal" href="SendEmail.html">Send an Email - IFTTT</a></li>
+<li class="toctree-l1"><a class="reference internal" href="SmokeCODetector.html">Smoke/CO Detector</a></li>
+<li class="toctree-l1"><a class="reference internal" href="solar.html">Solar Options</a></li>
+<li class="toctree-l1"><a class="reference internal" href="temperatureSensor.html">Temperature Logging Corlysis + Home Asst</a></li>
 <li class="toctree-l1"><a class="reference internal" href="waterleakDetector.html">Water Leak Detector</a></li>
 </ul>
 
@@ -180,7 +185,7 @@ Version 8</a>
 <div style="text-align: center; margin-bottom: 2em;">
 <iframe width="560" height="315" src="https://www.youtube.com/embed/nkU9sCDsWzM" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 </div><div class="line-block">
-<div class="line"><strong>Hardware Setup</strong> All that’s needed here is a battery and a dry contact used for triggering.  Both connectors on the board are standard JST PH 2.0mm</div>
+<div class="line"><strong>Hardware Setup</strong> All that’s needed here is a battery and a dry contact used for triggering.  Both connectors on the board are standard JST PH 2.0mm Note that the cables may need some force to fully insert.</div>
 <div class="line"><strong>Battery Selection</strong> A good capacity for the trigBoard is 500-1000mAh, but this depends on how often the board will be triggered.  Any of these Lithium batteries would work from <a class="reference external" href="https://www.adafruit.com/category/574">Adafruit</a>. Or two AA or AAA batteries would work, with a holder like <a class="reference external" href="https://www.adafruit.com/product/4191">This</a>  Note that this battery holder is also available for purchase with your trigBoard as an option :) More details on battery selection can be found <a class="reference internal" href="Hardware.html#battery"><span class="std std-ref">here</span></a></div>
 <div class="line"><strong>Choose a Notification Service</strong> This is where the notification will end up.  For testing, it’s easy to simply use Pushsafer or Pushover - see the <a class="reference internal" href="supportedServices.html#services"><span class="std std-ref">Supported Services Page</span></a> for more information</div>
 </div>
@@ -195,6 +200,10 @@ Version 8</a>
 </div></blockquote>
 <div class="line-block">
 <div class="line">4 - Once paired, you will see the Configurator fully populate with values. Let’s work through these one by one:</div>
+</div>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">You need to click the save button next to each parameter after changing it</p>
 </div>
 <div class="line-block">
 <div class="line"><strong>WiFi Settings</strong></div>
@@ -246,6 +255,7 @@ Version 8</a>
 </div></blockquote>
 <p>This is the threshold that if the battery is less than this value, a BATTERY LOW message is sent out at the timer interval.  Because the trigBoard supports a wide variety of battery options, a setting here needs to be set.  For a 4.2V rechargeable lithium battery, maybe 3.3V or so would work.  Then for two AA/AAA batteries, set for 2.5V</p>
 <p>5 - The remaining settings determine the push notification service, so see <a class="reference internal" href="supportedServices.html#services"><span class="std std-ref">Supported Services Page</span></a>  Note that the “Battery Voltage Calibration Offset” is set during factory programming.</p>
+<p>6 - Don’t forget to Disconnect from the Configurator when complete!  The device does not send notifications while the Configurator is active</p>
 </div>
 
 

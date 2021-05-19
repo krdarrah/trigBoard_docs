@@ -16,7 +16,7 @@ Out of the box setup:
     <iframe width="560" height="315" src="https://www.youtube.com/embed/nkU9sCDsWzM" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
     </div>
 
-| **Hardware Setup** All that's needed here is a battery and a dry contact used for triggering.  Both connectors on the board are standard JST PH 2.0mm
+| **Hardware Setup** All that's needed here is a battery and a dry contact used for triggering.  Both connectors on the board are standard JST PH 2.0mm Note that the cables may need some force to fully insert.  
 | **Battery Selection** A good capacity for the trigBoard is 500-1000mAh, but this depends on how often the board will be triggered.  Any of these Lithium batteries would work from `Adafruit <https://www.adafruit.com/category/574>`_. Or two AA or AAA batteries would work, with a holder like `This <https://www.adafruit.com/product/4191>`_  Note that this battery holder is also available for purchase with your trigBoard as an option :) More details on battery selection can be found :ref:`here <Battery>`
 | **Choose a Notification Service** This is where the notification will end up.  For testing, it's easy to simply use Pushsafer or Pushover - see the :ref:`Supported Services Page <Services>` for more information
 
@@ -29,6 +29,9 @@ Out of the box setup:
 	 :align: center
 
 | 4 - Once paired, you will see the Configurator fully populate with values. Let's work through these one by one: 
+
+.. warning::
+	You need to click the save button next to each parameter after changing it
 
 | **WiFi Settings**
 
@@ -89,7 +92,7 @@ This is the threshold that if the battery is less than this value, a BATTERY LOW
 
 5 - The remaining settings determine the push notification service, so see :ref:`Supported Services Page <Services>`  Note that the "Battery Voltage Calibration Offset" is set during factory programming. 
 
-
+6 - Don't forget to Disconnect from the Configurator when complete!  The device does not send notifications while the Configurator is active
 
 
 

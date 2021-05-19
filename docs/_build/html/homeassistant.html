@@ -123,6 +123,12 @@ Version 8 0 documentation</title>
 <li class="toctree-l3"><a class="reference internal" href="#create-a-dashboard"><strong>Create a Dashboard</strong></a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="#trigboard-activated-wifi-light-bulb"><strong>trigBoard activated WiFI Light Bulb</strong></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#wifi-bulb-setup"><strong>WiFi Bulb Setup</strong></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id1"><strong>trigBoard Setup</strong></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#automation-setup"><strong>Automation Setup</strong></a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="LogGoogleDocs.html">Log to Google Sheet - IFTTT</a></li>
@@ -204,7 +210,9 @@ Version 8</a>
 <img alt="_images/homeassistlogo.png" class="align-center" src="_images/homeassistlogo.png" />
 <img alt="_images/demoDash.png" class="align-center" src="_images/demoDash.png" />
 <p><strong>trigBoard can send to Home Assistant out of the box!</strong>  If you’re already familiar with Home Assistant, then you already know how powerful this is and will be very happy to find that you can integrate the trigBoard in just a few steps.  This takes the trigBoard to a new level, because now you can tie this in to alerts, automations, monitoring, etc… It’s also very easy to add sensors to the trigBoard and provide that additional data to your system.</p>
-<div class="section" id="home-assistant-setup">
+<div style="text-align: center; margin-bottom: 2em;">
+<iframe width="560" height="315" src="https://www.youtube.com/embed/Fs0_ihgrvKA" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</div><div class="section" id="home-assistant-setup">
 <h2><strong>Home Assistant Setup</strong><a class="headerlink" href="#home-assistant-setup" title="Permalink to this headline">¶</a></h2>
 <p>First step is to make sure you have Home Assistant Installed (if you don’t already) - head over here and follow these steps: <a class="reference external" href="https://www.home-assistant.io/installation/">Home Assistant Installation</a></p>
 <p><em>Note - I am running Home Assistant on a Raspberry Pi 3 64bit</em></p>
@@ -431,6 +439,96 @@ Version 8</a>
 <p>See the kiosk label in there, the auto refresh time at 30sec, the time frame is now-24hr to give last 24hours</p>
 <p>Here’s a query I needed for an <strong>ESPhome</strong> device to get its state:</p>
 <img alt="_images/esphomstatequery.png" class="align-center" src="_images/esphomstatequery.png" />
+</div>
+</div>
+<div class="section" id="trigboard-activated-wifi-light-bulb">
+<h2><strong>trigBoard activated WiFI Light Bulb</strong><a class="headerlink" href="#trigboard-activated-wifi-light-bulb" title="Permalink to this headline">¶</a></h2>
+<p>Want to do something useful with the trigBoard?  In my house here, when I open the door into the garage, wouldn’t be handy to turn a light on automatically?  Well this is a perfect application for trigBoard + Home Assistant.  Even better, this trigBoard can still send push notifications out using any of the other services - you’re just enabling MQTT as a next step in the sequence in the logic for when the trigBoard wakes.  You’ll see below how this can be done.</p>
+<div class="section" id="wifi-bulb-setup">
+<h3><strong>WiFi Bulb Setup</strong><a class="headerlink" href="#wifi-bulb-setup" title="Permalink to this headline">¶</a></h3>
+<p>I didn’t want to have to deal with re-flashing a cheap WiFI bulb or worry about a gateway with ZigBee bulbs, so I decided on a TP-Link “Kasa” KL110 bulb <a class="reference external" href="https://www.amazon.com/gp/product/B07G1PH3JL/ref=ppx_yo_dt_b_asin_title_o03_s00?ie=UTF8&amp;psc=1">picked up on Amazon</a></p>
+<a class="reference external image-reference" href="https://www.amazon.com/gp/product/B07G1PH3JL/ref=ppx_yo_dt_b_asin_title_o03_s00?ie=UTF8&amp;psc=1"><img alt="_images/kasaamazonpagetplinkbulb.png" class="align-center" src="_images/kasaamazonpagetplinkbulb.png" /></a>
+<div class="line-block">
+<div class="line">Run through the normal setup as given by the manufacturer:</div>
+<div class="line">1 - Screw the bulb into a powered outlet</div>
+<div class="line">2 - Download the Kasa App - no need to setup an account (I skipped this step)</div>
+<div class="line">3 - Top right “+” button to add device - give it permissions, choose smart bulb, KL100 series</div>
+<div class="line">4 - Go to WiFI settings on your phone and connect to the “TP-LINK…” bulb network</div>
+<div class="line">5 - Back to the Kasa app, click through the screens, connect the bulb to same network your Home Assistant is on, then will eventually get you to a connected screen to let you name the bulb</div>
+<div class="line">6 - <strong>This name is important</strong> we’ll need it later when setting up in Home Assistant</div>
+<div class="line">7 - Just make sure you can turn the bulb on and off from the app - now we’re done with the app</div>
+</div>
+<img alt="_images/ioslaasaappbulb.png" class="align-center" src="_images/ioslaasaappbulb.png" />
+<p>Add TP-Link Integration to Home Assistant: Configuration&gt;&gt;Integrations, then bottom right click Add Integration, search for TP-Link</p>
+<img alt="_images/tplinkintegrationsearch.png" class="align-center" src="_images/tplinkintegrationsearch.png" />
+<p>I clicked the three dots in the integration, system options, then update:</p>
+<img alt="_images/kasaintegrationupdate.png" class="align-center" src="_images/kasaintegrationupdate.png" />
+<p>In File Editor, we add the tplink device with the bulb name we had in the app:</p>
+<div class="highlight-YAML notranslate"><div class="highlight"><pre><span></span><span class="nt">tplink</span><span class="p">:</span>
+  <span class="nt">discovery</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">false</span>
+  <span class="nt">light</span><span class="p">:</span>
+    <span class="p p-Indicator">-</span> <span class="nt">host</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">GarageLightBulb</span>
+</pre></div>
+</div>
+<p>Mine looks like this:</p>
+<img alt="_images/tplinkkasaconfigyaml.png" class="align-center" src="_images/tplinkkasaconfigyaml.png" />
+<p>After saving that, I gave my Home Assistant a restart: Configuration&gt;&gt;Server Controls, then click Restart under Server management.</p>
+<p>Once things are back online, try creating a new Bulb card in a dashboard and see if you can select that Entity:</p>
+<img alt="_images/bulbcardtesttplinkn.png" class="align-center" src="_images/bulbcardtesttplinkn.png" />
+<p>You should be able to turn the bulb on and off and adjust brightness.  <strong>IMPORTANT</strong> set the desired brightness you want for the bulb here, then just turn it off.  From the trigBoard, we’re just going to toggle it on/off.</p>
+<p>Then that’s all we need to do with the Bulb!</p>
+</div>
+<div class="section" id="id1">
+<h3><strong>trigBoard Setup</strong><a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">If you’ve followed the guides above and already have a trigBoard displaying a state change, then you’re good to go and can proceed to the next step, but this will show how to setup a trigBoard that is already in service and if you only want to expand it’s features to now activate a light with Home Assistant</p>
+</div>
+<p>In this case, I have a trigBoard already sending push notifications per <a class="reference internal" href="cellularProject.html#cellularbattery"><span class="std std-ref">The Cellular Backed Setup using TCP</span></a> so I really didn’t want to modify any of my push messages or other parameters.  This is no problem and easy enough to just enable MQTT.</p>
+<div class="line-block">
+<div class="line">1 - Launch the Configurator</div>
+<div class="line">2 - Set your WiFi Settings, then Save and Connect</div>
+<div class="line">3 - In my case, all of my parameters look like this, since this board is already in service:</div>
+</div>
+<img alt="_images/sidedoorexistingsettingsforkasabulb.png" class="align-center" src="_images/sidedoorexistingsettingsforkasabulb.png" />
+<div class="line-block">
+<div class="line">4 - Then just enable MQTT for Home Assistant and add your username/pw you use to login, IP address for the Server (see “Home Assistant Setup” above to find this) and also give a unique Topic and take note of this:</div>
+</div>
+<img alt="_images/mqttforgaragetplinkkasa.png" class="align-center" src="_images/mqttforgaragetplinkkasa.png" />
+<div class="line-block">
+<div class="line">5 - That’s it for the Configurator, you can now disconnect</div>
+</div>
+<p>Back to Home Assistant straight into the File Editor, you can add this sensor and note the value template - we’re just going to take the full trigBoard message out here without the voltage (we don’t care about that for what we’re doing).  Note the topic here matches what was entered in the Configurator:</p>
+<div class="highlight-YAML notranslate"><div class="highlight"><pre><span></span><span class="p p-Indicator">-</span> <span class="nt">platform</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">mqtt</span>
+  <span class="nt">state_topic</span><span class="p">:</span> <span class="s">&quot;garageDoor&quot;</span>
+  <span class="nt">name</span><span class="p">:</span> <span class="s">&quot;Garage</span><span class="nv"> </span><span class="s">Door&quot;</span>
+  <span class="nt">icon</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">mdi:door</span>
+  <span class="nt">value_template</span><span class="p">:</span> <span class="s">&quot;{{</span><span class="nv"> </span><span class="s">value.split(&#39;,&#39;)[0]</span><span class="nv"> </span><span class="s">}}&quot;</span>
+</pre></div>
+</div>
+<p>This will produce these messages:</p>
+<div class="highlight-YAML notranslate"><div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">Side Door Opened-4-</span>
+
+<span class="l l-Scalar l-Scalar-Plain">Side Door Closed-5-</span>
+</pre></div>
+</div>
+<p>Go to Configuration&gt;&gt;Server Controls and click on the button to reset the MQTT entries “MANUALLY CONFIGURED MQTT ENTITIES”</p>
+<p>You can go and create an entities card just to test and make sure you’re seeing the open/closed messages come through:</p>
+<img alt="_images/entitiescardfortplinktrig.png" class="align-center" src="_images/entitiescardfortplinktrig.png" />
+<p><strong>All done!!</strong></p>
+</div>
+<div class="section" id="automation-setup">
+<h3><strong>Automation Setup</strong><a class="headerlink" href="#automation-setup" title="Permalink to this headline">¶</a></h3>
+<p>You can get really creative here, but I’m boring and just want to turn that light bulb on for 5 minutes when the door opens… that’s it!  And so easy with Home Assistant!</p>
+<p>Configuration&gt;&gt;Automations Then create a new Automation, and start with a empty automation:</p>
+<img alt="_images/startweithanemptyautomation.png" class="align-center" src="_images/startweithanemptyautomation.png" />
+<p>Give it a good name, then scroll down to triggers, and this is dead simple, we’re going to trigger on that trigBoard state as it changes from closed to open.</p>
+<img alt="_images/automationtriggerfromclosetoopen.png" class="align-center" src="_images/automationtriggerfromclosetoopen.png" />
+<p>Scroll down to Actions, and this is simple too, just turn that garage bulb on:</p>
+<img alt="_images/actionbulbon.png" class="align-center" src="_images/actionbulbon.png" />
+<p>So that turns the bulb on, but then to turn off after 5 minutes, I added a delay action for 5minutes, then another state action to turn the bulb off:</p>
+<img alt="_images/delayandoffactionsbulb.png" class="align-center" src="_images/delayandoffactionsbulb.png" />
+<p>That’s all there is to it! Don’t forget to save, then should be good from there!</p>
 </div>
 </div>
 </div>
