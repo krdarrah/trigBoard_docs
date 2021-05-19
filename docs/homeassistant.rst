@@ -506,7 +506,7 @@ Then that's all we need to do with the Bulb!
 .. note::
 	If you've followed the guides above and already have a trigBoard displaying a state change, then you're good to go and can proceed to the next step, but this will show how to setup a trigBoard that is already in service and if you only want to expand it's features to now activate a light with Home Assistant
 
-In this case, I have a trigBoard already sending push notifications per :ref:`The Cellular Backed Setup using TCP <CellularBattery>` so I really didn't want to modify any of my push messages or other parameters.  This is no problem and easy enough to just enable MQTT.  
+In this case, I have a trigBoard already sending push notifications per :ref:`The Cellular Backed Setup using TCP <CellularBattery>` so I really didn't want to modify any of my push messages or other parameters.  This is no problem and easy enough to just enable MQTT.  **NOTE** you still need to make sure you have the Mosquitto Broker working within Home Assistant, so make sure to follow guides above on setting up Home Assistant with the Broker.  
 
 | 1 - Launch the Configurator
 | 2 - Set your WiFi Settings, then Save and Connect

@@ -101,7 +101,7 @@
 			"file": "docs/homeassistant.rst",
 			"settings":
 			{
-				"buffer_size": 20227,
+				"buffer_size": 20408,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
@@ -669,7 +669,7 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 259.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 5,
@@ -710,15 +710,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 20227,
+						"buffer_size": 20408,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								20190,
-								20190
+								17862,
+								17862
 							]
 						],
 						"settings":
@@ -727,7 +727,7 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 12187.0,
+						"translation.y": 10971.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
@@ -788,7 +788,7 @@
 							"word_wrap": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 301.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 2,
