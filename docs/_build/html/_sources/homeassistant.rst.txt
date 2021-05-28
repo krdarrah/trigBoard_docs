@@ -443,6 +443,12 @@ Here's a query I needed for an **ESPhome** device to get its state:
 
 Want to do something useful with the trigBoard?  In my house here, when I open the door into the garage, wouldn't be handy to turn a light on automatically?  Well this is a perfect application for trigBoard + Home Assistant.  Even better, this trigBoard can still send push notifications out using any of the other services - you're just enabling MQTT as a next step in the sequence in the logic for when the trigBoard wakes.  You'll see below how this can be done.  
 
+.. raw:: html
+
+    <div style="text-align: center; margin-bottom: 2em;">
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/XVC2TCkKgJA" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
+
 **WiFi Bulb Setup**
 -----------------------
 
@@ -489,6 +495,8 @@ Mine looks like this:
 .. image:: images/tplinkkasaconfigyaml.png
 	:align: center
 
+More `info here <https://www.home-assistant.io/integrations/tplink/>`_
+
 After saving that, I gave my Home Assistant a restart: Configuration>>Server Controls, then click Restart under Server management.  
 
 Once things are back online, try creating a new Bulb card in a dashboard and see if you can select that Entity: 
@@ -506,7 +514,7 @@ Then that's all we need to do with the Bulb!
 .. note::
 	If you've followed the guides above and already have a trigBoard displaying a state change, then you're good to go and can proceed to the next step, but this will show how to setup a trigBoard that is already in service and if you only want to expand it's features to now activate a light with Home Assistant
 
-In this case, I have a trigBoard already sending push notifications per :ref:`The Cellular Backed Setup using TCP <CellularBattery>` so I really didn't want to modify any of my push messages or other parameters.  This is no problem and easy enough to just enable MQTT.  
+In this case, I have a trigBoard already sending push notifications per :ref:`The Cellular Backed Setup using TCP <CellularBattery>` so I really didn't want to modify any of my push messages or other parameters.  This is no problem and easy enough to just enable MQTT.  **NOTE** you still need to make sure you have the Mosquitto Broker working within Home Assistant, so make sure to follow guides above on setting up Home Assistant with the Broker.  
 
 | 1 - Launch the Configurator
 | 2 - Set your WiFi Settings, then Save and Connect
@@ -526,7 +534,8 @@ In this case, I have a trigBoard already sending push notifications per :ref:`Th
 Back to Home Assistant straight into the File Editor, you can add this sensor and note the value template - we're just going to take the full trigBoard message out here without the voltage (we don't care about that for what we're doing).  Note the topic here matches what was entered in the Configurator:
 
 .. code-block:: YAML
-
+  
+	sensor:
 	  - platform: mqtt
 	    state_topic: "garageDoor"
 	    name: "Garage Door"

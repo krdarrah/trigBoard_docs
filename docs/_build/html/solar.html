@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Solar Options &mdash; trigBoard
+  <title>Solar Powered &mdash; trigBoard
 Version 8 0 documentation</title>
   
 
@@ -37,7 +37,7 @@ Version 8 0 documentation</title>
     
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Temperature Logging to Grafana" href="temperatureSensor.html" />
+    <link rel="next" title="Temperature Logging Corlysis + Home Asst" href="temperatureSensor.html" />
     <link rel="prev" title="Smoke/CO Detector" href="SmokeCODetector.html" /> 
 </head>
 
@@ -103,17 +103,25 @@ Version 8 0 documentation</title>
 <li class="toctree-l1"><a class="reference internal" href="cellularProject.html">Cellular/Battery Backed System UDP/TCP</a></li>
 <li class="toctree-l1"><a class="reference internal" href="doorbell.html">Door Bell Monitoring</a></li>
 <li class="toctree-l1"><a class="reference internal" href="garage.html">Garage Door Monitor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="homeassistant.html">Home Assistant</a></li>
 <li class="toctree-l1"><a class="reference internal" href="LogGoogleDocs.html">Log to Google Sheet - IFTTT</a></li>
 <li class="toctree-l1"><a class="reference internal" href="motionSensor.html">Motion Sensor - PIR</a></li>
 <li class="toctree-l1"><a class="reference internal" href="multipleInputs.html">Multiple Inputs</a></li>
 <li class="toctree-l1"><a class="reference internal" href="SendEmail.html">Send an Email - IFTTT</a></li>
 <li class="toctree-l1"><a class="reference internal" href="SmokeCODetector.html">Smoke/CO Detector</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Solar Options</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#outdoor-solar">Outdoor Solar</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#indoor-solar">Indoor Solar</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Solar Powered</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#trigsolar">trigSolar</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#functionality"><strong>Functionality</strong></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#detect-pin"><strong>Detect Pin</strong></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#solar-considerations"><strong>Solar Considerations</strong></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#super-capacitor-reserve"><strong>Super Capacitor Reserve</strong></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#design"><strong>Design</strong></a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="temperatureSensor.html">Temperature Logging to Grafana</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#low-cost-outdoor-solar">Low Cost Outdoor Solar</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="temperatureSensor.html">Temperature Logging Corlysis + Home Asst</a></li>
 <li class="toctree-l1"><a class="reference internal" href="waterleakDetector.html">Water Leak Detector</a></li>
 </ul>
 
@@ -162,7 +170,7 @@ Version 8</a>
     
       <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
         
-      <li>Solar Options</li>
+      <li>Solar Powered</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -181,10 +189,129 @@ Version 8</a>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="solar-options">
-<h1>Solar Options<a class="headerlink" href="#solar-options" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="outdoor-solar">
-<h2>Outdoor Solar<a class="headerlink" href="#outdoor-solar" title="Permalink to this headline">¶</a></h2>
+  <div class="section" id="solar-powered">
+<h1>Solar Powered<a class="headerlink" href="#solar-powered" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="trigsolar">
+<h2>trigSolar<a class="headerlink" href="#trigsolar" title="Permalink to this headline">¶</a></h2>
+<img alt="_images/trigSlareverything.png" class="align-center" src="_images/trigSlareverything.png" />
+<p>With the ultra low power capabilities of the trigBoard, it only makes sense to match it up with solar power!  The trigSolar board was specifically designed with trigBoard in mind for both outdoor and indoor solar applications.</p>
+<ul class="simple">
+<li>Based on the <a class="reference external" href="https://www.ti.com/lit/ds/symlink/bq25570.pdf?ts=1622226249291&amp;ref_url=https%253A%252F%252Fwww.ti.com%252Fstore%252Fti%252Fen%252Fp%252Fproduct%252F%253Fp%253DBQ25570RGRR">Texas Instruments BQ25570RGRR</a> Energy Harvesting IC with MPPT (Maximum Power Point Tracking) and &lt;1uA Quiescent Current Draw.  Configured for 80% MPPT by default (most common for solar panels)</li>
+<li>Built in 2.5F High Quality Super Capacitor - allowing for continuous charge/discharge cycles with minimal degradation across a wide operating temperature range.  Can be operated with only a super capacitor making for a battery free IoT system!</li>
+<li>Charge voltage set to 5V, but can be customized with simple component changes</li>
+<li>Automatic Switchover circuit to battery backup for mission critical applications, in case super capacitor fully depletes. A “DETECT” output signal can be wired to trigBoard (or other host processor) to indicate if on battery backup or solar power NOTE: Battery backup is purely optional and the board does not charge this battery, which is why it can be any battery within 2-5V.  Could be 4.2V lithium cell or a set of AAA batteries.  The board simply gives a smooth uninterrupted switchover to the battery to ensure the notifications continue being sent.  This is a clever circuit because it’s not just a “highest voltage wins” kind of circuit like OR’ing diodes, but rather a priority circuit so that it will always use solar power if it’s able to, even if the solar power voltage is less than the backup battery voltage.</li>
+<li>Pre-Charge Button to allow users to charge the super capacitor directly from the battery to set an initial condition for the system - also note that the trigSolar board operation requires &gt;1V of charge on the super capacitor at all times.  This would naturally occur under normal solar charging, but to “kickstart” the board, can simply just hold the precharge button for a few seconds or until the output is enabled.</li>
+<li>Board designed with modifications in mind - JST PH2.0mm connectors for all connections into the board as well as through hole test points, making it easy to wire into custom applications.  Also, components spread out in 0805 packages, so can be replaced “easily” to set the board’s various parameters and thresholds for some custom system. Note that it works great out of the box with trigBoard!</li>
+<li>Super Capacitor can be expanded with simple “reserve’ circuit, so the high quality 2.5F capacitor handles the high current loads during wakes, but a much larger and lower quality capacitor can be used as reserve storage to slowly replenish the system’s charge.</li>
+<li><a class="reference external" href="https://www.powerfilmsolar.com/products/electronic-component-solar-panels/indoor-light-series/ll200-2-4-75">Indoor PowerFilm Solar Panel LL200-2.4-75</a> with pre-soldered JST Cable available as option (thoroughly tested here with indoor lighting)</li>
+<li>Lower cost Outdoor panel option (30mm x 38mm) - smaller cheaper is all that’s needed with outdoors - the trigSolar board is incredibly efficient.</li>
+<li><a class="reference external" href="https://a360.co/3ftcq1X">Fusion360 Design here</a> pw is trigsolar and you can also download the step file there as well</li>
+</ul>
+<img alt="_images/trigsolarGIF.gif" class="align-center" src="_images/trigsolarGIF.gif" />
+<div class="section" id="functionality">
+<h3><strong>Functionality</strong><a class="headerlink" href="#functionality" title="Permalink to this headline">¶</a></h3>
+<img alt="_images/switchoverdiagramtrigsolatr.png" class="align-center" src="_images/switchoverdiagramtrigsolatr.png" />
+<p>This illustrates nicely how the trigSolar board works - note that this is showing with a battery backup connected.  This is not required, so if no backup is provided, the output just goes to 0V.</p>
+<p>1 - The trigSolar board requires &gt;1V to operate, which can be forced with the pre-charge button, just as long as a backup battery is present or can just be left to naturally charge with solar power.  Getting up to 1V does not take long.  Note that in the plot, as soon as 1V is reached, the output is set to the battery backup. If no battery is connected, then the output remains at 0V.</p>
+<p>2 - On charging up, the output will switch to the super capacitor at ~3V.  With a backup battery connected, it will switch from battery to super cap, which is interesting to watch happen, since you might have a 4.2V battery connected, then suddenly the voltage drops to 3V.  This is the switchover point.</p>
+<p>3 - Now that the board is running purely on solar power (super capacitor), it will continue to use this power until the voltage falls below 2V.  It’s not 3V, because a 1V hysteresis was designed into the board. In other words, super cap turns on at 3V on the way up, turns off at 2V on the way down.  Then turns back on at 3V.  This hysteresis is important because when the board charges up to 3V, the trigBoard will immediately wake and attempt to send a notification causing some discharge on the super capacitor.  Without hysteresis, like if it also turned off at 3V, the trigSolar board would never be able to fully switch over and stay powered from the super capacitor.</p>
+</div>
+<div class="section" id="detect-pin">
+<h3><strong>Detect Pin</strong><a class="headerlink" href="#detect-pin" title="Permalink to this headline">¶</a></h3>
+<p>This provides an open-drain signal that you can use to determine if the board is outputting power from the Super Capacitor or from Battery backup.  In most cases, this is not used, but can be helpful, for example here is a snippet of code with the signal wired to <strong>GPIO25</strong> on the trigBoard that simply adds a comma separated 1 or 0 to the push message depending on the state:</p>
+<div class="highlight-C++ notranslate"><div class="highlight"><pre><span></span><span class="n">pinMode</span><span class="p">(</span><span class="mi">25</span><span class="p">,</span> <span class="n">INPUT_PULLUP</span><span class="p">);</span><span class="c1">// this is the sensor wire from the solar board</span>
+    <span class="n">delay</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">digitalRead</span><span class="p">(</span><span class="mi">25</span><span class="p">)</span> <span class="o">==</span> <span class="n">LOW</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// means we&#39;re on supercap, else on backup</span>
+      <span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="s">&quot;super powered&quot;</span><span class="p">);</span>
+      <span class="n">strcat</span><span class="p">(</span><span class="n">pushMessage</span><span class="p">,</span> <span class="s">&quot;,1&quot;</span><span class="p">);</span>
+    <span class="p">}</span><span class="k">else</span><span class="p">{</span>
+      <span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="s">&quot;backup powered&quot;</span><span class="p">);</span>
+      <span class="n">strcat</span><span class="p">(</span><span class="n">pushMessage</span><span class="p">,</span> <span class="s">&quot;,0&quot;</span><span class="p">);</span>
+    <span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="solar-considerations">
+<h3><strong>Solar Considerations</strong><a class="headerlink" href="#solar-considerations" title="Permalink to this headline">¶</a></h3>
+<p>There’s a lot to consider with solar and may not be the right solution for every application:</p>
+<ul class="simple">
+<li>How much light is available will determine the charging current</li>
+<li>How long the light is on for (or sun) as well as how long there is no light (dark period)</li>
+<li>Energy Storage - in this case 2.5F built in, but can swap out or expand if needed</li>
+<li>How often is trigBoard waking up and how long it’s ON for plays a huge role</li>
+<li>trigBoard sleep current - well actually this is one thing that is all good!  ~1uA</li>
+</ul>
+<dl class="docutils">
+<dt>Because there are so many variables, I created a calculator to figure this out:</dt>
+<dd><a class="reference download internal" download="" href="_downloads/107eb41c427738e001c651cbab539c66/trigSolarCalculator.xlsx"><code class="xref download docutils literal notranslate"><span class="pre">trigSolar</span> <span class="pre">Calculator</span></code></a></dd>
+</dl>
+<p>For example, the default parameters:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="56%" />
+<col width="44%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>avg On Current</td>
+<td>65mA</td>
+</tr>
+<tr class="row-even"><td>On Time</td>
+<td>2sec</td>
+</tr>
+<tr class="row-odd"><td>Super Cap</td>
+<td>2.5F</td>
+</tr>
+<tr class="row-even"><td>Charge Current</td>
+<td>200uA</td>
+</tr>
+<tr class="row-odd"><td>Charge Time</td>
+<td>8hr</td>
+</tr>
+<tr class="row-even"><td>Wakes/Hr</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+<p>Yields this plot:</p>
+<img alt="_images/testplotfromcalculatorsolar.png" class="align-center" src="_images/testplotfromcalculatorsolar.png" />
+<p>Let’s walk through these parameters:</p>
+<ul class="simple">
+<li>Average ON Current is what the trigBoard pulls on average while awake, 65-70mA can be used for this</li>
+<li>On Time is how long the trigBoard takes to wake and go back to sleep.  In most cases, this is &lt;5seconds.  However this can be longer depending on WiFi strength and how long it takes to connect to whichever service is configured.</li>
+<li>Super Cap is fixed at 2.5F, since this is what’s built into the board.  But here as a parameter in case this is changed our or expanded on.</li>
+<li>Charge current is a difficult measurement to obtain - this is the current as measured into the super capacitor.  Per testing with a single LED light fixture, ~200uA or so was measured.</li>
+<li>Charge time is simply how long the light is on for - in this case the light is on for 8hrs a day</li>
+<li>Wakes/Hr is how often the trigBoard wakes in an hour.  Does not need to be an integer value, meaning if the board wakes once a day like in a mailbox application, just put “=1/24”</li>
+</ul>
+<p><strong>So how close is the calculator to the real world?</strong></p>
+<img alt="_images/fullweeklight60min.png" class="align-center" src="_images/fullweeklight60min.png" />
+<p>Pretty close actually!!  This setup is in a controlled location with an LED fixture controlled from Home Assistant turning on everyday for 8hrs.  Also, the trigBoard connected to the trigSolar board reports its voltage up to Home Assistant (plotted here with Grafana) once an hour.  Then in red there, you can see the charge current. This is measured with a second trigBoard taking a reading every 10minutes.</p>
+<p><strong>Settings that don’t work</strong></p>
+<p>The point of this calculator is to help set some expectations - for example, let’s change one parameter like increasing the wakes from 1 to 3 times an hour:</p>
+<img alt="_images/badwakes3timesanhour.png" class="align-center" src="_images/badwakes3timesanhour.png" />
+<p>Now it can never reach a purely solar state - as soon as the voltage hits 2V there, the output is disabled or it switches over to the battery backup.  But there’s tradeoffs with everything, so what you added more light? for longer period of time? or decreased the on time somehow?  These are all things to consider and experiment with.</p>
+</div>
+<div class="section" id="super-capacitor-reserve">
+<h3><strong>Super Capacitor Reserve</strong><a class="headerlink" href="#super-capacitor-reserve" title="Permalink to this headline">¶</a></h3>
+<p>The built in Super Capacitor is very high quality and has low ESR and low leakage.  This is great for supplying power to the trigBoard with it’s high current spikes needed by the ESP32 module.  Only problem is that you’re limited to 20-30 wakes maybe, so for an application that has plenty of light (outdoors) that would charge the 2.5F capacitor quickly, you can expand this storage with a “Super Capacitor Reserve”.  an example might be an outdoor weather station that reports data every 5minutes.  During the day this is fine, but that last long overnight.  The solution is to add low cost/quality 100F capacitors in parallel with the existing 2.5 capacitor. In this circuit, the capacitors are only rated for 2.7V, so two are needed in series with 1M ohm balancing resistors.  Then for safety, a series 10ohm resistor in-line with to the trigSolar board.  <strong>NOTE</strong> - these capacitors are available in the Tindie store now, but soon will be a board with JST connector making this an easy upgrade.</p>
+<img alt="_images/supercapreserverdrawing.png" class="align-center" src="_images/supercapreserverdrawing.png" />
+<p>For my weather station that reports every 5minutes, see how it charges/discharges everyday and this is with the low cost small solar panel:</p>
+<img alt="_images/supercapreserveweatherstationplots.png" class="align-center" src="_images/supercapreserveweatherstationplots.png" />
+</div>
+<div class="section" id="design">
+<h3><strong>Design</strong><a class="headerlink" href="#design" title="Permalink to this headline">¶</a></h3>
+<img alt="_images/trigSolarSchematicv1p1.png" class="align-center" src="_images/trigSolarSchematicv1p1.png" />
+<p>Can be downloaded here:</p>
+<blockquote>
+<div><a class="reference download internal" download="" href="_downloads/68cd18824364dce4a2295eb16be4a04b/trigSolarV1.1_SCH.pdf"><code class="xref download docutils literal notranslate"><span class="pre">trigSolarv1.1</span> <span class="pre">SCH</span></code></a></div></blockquote>
+<p>Then for reference, here is the worksheet used to set the various thresholds and parameters for the BQ2557:</p>
+<blockquote>
+<div><a class="reference download internal" download="" href="_downloads/70e3b258145a8108d6019eff3ca8c153/bq25505_trigSolar.xlsx"><code class="xref download docutils literal notranslate"><span class="pre">trigSolar</span> <span class="pre">BQ2557</span> <span class="pre">Worksheet</span></code></a></div></blockquote>
+<p>A video will be made soon to walkthrough this design!</p>
+</div>
+</div>
+<div class="section" id="low-cost-outdoor-solar">
+<h2>Low Cost Outdoor Solar<a class="headerlink" href="#low-cost-outdoor-solar" title="Permalink to this headline">¶</a></h2>
 <p>If you can install a small panel outdoors, then this is actually very easy and inexpensive.  The efficiency of the charging and MPPT (Maximum Power Point Tracking) systems are not as critical.  Cheap boards/panels from eBay/Amazon can be used.  I currently have a solar system running my outdoor <a class="reference internal" href="temperatureSensor.html#temperature"><span class="std std-ref">temperature logger project</span></a> using low cost materials.  This wakes on a timer every minute, connects to WiFi, and logs temperature to a Corlysis.  After running for a few months, the 4.2V lithium cell has not ever dipped below 4V.  A wake interval of 1 minute is pretty demanding, so this is quite impressive.</p>
 <p><strong>Materials</strong></p>
 <p><a class="reference external" href="https://www.ebay.com/itm/6-9-12V-MPPT-Solar-Panel-Charger-Lithium-Battery-Charging-Regulator-Board-CN3791/143713260554?ssPageName=STRK%3AMEBIDX%3AIT&amp;var=442762249742&amp;_trksid=p2060353.m2749.l2649">CN3791 board from eBay 6V Version</a></p>
@@ -210,10 +337,6 @@ Version 8</a>
 <p>And with the <a class="reference internal" href="temperatureSensor.html#temperature"><span class="std std-ref">temperature logger project</span></a> you can see the daily charging/discharging of the battery - pretty cool!!</p>
 <img alt="_images/batterychargedischargedaily.png" class="align-center" src="_images/batterychargedischargedaily.png" />
 </div>
-<div class="section" id="indoor-solar">
-<h2>Indoor Solar<a class="headerlink" href="#indoor-solar" title="Permalink to this headline">¶</a></h2>
-<p>Coming soon! Still under test!</p>
-</div>
 </div>
 
 
@@ -224,7 +347,7 @@ Version 8</a>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="temperatureSensor.html" class="btn btn-neutral float-right" title="Temperature Logging to Grafana" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="temperatureSensor.html" class="btn btn-neutral float-right" title="Temperature Logging Corlysis + Home Asst" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="SmokeCODetector.html" class="btn btn-neutral float-left" title="Smoke/CO Detector" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>

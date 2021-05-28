@@ -136,7 +136,7 @@ Version 8 0 documentation</title>
 <li class="toctree-l1"><a class="reference internal" href="multipleInputs.html">Multiple Inputs</a></li>
 <li class="toctree-l1"><a class="reference internal" href="SendEmail.html">Send an Email - IFTTT</a></li>
 <li class="toctree-l1"><a class="reference internal" href="SmokeCODetector.html">Smoke/CO Detector</a></li>
-<li class="toctree-l1"><a class="reference internal" href="solar.html">Solar Options</a></li>
+<li class="toctree-l1"><a class="reference internal" href="solar.html">Solar Powered</a></li>
 <li class="toctree-l1"><a class="reference internal" href="temperatureSensor.html">Temperature Logging Corlysis + Home Asst</a></li>
 <li class="toctree-l1"><a class="reference internal" href="waterleakDetector.html">Water Leak Detector</a></li>
 </ul>
@@ -444,7 +444,9 @@ Version 8</a>
 <div class="section" id="trigboard-activated-wifi-light-bulb">
 <h2><strong>trigBoard activated WiFI Light Bulb</strong><a class="headerlink" href="#trigboard-activated-wifi-light-bulb" title="Permalink to this headline">¶</a></h2>
 <p>Want to do something useful with the trigBoard?  In my house here, when I open the door into the garage, wouldn’t be handy to turn a light on automatically?  Well this is a perfect application for trigBoard + Home Assistant.  Even better, this trigBoard can still send push notifications out using any of the other services - you’re just enabling MQTT as a next step in the sequence in the logic for when the trigBoard wakes.  You’ll see below how this can be done.</p>
-<div class="section" id="wifi-bulb-setup">
+<div style="text-align: center; margin-bottom: 2em;">
+<iframe width="560" height="315" src="https://www.youtube.com/embed/XVC2TCkKgJA" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</div><div class="section" id="wifi-bulb-setup">
 <h3><strong>WiFi Bulb Setup</strong><a class="headerlink" href="#wifi-bulb-setup" title="Permalink to this headline">¶</a></h3>
 <p>I didn’t want to have to deal with re-flashing a cheap WiFI bulb or worry about a gateway with ZigBee bulbs, so I decided on a TP-Link “Kasa” KL110 bulb <a class="reference external" href="https://www.amazon.com/gp/product/B07G1PH3JL/ref=ppx_yo_dt_b_asin_title_o03_s00?ie=UTF8&amp;psc=1">picked up on Amazon</a></p>
 <a class="reference external image-reference" href="https://www.amazon.com/gp/product/B07G1PH3JL/ref=ppx_yo_dt_b_asin_title_o03_s00?ie=UTF8&amp;psc=1"><img alt="_images/kasaamazonpagetplinkbulb.png" class="align-center" src="_images/kasaamazonpagetplinkbulb.png" /></a>
@@ -472,6 +474,7 @@ Version 8</a>
 </div>
 <p>Mine looks like this:</p>
 <img alt="_images/tplinkkasaconfigyaml.png" class="align-center" src="_images/tplinkkasaconfigyaml.png" />
+<p>More <a class="reference external" href="https://www.home-assistant.io/integrations/tplink/">info here</a></p>
 <p>After saving that, I gave my Home Assistant a restart: Configuration&gt;&gt;Server Controls, then click Restart under Server management.</p>
 <p>Once things are back online, try creating a new Bulb card in a dashboard and see if you can select that Entity:</p>
 <img alt="_images/bulbcardtesttplinkn.png" class="align-center" src="_images/bulbcardtesttplinkn.png" />
@@ -484,7 +487,7 @@ Version 8</a>
 <p class="first admonition-title">Note</p>
 <p class="last">If you’ve followed the guides above and already have a trigBoard displaying a state change, then you’re good to go and can proceed to the next step, but this will show how to setup a trigBoard that is already in service and if you only want to expand it’s features to now activate a light with Home Assistant</p>
 </div>
-<p>In this case, I have a trigBoard already sending push notifications per <a class="reference internal" href="cellularProject.html#cellularbattery"><span class="std std-ref">The Cellular Backed Setup using TCP</span></a> so I really didn’t want to modify any of my push messages or other parameters.  This is no problem and easy enough to just enable MQTT.</p>
+<p>In this case, I have a trigBoard already sending push notifications per <a class="reference internal" href="cellularProject.html#cellularbattery"><span class="std std-ref">The Cellular Backed Setup using TCP</span></a> so I really didn’t want to modify any of my push messages or other parameters.  This is no problem and easy enough to just enable MQTT.  <strong>NOTE</strong> you still need to make sure you have the Mosquitto Broker working within Home Assistant, so make sure to follow guides above on setting up Home Assistant with the Broker.</p>
 <div class="line-block">
 <div class="line">1 - Launch the Configurator</div>
 <div class="line">2 - Set your WiFi Settings, then Save and Connect</div>
@@ -499,11 +502,12 @@ Version 8</a>
 <div class="line">5 - That’s it for the Configurator, you can now disconnect</div>
 </div>
 <p>Back to Home Assistant straight into the File Editor, you can add this sensor and note the value template - we’re just going to take the full trigBoard message out here without the voltage (we don’t care about that for what we’re doing).  Note the topic here matches what was entered in the Configurator:</p>
-<div class="highlight-YAML notranslate"><div class="highlight"><pre><span></span><span class="p p-Indicator">-</span> <span class="nt">platform</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">mqtt</span>
-  <span class="nt">state_topic</span><span class="p">:</span> <span class="s">&quot;garageDoor&quot;</span>
-  <span class="nt">name</span><span class="p">:</span> <span class="s">&quot;Garage</span><span class="nv"> </span><span class="s">Door&quot;</span>
-  <span class="nt">icon</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">mdi:door</span>
-  <span class="nt">value_template</span><span class="p">:</span> <span class="s">&quot;{{</span><span class="nv"> </span><span class="s">value.split(&#39;,&#39;)[0]</span><span class="nv"> </span><span class="s">}}&quot;</span>
+<div class="highlight-YAML notranslate"><div class="highlight"><pre><span></span><span class="nt">sensor</span><span class="p">:</span>
+  <span class="p p-Indicator">-</span> <span class="nt">platform</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">mqtt</span>
+    <span class="nt">state_topic</span><span class="p">:</span> <span class="s">&quot;garageDoor&quot;</span>
+    <span class="nt">name</span><span class="p">:</span> <span class="s">&quot;Garage</span><span class="nv"> </span><span class="s">Door&quot;</span>
+    <span class="nt">icon</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">mdi:door</span>
+    <span class="nt">value_template</span><span class="p">:</span> <span class="s">&quot;{{</span><span class="nv"> </span><span class="s">value.split(&#39;,&#39;)[0]</span><span class="nv"> </span><span class="s">}}&quot;</span>
 </pre></div>
 </div>
 <p>This will produce these messages:</p>
