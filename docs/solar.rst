@@ -13,11 +13,11 @@ With the ultra low power capabilities of the trigBoard, it only makes sense to m
 
 * Based on the `Texas Instruments BQ25570RGRR <https://www.ti.com/lit/ds/symlink/bq25570.pdf?ts=1622226249291&ref_url=https%253A%252F%252Fwww.ti.com%252Fstore%252Fti%252Fen%252Fp%252Fproduct%252F%253Fp%253DBQ25570RGRR>`_ Energy Harvesting IC with MPPT (Maximum Power Point Tracking) and <1uA Quiescent Current Draw.  Configured for 80% MPPT by default (most common for solar panels)
 
-* Built in 2.5F High Quality Super Capacitor - allowing for continuous charge/discharge cycles with minimal degradation across a wide operating temperature range.  Can be operated with only a super capacitor making for a battery free IoT system!  
+* Built-in 2.5F High Quality Super Capacitor - allowing for continuous charge/discharge cycles with minimal degradation across a wide operating temperature range.  Can be operated with only a super capacitor making for a battery free IoT system!  
 
 * Charge voltage set to 5V, but can be customized with simple component changes
 
-* Automatic Switchover circuit to battery backup for mission critical applications, in case super capacitor fully depletes. A "DETECT" output signal can be wired to trigBoard (or other host processor) to indicate if on battery backup or solar power NOTE: Battery backup is purely optional and the board does not charge this battery, which is why it can be any battery within 2-5V.  Could be 4.2V lithium cell or a set of AAA batteries.  The board simply gives a smooth uninterrupted switchover to the battery to ensure the notifications continue being sent.  This is a clever circuit because it's not just a "highest voltage wins" kind of circuit like OR'ing diodes, but rather a priority circuit so that it will always use solar power if it's able to, even if the solar power voltage is less than the backup battery voltage.  
+* Automatic Switchover circuit to battery backup for mission-critical applications, in situations where the super capacitor may fully deplete. A "DETECT" output signal can be wired to trigBoard (or other host processor) to indicate if on battery backup or solar power NOTE: Battery backup is purely optional and the board does not charge this battery, which is why it can be any battery within 2-5V.  Could be 4.2V lithium cell or a set of AAA batteries.  The board simply gives a smooth uninterrupted switchover to the battery to ensure the notifications continue being sent.  This is a clever circuit because it's not just a "highest voltage wins" kind of circuit like OR'ing diodes, but rather a priority circuit so that it will always use solar power if it's able to, even if the solar power voltage is less than the backup battery voltage.  
 
 * Pre-Charge Button to allow users to charge the super capacitor directly from the battery to set an initial condition for the system - also note that the trigSolar board operation requires >1V of charge on the super capacitor at all times.  This would naturally occur under normal solar charging, but to "kickstart" the board, can simply just hold the precharge button for a few seconds or until the output is enabled.
 
@@ -27,7 +27,7 @@ With the ultra low power capabilities of the trigBoard, it only makes sense to m
 
 * `Indoor PowerFilm Solar Panel LL200-2.4-75 <https://www.powerfilmsolar.com/products/electronic-component-solar-panels/indoor-light-series/ll200-2-4-75>`_ with pre-soldered JST Cable available as option (thoroughly tested here with indoor lighting)
 
-* Lower cost Outdoor panel option (30mm x 38mm) - smaller cheaper is all that's needed with outdoors - the trigSolar board is incredibly efficient.
+* Lower cost Outdoor panel option (30mm x 38mm) - smaller and cheaper is all that's needed with outdoors - the trigSolar board is incredibly efficient.
 
 * `Fusion360 Design here <https://a360.co/3ftcq1X>`_ pw is trigsolar and you can also download the step file there as well
 
@@ -44,7 +44,7 @@ This illustrates nicely how the trigSolar board works - note that this is showin
 
 1 - The trigSolar board requires >1V to operate, which can be forced with the pre-charge button, just as long as a backup battery is present or can just be left to naturally charge with solar power.  Getting up to 1V does not take long.  Note that in the plot, as soon as 1V is reached, the output is set to the battery backup. If no battery is connected, then the output remains at 0V.
 
-2 - On charging up, the output will switch to the super capacitor at ~3V.  With a backup battery connected, it will switch from battery to super cap, which is interesting to watch happen, since you might have a 4.2V battery connected, then suddenly the voltage drops to 3V.  This is the switchover point.  
+2 - On charging up, the output will switch to the super capacitor at ~3V.  With a backup battery connected, it will switch from battery to super cap, which is interesting to watch happen, since you might have a 4.2V battery connected, then suddenly the voltage drops to 3V.  This is the switchover point and demonstrates the priority circuit in action.  
 
 3 - Now that the board is running purely on solar power (super capacitor), it will continue to use this power until the voltage falls below 2V.  It's not 3V, because a 1V hysteresis was designed into the board. In other words, super cap turns on at 3V on the way up, turns off at 2V on the way down.  Then turns back on at 3V.  This hysteresis is important because when the board charges up to 3V, the trigBoard will immediately wake and attempt to send a notification causing some discharge on the super capacitor.  Without hysteresis, like if it also turned off at 3V, the trigSolar board would never be able to fully switch over and stay powered from the super capacitor.  
 
@@ -69,7 +69,7 @@ This provides an open-drain signal that you can use to determine if the board is
 **Solar Considerations**
 =========================
 
-There's a lot to consider with solar and may not be the right solution for every application: 
+There's a lot to consider with solar and may not be the right solution for every application:
 
 * How much light is available will determine the charging current
 
@@ -81,7 +81,7 @@ There's a lot to consider with solar and may not be the right solution for every
 
 * trigBoard sleep current - well actually this is one thing that is all good!  ~1uA 
 
-Because there are so many variables, I created a calculator to figure this out: 
+Because there are so many variables, I created a calculator to help work this out: 
 	:download:`trigSolar Calculator <solarFiles/trigSolarCalculator.xlsx>`
 
 For example, the default parameters: 
@@ -108,9 +108,9 @@ Let's walk through these parameters:
 
 * Super Cap is fixed at 2.5F, since this is what's built into the board.  But here as a parameter in case this is changed our or expanded on.  
 
-* Charge current is a difficult measurement to obtain - this is the current as measured into the super capacitor.  Per testing with a single LED light fixture, ~200uA or so was measured.
+* Charge current is a difficult measurement to obtain - this is the current as measured into the super capacitor.  Per testing with a single LED light fixture, ~200uA or so was measured.  On this board, if you want to measure the charge current, you'll have to cut the positive lead on the super capacitor to hook a meter in-line.  As data becomes available, updates will be made here to this page.  
 
-* Charge time is simply how long the light is on for - in this case the light is on for 8hrs a day
+* Charge time is simply how long the light is on for - in this case the light is on for 8hrs a day.  
 
 * Wakes/Hr is how often the trigBoard wakes in an hour.  Does not need to be an integer value, meaning if the board wakes once a day like in a mailbox application, just put "=1/24"
 
@@ -119,7 +119,7 @@ Let's walk through these parameters:
 .. image:: images/fullweeklight60min.png
 	:align: center
 
-Pretty close actually!!  This setup is in a controlled location with an LED fixture controlled from Home Assistant turning on everyday for 8hrs.  Also, the trigBoard connected to the trigSolar board reports its voltage up to Home Assistant (plotted here with Grafana) once an hour.  Then in red there, you can see the charge current. This is measured with a second trigBoard taking a reading every 10minutes.
+Pretty close actually!!  This setup is in a controlled location with an LED fixture controlled from Home Assistant turning on everyday for 8hrs.  Also, the trigBoard connected to the trigSolar board reports its voltage up to Home Assistant (plotted here with Grafana) once an hour.  Then in red there, you can see the charge current. This is measured with a second trigBoard taking a reading every 10minutes.  
 
 **Settings that don't work**
 
@@ -128,12 +128,12 @@ The point of this calculator is to help set some expectations - for example, let
 .. image:: images/badwakes3timesanhour.png
 	:align: center
 
-Now it can never reach a purely solar state - as soon as the voltage hits 2V there, the output is disabled or it switches over to the battery backup.  But there's tradeoffs with everything, so what you added more light? for longer period of time? or decreased the on time somehow?  These are all things to consider and experiment with.  
+Now it can never reach a purely solar state - as soon as the voltage hits 2V there, the output is disabled or it switches over to the battery backup.  But there's trade-offs with everything, so what if you added more light? for longer period of time? or decreased the on time somehow?  These are all things to consider and experiment with.  Or maybe you're fine with this and just need a "battery extender".  That works too! 
 
 **Super Capacitor Reserve**
 ============================
 
-The built in Super Capacitor is very high quality and has low ESR and low leakage.  This is great for supplying power to the trigBoard with it's high current spikes needed by the ESP32 module.  Only problem is that you're limited to 20-30 wakes maybe, so for an application that has plenty of light (outdoors) that would charge the 2.5F capacitor quickly, you can expand this storage with a "Super Capacitor Reserve".  an example might be an outdoor weather station that reports data every 5minutes.  During the day this is fine, but that last long overnight.  The solution is to add low cost/quality 100F capacitors in parallel with the existing 2.5 capacitor. In this circuit, the capacitors are only rated for 2.7V, so two are needed in series with 1M ohm balancing resistors.  Then for safety, a series 10ohm resistor in-line with to the trigSolar board.  **NOTE** - these capacitors are available in the Tindie store now, but soon will be a board with JST connector making this an easy upgrade.
+The built-in Super Capacitor is very high quality, has low ESR, and low leakage.  This is great for supplying power to the trigBoard with its high current spikes needed by the ESP32 module.  Only problem is that you're limited to 20-30 wakes maybe, so for an application that has plenty of light (outdoors) that would charge the 2.5F capacitor quickly, you can expand this storage with a "Super Capacitor Reserve".  An example might be an outdoor weather station that reports data every 5minutes.  During the day this is fine, but that won't last long overnight.  The solution is to add low cost/quality 100F capacitors in parallel with the existing 2.5 capacitor. In this circuit, the capacitors are only rated for 2.7V, so two are needed in series with 1M ohm balancing resistors.  Then for safety, a series 10ohm resistor in-line with to the trigSolar board.  **NOTE** - these capacitors are available in the Tindie store now, but soon will be a board with JST connector making this an easy upgrade.
 
 .. image:: images/supercapreserverdrawing.png
 	:align: center
@@ -164,7 +164,7 @@ A video will be made soon to walkthrough this design!
 Low Cost Outdoor Solar
 -------------------------
 
-If you can install a small panel outdoors, then this is actually very easy and inexpensive.  The efficiency of the charging and MPPT (Maximum Power Point Tracking) systems are not as critical.  Cheap boards/panels from eBay/Amazon can be used.  I currently have a solar system running my outdoor :ref:`temperature logger project <Temperature>` using low cost materials.  This wakes on a timer every minute, connects to WiFi, and logs temperature to a Corlysis.  After running for a few months, the 4.2V lithium cell has not ever dipped below 4V.  A wake interval of 1 minute is pretty demanding, so this is quite impressive.  
+If you can install a small panel outdoors, then this is actually very easy and inexpensive.  The efficiency of the charging and MPPT (Maximum Power Point Tracking) systems are not as critical.  Cheap boards/panels from eBay/Amazon can be used.  See the :ref:`temperature logger project <Temperature>` for details on this project.
 
 **Materials**
 
@@ -202,7 +202,7 @@ This is how it all looks wired up:
 
 **Install**
 
-This is an example how I have my weather station installed, but this has been running smoothly for a couple months.  Panel is just taped up on a gutter: 
+This is an example how I had tested this setup, and ran smoothly for a couple months until I switched over to the trigSolar setup.  Panel is just taped up on a gutter: 
 
 .. image:: images/solarinstalloutside.png
 	:align: center
