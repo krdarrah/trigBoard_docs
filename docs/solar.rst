@@ -42,7 +42,7 @@ With the ultra low power capabilities of the trigBoard, it only makes sense to m
 
 This illustrates nicely how the trigSolar board works - note that this is showing with a battery backup connected.  This is not required, so if no backup is provided, the output just goes to 0V.
 
-1 - The trigSolar board requires >1V to operate, which can be forced with the pre-charge button, just as long as a backup battery is present or can just be left to naturally charge with solar power.  Getting up to 1V does not take long.  Note that in the plot, as soon as 1V is reached, the output is set to the battery backup. If no battery is connected, then the output remains at 0V.
+1 - The trigSolar board requires >1V to operate, which can be forced with the pre-charge button, just as long as a backup battery is present or can just be left to naturally charge with solar power.  Getting up to 1V does not take long.  Note that in the plot, as soon as 1V is reached, the output is set to the battery backup. If no battery is connected, then the output remains at 0V. **NOTE** there is only one 10ohm resistor to limit inrush current from the battery to the super capacitor.  Do not hold the pre-charge button for too long, since this may burn up that resistor.  One second on, one second off just to get the super capacitor charged up should be good.  
 
 2 - On charging up, the output will switch to the super capacitor at ~3V.  With a backup battery connected, it will switch from battery to super cap, which is interesting to watch happen, since you might have a 4.2V battery connected, then suddenly the voltage drops to 3V.  This is the switchover point and demonstrates the priority circuit in action.  
 
@@ -133,10 +133,16 @@ Now it can never reach a purely solar state - as soon as the voltage hits 2V the
 **Super Capacitor Reserve**
 ============================
 
-The built-in Super Capacitor is very high quality, has low ESR, and low leakage.  This is great for supplying power to the trigBoard with its high current spikes needed by the ESP32 module.  Only problem is that you're limited to 20-30 wakes maybe, so for an application that has plenty of light (outdoors) that would charge the 2.5F capacitor quickly, you can expand this storage with a "Super Capacitor Reserve".  An example might be an outdoor weather station that reports data every 5minutes.  During the day this is fine, but that won't last long overnight.  The solution is to add low cost/quality 100F capacitors in parallel with the existing 2.5 capacitor. In this circuit, the capacitors are only rated for 2.7V, so two are needed in series with 1M ohm balancing resistors.  Then for safety, a series 10ohm resistor in-line with to the trigSolar board.  **NOTE** - these capacitors are available in the Tindie store now, but soon will be a board with JST connector making this an easy upgrade.
+The built-in Super Capacitor is very high quality, has low ESR, and low leakage.  This is great for supplying power to the trigBoard with its high current spikes needed by the ESP32 module.  Only problem is that you're limited to 20-30 wakes maybe, so for an application that has plenty of light (outdoors) that would charge the 2.5F capacitor quickly, you can expand this storage with a "Super Capacitor Reserve".  An example might be an outdoor weather station that reports data every 5minutes.  During the day this is fine, but that won't last long overnight.  The solution is to add low cost/quality 100F capacitors in parallel with the existing 2.5 capacitor. In this circuit, the capacitors are only rated for 2.7V, so two are needed in series with 10k ohm balancing resistors.  Then for safety, a series 10ohm resistor in-line with to the trigSolar board. OR, 2.5V zener diodes `1N5222B-TR <https://www.digikey.com/short/mbw3887z>`_ can be used for balancing
 
 .. image:: images/supercapreserverdrawing.png
 	:align: center
+
+.. image:: images/supercapreserverdrawingZENER.png
+	:align: center
+
+.. warning::
+	These are large capacitors that can store a lot of energy even at 2.5V!  Be careful not to short the leads when they are charged.  It will burn the 10ohm resistor and/or cause other damage.
 
 For my weather station that reports every 5minutes, see how it charges/discharges everyday and this is with the low cost small solar panel and the voltage never gets close to reaching 2V! 
 
