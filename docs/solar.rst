@@ -130,10 +130,15 @@ The point of this calculator is to help set some expectations - for example, let
 
 Now it can never reach a purely solar state - as soon as the voltage hits 2V there, the output is disabled or it switches over to the battery backup.  But there's trade-offs with everything, so what if you added more light? for longer period of time? or decreased the on time somehow?  These are all things to consider and experiment with.  Or maybe you're fine with this and just need a "battery extender".  That works too! 
 
+Here's a pretty cool example showing how trigSolar and the battery backup work together - you can see here that for only a few hours at night, the system runs off the battery backup.  There's a lot going on in this plot, but note the green trace - that is the measured voltage feeding the trigBoard.
+
+.. image:: images/trigSolarbatterysolarswitchoverovertime.png
+	:align: center
+
 **Super Capacitor Reserve**
 ============================
 
-The built-in Super Capacitor is very high quality, has low ESR, and low leakage.  This is great for supplying power to the trigBoard with its high current spikes needed by the ESP32 module.  Only problem is that you're limited to 20-30 wakes maybe, so for an application that has plenty of light (outdoors) that would charge the 2.5F capacitor quickly, you can expand this storage with a "Super Capacitor Reserve".  An example might be an outdoor weather station that reports data every 5minutes.  During the day this is fine, but that won't last long overnight.  The solution is to add low cost/quality 100F capacitors in parallel with the existing 2.5 capacitor. In this circuit, the capacitors are only rated for 2.7V, so two are needed in series with 10k ohm balancing resistors.  Then for safety, a series 10ohm resistor in-line with to the trigSolar board. OR, 2.5V zener diodes `1N5222B-TR <https://www.digikey.com/short/mbw3887z>`_ can be used for balancing
+The built-in Super Capacitor is very high quality, has low ESR, and low leakage.  This is great for supplying power to the trigBoard with its high current spikes needed by the ESP32 module.  Only problem is that you're limited to 20-30 wakes maybe, so for an application that has plenty of light (outdoors) that would charge the 2.5F capacitor quickly, you can expand this storage with a "Super Capacitor Reserve".  An example might be an outdoor weather station that reports data every 5minutes.  During the day this is fine, but that won't last long overnight.  The solution is to add low cost/quality 100F capacitors in parallel with the existing 2.5 capacitor. In this circuit, the capacitors are only rated for 2.7V, so two are needed in series with 10k ohm balancing resistors.  Then for safety, a series 10ohm resistor in-line with to the trigSolar board. OR, 2.7V zener diodes `BZX79-C2V7,143 <https://www.digikey.com/short/5zt0z0vf>`_ can be used for balancing
 
 .. image:: images/supercapreserverdrawing.png
 	:align: center
@@ -143,6 +148,12 @@ The built-in Super Capacitor is very high quality, has low ESR, and low leakage.
 
 .. warning::
 	These are large capacitors that can store a lot of energy even at 2.5V!  Be careful not to short the leads when they are charged.  It will burn the 10ohm resistor and/or cause other damage.
+
+**Me carelessly clipping leads while the super caps each had a 2V charge... one lead caused a short and I tried to quickly pick it up - burned me pretty good**
+
+.. image:: images/supercapBurn.png
+	:align: center
+
 
 For my weather station that reports every 5minutes, see how it charges/discharges everyday and this is with the low cost small solar panel and the voltage never gets close to reaching 2V! 
 
