@@ -254,6 +254,109 @@ You'll notice where you paste in your user and API tokens from pushover.net.  Yo
 
 Everything else can be left alone, so save this and you now have both webhooks good to go! 
 
+Power Outage Monitoring
+========================
+
+One of the very useful things about having a system like this that uses a Battery-Backed Cellular modem is that you can also send a message out even if there is a power outage.  Using the Particle Boron makes this very easy to monitor as well, since the onboard PMIC (power management IC) provides a `status reading <https://docs.particle.io/cards/firmware/system-calls/powersource/#powersource->`_ that we can call to see if the system is powered from Battery or USB power.  
+
+**NOTE** You may need to update your OS - this has been tested on v2.1.0
+
+Here's a screenshot after unplugging the USB, waiting about 30seconds then plugging back in - pretty cool!! 
+
+.. image:: images/ACpowerloatsdemo.png
+	:align: center
+
+The same code is used as shown above, but now with the power status checking - I decided to poll the status every 10seconds:
+
+.. code-block:: C
+
+	String str1,str2;
+
+	bool onUSB = false;
+	bool onBattery = false;
+	unsigned long pwrCheckTimeStart;//to check power every 10sec
+
+
+	void setup() {
+	    Serial.begin(115200);//debug
+	    Serial1.begin(57600);//from trigBoard
+	    
+
+	    // INITIAL POWER CHECK 
+	    int powerSource = System.powerSource();
+	    if (powerSource == POWER_SOURCE_BATTERY) {// ON BATTERY
+	        onBattery = true;
+	        onUSB = false;
+	    }
+	    else{// ON USB
+	        onBattery = false;
+	        onUSB = true;
+	    }
+	    pwrCheckTimeStart = millis();
+	        
+	}
+
+	void loop() {
+	    // FROM ESP32 SERVER
+	  if (Serial1.available() > 0) {// new data came in
+	     Serial.println("New Data");
+	     str1 = Serial1.readStringUntil(',');//that's the separator
+	     str2 = Serial1.readStringUntil('#');
+	     sendData();
+	     Serial1.flush();
+	  }
+	  //********************
+	  
+	  // POWER CHECK
+	  if(millis()-pwrCheckTimeStart>10000){
+	    pwrCheckTimeStart = millis();
+	    int powerSource = System.powerSource();
+	    if (powerSource == POWER_SOURCE_BATTERY) {// ON BATTERY
+	        if(!onBattery && onUSB){// CHANGED FROM USB TO BATTERY
+	         onBattery = true;
+	         onUSB = false;
+	         str1 = "HOME";
+	         str2 = "AC POWER LOST";
+	         sendData();
+	        }
+	    }else if(onBattery && !onUSB){// CHANGED FROM BATTERY TO USB
+	        onBattery = false;
+	        onUSB = true;
+	        str1 = "HOME";
+	        str2 = "AC POWER IS ON";
+	        sendData();
+	    }
+	  }
+	  //********************
+	  
+	  
+	}
+
+	void sendData(){
+	     unsigned long startConnectTime = millis();
+	     char pushMessage[50], pushName[50];
+	     str1.toCharArray(pushName, str1.length() + 1);
+	     str2.toCharArray(pushMessage, str2.length() + 1);
+	     
+	     Serial.println(str1);
+	     Serial.println(str2);
+	     
+	     
+	     String pushoverPacket = "[{\"key\":\"title\", \"value\":\"";
+	     pushoverPacket.concat(str1);
+	     pushoverPacket.concat("\"},");
+	     pushoverPacket.concat("{\"key\":\"message\", \"value\":\"");
+	     pushoverPacket.concat(str2);
+	     pushoverPacket.concat("\"}]");
+	     Particle.publish("pushover", pushoverPacket, PRIVATE);//then send to push safer so we get the notifications on our mobile devices
+
+	     Serial.print(millis() - startConnectTime);
+	     Serial.println("ms to connect");
+	}
+
+
+
+
 Monitor Setup
 ----------------
 

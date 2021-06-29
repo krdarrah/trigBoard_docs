@@ -105,7 +105,10 @@ Version 8 0 documentation</title>
 <li class="toctree-l2"><a class="reference internal" href="#gateway-setup">Gateway Setup</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#hardware-needed">Hardware Needed</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#trigboard-gateway-software">trigBoard Gateway Software</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#particle-software">Particle Software</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#particle-software">Particle Software</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#power-outage-monitoring">Power Outage Monitoring</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#monitor-setup">Monitor Setup</a><ul>
@@ -120,11 +123,14 @@ Version 8 0 documentation</title>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="doorbell.html">Door Bell Monitoring</a></li>
 <li class="toctree-l1"><a class="reference internal" href="garage.html">Garage Door Monitor</a></li>
-<li class="toctree-l1"><a class="reference internal" href="LogGoogleDocs.html">Log to Google Docs IFTTT</a></li>
+<li class="toctree-l1"><a class="reference internal" href="homeassistant.html">Home Assistant</a></li>
+<li class="toctree-l1"><a class="reference internal" href="LogGoogleDocs.html">Log to Google Sheet - IFTTT</a></li>
 <li class="toctree-l1"><a class="reference internal" href="motionSensor.html">Motion Sensor - PIR</a></li>
 <li class="toctree-l1"><a class="reference internal" href="multipleInputs.html">Multiple Inputs</a></li>
-<li class="toctree-l1"><a class="reference internal" href="SendEmail.html">Send an Email IFTTT</a></li>
-<li class="toctree-l1"><a class="reference internal" href="temperatureSensor.html">Temperature Logging to Grafana</a></li>
+<li class="toctree-l1"><a class="reference internal" href="SendEmail.html">Send an Email - IFTTT</a></li>
+<li class="toctree-l1"><a class="reference internal" href="SmokeCODetector.html">Smoke/CO Detector</a></li>
+<li class="toctree-l1"><a class="reference internal" href="solar.html">Solar Powered</a></li>
+<li class="toctree-l1"><a class="reference internal" href="temperatureSensor.html">Temperature Logging Corlysis + Home Asst</a></li>
 <li class="toctree-l1"><a class="reference internal" href="waterleakDetector.html">Water Leak Detector</a></li>
 </ul>
 
@@ -394,6 +400,99 @@ Version 8</a>
 <img alt="_images/pushoverForm.png" class="align-center" src="_images/pushoverForm.png" />
 <p>You’ll notice where you paste in your user and API tokens from pushover.net.  You can also change the sound of the notification, but I’ve only ever used the bike sound, so not sure what options you have here.</p>
 <p>Everything else can be left alone, so save this and you now have both webhooks good to go!</p>
+<div class="section" id="power-outage-monitoring">
+<h4>Power Outage Monitoring<a class="headerlink" href="#power-outage-monitoring" title="Permalink to this headline">¶</a></h4>
+<p>One of the very useful things about having a system like this that uses a Battery-Backed Cellular modem is that you can also send a message out even if there is a power outage.  Using the Particle Boron makes this very easy to monitor as well, since the onboard PMIC (power management IC) provides a <a class="reference external" href="https://docs.particle.io/cards/firmware/system-calls/powersource/#powersource-">status reading</a> that we can call to see if the system is powered from Battery or USB power.</p>
+<p><strong>NOTE</strong> You may need to update your OS - this has been tested on v2.1.0</p>
+<p>Here’s a screenshot after unplugging the USB, waiting about 30seconds then plugging back in - pretty cool!!</p>
+<img alt="_images/ACpowerloatsdemo.png" class="align-center" src="_images/ACpowerloatsdemo.png" />
+<p>The same code is used as shown above, but now with the power status checking - I decided to poll the status every 10seconds:</p>
+<div class="highlight-C notranslate"><div class="highlight"><pre><span></span><span class="n">String</span> <span class="n">str1</span><span class="p">,</span><span class="n">str2</span><span class="p">;</span>
+
+<span class="kt">bool</span> <span class="n">onUSB</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>
+<span class="kt">bool</span> <span class="n">onBattery</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>
+<span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">pwrCheckTimeStart</span><span class="p">;</span><span class="c1">//to check power every 10sec</span>
+
+
+<span class="kt">void</span> <span class="nf">setup</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">Serial</span><span class="p">.</span><span class="n">begin</span><span class="p">(</span><span class="mi">115200</span><span class="p">);</span><span class="c1">//debug</span>
+    <span class="n">Serial1</span><span class="p">.</span><span class="n">begin</span><span class="p">(</span><span class="mi">57600</span><span class="p">);</span><span class="c1">//from trigBoard</span>
+
+
+    <span class="c1">// INITIAL POWER CHECK</span>
+    <span class="kt">int</span> <span class="n">powerSource</span> <span class="o">=</span> <span class="n">System</span><span class="p">.</span><span class="n">powerSource</span><span class="p">();</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">powerSource</span> <span class="o">==</span> <span class="n">POWER_SOURCE_BATTERY</span><span class="p">)</span> <span class="p">{</span><span class="c1">// ON BATTERY</span>
+        <span class="n">onBattery</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
+        <span class="n">onUSB</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">else</span><span class="p">{</span><span class="c1">// ON USB</span>
+        <span class="n">onBattery</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>
+        <span class="n">onUSB</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="n">pwrCheckTimeStart</span> <span class="o">=</span> <span class="n">millis</span><span class="p">();</span>
+
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">loop</span><span class="p">()</span> <span class="p">{</span>
+    <span class="c1">// FROM ESP32 SERVER</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">Serial1</span><span class="p">.</span><span class="n">available</span><span class="p">()</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span><span class="c1">// new data came in</span>
+     <span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="s">&quot;New Data&quot;</span><span class="p">);</span>
+     <span class="n">str1</span> <span class="o">=</span> <span class="n">Serial1</span><span class="p">.</span><span class="n">readStringUntil</span><span class="p">(</span><span class="sc">&#39;,&#39;</span><span class="p">);</span><span class="c1">//that&#39;s the separator</span>
+     <span class="n">str2</span> <span class="o">=</span> <span class="n">Serial1</span><span class="p">.</span><span class="n">readStringUntil</span><span class="p">(</span><span class="sc">&#39;#&#39;</span><span class="p">);</span>
+     <span class="n">sendData</span><span class="p">();</span>
+     <span class="n">Serial1</span><span class="p">.</span><span class="n">flush</span><span class="p">();</span>
+  <span class="p">}</span>
+  <span class="c1">//********************</span>
+
+  <span class="c1">// POWER CHECK</span>
+  <span class="k">if</span><span class="p">(</span><span class="n">millis</span><span class="p">()</span><span class="o">-</span><span class="n">pwrCheckTimeStart</span><span class="o">&gt;</span><span class="mi">10000</span><span class="p">){</span>
+    <span class="n">pwrCheckTimeStart</span> <span class="o">=</span> <span class="n">millis</span><span class="p">();</span>
+    <span class="kt">int</span> <span class="n">powerSource</span> <span class="o">=</span> <span class="n">System</span><span class="p">.</span><span class="n">powerSource</span><span class="p">();</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">powerSource</span> <span class="o">==</span> <span class="n">POWER_SOURCE_BATTERY</span><span class="p">)</span> <span class="p">{</span><span class="c1">// ON BATTERY</span>
+        <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">onBattery</span> <span class="o">&amp;&amp;</span> <span class="n">onUSB</span><span class="p">){</span><span class="c1">// CHANGED FROM USB TO BATTERY</span>
+         <span class="n">onBattery</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
+         <span class="n">onUSB</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>
+         <span class="n">str1</span> <span class="o">=</span> <span class="s">&quot;HOME&quot;</span><span class="p">;</span>
+         <span class="n">str2</span> <span class="o">=</span> <span class="s">&quot;AC POWER LOST&quot;</span><span class="p">;</span>
+         <span class="n">sendData</span><span class="p">();</span>
+        <span class="p">}</span>
+    <span class="p">}</span><span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">onBattery</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="n">onUSB</span><span class="p">){</span><span class="c1">// CHANGED FROM BATTERY TO USB</span>
+        <span class="n">onBattery</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>
+        <span class="n">onUSB</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
+        <span class="n">str1</span> <span class="o">=</span> <span class="s">&quot;HOME&quot;</span><span class="p">;</span>
+        <span class="n">str2</span> <span class="o">=</span> <span class="s">&quot;AC POWER IS ON&quot;</span><span class="p">;</span>
+        <span class="n">sendData</span><span class="p">();</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+  <span class="c1">//********************</span>
+
+
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">sendData</span><span class="p">(){</span>
+     <span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">startConnectTime</span> <span class="o">=</span> <span class="n">millis</span><span class="p">();</span>
+     <span class="kt">char</span> <span class="n">pushMessage</span><span class="p">[</span><span class="mi">50</span><span class="p">],</span> <span class="n">pushName</span><span class="p">[</span><span class="mi">50</span><span class="p">];</span>
+     <span class="n">str1</span><span class="p">.</span><span class="n">toCharArray</span><span class="p">(</span><span class="n">pushName</span><span class="p">,</span> <span class="n">str1</span><span class="p">.</span><span class="n">length</span><span class="p">()</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span>
+     <span class="n">str2</span><span class="p">.</span><span class="n">toCharArray</span><span class="p">(</span><span class="n">pushMessage</span><span class="p">,</span> <span class="n">str2</span><span class="p">.</span><span class="n">length</span><span class="p">()</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span>
+
+     <span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="n">str1</span><span class="p">);</span>
+     <span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="n">str2</span><span class="p">);</span>
+
+
+     <span class="n">String</span> <span class="n">pushoverPacket</span> <span class="o">=</span> <span class="s">&quot;[{</span><span class="se">\&quot;</span><span class="s">key</span><span class="se">\&quot;</span><span class="s">:</span><span class="se">\&quot;</span><span class="s">title</span><span class="se">\&quot;</span><span class="s">, </span><span class="se">\&quot;</span><span class="s">value</span><span class="se">\&quot;</span><span class="s">:</span><span class="se">\&quot;</span><span class="s">&quot;</span><span class="p">;</span>
+     <span class="n">pushoverPacket</span><span class="p">.</span><span class="n">concat</span><span class="p">(</span><span class="n">str1</span><span class="p">);</span>
+     <span class="n">pushoverPacket</span><span class="p">.</span><span class="n">concat</span><span class="p">(</span><span class="s">&quot;</span><span class="se">\&quot;</span><span class="s">},&quot;</span><span class="p">);</span>
+     <span class="n">pushoverPacket</span><span class="p">.</span><span class="n">concat</span><span class="p">(</span><span class="s">&quot;{</span><span class="se">\&quot;</span><span class="s">key</span><span class="se">\&quot;</span><span class="s">:</span><span class="se">\&quot;</span><span class="s">message</span><span class="se">\&quot;</span><span class="s">, </span><span class="se">\&quot;</span><span class="s">value</span><span class="se">\&quot;</span><span class="s">:</span><span class="se">\&quot;</span><span class="s">&quot;</span><span class="p">);</span>
+     <span class="n">pushoverPacket</span><span class="p">.</span><span class="n">concat</span><span class="p">(</span><span class="n">str2</span><span class="p">);</span>
+     <span class="n">pushoverPacket</span><span class="p">.</span><span class="n">concat</span><span class="p">(</span><span class="s">&quot;</span><span class="se">\&quot;</span><span class="s">}]&quot;</span><span class="p">);</span>
+     <span class="n">Particle</span><span class="p">.</span><span class="n">publish</span><span class="p">(</span><span class="s">&quot;pushover&quot;</span><span class="p">,</span> <span class="n">pushoverPacket</span><span class="p">,</span> <span class="n">PRIVATE</span><span class="p">);</span><span class="c1">//then send to push safer so we get the notifications on our mobile devices</span>
+
+     <span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="n">millis</span><span class="p">()</span> <span class="o">-</span> <span class="n">startConnectTime</span><span class="p">);</span>
+     <span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="s">&quot;ms to connect&quot;</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
 </div>
 </div>
 <div class="section" id="monitor-setup">
