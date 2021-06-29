@@ -149,7 +149,7 @@ TCP version `TCP Gateway Git Repository <https://github.com/krdarrah/trigBoard-G
 .. note::
 	After saving the WiFi Settings for the gateway, **YOU HAVE TO PRESS THE RESET BUTTON ON THE TRIGBOARD**  This is because, the settings won't take effect until the board boots up.  You can test things at this point with the USB-Serial Converter and look at the Serial Monitor debug window.  When a trigBoard sends a message to it, you should see some activity!
 
-**TCP version** SSID and PW are set in the AP tab: 
+**TCP version** - SSID and PW are set in the AP tab in the Arduino Project: 
 	Serial.println(WiFi.softAP("ssid", "password", 1, 1, 8)); //ssid,pw,ch,hid,conn 
 
 
