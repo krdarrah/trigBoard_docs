@@ -217,6 +217,9 @@ Version 8</a>
 <p><strong>Here’s a full step by step tutorial</strong></p>
 <div style="text-align: center; margin-bottom: 2em;">
 <iframe width="560" height="315" src="https://www.youtube.com/embed/-oMSD9I4RSo" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</div><p>Update for TCP support:</p>
+<div style="text-align: center; margin-bottom: 2em;">
+<iframe width="560" height="315" src="https://www.youtube.com/embed/iNWH1FuM320" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 </div><div class="section" id="trigboard-setup">
 <h2>trigBoard Setup<a class="headerlink" href="#trigboard-setup" title="Permalink to this headline">¶</a></h2>
 <p>This is actually the easiest part! The messages are sent out via UDP, so setup the trigBoard as you normally would, but just enable udp from the configurator.  Timer settings, open/closed, etc… are all however you want them to work.</p>
@@ -320,7 +323,7 @@ Version 8</a>
 <p class="last">After saving the WiFi Settings for the gateway, <strong>YOU HAVE TO PRESS THE RESET BUTTON ON THE TRIGBOARD</strong>  This is because, the settings won’t take effect until the board boots up.  You can test things at this point with the USB-Serial Converter and look at the Serial Monitor debug window.  When a trigBoard sends a message to it, you should see some activity!</p>
 </div>
 <dl class="docutils">
-<dt><strong>TCP version</strong> SSID and PW are set in the AP tab:</dt>
+<dt><strong>TCP version</strong> - SSID and PW are set in the AP tab in the Arduino Project:</dt>
 <dd>Serial.println(WiFi.softAP(“ssid”, “password”, 1, 1, 8)); //ssid,pw,ch,hid,conn</dd>
 </dl>
 </div>
@@ -406,18 +409,22 @@ Version 8</a>
 <p><strong>NOTE</strong> You may need to update your OS - this has been tested on v2.1.0</p>
 <p>Here’s a screenshot after unplugging the USB, waiting about 30seconds then plugging back in - pretty cool!!</p>
 <img alt="_images/ACpowerloatsdemo.png" class="align-center" src="_images/ACpowerloatsdemo.png" />
-<p>The same code is used as shown above, but now with the power status checking - I decided to poll the status every 10seconds:</p>
+<p><strong>Only interested in power outage monitoring?</strong> <a class="reference external" href="https://gist.github.com/krdarrah/314027798992a8ee29cc05a4cb47960f">Here is the code just for that</a></p>
+<p>And a tutorial:</p>
+<div style="text-align: center; margin-bottom: 2em;">
+<iframe width="560" height="315" src="https://www.youtube.com/embed/ahy97qlVSjc" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</div><p>But if you’re adding this support into your existing trigBoard system, here is how that ties in:</p>
 <div class="highlight-C notranslate"><div class="highlight"><pre><span></span><span class="n">String</span> <span class="n">str1</span><span class="p">,</span><span class="n">str2</span><span class="p">;</span>
 
 <span class="kt">bool</span> <span class="n">onUSB</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>
 <span class="kt">bool</span> <span class="n">onBattery</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>
+<span class="kt">bool</span> <span class="n">lowBattery</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>
 <span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">pwrCheckTimeStart</span><span class="p">;</span><span class="c1">//to check power every 10sec</span>
 
 
 <span class="kt">void</span> <span class="nf">setup</span><span class="p">()</span> <span class="p">{</span>
     <span class="n">Serial</span><span class="p">.</span><span class="n">begin</span><span class="p">(</span><span class="mi">115200</span><span class="p">);</span><span class="c1">//debug</span>
     <span class="n">Serial1</span><span class="p">.</span><span class="n">begin</span><span class="p">(</span><span class="mi">57600</span><span class="p">);</span><span class="c1">//from trigBoard</span>
-
 
     <span class="c1">// INITIAL POWER CHECK</span>
     <span class="kt">int</span> <span class="n">powerSource</span> <span class="o">=</span> <span class="n">System</span><span class="p">.</span><span class="n">powerSource</span><span class="p">();</span>
@@ -429,8 +436,18 @@ Version 8</a>
         <span class="n">onBattery</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>
         <span class="n">onUSB</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
     <span class="p">}</span>
-    <span class="n">pwrCheckTimeStart</span> <span class="o">=</span> <span class="n">millis</span><span class="p">();</span>
 
+    <span class="k">if</span><span class="p">(</span><span class="n">onBattery</span><span class="p">){</span><span class="c1">//bootup message alert so we know things are back online</span>
+         <span class="n">str1</span> <span class="o">=</span> <span class="s">&quot;HOME Booting...&quot;</span><span class="p">;</span>
+         <span class="n">str2</span> <span class="o">=</span> <span class="s">&quot;NO AC POWER&quot;</span><span class="p">;</span>
+         <span class="n">sendData</span><span class="p">();</span>
+    <span class="p">}</span><span class="k">else</span><span class="p">{</span>
+         <span class="n">str1</span> <span class="o">=</span> <span class="s">&quot;HOME Booting...&quot;</span><span class="p">;</span>
+         <span class="n">str2</span> <span class="o">=</span> <span class="s">&quot;AC POWER GOOD&quot;</span><span class="p">;</span>
+         <span class="n">sendData</span><span class="p">();</span>
+    <span class="p">}</span>
+
+    <span class="n">pwrCheckTimeStart</span> <span class="o">=</span> <span class="n">millis</span><span class="p">();</span>
 <span class="p">}</span>
 
 <span class="kt">void</span> <span class="nf">loop</span><span class="p">()</span> <span class="p">{</span>
@@ -462,6 +479,20 @@ Version 8</a>
         <span class="n">str1</span> <span class="o">=</span> <span class="s">&quot;HOME&quot;</span><span class="p">;</span>
         <span class="n">str2</span> <span class="o">=</span> <span class="s">&quot;AC POWER IS ON&quot;</span><span class="p">;</span>
         <span class="n">sendData</span><span class="p">();</span>
+    <span class="p">}</span>
+
+    <span class="c1">//and also check battery voltage</span>
+    <span class="n">FuelGauge</span> <span class="n">fuel</span><span class="p">;</span>
+    <span class="kt">float</span> <span class="n">batteryVoltage</span> <span class="o">=</span> <span class="n">fuel</span><span class="p">.</span><span class="n">getVCell</span><span class="p">();</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">batteryVoltage</span> <span class="o">&lt;</span> <span class="mf">3.5</span><span class="p">){</span><span class="c1">// if less than this, send an alert</span>
+        <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">lowBattery</span><span class="p">){</span>
+            <span class="n">lowBattery</span><span class="o">=</span><span class="nb">true</span><span class="p">;</span>
+            <span class="n">str1</span> <span class="o">=</span> <span class="s">&quot;HOME&quot;</span><span class="p">;</span>
+            <span class="n">str2</span> <span class="o">=</span> <span class="s">&quot;LOW BATTERY&quot;</span><span class="p">;</span>
+            <span class="n">sendData</span><span class="p">();</span>
+        <span class="p">}</span>
+    <span class="p">}</span><span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">batteryVoltage</span><span class="o">&gt;</span><span class="mf">3.7</span><span class="p">){</span><span class="c1">//little hysteresis to prevent multiple messages</span>
+        <span class="n">lowBattery</span><span class="o">=</span><span class="nb">false</span><span class="p">;</span>
     <span class="p">}</span>
   <span class="p">}</span>
   <span class="c1">//********************</span>

@@ -26,7 +26,6 @@ This is actually the preferred method for using the trigBoard - a complete low p
 .. note::
 	**TCP was added** in trigBoard base firmware 12/20/20 so now ultra reliable communication between trigBoards and the gateway can be achieved.  Surprisingly, the added handshaking involved with TCP does not significantly increase the on-time of the trigBoard - still can be less than 2seconds.  See :ref:`Battery Page <Battery>` for plots comparing the two methods.  Everything you see below still applies - same hardware setup, just different firmware. 
 
-
 **Here's a full step by step tutorial**
 
 .. raw:: html
@@ -34,6 +33,15 @@ This is actually the preferred method for using the trigBoard - a complete low p
     <div style="text-align: center; margin-bottom: 2em;">
     <iframe width="560" height="315" src="https://www.youtube.com/embed/-oMSD9I4RSo" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
     </div>
+
+Update for TCP support:
+
+.. raw:: html
+
+    <div style="text-align: center; margin-bottom: 2em;">
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/iNWH1FuM320" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
+
 
 trigBoard Setup
 ----------------
@@ -266,7 +274,18 @@ Here's a screenshot after unplugging the USB, waiting about 30seconds then plugg
 .. image:: images/ACpowerloatsdemo.png
 	:align: center
 
-The same code is used as shown above, but now with the power status checking - I decided to poll the status every 10seconds:
+**Only interested in power outage monitoring?** `Here is the code just for that <https://gist.github.com/krdarrah/314027798992a8ee29cc05a4cb47960f>`_
+
+And a tutorial: 
+
+.. raw:: html
+
+    <div style="text-align: center; margin-bottom: 2em;">
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/ahy97qlVSjc" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
+
+
+But if you're adding this support into your existing trigBoard system, here is how that ties in: 
 
 .. code-block:: C
 
@@ -274,13 +293,13 @@ The same code is used as shown above, but now with the power status checking - I
 
 	bool onUSB = false;
 	bool onBattery = false;
+	bool lowBattery = false;
 	unsigned long pwrCheckTimeStart;//to check power every 10sec
 
 
 	void setup() {
 	    Serial.begin(115200);//debug
 	    Serial1.begin(57600);//from trigBoard
-	    
 
 	    // INITIAL POWER CHECK 
 	    int powerSource = System.powerSource();
@@ -292,8 +311,18 @@ The same code is used as shown above, but now with the power status checking - I
 	        onBattery = false;
 	        onUSB = true;
 	    }
+	    
+	    if(onBattery){//bootup message alert so we know things are back online
+	         str1 = "HOME Booting...";
+	         str2 = "NO AC POWER";
+	         sendData();
+	    }else{
+	         str1 = "HOME Booting...";
+	         str2 = "AC POWER GOOD";
+	         sendData();        
+	    }
+	    
 	    pwrCheckTimeStart = millis();
-	        
 	}
 
 	void loop() {
@@ -326,6 +355,20 @@ The same code is used as shown above, but now with the power status checking - I
 	        str2 = "AC POWER IS ON";
 	        sendData();
 	    }
+	    
+	    //and also check battery voltage 
+	    FuelGauge fuel;
+	    float batteryVoltage = fuel.getVCell();
+	    if(batteryVoltage < 3.5){// if less than this, send an alert 
+	        if(!lowBattery){
+	            lowBattery=true;
+	            str1 = "HOME";
+	            str2 = "LOW BATTERY";
+	            sendData();
+	        }
+	    }else if(batteryVoltage>3.7){//little hysteresis to prevent multiple messages
+	        lowBattery=false;
+	    }
 	  }
 	  //********************
 	  
@@ -353,7 +396,6 @@ The same code is used as shown above, but now with the power status checking - I
 	     Serial.print(millis() - startConnectTime);
 	     Serial.println("ms to connect");
 	}
-
 
 
 
