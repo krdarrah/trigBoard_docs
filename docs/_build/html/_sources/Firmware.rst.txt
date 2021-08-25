@@ -1,62 +1,53 @@
 
 .. _Firmware:
 
-=======================
-Firmware/Programming
-=======================
+===============================
+Firmware Updates & Programming
+===============================
 
-.. hint::
-	You can always upload the latest code to your board without compiling - the pre-compiled bin files can be uploaded via USB or OTA (Over The Air)
-
-.. warning::
-	Modifications to the base firmware are encouraged, but be careful that you fully understand the existing base firmware functionality.  The firmware is responsible for both wake and shutdown functions.
-
-Base Firmware Repository
+Check Version
 -------------------------
 
-Latest code can always be found in the `Github Repository <https://github.com/krdarrah/trigBoardV8_BaseFirmware>`_
+Every trigBoard shipped is pre-programmed with a release of the base firmware, but this is under heavy development, so it is a good idea to first check to make sure you have the latest version loaded.  Here's how to check that: 
 
-Boards are always shipped with the release code which can be found at the `releases git page <https://github.com/krdarrah/trigBoardV8_BaseFirmware/releases>`_
+- Launch the :ref:`Configurator Tool <Configurator>`, hold the wake button on the trigBoard until the LED is flashing, then connect to the board from the Configurator.  At the top of the page, you'll see the date code of the firmware: 
 
-.. note::
-	| *For Compiling or Modifying Code*
-	| **Latest Versions of IDE and Libraries Used**
-	| Arduino IDE v1.8.10
-	| ESP32 v1.0.4  - in boards manager, after this boards manager url in preferences https://dl.espressif.com/dl/package_esp32_index.json
-	| PubSubClient Library v2.7.0
-	| Arduino Json Library v6.13.0 
-	| PushSafer Library Forked `HERE <https://github.com/krdarrah/pushsafer-arduino-library>`_ Thanks to `Brian Lough <https://github.com/witnessmenow>`_
-
-	| **Board Settings From Tools Menu**\
-
-	.. image:: images/boardsettings.png
+	.. image:: images/configfwversionof.png
 		:align: center
 
-.. warning::
-	| *For USB Programming*
-	| I recommend using the KD Circuits Designed `FTDI USB-Serial Converter <https://www.tindie.com/products/13817>`_ 
-	|	**Jumpers set to 3.3V and OFF**
-	
-	| **You need to power the board from the battery connector NOT the USB-Serial Converter**
-	|	Don't worry though the power pin on the programming header is not connected.  5V logic level on the programming header CAN damage the ESP32 though.  
-	| **For development purposes, you can power the board by the 3.3V pin directly by applying 3.3V volts**
-	|  Make sure to not have anything connected to the battery input and also note that the board will not sleep now.  Some people like this for testing code out and it makes it easier to upload, since you don't have to wake up before uploading.  
+- Head over to the `releases git page <https://github.com/krdarrah/trigBoardV8_BaseFirmware/releases>`_ and see if there is a newer date code:
 
+	.. image:: images/gitreleaselatestdatecode.png
+		:align: center
 
-Uploading
+If a newer version exists, don't worry because it's very easy to upload - even wirelessy using OTA (OVER THE AIR) updates
+
+Wireless Updates (OTA)
 -------------------------
 
-Here's a pretty long video showing how it can be done both ways with a USB-Serial converter or OTA, but this is with the command line:
+Here is a quick video showing the complete process to update the Firmware using OTA:
 
-.. raw:: html
+	.. raw:: html
 
-    <div style="text-align: center; margin-bottom: 2em;">
-    <iframe width="560" height="315" src="https://www.youtube.com/embed/jIIYrOe25S0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-    </div>
+		<div style="text-align: center; margin-bottom: 2em;">
+			<iframe width="560" height="315" src="https://www.youtube.com/embed/QmJfK1wJ-ow" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+		</div>
 
-**OTA "Over The Air"**
-	* To make this far easier, I made a simple app that runs on windows/mac/linux, so all you have to do is connect the trigBoard to your network from the configurator, initialize OTA, then you can setup the app and upload the latest BIN file:
-	
+.. hint::
+	| Something went wrong? Here are some troubleshooting tips:
+	| - Make sure the trigBoard is connected to the same network as the computer running the trigUpdater app
+	| - If your FW is older, OTA was really not reliable, so just keep trying... it should eventually complete.  If not, you can check out uploading over USB.  
+	| - Make sure the battery is fresh/fully charged
+
+The latest bin file can always be downloaded from the `releases git page <https://github.com/krdarrah/trigBoardV8_BaseFirmware/releases>`_
+
+The trigUpdater app for your OS can be downloaded `from here <https://github.com/krdarrah/trigUpdater/releases>`_
+
+Alternate OTA Method
+=====================
+
+I also created an updater app with Python/Java, so here is that tutorial: 
+
 	.. raw:: html
 
 		<div style="text-align: center; margin-bottom: 2em;">
@@ -69,6 +60,55 @@ Here's a pretty long video showing how it can be done both ways with a USB-Seria
 	.. warning::
 		When using the GUI, you might get a pop-up about installing an old version of Java - just make sure to install the latest version and it should work
 
+USB Updates
+-------------------------
+
+This is a long video showing how it can be done, but also useful for other ESP32 projects: 
+
+.. raw:: html
+
+    <div style="text-align: center; margin-bottom: 2em;">
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/jIIYrOe25S0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
+
+Compiling/Uploading Base Firmware
+----------------------------------------
+
+Latest code can always be found in the `Github Repository <https://github.com/krdarrah/trigBoardV8_BaseFirmware>`_
+
+Boards are always shipped with the release code which can be found at the `releases git page <https://github.com/krdarrah/trigBoardV8_BaseFirmware/releases>`_
+
+.. warning::
+	Modifications to the base firmware are encouraged, but be careful that you fully understand the existing base firmware functionality.  The firmware is responsible for both wake and shutdown functions.
+
+**Board Settings From Tools Menu**
+
+.. image:: images/boardsettings.png
+		:align: center
+
+| **Versions Prior to Release 8/16/21**
+| * Arduino IDE v1.8.10
+| * ESP32 v1.0.4  - in boards manager, after this boards manager url in preferences https://dl.espressif.com/dl/package_esp32_index.json
+| * PubSubClient Library v2.7.0
+| * PushSafer Library Forked `HERE <https://github.com/krdarrah/pushsafer-arduino-library>`_ Thanks to `Brian Lough <https://github.com/witnessmenow>`_
+| * Arduino Json Library v6.13.0
+
+| **Versions with latest 8/16/21**
+| * Arduino IDE v1.8.15
+| * ESP32 v1.0.6  - in boards manager, after this boards manager url in preferences https://dl.espressif.com/dl/package_esp32_index.json
+| * PubSubClient Library v2.8.0
+| * Arduino Json Library v6.18.0
+| * UniversalTelegramBot Library v1.3.0
+
+.. warning::
+	| *For USB Programming*
+	| I recommend using the KD Circuits Designed `FTDI USB-Serial Converter <https://www.tindie.com/products/13817>`_ 
+	|	**Jumpers set to 3.3V and OFF**
+	
+	| **You need to power the board from the battery connector NOT the USB-Serial Converter**
+	|	Don't worry though the power pin on the programming header is not connected.  5V logic level on the programming header CAN damage the ESP32 though.  
+	| **For development purposes, you can power the board by the 3.3V pin directly by applying 3.3V volts**
+	|  Make sure to not have anything connected to the battery input and also note that the board will not sleep now.  Some people like this for testing code out and it makes it easier to upload, since you don't have to wake up before uploading.  
 
 Custom Firmware
 -------------------------

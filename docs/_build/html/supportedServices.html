@@ -89,7 +89,7 @@ Version 8 0 documentation</title>
               <p class="caption"><span class="caption-text">trigBoard v8 Docs</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="wheretobuy.html">Where To Buy</a></li>
-<li class="toctree-l1"><a class="reference internal" href="quickstart.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html">Quickstart &amp; Configuration</a></li>
 <li class="toctree-l1"><a class="reference internal" href="configurator.html">Configurator</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Supported Services</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#pushsafer">Pushsafer</a></li>
@@ -98,6 +98,7 @@ Version 8 0 documentation</title>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#ifttt">IFTTT</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#telegram">Telegram</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#udp-tcp">UDP/TCP</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#udp">UDP</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#tcp">TCP</a></li>
@@ -107,7 +108,7 @@ Version 8 0 documentation</title>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="Hardware.html">Hardware</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Firmware.html">Firmware/Programming</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Firmware.html">Firmware Updates &amp; Programming</a></li>
 <li class="toctree-l1"><a class="reference internal" href="testing.html">Testing/Factory Programming</a></li>
 <li class="toctree-l1"><a class="reference internal" href="contact.html">Contact</a></li>
 </ul>
@@ -123,8 +124,8 @@ Version 8 0 documentation</title>
 <li class="toctree-l1"><a class="reference internal" href="multipleInputs.html">Multiple Inputs</a></li>
 <li class="toctree-l1"><a class="reference internal" href="SendEmail.html">Send an Email - IFTTT</a></li>
 <li class="toctree-l1"><a class="reference internal" href="SmokeCODetector.html">Smoke/CO Detector</a></li>
-<li class="toctree-l1"><a class="reference internal" href="solar.html">Solar Options</a></li>
-<li class="toctree-l1"><a class="reference internal" href="temperatureSensor.html">Temperature Logging to Grafana</a></li>
+<li class="toctree-l1"><a class="reference internal" href="solar.html">Solar Powered</a></li>
+<li class="toctree-l1"><a class="reference internal" href="temperatureSensor.html">Temperature Logging Corlysis + Home Asst</a></li>
 <li class="toctree-l1"><a class="reference internal" href="waterleakDetector.html">Water Leak Detector</a></li>
 </ul>
 
@@ -319,6 +320,13 @@ Version 8</a>
 </ol>
 </div></blockquote>
 </div>
+<div class="section" id="telegram">
+<span id="id4"></span><h2>Telegram<a class="headerlink" href="#telegram" title="Permalink to this headline">¶</a></h2>
+<img alt="_images/Telegram-logo.png" class="align-center" src="_images/Telegram-logo.png" />
+<p>Added in base Firmware 8/16/21, and use  <a class="reference external" href="https://github.com/witnessmenow/Universal-Arduino-Telegram-Bot">Brian Lough’s Library</a>  This is a pretty cool way to send push notifications to all of your devices!  And it’s free!</p>
+<p>Here’s a <a class="reference external" href="https://randomnerdtutorials.com/telegram-control-esp32-esp8266-nodemcu-outputs/">good tutorial</a> on getting the BOT Token and Chat ID - these two things are all that’s needed</p>
+<img alt="_images/telegramsettingsconfig.png" class="align-center" src="_images/telegramsettingsconfig.png" />
+</div>
 <div class="section" id="udp-tcp">
 <h2>UDP/TCP<a class="headerlink" href="#udp-tcp" title="Permalink to this headline">¶</a></h2>
 <p>Note - TCP added to Firmware version 12/20/20 or newer.  These two options allow for a fully customized solution to whatever you might have in mind.  For example - see the <a class="reference internal" href="cellularProject.html#cellularbattery"><span class="std std-ref">Cellular/Battery Backed System</span></a> project - this is a fully self contained system that relies on no outside services.  It’s battery backed, hosts its own network, and can still send push notifications out fast.  This is just an example though - even a simple point to point system can be easily designed.  The trigBoard supports both UDP and TCP - <a class="reference external" href="http://www.steves-internet-guide.com/tcp-vs-udp/">here’s a good write-up</a> on the differences.</p>
@@ -328,7 +336,7 @@ Version 8</a>
 <div style="text-align: center; margin-bottom: 2em;">
 <iframe width="560" height="315" src="https://www.youtube.com/embed/iNWH1FuM320" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 </div><div class="section" id="udp">
-<span id="id4"></span><h3>UDP<a class="headerlink" href="#udp" title="Permalink to this headline">¶</a></h3>
+<span id="id5"></span><h3>UDP<a class="headerlink" href="#udp" title="Permalink to this headline">¶</a></h3>
 <p>Because UDP is connectionless, the trigBoard configuration allows for a “blast”, the default is to send out 10 packets separated by 10ms.  The idea is that this blast of packets guarantees at least one will get through.  There is no handshaking or acknowledgment back to the trigBoard, so it simply sends all of the packets and goes back to sleep.  This means the transmission will be faster, thus keeping the on-time shorter and conserving battery life.  Then again, without any knowledge that any of the packets got through, there’s a chance they didn’t.</p>
 <blockquote>
 <div><img alt="_images/udpsettings.png" class="align-center" src="_images/udpsettings.png" />
@@ -337,7 +345,7 @@ Version 8</a>
 <p>The message sent out is formatted like this: “&lt;trigBoard Name&gt; &lt;Event&gt;, &lt;battery&gt;” or as a real example: “test trigBoard 1 Contact Still Open-18-, 4.14V”</p>
 </div>
 <div class="section" id="tcp">
-<span id="id5"></span><h3>TCP<a class="headerlink" href="#tcp" title="Permalink to this headline">¶</a></h3>
+<span id="id6"></span><h3>TCP<a class="headerlink" href="#tcp" title="Permalink to this headline">¶</a></h3>
 <p>This was added in Firmware 12/20/20 - make sure you have the latest <a class="reference internal" href="Firmware.html#firmware"><span class="std std-ref">Firmware Installed</span></a></p>
 <p>The inspiration for adding TCP messaging came from the need for an ultra reliable home security system.  The only downside here is that TCP may hurt battery life slightly since a full handshake between the trigBoards and receiving device occurs on every event.  Also, if the handshake fails, the trigBoard will attempt a number of retries.</p>
 <blockquote>
@@ -348,7 +356,7 @@ Version 8</a>
 </div>
 </div>
 <div class="section" id="mqtt">
-<span id="id6"></span><h2>MQTT<a class="headerlink" href="#mqtt" title="Permalink to this headline">¶</a></h2>
+<span id="id7"></span><h2>MQTT<a class="headerlink" href="#mqtt" title="Permalink to this headline">¶</a></h2>
 <p>Similar to UDP, but if you’re using the raspberry pi or something to run your home automation system, and it’s all based on MQTT messaging, then this will work great for that. This also works great with <a class="reference internal" href="homeassistant.html#homeassistant"><span class="std std-ref">Home Assistant</span></a></p>
 </div>
 </div>

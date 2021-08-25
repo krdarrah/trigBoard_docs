@@ -102,7 +102,6 @@ And that's all there is to it!
 
 .. _IFTTT:
 
-
 IFTTT
 ---------
 .. image:: images/400px-IFTTTlogo.png
@@ -136,7 +135,19 @@ IFTTT
 		.. image:: images/ifttconfig.png
 			:align: center	
 
+.. _Telegram:
 
+Telegram
+----------
+.. image:: images/Telegram-logo.png
+	:align: center
+
+Added in base Firmware 8/16/21, and use  `Brian Lough's Library <https://github.com/witnessmenow/Universal-Arduino-Telegram-Bot>`_  This is a pretty cool way to send push notifications to all of your devices!  And it's free!
+
+Here's a `good tutorial <https://randomnerdtutorials.com/telegram-control-esp32-esp8266-nodemcu-outputs/>`_ on getting the BOT Token and Chat ID - these two things are all that's needed
+
+.. image:: images/telegramsettingsconfig.png
+	:align: center
 
 UDP/TCP
 ---------

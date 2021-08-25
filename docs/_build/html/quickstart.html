@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Quickstart &mdash; trigBoard
+  <title>Quickstart &amp; Configuration &mdash; trigBoard
 Version 8 0 documentation</title>
   
 
@@ -89,11 +89,32 @@ Version 8 0 documentation</title>
               <p class="caption"><span class="caption-text">trigBoard v8 Docs</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="wheretobuy.html">Where To Buy</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Quickstart</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Quickstart &amp; Configuration</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#out-of-the-box-setup"><strong>Out of the box setup</strong></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#hardware-setup"><strong>Hardware Setup</strong></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#battery-selection"><strong>Battery Selection</strong></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#notification-service"><strong>Notification Service</strong></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#setting-up-configurator"><strong>Setting up Configurator</strong></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#wifi-settings"><strong>WiFi Settings</strong></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#wifi-timeout"><strong>WiFi Timeout</strong></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#trigboard-name"><strong>trigBoard Name</strong></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#wake-on"><strong>Wake On</strong></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#message-for-contact-wake"><strong>Message for Contact Wake</strong></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#high-speed-trigger"><strong>High Speed Trigger</strong></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#message-for-button-wake"><strong>Message for Button Wake</strong></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#timer-settings"><strong>Timer Settings</strong></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#timer-wake-messages"><strong>Timer Wake Messages</strong></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#clock-settings"><strong>Clock Settings</strong></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#low-battery-threshold"><strong>Low Battery Threshold</strong></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#services"><strong>Services</strong></a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="configurator.html">Configurator</a></li>
 <li class="toctree-l1"><a class="reference internal" href="supportedServices.html">Supported Services</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Hardware.html">Hardware</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Firmware.html">Firmware/Programming</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Firmware.html">Firmware Updates &amp; Programming</a></li>
 <li class="toctree-l1"><a class="reference internal" href="testing.html">Testing/Factory Programming</a></li>
 <li class="toctree-l1"><a class="reference internal" href="contact.html">Contact</a></li>
 </ul>
@@ -109,7 +130,7 @@ Version 8 0 documentation</title>
 <li class="toctree-l1"><a class="reference internal" href="multipleInputs.html">Multiple Inputs</a></li>
 <li class="toctree-l1"><a class="reference internal" href="SendEmail.html">Send an Email - IFTTT</a></li>
 <li class="toctree-l1"><a class="reference internal" href="SmokeCODetector.html">Smoke/CO Detector</a></li>
-<li class="toctree-l1"><a class="reference internal" href="solar.html">Solar Options</a></li>
+<li class="toctree-l1"><a class="reference internal" href="solar.html">Solar Powered</a></li>
 <li class="toctree-l1"><a class="reference internal" href="temperatureSensor.html">Temperature Logging Corlysis + Home Asst</a></li>
 <li class="toctree-l1"><a class="reference internal" href="waterleakDetector.html">Water Leak Detector</a></li>
 </ul>
@@ -159,7 +180,7 @@ Version 8</a>
     
       <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
         
-      <li>Quickstart</li>
+      <li>Quickstart &amp; Configuration</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -178,19 +199,30 @@ Version 8</a>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="quickstart">
-<span id="id1"></span><h1>Quickstart<a class="headerlink" href="#quickstart" title="Permalink to this headline">¶</a></h1>
-<p>Out of the box setup:</p>
+  <div class="section" id="quickstart-configuration">
+<span id="quickstart"></span><h1>Quickstart &amp; Configuration<a class="headerlink" href="#quickstart-configuration" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="out-of-the-box-setup">
+<h2><strong>Out of the box setup</strong><a class="headerlink" href="#out-of-the-box-setup" title="Permalink to this headline">¶</a></h2>
 <img alt="_images/trigBoardweverything.jpg" class="align-center" src="_images/trigBoardweverything.jpg" />
 <div style="text-align: center; margin-bottom: 2em;">
 <iframe width="560" height="315" src="https://www.youtube.com/embed/nkU9sCDsWzM" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-</div><div class="line-block">
-<div class="line"><strong>Hardware Setup</strong> All that’s needed here is a battery and a dry contact used for triggering.  Both connectors on the board are standard JST PH 2.0mm Note that the cables may need some force to fully insert.</div>
-<div class="line"><strong>Battery Selection</strong> A good capacity for the trigBoard is 500-1000mAh, but this depends on how often the board will be triggered.  Any of these Lithium batteries would work from <a class="reference external" href="https://www.adafruit.com/category/574">Adafruit</a>. Or two AA or AAA batteries would work, with a holder like <a class="reference external" href="https://www.adafruit.com/product/4191">This</a>  Note that this battery holder is also available for purchase with your trigBoard as an option :) More details on battery selection can be found <a class="reference internal" href="Hardware.html#battery"><span class="std std-ref">here</span></a></div>
-<div class="line"><strong>Choose a Notification Service</strong> This is where the notification will end up.  For testing, it’s easy to simply use Pushsafer or Pushover - see the <a class="reference internal" href="supportedServices.html#services"><span class="std std-ref">Supported Services Page</span></a> for more information</div>
+</div></div>
+<div class="section" id="hardware-setup">
+<h2><strong>Hardware Setup</strong><a class="headerlink" href="#hardware-setup" title="Permalink to this headline">¶</a></h2>
+<p>All that’s needed here is a battery and a dry contact used for triggering.  Both connectors on the board are standard JST PH 2.0mm Note that the cables may need some force to fully insert.</p>
 </div>
+<div class="section" id="battery-selection">
+<h2><strong>Battery Selection</strong><a class="headerlink" href="#battery-selection" title="Permalink to this headline">¶</a></h2>
+<p>A good capacity for the trigBoard is 500-1000mAh, but this depends on how often the board will be triggered.  Any of these Lithium batteries would work from <a class="reference external" href="https://www.adafruit.com/category/574">Adafruit</a>. Or two AA or AAA batteries would work, with a holder like <a class="reference external" href="https://www.adafruit.com/product/4191">This</a>  Note that this battery holder is also available for purchase with your trigBoard as an option :) More details on battery selection can be found <a class="reference internal" href="Hardware.html#battery"><span class="std std-ref">here</span></a></p>
+</div>
+<div class="section" id="notification-service">
+<h2><strong>Notification Service</strong><a class="headerlink" href="#notification-service" title="Permalink to this headline">¶</a></h2>
+<p>This is where the notification will end up.  For testing, it’s easy to simply use Pushsafer or Pushover - see the <a class="reference internal" href="supportedServices.html#services"><span class="std std-ref">Supported Services Page</span></a> for more information</p>
+</div>
+<div class="section" id="setting-up-configurator">
+<h2><strong>Setting up Configurator</strong><a class="headerlink" href="#setting-up-configurator" title="Permalink to this headline">¶</a></h2>
+<p>The trigBoard ships with base firmware pre-flashed, so once you hook up the battery, you’re all set to launch the <a class="reference internal" href="configurator.html#configurator"><span class="std std-ref">configurator</span></a>.  This works on a bluetooth connection to your computer within Google Chrome.</p>
 <div class="line-block">
-<div class="line"><strong>Setting up Configurator</strong> The trigBoard ships with base firmware pre-flashed, so once you hook up the battery, you’re all set to launch the <a class="reference internal" href="configurator.html#configurator"><span class="std std-ref">configurator</span></a>.  This works on a bluetooth connection to your computer within Google Chrome.</div>
 <div class="line">1 - In Google Chrome from a Mac/Windows/Linux computer, launch the <a class="reference external" href="https://krdarrah.github.io/trigBoardConfigurator/">Configurator Tool</a></div>
 <div class="line">2 - Press and hold the wake button on the trigBoard until the blue LED starts flashing</div>
 <div class="line">3 - In the configurator tool, you will see the connect button, click that and connect to the trigBoard:</div>
@@ -205,9 +237,12 @@ Version 8</a>
 <p class="first admonition-title">Warning</p>
 <p class="last">You need to click the save button next to each parameter after changing it</p>
 </div>
-<div class="line-block">
-<div class="line"><strong>WiFi Settings</strong></div>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">Don’t forget to Disconnect from the Configurator when complete!  The device does not send notifications while the Configurator is active</p>
 </div>
+<div class="section" id="wifi-settings">
+<h3><strong>WiFi Settings</strong><a class="headerlink" href="#wifi-settings" title="Permalink to this headline">¶</a></h3>
 <blockquote>
 <div><img alt="_images/configWiFisettings.png" class="align-center" src="_images/configWiFisettings.png" />
 </div></blockquote>
@@ -215,47 +250,85 @@ Version 8</a>
 <blockquote>
 <div><img alt="_images/sttaticIPsettings.png" class="align-center" src="_images/sttaticIPsettings.png" />
 </div></blockquote>
-<div class="line-block">
-<div class="line"><strong>Board Settings</strong></div>
 </div>
+<div class="section" id="wifi-timeout">
+<h3><strong>WiFi Timeout</strong><a class="headerlink" href="#wifi-timeout" title="Permalink to this headline">¶</a></h3>
 <blockquote>
 <div><img alt="_images/WifiTimeoutSetting.png" class="align-center" src="_images/WifiTimeoutSetting.png" />
 </div></blockquote>
 <p>This is the time the trigBoard will wait before failing to connect to the WiFi network and going back to sleep.  For most users, 5 seconds is good enough.  Just be careful to not make this too big because if you ever relocate the trigBoard to a new location and need to reconfigure, you’ll have to wait for this timeout before the configurator mode is enabled.  I would suggest starting with 5 seconds and if you notice missed events, increase to 10 seconds.  If that still gives trouble, then there may be a problem with the WiFi router or signal strength at this location.</p>
+</div>
+<div class="section" id="trigboard-name">
+<h3><strong>trigBoard Name</strong><a class="headerlink" href="#trigboard-name" title="Permalink to this headline">¶</a></h3>
 <blockquote>
 <div><img alt="_images/trigBoardName.png" class="align-center" src="_images/trigBoardName.png" />
 </div></blockquote>
 <p>This is the name that will be sent along with the push notification message - normally would be “Front Door” “Garage Door” “Mail Box”</p>
+</div>
+<div class="section" id="wake-on">
+<h3><strong>Wake On</strong><a class="headerlink" href="#wake-on" title="Permalink to this headline">¶</a></h3>
 <blockquote>
 <div><img alt="_images/wakeon.png" class="align-center" src="_images/wakeon.png" />
 </div></blockquote>
 <p>The trigBoard will wake on any change of the sensor input - open and close.  This setting here is used to decide if a notification is sent. This depends on the application and how you’re planning to use the trigBoard.  For a mail box, just open detection might make sense, but for a garage, both open and close would be useful.</p>
+</div>
+<div class="section" id="message-for-contact-wake">
+<h3><strong>Message for Contact Wake</strong><a class="headerlink" href="#message-for-contact-wake" title="Permalink to this headline">¶</a></h3>
 <blockquote>
 <div><img alt="_images/messagesforwakeandclose.png" class="align-center" src="_images/messagesforwakeandclose.png" />
 </div></blockquote>
 <p>When you select which to wake on, the messages are enabled for that selection. These could be “Has Opened” or “Has Closed”, because the firmware will combine the trigBoard name with this message.  “Garage Has Opened”</p>
+</div>
+<div class="section" id="high-speed-trigger">
+<h3><strong>High Speed Trigger</strong><a class="headerlink" href="#high-speed-trigger" title="Permalink to this headline">¶</a></h3>
 <blockquote>
 <div><img alt="_images/highSpeedTrigger.png" class="align-center" src="_images/highSpeedTrigger.png" />
 </div></blockquote>
 <p>Warning! This feature was added for very specific applications where the sensor input rapidly opens and closes.  Most users would leave this unchecked.  There is a complex analog trigger system designed into the trigBoard and it normally detects the wake event based on the current status of the contact.  But in some applications, the contact opens and closes very quickly.  For this, the high speed trigger will change to use latched circuitry to determine the wake event.  But again, this is more for specific applications and should be left unchecked.</p>
+</div>
+<div class="section" id="message-for-button-wake">
+<h3><strong>Message for Button Wake</strong><a class="headerlink" href="#message-for-button-wake" title="Permalink to this headline">¶</a></h3>
 <blockquote>
 <div><img alt="_images/buttonPressed.png" class="align-center" src="_images/buttonPressed.png" />
 </div></blockquote>
 <p>A message is also sent when the wake button is pressed - this is what that message will be.  This is very useful for testing the board and some users have written custom firmware to use the wake button for more advanced features.</p>
+</div>
+<div class="section" id="timer-settings">
+<h3><strong>Timer Settings</strong><a class="headerlink" href="#timer-settings" title="Permalink to this headline">¶</a></h3>
 <blockquote>
 <div><img alt="_images/timerunittimer.png" class="align-center" src="_images/timerunittimer.png" />
 </div></blockquote>
 <p>The timer on the trigBoard is extremely useful.  This automatically wakes the board up at a specific interval to check various conditions like low battery or if the contact is still closed/open.  It is HIGHLY recommended to keep this value as high as possible, so if a check of once an hour (60 minutes) can work for your application, then set for that.  Some applications like a checking if the garage door is still open may need a faster interval like 15 minutes, but just note that this will have some impact on battery life. So ideally the units are set to Minutes, but Seconds were added in as an available feature.  Note that this can be useful when developing your own firmware for waking the board automatically when uploading to the board. Like I’ll set to 10seconds when developing, so I never have to physically wake the board to upload.</p>
+</div>
+<div class="section" id="timer-wake-messages">
+<h3><strong>Timer Wake Messages</strong><a class="headerlink" href="#timer-wake-messages" title="Permalink to this headline">¶</a></h3>
 <blockquote>
 <div><img alt="_images/timerwakemessagess.png" class="align-center" src="_images/timerwakemessagess.png" />
 </div></blockquote>
 <p>If the timer has been enabled to check contact status, then these are the messages that will be sent - usually set to “is Still Open” or “is Still Closed”, then the combined message might be “The Garage is Still Open”  For most applications monitoring doors/windows, the check for if the contact is still open is the only one used.</p>
+</div>
+<div class="section" id="clock-settings">
+<h3><strong>Clock Settings</strong><a class="headerlink" href="#clock-settings" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><img alt="_images/clockenableandsettings.png" class="align-center" src="_images/clockenableandsettings.png" />
+</div></blockquote>
+<p>The clock functionality was added in release 8/16/21 and is extremely powerful.  This gives the ability to add timestamps push messages, add a daily wake at a specific time with a custom message and timestamp.  This can be useful for “hearbeat” messages or check-ins with a server on a device that rarely wakes.  To set the time, first connect to WiFi from the WiFi settings, then the set to NTP time button will be enabled.  You can set the timezone offset according to the <a class="reference external" href="https://en.wikipedia.org/wiki/List_of_UTC_time_offsets">UTC Time Offset</a> for where you live.  You can even make the trigBoard synchronize with the NTP server when the daily wake alarm is activated.  But what if you don’t set the time?  Well, then the time (as shown in the image) will show the elapsed time from when it was powered up.  This can be a useful way to see how long a board has been in service running on that battery.</p>
+</div>
+<div class="section" id="low-battery-threshold">
+<h3><strong>Low Battery Threshold</strong><a class="headerlink" href="#low-battery-threshold" title="Permalink to this headline">¶</a></h3>
 <blockquote>
 <div><img alt="_images/lowbatteryThreshold.png" class="align-center" src="_images/lowbatteryThreshold.png" />
 </div></blockquote>
 <p>This is the threshold that if the battery is less than this value, a BATTERY LOW message is sent out at the timer interval.  Because the trigBoard supports a wide variety of battery options, a setting here needs to be set.  For a 4.2V rechargeable lithium battery, maybe 3.3V or so would work.  Then for two AA/AAA batteries, set for 2.5V</p>
-<p>5 - The remaining settings determine the push notification service, so see <a class="reference internal" href="supportedServices.html#services"><span class="std std-ref">Supported Services Page</span></a>  Note that the “Battery Voltage Calibration Offset” is set during factory programming.</p>
-<p>6 - Don’t forget to Disconnect from the Configurator when complete!  The device does not send notifications while the Configurator is active</p>
+</div>
+<div class="section" id="services">
+<h3><strong>Services</strong><a class="headerlink" href="#services" title="Permalink to this headline">¶</a></h3>
+<div class="admonition hint">
+<p class="first admonition-title">Hint</p>
+<p class="last">The remaining settings determine the push notification service, so see <a class="reference internal" href="supportedServices.html#services"><span class="std std-ref">Supported Services Page</span></a>  Note that the “Battery Voltage Calibration Offset” is set during factory programming.</p>
+</div>
+</div>
+</div>
 </div>
 
 

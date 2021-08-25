@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Firmware/Programming &mdash; trigBoard
+  <title>Firmware Updates &amp; Programming &mdash; trigBoard
 Version 8 0 documentation</title>
   
 
@@ -93,9 +93,14 @@ Version 8 0 documentation</title>
 <li class="toctree-l1"><a class="reference internal" href="configurator.html">Configurator</a></li>
 <li class="toctree-l1"><a class="reference internal" href="supportedServices.html">Supported Services</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Hardware.html">Hardware</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Firmware/Programming</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#base-firmware-repository">Base Firmware Repository</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#uploading">Uploading</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Firmware Updates &amp; Programming</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#check-version">Check Version</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#wireless-updates-ota">Wireless Updates (OTA)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#alternate-ota-method">Alternate OTA Method</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#usb-updates">USB Updates</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#compiling-uploading-base-firmware">Compiling/Uploading Base Firmware</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#custom-firmware">Custom Firmware</a></li>
 </ul>
 </li>
@@ -105,12 +110,17 @@ Version 8 0 documentation</title>
 <p class="caption"><span class="caption-text">Projects</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="ePaperCoronaDisplay.html">E-Paper Corona Display</a></li>
-<li class="toctree-l1"><a class="reference internal" href="cellularProject.html">Cellular/Battery Backed System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cellularProject.html">Cellular/Battery Backed System UDP/TCP</a></li>
 <li class="toctree-l1"><a class="reference internal" href="doorbell.html">Door Bell Monitoring</a></li>
 <li class="toctree-l1"><a class="reference internal" href="garage.html">Garage Door Monitor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="homeassistant.html">Home Assistant</a></li>
+<li class="toctree-l1"><a class="reference internal" href="LogGoogleDocs.html">Log to Google Sheet - IFTTT</a></li>
 <li class="toctree-l1"><a class="reference internal" href="motionSensor.html">Motion Sensor - PIR</a></li>
 <li class="toctree-l1"><a class="reference internal" href="multipleInputs.html">Multiple Inputs</a></li>
-<li class="toctree-l1"><a class="reference internal" href="temperatureSensor.html">Temperature Logging to Grafana</a></li>
+<li class="toctree-l1"><a class="reference internal" href="SendEmail.html">Send an Email - IFTTT</a></li>
+<li class="toctree-l1"><a class="reference internal" href="SmokeCODetector.html">Smoke/CO Detector</a></li>
+<li class="toctree-l1"><a class="reference internal" href="solar.html">Solar Powered</a></li>
+<li class="toctree-l1"><a class="reference internal" href="temperatureSensor.html">Temperature Logging Corlysis + Home Asst</a></li>
 <li class="toctree-l1"><a class="reference internal" href="waterleakDetector.html">Water Leak Detector</a></li>
 </ul>
 
@@ -159,7 +169,7 @@ Version 8</a>
     
       <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
         
-      <li>Firmware/Programming</li>
+      <li>Firmware Updates &amp; Programming</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -178,35 +188,90 @@ Version 8</a>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="firmware-programming">
-<span id="firmware"></span><h1>Firmware/Programming<a class="headerlink" href="#firmware-programming" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="firmware-updates-programming">
+<span id="firmware"></span><h1>Firmware Updates &amp; Programming<a class="headerlink" href="#firmware-updates-programming" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="check-version">
+<h2>Check Version<a class="headerlink" href="#check-version" title="Permalink to this headline">¶</a></h2>
+<p>Every trigBoard shipped is pre-programmed with a release of the base firmware, but this is under heavy development, so it is a good idea to first check to make sure you have the latest version loaded.  Here’s how to check that:</p>
+<ul>
+<li><p class="first">Launch the <a class="reference internal" href="configurator.html#configurator"><span class="std std-ref">Configurator Tool</span></a>, hold the wake button on the trigBoard until the LED is flashing, then connect to the board from the Configurator.  At the top of the page, you’ll see the date code of the firmware:</p>
+<blockquote>
+<div><img alt="_images/configfwversionof.png" class="align-center" src="_images/configfwversionof.png" />
+</div></blockquote>
+</li>
+<li><p class="first">Head over to the <a class="reference external" href="https://github.com/krdarrah/trigBoardV8_BaseFirmware/releases">releases git page</a> and see if there is a newer date code:</p>
+<blockquote>
+<div><img alt="_images/gitreleaselatestdatecode.png" class="align-center" src="_images/gitreleaselatestdatecode.png" />
+</div></blockquote>
+</li>
+</ul>
+<p>If a newer version exists, don’t worry because it’s very easy to upload - even wirelessy using OTA (OVER THE AIR) updates</p>
+</div>
+<div class="section" id="wireless-updates-ota">
+<h2>Wireless Updates (OTA)<a class="headerlink" href="#wireless-updates-ota" title="Permalink to this headline">¶</a></h2>
+<p>Here is a quick video showing the complete process to update the Firmware using OTA:</p>
+<blockquote>
+<div><div style="text-align: center; margin-bottom: 2em;">
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/QmJfK1wJ-ow" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</div></div></blockquote>
 <div class="admonition hint">
 <p class="first admonition-title">Hint</p>
-<p class="last">You can always upload the latest code to your board without compiling - the pre-compiled bin files can be uploaded via USB or OTA (Over The Air)</p>
+<div class="last line-block">
+<div class="line">Something went wrong? Here are some troubleshooting tips:</div>
+<div class="line">- Make sure the trigBoard is connected to the same network as the computer running the trigUpdater app</div>
+<div class="line">- If your FW is older, OTA was really not reliable, so just keep trying… it should eventually complete.  If not, you can check out uploading over USB.</div>
+<div class="line">- Make sure the battery is fresh/fully charged</div>
 </div>
+</div>
+<p>The latest bin file can always be downloaded from the <a class="reference external" href="https://github.com/krdarrah/trigBoardV8_BaseFirmware/releases">releases git page</a></p>
+<p>The trigUpdater app for your OS can be downloaded <a class="reference external" href="https://github.com/krdarrah/trigUpdater/releases">from here</a></p>
+<div class="section" id="alternate-ota-method">
+<h3>Alternate OTA Method<a class="headerlink" href="#alternate-ota-method" title="Permalink to this headline">¶</a></h3>
+<p>I also created an updater app with Python/Java, so here is that tutorial:</p>
+<blockquote>
+<div><div style="text-align: center; margin-bottom: 2em;">
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/iMPBpUdL-rk" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</div><ul class="simple">
+<li>The <a class="reference external" href="https://github.com/krdarrah/ESP32_GUI_Programmer">GUI can be downloaded here</a> - you can download the entire zip, then just run the application for your operating system. You can download the latest BIN file from the <a class="reference external" href="https://github.com/krdarrah/trigBoardV8_BaseFirmware">Github Repository for the V8 Base Firmware</a> inside the OTA folder</li>
+</ul>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">When using the GUI, you might get a pop-up about installing an old version of Java - just make sure to install the latest version and it should work</p>
+</div>
+</div></blockquote>
+</div>
+</div>
+<div class="section" id="usb-updates">
+<h2>USB Updates<a class="headerlink" href="#usb-updates" title="Permalink to this headline">¶</a></h2>
+<p>This is a long video showing how it can be done, but also useful for other ESP32 projects:</p>
+<div style="text-align: center; margin-bottom: 2em;">
+<iframe width="560" height="315" src="https://www.youtube.com/embed/jIIYrOe25S0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</div></div>
+<div class="section" id="compiling-uploading-base-firmware">
+<h2>Compiling/Uploading Base Firmware<a class="headerlink" href="#compiling-uploading-base-firmware" title="Permalink to this headline">¶</a></h2>
+<p>Latest code can always be found in the <a class="reference external" href="https://github.com/krdarrah/trigBoardV8_BaseFirmware">Github Repository</a></p>
+<p>Boards are always shipped with the release code which can be found at the <a class="reference external" href="https://github.com/krdarrah/trigBoardV8_BaseFirmware/releases">releases git page</a></p>
 <div class="admonition warning">
 <p class="first admonition-title">Warning</p>
 <p class="last">Modifications to the base firmware are encouraged, but be careful that you fully understand the existing base firmware functionality.  The firmware is responsible for both wake and shutdown functions.</p>
 </div>
-<div class="section" id="base-firmware-repository">
-<h2>Base Firmware Repository<a class="headerlink" href="#base-firmware-repository" title="Permalink to this headline">¶</a></h2>
-<p>Latest code can always be found in the <a class="reference external" href="https://github.com/krdarrah/trigBoardV8_BaseFirmware">Github Repository</a></p>
-<p>Boards are always shipped with the release code which can be found at the <a class="reference external" href="https://github.com/krdarrah/trigBoardV8_BaseFirmware/releases">releases git page</a></p>
-<div class="admonition note">
-<p class="first admonition-title">Note</p>
+<p><strong>Board Settings From Tools Menu</strong></p>
+<img alt="_images/boardsettings.png" class="align-center" src="_images/boardsettings.png" />
 <div class="line-block">
-<div class="line"><em>For Compiling or Modifying Code</em></div>
-<div class="line"><strong>Latest Versions of IDE and Libraries Used</strong></div>
-<div class="line">Arduino IDE v1.8.10</div>
-<div class="line">ESP32 v1.0.4  - in boards manager, after this boards manager url in preferences <a class="reference external" href="https://dl.espressif.com/dl/package_esp32_index.json">https://dl.espressif.com/dl/package_esp32_index.json</a></div>
-<div class="line">PubSubClient Library v2.7.0</div>
-<div class="line">Arduino Json Library v6.13.0</div>
-<div class="line">PushSafer Library Forked <a class="reference external" href="https://github.com/krdarrah/pushsafer-arduino-library">HERE</a> Thanks to <a class="reference external" href="https://github.com/witnessmenow">Brian Lough</a></div>
+<div class="line"><strong>Versions Prior to Release 8/16/21</strong></div>
+<div class="line">* Arduino IDE v1.8.10</div>
+<div class="line">* ESP32 v1.0.4  - in boards manager, after this boards manager url in preferences <a class="reference external" href="https://dl.espressif.com/dl/package_esp32_index.json">https://dl.espressif.com/dl/package_esp32_index.json</a></div>
+<div class="line">* PubSubClient Library v2.7.0</div>
+<div class="line">* PushSafer Library Forked <a class="reference external" href="https://github.com/krdarrah/pushsafer-arduino-library">HERE</a> Thanks to <a class="reference external" href="https://github.com/witnessmenow">Brian Lough</a></div>
+<div class="line">* Arduino Json Library v6.13.0</div>
 </div>
 <div class="line-block">
-<div class="line"><strong>Board Settings From Tools Menu</strong></div>
-</div>
-<img alt="_images/boardsettings.png" class="last align-center" src="_images/boardsettings.png" />
+<div class="line"><strong>Versions with latest 8/16/21</strong></div>
+<div class="line">* Arduino IDE v1.8.15</div>
+<div class="line">* ESP32 v1.0.6  - in boards manager, after this boards manager url in preferences <a class="reference external" href="https://dl.espressif.com/dl/package_esp32_index.json">https://dl.espressif.com/dl/package_esp32_index.json</a></div>
+<div class="line">* PubSubClient Library v2.8.0</div>
+<div class="line">* Arduino Json Library v6.18.0</div>
+<div class="line">* UniversalTelegramBot Library v1.3.0</div>
 </div>
 <div class="admonition warning">
 <p class="first admonition-title">Warning</p>
@@ -228,28 +293,6 @@ Version 8</a>
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="uploading">
-<h2>Uploading<a class="headerlink" href="#uploading" title="Permalink to this headline">¶</a></h2>
-<p>Here’s a pretty long video showing how it can be done both ways with a USB-Serial converter or OTA, but this is with the command line:</p>
-<div style="text-align: center; margin-bottom: 2em;">
-<iframe width="560" height="315" src="https://www.youtube.com/embed/jIIYrOe25S0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-</div><dl class="docutils">
-<dt><strong>OTA “Over The Air”</strong></dt>
-<dd><ul class="first simple">
-<li>To make this far easier, I made a simple app that runs on windows/mac/linux, so all you have to do is connect the trigBoard to your network from the configurator, initialize OTA, then you can setup the app and upload the latest BIN file:</li>
-</ul>
-<div style="text-align: center; margin-bottom: 2em;">
-        <iframe width="560" height="315" src="https://www.youtube.com/embed/iMPBpUdL-rk" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-</div><ul class="simple">
-<li>The <a class="reference external" href="https://github.com/krdarrah/ESP32_GUI_Programmer">GUI can be downloaded here</a> - you can download the entire zip, then just run the application for your operating system. You can download the latest BIN file from the <a class="reference external" href="https://github.com/krdarrah/trigBoardV8_BaseFirmware">Github Repository for the V8 Base Firmware</a> inside the OTA folder</li>
-</ul>
-<div class="last admonition warning">
-<p class="first admonition-title">Warning</p>
-<p class="last">When using the GUI, you might get a pop-up about installing an old version of Java - just make sure to install the latest version and it should work</p>
-</div>
-</dd>
-</dl>
 </div>
 <div class="section" id="custom-firmware">
 <h2>Custom Firmware<a class="headerlink" href="#custom-firmware" title="Permalink to this headline">¶</a></h2>
