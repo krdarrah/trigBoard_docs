@@ -67,6 +67,7 @@ Contents
    :maxdepth: 2 
    :caption: Projects
 
+   arduinoIoT.rst
    ePaperCoronaDisplay.rst
    cellularProject.rst
    doorbell.rst

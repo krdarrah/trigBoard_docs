@@ -119,8 +119,11 @@ If the timer has been enabled to check contact status, then these are the messag
  .. image:: images/clockenableandsettings.png
 	 :align: center
 
-The clock functionality was added in release 8/16/21 and is extremely powerful.  This gives the ability to add timestamps push messages, add a daily wake at a specific time with a custom message and timestamp.  This can be useful for "hearbeat" messages or check-ins with a server on a device that rarely wakes.  To set the time, first connect to WiFi from the WiFi settings, then the set to NTP time button will be enabled.  You can set the timezone offset according to the `UTC Time Offset <https://en.wikipedia.org/wiki/List_of_UTC_time_offsets>`_ for where you live.  You can even make the trigBoard synchronize with the NTP server when the daily wake alarm is activated.  But what if you don't set the time?  Well, then the time (as shown in the image) will show the elapsed time from when it was powered up.  This can be a useful way to see how long a board has been in service running on that battery.   
+The clock functionality was added in release 8/16/21 and is extremely powerful.  This gives the ability to add timestamps push messages, add a daily wake at a specific time with a custom message and timestamp.  This can be useful for "hearbeat" messages or check-ins with a server on a device that rarely wakes.  To set the time, first connect to WiFi from the WiFi settings, then the set to NTP time button will be enabled.  You can set the timezone offset according to the `UTC Time Offset <https://en.wikipedia.org/wiki/List_of_UTC_time_offsets>`_ for where you live.  You can even make the trigBoard synchronize with the NTP server when the daily wake alarm is activated.  But what if you don't set the time?  Well, then the time (as shown in the image) will show the elapsed time from when it was powered up.  This can be a useful way to see how long a board has been in service running on that battery. Like here, the time was not set and the timestamp shows this board has been running for 27 days on the battery: 
 
+ .. image:: images/daysonabatteryimage.png
+	 :align: center
+	 
 **Low Battery Threshold**
 ==========================
  .. image:: images/lowbatteryThreshold.png

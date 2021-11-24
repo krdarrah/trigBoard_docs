@@ -120,6 +120,7 @@ Version 8 0 documentation</title>
 </ul>
 <p class="caption"><span class="caption-text">Projects</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="arduinoIoT.html">Arduino IoT Cloud - Temperature Monitor</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ePaperCoronaDisplay.html">E-Paper Corona Display</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cellularProject.html">Cellular/Battery Backed System UDP/TCP</a></li>
 <li class="toctree-l1"><a class="reference internal" href="doorbell.html">Door Bell Monitoring</a></li>
@@ -312,7 +313,10 @@ Version 8</a>
 <blockquote>
 <div><img alt="_images/clockenableandsettings.png" class="align-center" src="_images/clockenableandsettings.png" />
 </div></blockquote>
-<p>The clock functionality was added in release 8/16/21 and is extremely powerful.  This gives the ability to add timestamps push messages, add a daily wake at a specific time with a custom message and timestamp.  This can be useful for “hearbeat” messages or check-ins with a server on a device that rarely wakes.  To set the time, first connect to WiFi from the WiFi settings, then the set to NTP time button will be enabled.  You can set the timezone offset according to the <a class="reference external" href="https://en.wikipedia.org/wiki/List_of_UTC_time_offsets">UTC Time Offset</a> for where you live.  You can even make the trigBoard synchronize with the NTP server when the daily wake alarm is activated.  But what if you don’t set the time?  Well, then the time (as shown in the image) will show the elapsed time from when it was powered up.  This can be a useful way to see how long a board has been in service running on that battery.</p>
+<p>The clock functionality was added in release 8/16/21 and is extremely powerful.  This gives the ability to add timestamps push messages, add a daily wake at a specific time with a custom message and timestamp.  This can be useful for “hearbeat” messages or check-ins with a server on a device that rarely wakes.  To set the time, first connect to WiFi from the WiFi settings, then the set to NTP time button will be enabled.  You can set the timezone offset according to the <a class="reference external" href="https://en.wikipedia.org/wiki/List_of_UTC_time_offsets">UTC Time Offset</a> for where you live.  You can even make the trigBoard synchronize with the NTP server when the daily wake alarm is activated.  But what if you don’t set the time?  Well, then the time (as shown in the image) will show the elapsed time from when it was powered up.  This can be a useful way to see how long a board has been in service running on that battery. Like here, the time was not set and the timestamp shows this board has been running for 27 days on the battery:</p>
+<blockquote>
+<div><img alt="_images/daysonabatteryimage.png" class="align-center" src="_images/daysonabatteryimage.png" />
+</div></blockquote>
 </div>
 <div class="section" id="low-battery-threshold">
 <h3><strong>Low Battery Threshold</strong><a class="headerlink" href="#low-battery-threshold" title="Permalink to this headline">¶</a></h3>

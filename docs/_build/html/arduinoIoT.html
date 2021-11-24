@@ -1,0 +1,345 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html4" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Arduino IoT Cloud - Temperature Monitor &mdash; trigBoard
+Version 8 0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="E-Paper Corona Display" href="ePaperCoronaDisplay.html" />
+    <link rel="prev" title="Contact" href="contact.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html">
+          
+
+          
+            
+            <img src="_static/logo.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">trigBoard v8 Docs</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="wheretobuy.html">Where To Buy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html">Quickstart &amp; Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="configurator.html">Configurator</a></li>
+<li class="toctree-l1"><a class="reference internal" href="supportedServices.html">Supported Services</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Hardware.html">Hardware</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Firmware.html">Firmware Updates &amp; Programming</a></li>
+<li class="toctree-l1"><a class="reference internal" href="testing.html">Testing/Factory Programming</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contact.html">Contact</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Projects</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Arduino IoT Cloud - Temperature Monitor</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#wiring"><strong>Wiring</strong></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#arduino-iot-cloud-setup"><strong>Arduino IoT Cloud Setup</strong></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#trigboard-setup"><strong>trigBoard Setup</strong></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="ePaperCoronaDisplay.html">E-Paper Corona Display</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cellularProject.html">Cellular/Battery Backed System UDP/TCP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="doorbell.html">Door Bell Monitoring</a></li>
+<li class="toctree-l1"><a class="reference internal" href="garage.html">Garage Door Monitor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="homeassistant.html">Home Assistant</a></li>
+<li class="toctree-l1"><a class="reference internal" href="LogGoogleDocs.html">Log to Google Sheet - IFTTT</a></li>
+<li class="toctree-l1"><a class="reference internal" href="motionSensor.html">Motion Sensor - PIR</a></li>
+<li class="toctree-l1"><a class="reference internal" href="multipleInputs.html">Multiple Inputs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="SendEmail.html">Send an Email - IFTTT</a></li>
+<li class="toctree-l1"><a class="reference internal" href="SmokeCODetector.html">Smoke/CO Detector</a></li>
+<li class="toctree-l1"><a class="reference internal" href="solar.html">Solar Powered</a></li>
+<li class="toctree-l1"><a class="reference internal" href="temperatureSensor.html">Temperature Logging Corlysis + Home Asst</a></li>
+<li class="toctree-l1"><a class="reference internal" href="waterleakDetector.html">Water Leak Detector</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">trigBoard
+Version 8</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Arduino IoT Cloud - Temperature Monitor</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/arduinoIoT.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="arduino-iot-cloud-temperature-monitor">
+<span id="arduinoiot"></span><h1>Arduino IoT Cloud - Temperature Monitor<a class="headerlink" href="#arduino-iot-cloud-temperature-monitor" title="Permalink to this headline">¶</a></h1>
+<img alt="_images/arduinoIotDashboard.png" class="align-center" src="_images/arduinoIotDashboard.png" />
+<p>Looking for a super easy and simple cloud service platform?  This might be a good fit for you!  There is also a free version to get you started, so that’s a nice perk as well.</p>
+<p>I was also happy to see they have a mobile app you can use to view your dashboards:</p>
+<img alt="_images/mobilearduinocloud.png" class="align-center" src="_images/mobilearduinocloud.png" />
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">You can setup very easily with this using any ESP32 board, but this tutorial is specific to using the trigBoard and a temperature sensor.  Hopefully, this tutorial will show you how to set this up with any kind of sensor with the trigBoard (or no sensor at all - just contact status)</p>
+</div>
+<div class="section" id="wiring">
+<h2><strong>Wiring</strong><a class="headerlink" href="#wiring" title="Permalink to this headline">¶</a></h2>
+<p>You can use this without</p>
+<p>The wiring is simple - just need an <a class="reference external" href="https://www.adafruit.com/product/1782">MCP9808 Breakout Board from Adafruit</a> which is a very accurate, fast, and reliable temperature sensor.  Can also get these boards on Amazon for much cheaper.</p>
+<img alt="_images/MCP9808wiringwithtrigboard.png" class="align-center" src="_images/MCP9808wiringwithtrigboard.png" />
+<img alt="_images/MCP9808Installed.png" class="align-center" src="_images/MCP9808Installed.png" />
+<p>Or even cleaner:</p>
+<img alt="_images/mcp9808mountedtoshield.png" class="align-center" src="_images/mcp9808mountedtoshield.png" />
+</div>
+<div class="section" id="arduino-iot-cloud-setup">
+<h2><strong>Arduino IoT Cloud Setup</strong><a class="headerlink" href="#arduino-iot-cloud-setup" title="Permalink to this headline">¶</a></h2>
+<p>First thing to do is login to your account at <a class="reference external" href="https://create.arduino.cc/iot/">Arduino IoT Cloud</a></p>
+<p>Then let’s just get started and create a device - will be a third party board:</p>
+<img alt="_images/thirdpartyboardarduino.png" class="align-center" src="_images/thirdpartyboardarduino.png" />
+<p>Will be ESP32, and select Dev Module:</p>
+<img alt="_images/devmoduleselectionArduino.png" class="align-center" src="_images/devmoduleselectionArduino.png" />
+<p>Give the board a name!</p>
+<img alt="_images/giveanamearduino.png" class="align-center" src="_images/giveanamearduino.png" />
+<p><strong>Important</strong> save the Device ID and Secret Key - we’ll need these later</p>
+<img alt="_images/deviceidsecretarduino.png" class="align-center" src="_images/deviceidsecretarduino.png" />
+<p>Now we see the device is created and can create a thing with variables:</p>
+<img alt="_images/createthingsarduino.png" class="align-center" src="_images/createthingsarduino.png" />
+<p>Then we create variables:</p>
+<img alt="_images/createvariablesarduino.png" class="align-center" src="_images/createvariablesarduino.png" />
+<p>For example, and as you’ll see in the code, these variable names need to line up with the actual variable used in the trigBoard code:</p>
+<img alt="_images/variablesetupArduinoCloud.png" class="align-center" src="_images/variablesetupArduinoCloud.png" />
+<p>The example code uses three variables - pay attention to type (float, bool, etc) and since we’re just sending these up to the cloud, are read only and the periodic time doesn’t matter.</p>
+<img alt="_images/threevariablesarduinocloud.png" class="align-center" src="_images/threevariablesarduinocloud.png" />
+<p>You have a Device ID, Secret Key, and now save the Thing ID at the bottom of this page - <strong>You need all three</strong></p>
+<img alt="_images/thingIDarduinocloud.png" class="align-center" src="_images/thingIDarduinocloud.png" />
+<p>From there, it’s all pretty easy to create dashboards to visualize the data.  In the future, we’ll look at how to pull this data out of the Arduino Cloud to automate things, like turn something on/off on a threshold.</p>
+</div>
+<div class="section" id="trigboard-setup">
+<h2><strong>trigBoard Setup</strong><a class="headerlink" href="#trigboard-setup" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://github.com/krdarrah/trigBoardV8_BaseFirmware_ArduinoIoT">The github repo is here</a></p>
+<p>To compile this code as-is, you will need the MCP9808 library from Adafruit as well as the supporting libraries for Arduino IoT Cloud.  You can install all of these libraries from the Arduino IDE, you’ll find it: sketch&gt;&gt;Include Library&gt;&gt;Manage Libraries  Note, you are still compiling the base firmware, so go to the <a class="reference internal" href="Firmware.html#firmware"><span class="std std-ref">Firmware Page</span></a> for what is needed to do that</p>
+<p>What’s really cool about this code is that it re-uses other fields in the trigBoard configurator to set this up to work with Arduino IoT Cloud, so no need to hard code things.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="57%" />
+<col width="43%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Configurator</th>
+<th class="head">Arduino IoT Cloud</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Pushover Key</td>
+<td>Thing ID</td>
+</tr>
+<tr class="row-odd"><td>Pushover API Token/Key</td>
+<td>Device ID</td>
+</tr>
+<tr class="row-even"><td>Push Safer Key</td>
+<td>Secret Key</td>
+</tr>
+<tr class="row-odd"><td>Message when Wake Button Pressed</td>
+<td>C or F</td>
+</tr>
+</tbody>
+</table>
+<p>So then when you launch the configurator, you setup your WiFi credentials, the interval time in the timer settings, then the Arduino IoT Cloud parameters.</p>
+<p>Taking a look at the code, you’ll see how easy it is to modify variables - head over to the thingProperties.h tab:</p>
+<div class="highlight-C notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span> <span class="nf">initProperties</span><span class="p">()</span> <span class="p">{</span>
+
+  <span class="n">ArduinoCloud</span><span class="p">.</span><span class="n">setBoardId</span><span class="p">(</span><span class="n">config</span><span class="p">.</span><span class="n">pushAPIKey</span><span class="p">);</span>
+  <span class="n">ArduinoCloud</span><span class="p">.</span><span class="n">setSecretDeviceKey</span><span class="p">(</span><span class="n">config</span><span class="p">.</span><span class="n">pushSaferKey</span><span class="p">);</span>
+  <span class="n">ArduinoCloud</span><span class="p">.</span><span class="n">setThingId</span><span class="p">(</span><span class="n">config</span><span class="p">.</span><span class="n">pushUserKey</span><span class="p">);</span>
+  <span class="n">ArduinoCloud</span><span class="p">.</span><span class="n">addProperty</span><span class="p">(</span><span class="n">arduinoTemperature</span><span class="p">,</span> <span class="n">READ</span><span class="p">,</span> <span class="mi">1</span> <span class="o">*</span> <span class="n">SECONDS</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">);</span>
+  <span class="n">ArduinoCloud</span><span class="p">.</span><span class="n">addProperty</span><span class="p">(</span><span class="n">arduinoBatteryVoltage</span><span class="p">,</span> <span class="n">READ</span><span class="p">,</span> <span class="mi">1</span> <span class="o">*</span> <span class="n">SECONDS</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">);</span>
+  <span class="n">ArduinoCloud</span><span class="p">.</span><span class="n">addProperty</span><span class="p">(</span><span class="n">arduinoContact</span><span class="p">,</span> <span class="n">READ</span><span class="p">,</span> <span class="mi">1</span> <span class="o">*</span> <span class="n">SECONDS</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>When you scroll down there, you can see how the ArduinoCloud properties are added.  These variables are declared as globals at the top of this file:</p>
+<div class="highlight-C notranslate"><div class="highlight"><pre><span></span><span class="kt">float</span> <span class="n">arduinoTemperature</span><span class="p">;</span>
+<span class="kt">float</span> <span class="n">arduinoBatteryVoltage</span><span class="p">;</span>
+<span class="n">boolean</span> <span class="n">arduinoContact</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>From there, these variables are stuffed with the data we want to send up to the cloud:</p>
+<p>Head back over to the main tab, and you’ll see how this is done:</p>
+<div class="highlight-C notranslate"><div class="highlight"><pre><span></span><span class="n">arduinoTemperature</span> <span class="o">=</span> <span class="n">atof</span><span class="p">(</span><span class="n">temperatureString</span><span class="p">);</span>
+<span class="n">arduinoBatteryVoltage</span> <span class="o">=</span> <span class="n">getBattery</span><span class="p">();</span>
+<span class="n">arduinoContact</span> <span class="o">=</span> <span class="n">contactStatusClosed</span><span class="p">;</span><span class="c1">//arduinoContact=true when contact closed</span>
+<span class="n">initProperties</span><span class="p">();</span><span class="c1">//ArduinoIoTCloud</span>
+<span class="n">sendArduinoIoT</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="ePaperCoronaDisplay.html" class="btn btn-neutral float-right" title="E-Paper Corona Display" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="contact.html" class="btn btn-neutral float-left" title="Contact" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2020, Kevin Darrah
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
