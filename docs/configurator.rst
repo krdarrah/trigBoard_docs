@@ -21,6 +21,12 @@ All of the parameters in the trigBoard are configured in the `Configurator Tool 
 	* You may have to `enable experimental features <chrome://flags/#enable-experimental-web-platform-features>`_ but I have not seen that here with my machines.
 	* Problems with Windows 10? Check your build version "Settings->System->About" and should be at least 1703.  One user had issues with v1607. Also noted `this <https://github.com/WebBluetoothCG/web-bluetooth/blob/gh-pages/implementation-status.md#chrome>`_ helped in troubleshooting.
 
+iOS users!  There is a way to configure the trigBoard from your mobile device, but this requires a **paid** app to allow access to the bluetooth connection.  This is very handy for making quick changes and for starting OTA mode.  Just search the app store for "WebBle" and use it just like a browser to launch the Configurator.  To get to the docs quickly, just go to https://trigboard.com
+
+.. image:: images/webbleapp.png
+	:align: center
+	:target: https://apps.apple.com/us/app/webble/id1193531073
+
 
 .. image:: images/configuratorGip.gif
 	:align: center

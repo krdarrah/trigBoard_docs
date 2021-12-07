@@ -105,6 +105,8 @@ Version 8 0 documentation</title>
 <li class="toctree-l3"><a class="reference internal" href="#timer-settings"><strong>Timer Settings</strong></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#timer-wake-messages"><strong>Timer Wake Messages</strong></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#clock-settings"><strong>Clock Settings</strong></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#append-rssi"><strong>Append RSSI</strong></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#mission-critical-check"><strong>Mission Critical Check</strong></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#low-battery-threshold"><strong>Low Battery Threshold</strong></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#services"><strong>Services</strong></a></li>
 </ul>
@@ -317,6 +319,23 @@ Version 8</a>
 <blockquote>
 <div><img alt="_images/daysonabatteryimage.png" class="align-center" src="_images/daysonabatteryimage.png" />
 </div></blockquote>
+</div>
+<div class="section" id="append-rssi">
+<h3><strong>Append RSSI</strong><a class="headerlink" href="#append-rssi" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><img alt="_images/appendrssi.png" class="align-center" src="_images/appendrssi.png" />
+</div></blockquote>
+<p>Added in the 11/29/21 release, and appends the signal strength in dBm to the notification packet.  Note that this will always be a positive number because the negative character was used as a separator in some projects.  So in this example below 58dBm is technically -58dBm.  You can read <a class="reference external" href="https://www.metageek.com/training/resources/understanding-rssi/">more about RSSI here</a> and see what acceptable values should be. Note that if you have the board configured to send using TCP/UDP and another service, it will append two RSSI values since the UDP/TCP is typically set up as an isolated network.  The UDP/TCP value will always be the last one.</p>
+<blockquote>
+<div><img alt="_images/rssiexample.png" class="align-center" src="_images/rssiexample.png" />
+</div></blockquote>
+</div>
+<div class="section" id="mission-critical-check">
+<h3><strong>Mission Critical Check</strong><a class="headerlink" href="#mission-critical-check" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><img alt="_images/missioncriticalcheck.png" class="align-center" src="_images/missioncriticalcheck.png" />
+</div></blockquote>
+<p>Added in the 11/29/21 release, and provides a nice feature to ensure the latest contact status message has been sent.  There is a small “dead zone” when the board is going to sleep ~200ms or so.  So if the board is configured to wake on open and close, there’s a chance like if this monitoring a door, where if the user quickly opens and closes the door that the closure is missed.  This new feature sets a timer to just wake a few seconds after the board goes back to sleep to “double check” that the contact state is the same as it was when it sent the original message. If there’s a discrepancy, it will send a fresh message.  5-10seconds should be a good timer setting for this, but the setting is there to make this anything up to a minute to suit the application.</p>
 </div>
 <div class="section" id="low-battery-threshold">
 <h3><strong>Low Battery Threshold</strong><a class="headerlink" href="#low-battery-threshold" title="Permalink to this headline">¶</a></h3>

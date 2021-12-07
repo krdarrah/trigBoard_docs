@@ -124,6 +124,24 @@ The clock functionality was added in release 8/16/21 and is extremely powerful. 
  .. image:: images/daysonabatteryimage.png
 	 :align: center
 	 
+**Append RSSI**
+==========================
+ .. image:: images/appendrssi.png
+	 :align: center
+
+Added in the 11/29/21 release, and appends the signal strength in dBm to the notification packet.  Note that this will always be a positive number because the negative character was used as a separator in some projects.  So in this example below 58dBm is technically -58dBm.  You can read `more about RSSI here <https://www.metageek.com/training/resources/understanding-rssi/>`_ and see what acceptable values should be. Note that if you have the board configured to send using TCP/UDP and another service, it will append two RSSI values since the UDP/TCP is typically set up as an isolated network.  The UDP/TCP value will always be the last one.
+
+ .. image:: images/rssiexample.png
+	 :align: center
+
+**Mission Critical Check**
+============================
+ .. image:: images/missioncriticalcheck.png
+	 :align: center
+
+Added in the 11/29/21 release, and provides a nice feature to ensure the latest contact status message has been sent.  There is a small "dead zone" when the board is going to sleep ~200ms or so.  So if the board is configured to wake on open and close, there's a chance like if this monitoring a door, where if the user quickly opens and closes the door that the closure is missed.  This new feature sets a timer to just wake a few seconds after the board goes back to sleep to "double check" that the contact state is the same as it was when it sent the original message. If there's a discrepancy, it will send a fresh message.  5-10seconds should be a good timer setting for this, but the setting is there to make this anything up to a minute to suit the application. 
+
+
 **Low Battery Threshold**
 ==========================
  .. image:: images/lowbatteryThreshold.png
