@@ -58,9 +58,6 @@ But works fine at 200ms:
 .. image:: images/200msTest.mov
 	:align: center
 
-
-And if you try to re-wake the board within ~200ms after it shuts down, there is a chance it will not trigger.  This is due to the low power circuitry "un-latching".  So if you had a door you were monitoring for both open and close, and someone ran out the door, there's a chance you may only detect the opening of the door. In this scenario, the RTC to check if the door is still open still would work though, but there are things we can do in firmware to check for this, like change the RTC time after an opening to be shorter, just so you know for sure within a period of time the door was closed.  Or even elongate the time that you stay awake for, so you can wait for the closure, but then of course this will impact the battery life.  
-
 If you have a "button" style input, where someone could quickly tap the button, then the trigBoard may not wake.  In this case, here is a simple RC circuit you can build to stretch the wake signal long enough:
 
 .. image:: images/fastswitchingInputs.png
@@ -225,9 +222,6 @@ AAA Batteries 3.0V
 		:align: center
 
 
-
-
-
 Recommended Batteries
 ======================
 
@@ -257,6 +251,17 @@ Mechanical
 
 .. image:: images/trigBoardgif.gif
 	:align: center
+
+Removing the Cables
+--------------------
+
+Removing the cables can be tricky, since they practically lock themselves in.  Pulling on the wires is risky, since you may end up damaging the cable by pulling the wires completely out from the connector... this happens all the time.  Safest way to remove the plugs is with a pair of pliers and carefully only pulling on the plug.  Even this is not easy, so I designed a simple "plug puller" board to make this very easy.  Works best by inserting on the "key'ed" side of the plug: 
+
+.. image:: images/jstdemo.gif
+	:align: center
+
+Every trigBoard now ships with one of these boards, but can also be purchased separately in the `Tindie store <https://www.tindie.com/products/25635/>`_
+
 
 Screw-Terminals
 ----------------

@@ -37,7 +37,7 @@ Version 8 0 documentation</title>
     
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Firmware/Programming" href="Firmware.html" />
+    <link rel="next" title="Firmware Updates &amp; Programming" href="Firmware.html" />
     <link rel="prev" title="Supported Services" href="supportedServices.html" /> 
 </head>
 
@@ -89,7 +89,7 @@ Version 8 0 documentation</title>
               <p class="caption"><span class="caption-text">trigBoard v8 Docs</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="wheretobuy.html">Where To Buy</a></li>
-<li class="toctree-l1"><a class="reference internal" href="quickstart.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html">Quickstart &amp; Configuration</a></li>
 <li class="toctree-l1"><a class="reference internal" href="configurator.html">Configurator</a></li>
 <li class="toctree-l1"><a class="reference internal" href="supportedServices.html">Supported Services</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Hardware</a><ul>
@@ -109,22 +109,29 @@ Version 8 0 documentation</title>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#mechanical">Mechanical</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#removing-the-cables">Removing the Cables</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#screw-terminals">Screw-Terminals</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="Firmware.html">Firmware/Programming</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Firmware.html">Firmware Updates &amp; Programming</a></li>
 <li class="toctree-l1"><a class="reference internal" href="testing.html">Testing/Factory Programming</a></li>
 <li class="toctree-l1"><a class="reference internal" href="contact.html">Contact</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Projects</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="arduinoIoT.html">Arduino IoT Cloud - Temperature Monitor</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ePaperCoronaDisplay.html">E-Paper Corona Display</a></li>
-<li class="toctree-l1"><a class="reference internal" href="cellularProject.html">Cellular/Battery Backed System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cellularProject.html">Cellular/Battery Backed System UDP/TCP</a></li>
 <li class="toctree-l1"><a class="reference internal" href="doorbell.html">Door Bell Monitoring</a></li>
 <li class="toctree-l1"><a class="reference internal" href="garage.html">Garage Door Monitor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="homeassistant.html">Home Assistant</a></li>
+<li class="toctree-l1"><a class="reference internal" href="LogGoogleDocs.html">Log to Google Sheet - IFTTT</a></li>
 <li class="toctree-l1"><a class="reference internal" href="motionSensor.html">Motion Sensor - PIR</a></li>
 <li class="toctree-l1"><a class="reference internal" href="multipleInputs.html">Multiple Inputs</a></li>
-<li class="toctree-l1"><a class="reference internal" href="temperatureSensor.html">Temperature Logging to Grafana</a></li>
+<li class="toctree-l1"><a class="reference internal" href="SendEmail.html">Send an Email - IFTTT</a></li>
+<li class="toctree-l1"><a class="reference internal" href="SmokeCODetector.html">Smoke/CO Detector</a></li>
+<li class="toctree-l1"><a class="reference internal" href="solar.html">Solar Powered</a></li>
+<li class="toctree-l1"><a class="reference internal" href="temperatureSensor.html">Temperature Logging Corlysis + Home Asst</a></li>
 <li class="toctree-l1"><a class="reference internal" href="waterleakDetector.html">Water Leak Detector</a></li>
 </ul>
 
@@ -284,7 +291,6 @@ Version 8</a>
 <img alt="_images/100msTest.mov" class="align-center" src="_images/100msTest.mov" />
 <p>But works fine at 200ms:</p>
 <img alt="_images/200msTest.mov" class="align-center" src="_images/200msTest.mov" />
-<p>And if you try to re-wake the board within ~200ms after it shuts down, there is a chance it will not trigger.  This is due to the low power circuitry “un-latching”.  So if you had a door you were monitoring for both open and close, and someone ran out the door, there’s a chance you may only detect the opening of the door. In this scenario, the RTC to check if the door is still open still would work though, but there are things we can do in firmware to check for this, like change the RTC time after an opening to be shorter, just so you know for sure within a period of time the door was closed.  Or even elongate the time that you stay awake for, so you can wait for the closure, but then of course this will impact the battery life.</p>
 <p>If you have a “button” style input, where someone could quickly tap the button, then the trigBoard may not wake.  In this case, here is a simple RC circuit you can build to stretch the wake signal long enough:</p>
 <img alt="_images/fastswitchingInputs.png" class="align-center" src="_images/fastswitchingInputs.png" />
 </div>
@@ -564,6 +570,12 @@ Version 8</a>
 </div>
 <img alt="_images/trigBoardgif.gif" class="align-center" src="_images/trigBoardgif.gif" />
 </div>
+<div class="section" id="removing-the-cables">
+<h2>Removing the Cables<a class="headerlink" href="#removing-the-cables" title="Permalink to this headline">¶</a></h2>
+<p>Removing the cables can be tricky, since they practically lock themselves in.  Pulling on the wires is risky, since you may end up damaging the cable by pulling the wires completely out from the connector… this happens all the time.  Safest way to remove the plugs is with a pair of pliers and carefully only pulling on the plug.  Even this is not easy, so I designed a simple “plug puller” board to make this very easy.  Works best by inserting on the “key’ed” side of the plug:</p>
+<img alt="_images/jstdemo.gif" class="align-center" src="_images/jstdemo.gif" />
+<p>Every trigBoard now ships with one of these boards, but can also be purchased separately in the <a class="reference external" href="https://www.tindie.com/products/25635/">Tindie store</a></p>
+</div>
 <div class="section" id="screw-terminals">
 <h2>Screw-Terminals<a class="headerlink" href="#screw-terminals" title="Permalink to this headline">¶</a></h2>
 <p>The trigBoard is bread-board “friendly” meaning that 0.1” headers can be soldered in to allow for easy development.  But for more permanent installations, screw down terminal blocks can be used.</p>
@@ -585,7 +597,7 @@ Version 8</a>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="Firmware.html" class="btn btn-neutral float-right" title="Firmware/Programming" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="Firmware.html" class="btn btn-neutral float-right" title="Firmware Updates &amp; Programming" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="supportedServices.html" class="btn btn-neutral float-left" title="Supported Services" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
