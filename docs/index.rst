@@ -75,6 +75,7 @@ Contents
    homeassistant.rst
    LogGoogleDocs.rst
    motionSensor.rst
+   motionSound.rst
    multipleInputs.rst
    SendEmail.rst
    SmokeCODetector.rst
