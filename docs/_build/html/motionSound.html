@@ -187,14 +187,19 @@ Version 8</a>
             
   <div class="section" id="motion-activated-mp3-security-system">
 <h1>Motion Activated mp3 Security System<a class="headerlink" href="#motion-activated-mp3-security-system" title="Permalink to this headline">¶</a></h1>
+<div style="text-align: center; margin-bottom: 2em;">
+<iframe width="560" height="315" src="https://www.youtube.com/embed/shOsIt5IQ-8" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</div><p>This is a pretty cool project - an ultra low power 2uA motion sensor system that plays any mp3 you want when motion is detected.  Also has ability to only play the file during certain hours of the day and because it’s based on the ESP32, you can also send push notifications.</p>
 <img alt="_images/dogBarkPicture.png" class="align-center" src="_images/dogBarkPicture.png" />
 <div class="section" id="parts-needed">
 <h2>Parts Needed<a class="headerlink" href="#parts-needed" title="Permalink to this headline">¶</a></h2>
 <div class="line-block">
-<div class="line"><a class="reference external" href="https://www.amazon.com/dp/B0725RHR4D?psc=1&amp;ref=ppx_yo2_dt_b_product_details">mp3 Player Board</a></div>
-<div class="line"><a class="reference external" href="https://www.amazon.com/dp/B099K3P7MG?psc=1&amp;ref=ppx_yo2_dt_b_product_details">DC to DC Booster Module</a></div>
-<div class="line"><a class="reference external" href="https://www.amazon.com/dp/B06XGL2L1S?psc=1&amp;ref=ppx_yo2_dt_b_product_details">10W Audio Amplifier</a></div>
-<div class="line"><a class="reference external" href="https://www.digikey.com/en/products/detail/panasonic-electric-works/EKMB1103113/2601873">Ultra Low Power PIR Sensor</a></div>
+<div class="line">- <a class="reference external" href="https://www.amazon.com/dp/B0725RHR4D?psc=1&amp;ref=ppx_yo2_dt_b_product_details">mp3 Player Board</a></div>
+<div class="line">- <a class="reference external" href="https://www.amazon.com/dp/B099K3P7MG?psc=1&amp;ref=ppx_yo2_dt_b_product_details">DC to DC Booster Module</a></div>
+<div class="line">- <a class="reference external" href="https://www.amazon.com/dp/B06XGL2L1S?psc=1&amp;ref=ppx_yo2_dt_b_product_details">10W Audio Amplifier</a></div>
+<div class="line">- <a class="reference external" href="https://www.digikey.com/en/products/detail/panasonic-electric-works/EKMB1103113/2601873">Ultra Low Power PIR Sensor</a></div>
+<div class="line">- Speaker is nothing special.  I experimented with a few random speakers I had lying around.</div>
+<div class="line">- Recommend using a pretty large battery for this, just because of the high peak currents when the trigBoard wakes up.  &gt;2000mAh</div>
 </div>
 </div>
 <div class="section" id="connections">
@@ -202,7 +207,7 @@ Version 8</a>
 <blockquote>
 <div><div class="admonition warning">
 <p class="first admonition-title">Warning</p>
-<p class="last">The DC-DC booster modules need to be preset before installation.  The 3.3V pin on the trigBoard is only enabled when triggered, so you can use wire this to the booster module, but <strong>DON’T</strong> connect the output, until you adjust it for 12V using the trimpot.  I did this with the trigBoard and just held the wake button until the LED starts flashing. That will keep the 3.3V rail up while you adjust the booster output.  Then you can disconnect the battery and finish the connections.</p>
+<p class="last">The DC-DC booster modules need to be preset before installation.  The 3.3V pin on the trigBoard is only enabled when triggered, so you can wire this to the booster module, but <strong>DON’T</strong> connect the output, until you adjust it for 12V using the trimpot.  I did this with the trigBoard and just held the wake button until the LED starts flashing. That will keep the 3.3V rail up while you adjust the booster output.  Then you can disconnect the battery and finish the connections.</p>
 </div>
 </div></blockquote>
 <img alt="_images/dogBarkDiagram.png" class="align-center" src="_images/dogBarkDiagram.png" />
@@ -216,8 +221,14 @@ Version 8</a>
 <h2>Source Code<a class="headerlink" href="#source-code" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference internal" href="Firmware.html#firmware"><span class="std std-ref">See Firmware Page for how to upload</span></a></p>
 <div class="line-block">
-<div class="line"><a class="reference external" href="https://github.com/krdarrah/trigBoardV8_BaseFirmware_DOGBARK">Customized Base Firmware</a></div>
+<div class="line"><a class="reference external" href="https://github.com/krdarrah/trigBoardV8_BaseFirmware_DOGBARK">Customized Base Firmware HERE</a></div>
 </div>
+<blockquote>
+<div><div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">This code adds support for the mp3 player board as well as using the RTC (Clock) to check the current hour so that the dog bark is only enabled during a certain timeframe.</p>
+</div>
+</div></blockquote>
 </div>
 </div>
 
