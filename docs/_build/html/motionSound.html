@@ -200,6 +200,7 @@ Version 8</a>
 <div class="line">- <a class="reference external" href="https://www.digikey.com/en/products/detail/panasonic-electric-works/EKMB1103113/2601873">Ultra Low Power PIR Sensor</a></div>
 <div class="line">- Speaker is nothing special.  I experimented with a few random speakers I had lying around.</div>
 <div class="line">- Recommend using a pretty large battery for this, just because of the high peak currents when the trigBoard wakes up.  &gt;2000mAh</div>
+<div class="line">- P-CH MOSFET - I used something I had lying around:  <a class="reference external" href="https://www.digikey.com/en/products/detail/diodes-incorporated/DMP3010LK3Q-13/5080328">DMP3010LK3Q-13</a>  In my case, the PIR is always active, but I only want to play audio within a certain time frame, so this gives the ability to keep the audio circuitry off during the day when motion is detected.  If that part isn’t available, just find something with that can support a couple amps, VGS threshold &gt;3V</div>
 </div>
 </div>
 <div class="section" id="connections">
@@ -214,6 +215,12 @@ Version 8</a>
 <div class="line-block">
 <div class="line"><a class="reference download internal" download="" href="_downloads/988de8ddd89f67bcf624b9df6cc36b4d/dogBarkDiagram.png"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Diagram</span></code></a></div>
 </div>
+<blockquote>
+<div><div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">I added in a P-CH MOSFET to the design so that power to the audio circuit can be controlled. This is nice because the 3V3 rail will always turn on when motion is detected, even if you don’t want to play audio at that time.  I added the MOSFET, so now, only during the active time frame the power to the amplifier &amp; mp3 board is enabled by driving pin 13 LOW from the code.</p>
+</div>
+</div></blockquote>
 <p>Note that the 12V connection is soldered directly to the amplifier board:</p>
 <img alt="_images/12vwiredtoamplifier.png" class="align-center" src="_images/12vwiredtoamplifier.png" />
 </div>

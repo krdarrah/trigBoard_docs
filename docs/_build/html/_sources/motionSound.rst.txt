@@ -24,7 +24,7 @@ Parts Needed
 | - `Ultra Low Power PIR Sensor <https://www.digikey.com/en/products/detail/panasonic-electric-works/EKMB1103113/2601873>`_
 | - Speaker is nothing special.  I experimented with a few random speakers I had lying around.  
 | - Recommend using a pretty large battery for this, just because of the high peak currents when the trigBoard wakes up.  >2000mAh
-
+| - P-CH MOSFET - I used something I had lying around:  `DMP3010LK3Q-13 <https://www.digikey.com/en/products/detail/diodes-incorporated/DMP3010LK3Q-13/5080328>`_  In my case, the PIR is always active, but I only want to play audio within a certain time frame, so this gives the ability to keep the audio circuitry off during the day when motion is detected.  If that part isn't available, just find something with that can support a couple amps, VGS threshold >3V
 
 Connections
 -------------
@@ -36,6 +36,9 @@ Connections
 	:align: center
 
 |	:download:`Download Diagram <images/dogBarkDiagram.png>`
+
+	.. note::
+		I added in a P-CH MOSFET to the design so that power to the audio circuit can be controlled. This is nice because the 3V3 rail will always turn on when motion is detected, even if you don't want to play audio at that time.  I added the MOSFET, so now, only during the active time frame the power to the amplifier & mp3 board is enabled by driving pin 13 LOW from the code.  
 
 
 Note that the 12V connection is soldered directly to the amplifier board:
